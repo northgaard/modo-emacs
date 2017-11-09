@@ -1,5 +1,6 @@
 ;;; package.el
 (setq package-enable-at-startup nil)
+(setq package-archives nil)
 (setq package-user-dir (expand-file-name "build" user-emacs-directory))
 ;; (package-initialize) is called when quelpa is bootstrapped
 
@@ -26,7 +27,8 @@
 (quelpa `(use-package :fetcher file
 		      :path ,(expand-file-name "use-package.el"
 					       (concat user-emacs-directory
-						       "packages/use-package"))))
+						       "packages/use-package"))
+		      :version original))
 (eval-when-compile
   (setq use-package-verbose t)
   (setq use-package-always-defer t)
