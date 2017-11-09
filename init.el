@@ -32,3 +32,20 @@
   (setq use-package-always-defer t)
   (require 'use-package))
 (require 'diminish)
+
+;;; evil-mode
+(quelpa `(undo-tree :fetcher file
+		    :path ,(expand-file-name "undo-tree.el"
+					     (concat user-emacs-directory
+						     "packages/evil/lib"))
+		    :version original))
+(quelpa `(goto-chg :fetcher file
+		   :path ,(expand-file-name "goto-chg.el"
+					    (concat user-emacs-directory
+						    "packages/evil/lib"))
+		   :version original))
+(quelpa `(evil :fetcher file
+	       :path ,(concat user-emacs-directory "packages/evil")))
+(use-package evil :demand t
+  :config
+  (evil-mode 1))
