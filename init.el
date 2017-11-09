@@ -28,5 +28,7 @@
 					       (concat user-emacs-directory
 						       "packages/use-package"))))
 (eval-when-compile
+  (setq use-package-verbose t)
+  (setq use-package-always-defer t)
   (require 'use-package))
 (require 'diminish)
