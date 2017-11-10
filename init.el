@@ -119,8 +119,7 @@
 
 ;;; org mode
 (modo-add-package org "org-mode/lisp")
-(modo-add-package-single org-learn "org-mode/contrib/lisp/org-learn.el")
-(modo-add-package-single org-drill "org-mode/contrib/lisp/org-drill.el")
+(modo-add-package org-contribdir "org-mode/contrib/lisp")
 (modo-add-package-single org-bullets "org-bullets/org-bullets.el")
 (use-package org
   :config
@@ -134,6 +133,7 @@
     (setq org-bullets-bullet-list '("•")))
   (use-package org-drill :demand t
     :init
+    (require 'cl) ;; Needs the outdated cl lib
     (setq org-id-locations-file (expand-file-name "org-id-locations" modo-cache-dir))
     (setq org-drill-add-random-noise-to-intervals-p t)
     (setq org-drill-learn-fraction 0.4)))
