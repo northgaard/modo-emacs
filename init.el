@@ -31,6 +31,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;; package.el
+;; We're not above dirty hacks -- disable writing package-selected-packages
+(with-eval-after-load 'package
+  (defun package--save-selected-packages (&rest opt) nil))
 (setq package-enable-at-startup nil)
 (setq package-archives nil)
 (setq package-user-dir (concat modo-emacs-dir "build/"))
