@@ -4,6 +4,32 @@
 (defvar modo-repo-dir (concat modo-emacs-dir "repos/")
   "The directory containing the modo repositories.")
 
+;;; Core editor settings
+(setq inhibit-splash-screen t
+      inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(when (boundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+(show-paren-mode 1)
+(blink-cursor-mode -1)
+(setq-default indicate-empty-lines t)
+(setq-default indent-tabs-mode nil)
+
+(setq vc-follow-symlinks t)
+(column-number-mode 1)
+(setq tab-width 4)
+(setq sentence-end-double-space nil)
+(setq mouse-yank-at-point t)
+
+(global-auto-revert-mode 1)
+
+;; Start maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; Enable y/n answers
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;;; package.el
 (setq package-enable-at-startup nil)
 (setq package-archives nil)
