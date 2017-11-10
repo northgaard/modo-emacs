@@ -74,6 +74,7 @@
 (modo-add-package-single undo-tree "evil/lib/undo-tree.el")
 (modo-add-package-single goto-chg "evil/lib/goto-chg.el")
 (modo-add-package evil "evil")
+(modo-add-package-single evil-escape "evil-escape/evil-escape.el")
 (use-package evil :demand t
   :init
   (setq evil-want-C-u-scroll t
@@ -89,6 +90,10 @@
 	shift-select-mode nil)
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
+  (use-package evil-escape :demand t
+    :config
+    (setq-default evil-escape-key-sequence "fd")
+    (evil-escape-mode 1))
   (evil-mode 1))
 
 ;;; elisp
