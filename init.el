@@ -4,6 +4,11 @@
 (defvar modo-repo-dir (concat modo-emacs-dir "repos/")
   "The directory containing the modo repositories.")
 
+(defvar modo-cache-dir (concat modo-emacs-dir "cache/")
+  "The directory storing persistent information.")
+(unless (file-exists-p modo-cache-dir)
+  (make-directory modo-cache-dir))
+
 ;;; Core editor settings
 (setq inhibit-splash-screen t
       inhibit-startup-message t
