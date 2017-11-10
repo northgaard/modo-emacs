@@ -70,6 +70,13 @@
 (require 'use-package)
 (require 'diminish)
 
+;;; which-key
+(modo-add-package-single which-key "emacs-which-key/which-key.el")
+(use-package which-key :demand t
+  :config
+  (which-key-mode 1)
+  (setq which-key-idle-delay 0.7))
+
 ;;; evil mode
 (modo-add-package-single undo-tree "evil/lib/undo-tree.el")
 (modo-add-package-single goto-chg "evil/lib/goto-chg.el")
