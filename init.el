@@ -29,6 +29,8 @@
 (setq mouse-yank-at-point t)
 
 (global-auto-revert-mode 1)
+(setq savehist-file (expand-file-name "savehist" modo-cache-dir))
+(savehist-mode 1)
 
 ;; Start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
