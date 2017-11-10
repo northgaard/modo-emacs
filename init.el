@@ -30,6 +30,10 @@
 			:path ,(expand-file-name file modo-repo-dir)
 			:version original))))
 
+;;; Sunburn theme
+(modo-add-package-single sunburn-theme "Sunburn-Theme/sunburn-theme.el")
+(load-theme 'sunburn t)
+
 ;;; use-package
 (modo-add-package-single diminish "diminish/diminish.el")
 (modo-add-package-single bind-key "use-package/bind-key.el")
