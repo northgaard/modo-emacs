@@ -49,5 +49,18 @@
 (modo-add-package-single goto-chg "evil/lib/goto-chg.el")
 (modo-add-package evil "evil")
 (use-package evil :demand t
+  :init
+  (setq evil-want-C-u-scroll t
+	evil-want-visual-char-semi-exclusive t
+	evil-want-Y-yank-to-eol t
+	evil-magic t
+	evil-echo-state t
+	evil-indent-convert-tabs t
+	evil-ex-search-vim-style-regexp t
+	evil-insert-skip-empty-line t
+	evil-mode-line-format 'nil
+	evil-symbol-word-search t
+	shift-select-mode nil)
   :config
+  (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-mode 1))
