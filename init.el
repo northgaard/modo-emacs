@@ -110,6 +110,15 @@
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
     (setq org-bullets-bullet-list '("•"))))
 
+(modo-add-package-single evil-org "evil-org-mode/evil-org.el")
+(use-package evil-org
+  :after org
+  :commands (evil-org-mode)
+  :init
+  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1)))
+  :config
+  (evil-org-set-key-theme '(navigation insert textobjects additional)))
+
 ;;; elisp
 (defun modo--elisp-extra-fontification ()
   "Fontify modo functions."
