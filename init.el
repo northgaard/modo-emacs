@@ -77,6 +77,10 @@
   (which-key-mode 1)
   (setq which-key-idle-delay 0.7))
 
+;; hydra
+(modo-add-package hydra "hydra")
+(use-package hydra :demand t)
+
 ;;; evil mode
 (modo-add-package-single undo-tree "evil/lib/undo-tree.el")
 (modo-add-package-single goto-chg "evil/lib/goto-chg.el")
