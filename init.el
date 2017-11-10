@@ -64,3 +64,11 @@
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-mode 1))
+
+;;; elisp
+(defun modo--elisp-extra-fontification ()
+  "Fontify modo functions."
+  (font-lock-add-keywords
+   nil `(("\\(^\\|\\s-\\|,\\)(\\(\\(modo\\|\\+\\)[^) ]+\\)[) \n]" (2 font-lock-keyword-face)))))
+
+(add-hook 'emacs-lisp-mode-hook #'modo--elisp-extra-fontification)
