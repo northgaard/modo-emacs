@@ -98,11 +98,17 @@
 
 ;;; org mode
 (modo-add-package org "org-mode/lisp")
+(modo-add-package-single org-bullets "org-bullets/org-bullets.el")
 (use-package org
   :config
   (setq org-startup-indented t)
   (setq org-src-tab-acts-natively t)
-  (setq org-src-fontify-natively t))
+  (setq org-src-fontify-natively t)
+  (use-package org-bullets
+    :commands (org-bullets-mode)
+    :init
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    (setq org-bullets-bullet-list '("•"))))
 
 ;;; elisp
 (defun modo--elisp-extra-fontification ()
