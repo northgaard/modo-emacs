@@ -96,6 +96,14 @@
     (evil-escape-mode 1))
   (evil-mode 1))
 
+;;; org mode
+(modo-add-package org "org-mode/lisp")
+(use-package org
+  :config
+  (setq org-startup-indented t)
+  (setq org-src-tab-acts-natively t)
+  (setq org-src-fontify-natively t))
+
 ;;; elisp
 (defun modo--elisp-extra-fontification ()
   "Fontify modo functions."
