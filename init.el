@@ -87,9 +87,41 @@
   (which-key-mode 1)
   (setq which-key-idle-delay 0.7))
 
-;; hydra
+;;; hydra
 (modo-add-package hydra "hydra")
 (use-package hydra :demand t)
+
+;;; general.el --- get your keybinds here!
+(modo-add-package-single general "general.el/general.el")
+(use-package general :demand t)
+
+(defcustom modo-leader "SPC"
+  "The general purpose leader accessible from normal mode.")
+
+(defcustom modo-non-normal-leader "C-c"
+  "Equivalent to the normal mode leader, but used in insert and emacs mode.")
+
+(defcustom modo-major-leader ","
+  "Shortcut for major mode keys, also bound to \"<leader> m\"")
+
+;; Definer for standard shortcuts
+(general-create-definer modo-define-leader-key
+                        :states '(motion normal visual insert emacs)
+                        :prefix modo-leader
+                        :non-normal-prefix modo-non-normal-leader
+                        :prefix-command 'modo-leader-command)
+(general-create-definer modo-define-major-leader-key
+                        :states '(motion normal visual)
+                        :prefix modo-major-leader
+                        :prefix-command 'modo-major-leader-command)
+
+;; Standard keybinds
+(modo-define-leader-key "f" '(:ignore t :which-key "files")
+                        "fs" 'save-buffer
+                        "u" 'universal-argument
+                        "m" '(modo-major-leader-command :which-key "major mode"))
+
+(modo-define-major-leader-key "," 'evil-repeat-find-char-reverse)
 
 ;;; evil mode
 (modo-add-package-single undo-tree "evil/lib/undo-tree.el")
