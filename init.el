@@ -29,8 +29,21 @@
 (setq mouse-yank-at-point t)
 
 (global-auto-revert-mode 1)
+;; Persistent command history
+(require 'savehist)
 (setq savehist-file (expand-file-name "savehist" modo-cache-dir))
 (savehist-mode 1)
+;; Recently opened files
+(require 'recentf)
+(setq recentf-save-file (expand-file-name "recentf" modo-cache-dir)
+      recentf-max-saved-items 300
+      recentf-max-menu-items 15
+      recentf-auto-cleanup 'never)
+(recentf-mode 1)
+;; Bookmarks
+(require 'bookmark)
+(setq bookmark-default-file (expand-file-name "bookmarks" modo-cache-dir)
+      bookmark-save-flag 1)
 
 ;; Start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
