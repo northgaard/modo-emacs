@@ -118,6 +118,8 @@
 ;; Standard keybinds
 (modo-define-leader-key "f" '(:ignore t :which-key "files")
                         "fs" 'save-buffer
+                        "b" '(:ignore t :which-key "buffers")
+                        "bd" 'kill-this-buffer
                         "u" 'universal-argument
                         "m" '(modo-major-leader-command :which-key "major mode"))
 
