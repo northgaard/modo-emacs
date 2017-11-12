@@ -181,6 +181,31 @@
   :config
   (evil-org-set-key-theme '(navigation insert textobjects additional)))
 
+;;; ivy/counsel/swiper
+(modo-add-package ivy "swiper") ;; My town, my names
+(use-package ivy
+  :init
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  :general
+  (modo-define-leader-key "bb" 'ivy-switch-buffer)
+  :config
+  (use-package ivy-hydra
+    :commands (hydra-ivy/body)))
+
+(use-package counsel
+  :general
+  (:states '(normal insert visual emacs motion)
+           "M-x" 'counsel-M-x)
+  (modo-define-leader-key "ff" 'counsel-find-file
+                          "fr" 'counsel-recentf
+                          "fb" 'counsel-bookmark))
+
+(use-package swiper
+  :general
+  (:states '(normal insert visual emacs motion)
+           "C-s" 'swiper))
+
 ;;; elisp
 (defun modo--elisp-extra-fontification ()
   "Fontify modo functions."
