@@ -9,6 +9,11 @@
 (unless (file-exists-p modo-cache-dir)
   (make-directory modo-cache-dir))
 
+(defvar modo-temp-dir (concat modo-emacs-dir "temp/")
+  "The directory storing temporary files.")
+(unless (file-exists-p modo-temp-dir)
+  (make-directory modo-temp-dir))
+
 ;;; UTF-8 all the things
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
@@ -102,6 +107,18 @@
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t) ;; Rename after killing buffer
 (setq uniquify-ignore-buffers-re "^\\*") ;; Don't touch special buffers
+;; Auto-save and backup
+(setq make-backup-files t
+      backup-by-copying t
+      version-control t
+      delete-old-versions t
+      kept-old-versions 4
+      kept-new-versions 7)
+(setq backup-directory-alist
+      `((".*" . ,modo-temp-dir)))
+(setq auto-save-list-file-name (expand-file-name "autosave-list" modo-cache-dir))
+(setq auto-save-file-name-transforms
+      `((".*" ,modo-temp-dir t)))
 
 ;; Start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
