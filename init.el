@@ -161,6 +161,11 @@
                         "fd" '(modo-find-dotfile :which-key "find-dotfile")
                         "b" '(:ignore t :which-key "buffers")
                         "bd" 'kill-this-buffer
+                        "w" '(:ignore t :which-key "windows")
+                        "wm" 'delete-other-windows
+                        "wd" 'delete-frame
+                        "wf" 'make-frame
+                        "wo" 'other-frame
                         "u" 'universal-argument
                         "m" '(modo-major-leader-command :which-key "major mode"))
 
@@ -184,6 +189,10 @@
 	evil-mode-line-format 'nil
 	evil-symbol-word-search t
 	shift-select-mode nil)
+  :general
+  (modo-define-leader-key "ws" 'evil-window-split
+                          "wv" 'evil-window-vsplit
+                          "wc" 'evil-window-delete)
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
   (use-package evil-escape :demand t
