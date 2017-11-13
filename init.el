@@ -198,6 +198,22 @@
 
 (modo-define-major-leader-key "," 'evil-repeat-find-char-reverse)
 
+;;; window numbering
+(modo-add-package-single window-numbering "window-numbering.el/window-numbering.el")
+(use-package window-numbering :demand t
+  :general
+  (modo-define-leader-key "1" 'select-window-1
+                          "2" 'select-window-2
+                          "3" 'select-window-3
+                          "4" 'select-window-4
+                          "5" 'select-window-5
+                          "6" 'select-window-6
+                          "7" 'select-window-7
+                          "8" 'select-window-8
+                          "9" 'select-window-9)
+  :config
+  (window-numbering-mode 1))
+
 ;;; evil mode
 (modo-add-package-single undo-tree "evil/lib/undo-tree.el")
 (modo-add-package-single goto-chg "evil/lib/goto-chg.el")
