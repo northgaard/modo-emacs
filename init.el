@@ -194,8 +194,16 @@
   :config
   (evil-org-set-key-theme '(navigation insert textobjects additional)))
 
-;;; ivy/counsel/swiper
-(modo-add-package ivy "swiper") ;; My town, my names
+;;; ivy/ivy hydra/counsel/swiper
+;; Ivy needs a more precise recipe because all four packages are in one repo
+(quelpa `(ivy :fetcher file
+              :path ,(concat modo-repo-dir "swiper")
+              :files (:defaults
+                      (:exclude "swiper.el" "counsel.el" "ivy-hydra.el")
+                      "doc/ivy-help.org")))
+(modo-add-package-single ivy-hydra "swiper/ivy-hydra.el")
+(modo-add-package-single swiper "swiper/swiper.el")
+(modo-add-package-single counsel "swiper/counsel.el")
 (use-package ivy
   :init
   (setq ivy-use-virtual-buffers t)
