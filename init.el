@@ -216,7 +216,8 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   :general
-  (modo-define-leader-key "bb" 'ivy-switch-buffer)
+  (modo-define-leader-key "bb" 'ivy-switch-buffer
+                          "r" 'ivy-resume)
   (:keymaps 'ivy-minibuffer-map
             "C-j" 'ivy-next-line
             "C-k" 'ivy-previous-line
