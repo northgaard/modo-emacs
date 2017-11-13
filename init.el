@@ -238,6 +238,8 @@
                           "wc" 'evil-window-delete)
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
+  (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)
+  (evil-ex-define-cmd "kill" 'save-buffers-kill-emacs)
   (use-package evil-escape :demand t
     :config
     (setq-default evil-escape-key-sequence "fd")
