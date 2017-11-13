@@ -9,6 +9,35 @@
 (unless (file-exists-p modo-cache-dir)
   (make-directory modo-cache-dir))
 
+;;; package.el
+;; We're not above dirty hacks -- disable writing package-selected-packages
+(with-eval-after-load 'package
+  (defun package--save-selected-packages (&rest opt) nil))
+(setq package-enable-at-startup nil)
+(setq package-archives nil)
+(setq package-user-dir (concat modo-emacs-dir "build/"))
+;; (package-initialize) is called when quelpa is bootstrapped
+
+;;; Initialize quelpa
+(setq quelpa-self-upgrade-p nil)
+;; Don't use MELPA
+(setq quelpa-update-melpa-p nil)
+(setq quelpa-checkout-melpa-p nil)
+;; Bootstrap using local install
+(setq quelpa-ci-dir (concat modo-repo-dir "quelpa"))
+(load (expand-file-name "bootstrap.el" quelpa-ci-dir))
+
+(defmacro modo-add-package (pkg dir)
+  "Builds the package PKG from the directory DIR found in modo-repo-dir."
+  `(quelpa (quote (,pkg :fetcher file
+			:path ,(concat modo-repo-dir dir)))))
+
+(defmacro modo-add-package-single (pkg file)
+  "Builds the single-file package PKG from the file FILE found in modo-repo-dir."
+  `(quelpa (quote (,pkg :fetcher file
+			:path ,(expand-file-name file modo-repo-dir)
+			:version original))))
+
 ;;; Core editor settings
 (setq inhibit-splash-screen t
       inhibit-startup-message t
@@ -39,6 +68,16 @@
       recentf-max-saved-items 300
       recentf-max-menu-items 15
       recentf-auto-cleanup 'never)
+
+;; Function for excluding the build and cache dirs
+(defun modo-recentf-exclude-p (file)
+  "A predicate which decides whether to exclude FILE from recentf."
+  (let ((file-dir (file-truename (file-name-directory file))))
+    (or (string-prefix-p (file-truename modo-cache-dir) file-dir)
+        (string-prefix-p (file-truename package-user-dir) file-dir)
+        (string-prefix-p (file-truename quelpa-dir) file-dir))))
+
+(add-to-list 'recentf-exclude 'modo-recentf-exclude-p)
 (recentf-mode 1)
 ;; Bookmarks
 (require 'bookmark)
@@ -58,35 +97,6 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; Enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;;; package.el
-;; We're not above dirty hacks -- disable writing package-selected-packages
-(with-eval-after-load 'package
-  (defun package--save-selected-packages (&rest opt) nil))
-(setq package-enable-at-startup nil)
-(setq package-archives nil)
-(setq package-user-dir (concat modo-emacs-dir "build/"))
-;; (package-initialize) is called when quelpa is bootstrapped
-
-;;; Initialize quelpa
-(setq quelpa-self-upgrade-p nil)
-;; Don't use MELPA
-(setq quelpa-update-melpa-p nil)
-(setq quelpa-checkout-melpa-p nil)
-;; Bootstrap using local install
-(setq quelpa-ci-dir (concat modo-repo-dir "quelpa"))
-(load (expand-file-name "bootstrap.el" quelpa-ci-dir))
-
-(defmacro modo-add-package (pkg dir)
-  "Builds the package PKG from the directory DIR found in modo-repo-dir."
-  `(quelpa (quote (,pkg :fetcher file
-			:path ,(concat modo-repo-dir dir)))))
-
-(defmacro modo-add-package-single (pkg file)
-  "Builds the single-file package PKG from the file FILE found in modo-repo-dir."
-  `(quelpa (quote (,pkg :fetcher file
-			:path ,(expand-file-name file modo-repo-dir)
-			:version original))))
 
 ;;; Sunburn theme
 (modo-add-package-single sunburn-theme "Sunburn-Theme/sunburn-theme.el")
