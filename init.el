@@ -164,9 +164,13 @@
 (defun modo-find-dotfile ()
   "Opens init.el in modo-emacs-dir."
   (interactive)
-  (find-file (expand-file-name "init.el" modo-emacs-dir))
-  ;; Needed to make saveplace work with this function
-  (run-hooks 'find-file-hook))
+  (let* ((dotfile (expand-file-name "init.el" modo-emacs-dir))
+         (buffer-name (get-file-buffer dotfile)))
+    (if buffer-name
+        (switch-to-buffer buffer-name) ;; If buffer already exists, simply switch to it
+      (find-file (expand-file-name "init.el" modo-emacs-dir))
+      ;; Needed to make saveplace work with this function
+      (run-hooks 'find-file-hook))))
 
 ;;; general.el --- get your keybinds here!
 (modo-add-package-single general "general.el/general.el")
