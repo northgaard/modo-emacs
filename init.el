@@ -44,6 +44,15 @@
 (require 'bookmark)
 (setq bookmark-default-file (expand-file-name "bookmarks" modo-cache-dir)
       bookmark-save-flag 1)
+;; Save place in file
+(setq save-place-file (expand-file-name "saveplace" modo-cache-dir))
+(save-place-mode 1)
+;; Better unique naming for buffers with the same base name
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t) ;; Rename after killing buffer
+(setq uniquify-ignore-buffers-re "^\\*") ;; Don't touch special buffers
 
 ;; Start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
