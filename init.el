@@ -9,6 +9,16 @@
 (unless (file-exists-p modo-cache-dir)
   (make-directory modo-cache-dir))
 
+;;; UTF-8 all the things
+(when (fboundp 'set-charset-priority)
+  (set-charset-priority 'unicode))
+(prefer-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(setq-default buffer-file-coding-system 'utf-8)
+
 ;;; package.el
 ;; We're not above dirty hacks -- disable writing package-selected-packages
 (with-eval-after-load 'package
