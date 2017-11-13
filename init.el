@@ -217,6 +217,11 @@
   (setq ivy-count-format "(%d/%d) ")
   :general
   (modo-define-leader-key "bb" 'ivy-switch-buffer)
+  (:keymaps 'ivy-minibuffer-map
+            "C-j" 'ivy-next-line
+            "C-k" 'ivy-previous-line
+            "M-j" 'ivy-next-history-element
+            "M-k" 'ivy-previous-history-element)
   :config
   (use-package ivy-hydra
     :commands (hydra-ivy/body)))
