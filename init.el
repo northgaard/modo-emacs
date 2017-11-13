@@ -1,3 +1,13 @@
+;; -*- lexical-binding: t -*-
+
+;;; Initial high threshold for garbage collection
+(let ((normal-gc-cons-threshold (* 20 1024 1024)) ;; ~20 mb
+      (init-gc-cons-threshold (* 128 1024 1024))) ;; ~128 mb
+  (setq gc-cons-threshold init-gc-cons-threshold)
+  (add-hook 'after-init-hook
+            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+
+;;; Directory variables
 (defvar modo-emacs-dir (expand-file-name user-emacs-directory)
   "The path to the emacs.d directory containing the modo emacs files.")
 
