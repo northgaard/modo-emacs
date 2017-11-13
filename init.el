@@ -104,6 +104,12 @@
 (modo-add-package hydra "hydra")
 (use-package hydra :demand t)
 
+;;; Utilities
+(defun modo-find-dotfile ()
+  "Opens init.el in modo-emacs-dir."
+  (interactive)
+  (find-file (expand-file-name "init.el" modo-emacs-dir)))
+
 ;;; general.el --- get your keybinds here!
 (modo-add-package-single general "general.el/general.el")
 (use-package general :demand t)
@@ -131,6 +137,7 @@
 ;; Standard keybinds
 (modo-define-leader-key "f" '(:ignore t :which-key "files")
                         "fs" 'save-buffer
+                        "fd" '(modo-find-dotfile :which-key "find-dotfile")
                         "b" '(:ignore t :which-key "buffers")
                         "bd" 'kill-this-buffer
                         "u" 'universal-argument
