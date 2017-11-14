@@ -176,6 +176,33 @@
       ;; Needed to make saveplace work with this function
       (run-hooks 'find-file-hook))))
 
+;;; evil mode
+(modo-add-package-single undo-tree "evil/lib/undo-tree.el")
+(modo-add-package-single goto-chg "evil/lib/goto-chg.el")
+(modo-add-package evil "evil")
+(modo-add-package-single evil-escape "evil-escape/evil-escape.el")
+(use-package evil :demand t
+  :init
+  (setq evil-want-C-u-scroll t
+	evil-want-visual-char-semi-exclusive t
+	evil-want-Y-yank-to-eol t
+	evil-magic t
+	evil-echo-state t
+	evil-indent-convert-tabs t
+	evil-ex-search-vim-style-regexp t
+	evil-insert-skip-empty-line t
+	evil-symbol-word-search t
+	shift-select-mode nil)
+  :config
+  (evil-select-search-module 'evil-search-module 'evil-search)
+  (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)
+  (evil-ex-define-cmd "kill" 'save-buffers-kill-emacs)
+  (use-package evil-escape :demand t
+    :config
+    (setq-default evil-escape-key-sequence "fd")
+    (evil-escape-mode 1))
+  (evil-mode 1))
+
 ;;; general.el --- get your keybinds here!
 (modo-add-package-single general "general.el/general.el")
 (use-package general :demand t)
@@ -207,6 +234,9 @@
                         "b" '(:ignore t :which-key "buffers")
                         "bd" 'kill-this-buffer
                         "w" '(:ignore t :which-key "windows")
+                        "ws" 'evil-window-split
+                        "wv" 'evil-window-vsplit
+                        "wc" 'evil-window-delete
                         "wm" 'delete-other-windows
                         "wd" 'delete-frame
                         "wf" 'make-frame
@@ -231,38 +261,6 @@
                           "9" 'select-window-9)
   :config
   (window-numbering-mode 1))
-
-;;; evil mode
-(modo-add-package-single undo-tree "evil/lib/undo-tree.el")
-(modo-add-package-single goto-chg "evil/lib/goto-chg.el")
-(modo-add-package evil "evil")
-(modo-add-package-single evil-escape "evil-escape/evil-escape.el")
-(use-package evil :demand t
-  :init
-  (setq evil-want-C-u-scroll t
-	evil-want-visual-char-semi-exclusive t
-	evil-want-Y-yank-to-eol t
-	evil-magic t
-	evil-echo-state t
-	evil-indent-convert-tabs t
-	evil-ex-search-vim-style-regexp t
-	evil-insert-skip-empty-line t
-	evil-mode-line-format 'nil
-	evil-symbol-word-search t
-	shift-select-mode nil)
-  :general
-  (modo-define-leader-key "ws" 'evil-window-split
-                          "wv" 'evil-window-vsplit
-                          "wc" 'evil-window-delete)
-  :config
-  (evil-select-search-module 'evil-search-module 'evil-search)
-  (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)
-  (evil-ex-define-cmd "kill" 'save-buffers-kill-emacs)
-  (use-package evil-escape :demand t
-    :config
-    (setq-default evil-escape-key-sequence "fd")
-    (evil-escape-mode 1))
-  (evil-mode 1))
 
 ;;; org mode
 (modo-add-package org "org-mode/lisp")
