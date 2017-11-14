@@ -287,6 +287,20 @@
   :config
   (window-numbering-mode 1))
 
+;;; Fonts
+(modo-add-package-single default-text-scale "default-text-scale/default-text-scale.el")
+(use-package default-text-scale
+  :init
+  (defhydra hydra-font-size (:color red)
+    "Change font size"
+    ("+" default-text-scale-increase "increase")
+    ("M-+" text-scale-increase "increase (buffer)")
+    ("-" default-text-scale-decrease "decrease")
+    ("M--" text-scale-decrease "decrease (buffer)")
+    ("q" nil "quit"))
+  :general
+  (modo-define-leader-key "z" '(hydra-font-size/body :which-key "font-size")))
+
 ;;; org mode
 (modo-add-package org "org-mode/lisp")
 (modo-add-package org-contribdir "org-mode/contrib/lisp")
