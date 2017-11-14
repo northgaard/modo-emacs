@@ -156,6 +156,7 @@
 ;;; which-key
 (modo-add-package-single which-key "emacs-which-key/which-key.el")
 (use-package which-key :demand t
+  :diminish which-key-mode
   :config
   (which-key-mode 1)
   (setq which-key-idle-delay 0.7))
@@ -178,6 +179,10 @@
 
 ;;; evil mode
 (modo-add-package-single undo-tree "evil/lib/undo-tree.el")
+(use-package undo-tree :demand t
+  :diminish undo-tree-mode
+  :config
+  (undo-tree-mode 1))
 (modo-add-package-single goto-chg "evil/lib/goto-chg.el")
 (modo-add-package evil "evil")
 (modo-add-package-single evil-escape "evil-escape/evil-escape.el")
@@ -198,6 +203,7 @@
   (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)
   (evil-ex-define-cmd "kill" 'save-buffers-kill-emacs)
   (use-package evil-escape :demand t
+    :diminish evil-escape-mode
     :config
     (setq-default evil-escape-key-sequence "fd")
     (evil-escape-mode 1))
