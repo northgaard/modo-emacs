@@ -246,6 +246,22 @@
 
 (modo-define-major-leader-key "," 'evil-repeat-find-char-reverse)
 
+;; Info-mode
+(general-define-key :states 'motion
+                    :keymaps 'Info-mode-map
+                    "SPC" nil ;; Get back leader
+                    "j" 'Info-scroll-up
+                    "k" 'Info-scroll-down
+                    "h" 'Info-history-back
+                    "l" 'Info-history-forward
+                    "C-j" 'evil-next-line
+                    "C-k" 'evil-previous-line
+                    "C-h" 'evil-backward-char
+                    "C-l" 'evil-forward-char
+                    "gg" 'evil-goto-first-line
+                    "G" 'evil-goto-line
+                    "s" 'swiper)
+
 ;;; window numbering
 (modo-add-package-single window-numbering "window-numbering.el/window-numbering.el")
 (use-package window-numbering :demand t
@@ -327,6 +343,7 @@
                           "fb" 'counsel-bookmark))
 
 (use-package swiper
+  :commands (swiper)
   :general
   (:states '(normal insert visual emacs motion)
            "C-s" 'swiper))
