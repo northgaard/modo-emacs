@@ -82,7 +82,7 @@
 
 (setq vc-follow-symlinks t)
 (column-number-mode 1)
-(setq tab-width 4)
+(setq-default tab-width 4)
 (setq sentence-end-double-space nil)
 (setq mouse-yank-at-point t)
 
