@@ -24,6 +24,10 @@
 (unless (file-exists-p modo-temp-dir)
   (make-directory modo-temp-dir))
 
+;;; Custom file
+(setq custom-file (expand-file-name "custom.el" modo-emacs-dir))
+(load custom-file t t)
+
 ;;; UTF-8 all the things
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
