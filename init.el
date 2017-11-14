@@ -178,6 +178,30 @@
       ;; Needed to make saveplace work with this function
       (run-hooks 'find-file-hook))))
 
+;; Two useful functions borrowed from Steve Purcell
+(defun modo-delete-this-file ()
+  "Delete the current file, and kill the buffer."
+  (interactive)
+  (unless (buffer-file-name)
+    (error "No file is currently being edited"))
+  (when (yes-or-no-p (format "Really delete '%s'?"
+                             (file-name-nondirectory buffer-file-name)))
+    (delete-file (buffer-file-name))
+    (kill-this-buffer)))
+
+(defun modo-rename-this-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (unless filename
+      (error "Buffer '%s' is not visiting a file!" name))
+    (progn
+      (when (file-exists-p filename)
+        (rename-file filename new-name 1))
+      (set-visited-file-name new-name)
+      (rename-buffer new-name))))
+
 ;;; evil mode
 (modo-add-package-single undo-tree "evil/lib/undo-tree.el")
 (use-package undo-tree :demand t
@@ -238,6 +262,10 @@
 (modo-define-leader-key "f" '(:ignore t :which-key "files")
                         "fs" 'save-buffer
                         "fd" '(modo-find-dotfile :which-key "find-dotfile")
+                        "f <deletechar>" '(modo-delete-this-file
+                                  :which-key "delete-this-file")
+                        "fn" '(modo-rename-this-file-and-buffer
+                               :which-key "rename-this-file-and-buffer")
                         "b" '(:ignore t :which-key "buffers")
                         "bd" 'kill-this-buffer
                         "w" '(:ignore t :which-key "windows")
