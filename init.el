@@ -87,6 +87,7 @@
 (setq mouse-yank-at-point t)
 
 (global-auto-revert-mode 1)
+(winner-mode 1)
 ;; Persistent command history
 (require 'savehist)
 (setq savehist-file (expand-file-name "savehist" modo-cache-dir))
@@ -247,6 +248,8 @@
                         "wd" 'delete-frame
                         "wf" 'make-frame
                         "wo" 'other-frame
+                        "wu" 'winner-undo
+                        "wr" 'winner-redo
                         "u" 'universal-argument
                         "m" '(modo-major-leader-command :which-key "major mode"))
 
