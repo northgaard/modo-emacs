@@ -60,14 +60,18 @@
 
 (defmacro modo-add-package (pkg dir)
   "Builds the package PKG from the directory DIR found in modo-repo-dir."
-  `(quelpa (quote (,pkg :fetcher file
-			:path ,(concat modo-repo-dir dir)))))
+  `(progn
+     (quelpa (quote (,pkg :fetcher file
+                          :path ,(concat modo-repo-dir dir))))
+     (add-to-list (quote package-selected-packages) (quote ,pkg))))
 
 (defmacro modo-add-package-single (pkg file)
   "Builds the single-file package PKG from the file FILE found in modo-repo-dir."
-  `(quelpa (quote (,pkg :fetcher file
-			:path ,(expand-file-name file modo-repo-dir)
-			:version original))))
+  `(progn
+     (quelpa (quote (,pkg :fetcher file
+                          :path ,(file-name-directory (expand-file-name file modo-repo-dir))
+                          :files ,(list (expand-file-name file modo-repo-dir)))))
+     (add-to-list (quote package-selected-packages) (quote ,pkg))))
 
 ;; Clone from github
 (defun modo-github-clone (username repo)
@@ -380,6 +384,7 @@
               :files (:defaults
                       (:exclude "swiper.el" "counsel.el" "ivy-hydra.el")
                       "doc/ivy-help.org")))
+(add-to-list 'package-selected-packages 'ivy)
 (modo-add-package-single ivy-hydra "swiper/ivy-hydra.el")
 (modo-add-package-single swiper "swiper/swiper.el")
 (modo-add-package-single counsel "swiper/counsel.el")
