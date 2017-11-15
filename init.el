@@ -13,6 +13,8 @@
 
 (defvar modo-repo-dir (concat modo-emacs-dir "repos/")
   "The directory containing the modo repositories.")
+(unless (file-exists-p modo-repo-dir)
+  (make-directory modo-repo-dir))
 
 (defvar modo-cache-dir (concat modo-emacs-dir "cache/")
   "The directory storing persistent information.")
@@ -66,6 +68,18 @@
   `(quelpa (quote (,pkg :fetcher file
 			:path ,(expand-file-name file modo-repo-dir)
 			:version original))))
+
+;; Clone from github
+(defun modo-github-clone (username repo)
+  "Clones the repository USERNAME/REPO from github using HTTPS."
+  (let ((target (concat modo-repo-dir repo))
+        (repo-url (format "https://github.com/%s/%s.git" username repo)))
+    (make-directory target)
+    (message "Cloning %s into %s..." repo target)
+    (when (not (= 0 (shell-command (format "git clone %s %s" repo-url target)
+                                   "*git clone output*")))
+      (error "Failed to clone %s" repo))
+    (message "Cloning %s into %s... done." repo target)))
 
 ;;; Core editor settings
 (setq inhibit-splash-screen t
