@@ -56,6 +56,7 @@
 (setq quelpa-checkout-melpa-p nil)
 ;; Bootstrap using local install
 (setq quelpa-ci-dir (concat modo-repo-dir "quelpa"))
+(setq quelpa-dir (concat modo-cache-dir "quelpa"))
 (load (expand-file-name "bootstrap.el" quelpa-ci-dir))
 
 (defmacro modo-add-package (pkg dir)
@@ -122,8 +123,7 @@
   "A predicate which decides whether to exclude FILE from recentf."
   (let ((file-dir (file-truename (file-name-directory file))))
     (or (string-prefix-p (file-truename modo-cache-dir) file-dir)
-        (string-prefix-p (file-truename package-user-dir) file-dir)
-        (string-prefix-p (file-truename quelpa-dir) file-dir))))
+        (string-prefix-p (file-truename package-user-dir) file-dir))))
 
 (add-to-list 'recentf-exclude 'modo-recentf-exclude-p)
 (recentf-mode 1)
