@@ -162,6 +162,10 @@
 ;;; Sunburn theme
 (modo-add-package-single sunburn-theme "Sunburn-Theme/sunburn-theme.el")
 (load-theme 'sunburn t)
+;; Customizations for avy
+(custom-set-faces
+ '(avy-lead-face ((t (:background "#484349" :foreground "red" :inverse-video nil :weight bold))))
+ '(avy-lead-face-0 ((t (:background "#484349" :foreground "red" :inverse-video nil :weight bold)))))
 
 ;;; use-package
 (modo-add-package-single diminish "diminish/diminish.el")
@@ -276,9 +280,15 @@
   (evil-snipe-mode 1))
 
 (modo-add-package-single avy "avy/avy.el")
+(use-package avy
+  :after evil-snipe
+  :config
+  (setq avy-timeout-seconds 0.5)
+  (setq avy-background t))
+
 (modo-add-package-single evil-easymotion "evil-easymotion/evil-easymotion.el")
 (use-package evil-easymotion
-  :after evil-snipe
+  :after avy
   :config
   (evilem-default-keybindings "C-e") ;; Not sure about this binding
   (evilem-define "gs" 'evil-snipe-repeat
