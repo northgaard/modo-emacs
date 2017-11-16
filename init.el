@@ -106,6 +106,7 @@
 (setq mouse-yank-at-point t)
 
 (global-auto-revert-mode 1)
+(setq auto-revert-verbose nil)
 (winner-mode 1)
 ;; Persistent command history
 (require 'savehist)
