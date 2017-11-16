@@ -177,8 +177,9 @@
 (use-package which-key :demand t
   :diminish which-key-mode
   :config
-  (which-key-mode 1)
-  (setq which-key-idle-delay 0.7))
+  (setq which-key-idle-delay 0.7)
+  (setq which-key-sort-order #'which-key-prefix-then-key-order)
+  (which-key-mode 1))
 
 ;;; hydra
 (modo-add-package hydra "hydra")
