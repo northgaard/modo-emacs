@@ -189,11 +189,11 @@
 (defun modo-find-dotfile ()
   "Opens init.el in modo-emacs-dir."
   (interactive)
-  (let* ((dotfile (expand-file-name "init.el" modo-emacs-dir))
+  (let* ((dotfile (file-truename (expand-file-name "init.el" modo-emacs-dir)))
          (buffer-name (get-file-buffer dotfile)))
     (if buffer-name
         (switch-to-buffer buffer-name) ;; If buffer already exists, simply switch to it
-      (find-file (expand-file-name "init.el" modo-emacs-dir))
+      (find-file dotfile)
       ;; Needed to make saveplace work with this function
       (run-hooks 'find-file-hook))))
 
