@@ -197,6 +197,15 @@
       ;; Needed to make saveplace work with this function
       (run-hooks 'find-file-hook))))
 
+(defun modo-delete-auto-save-file ()
+  "Delete the autosave file in the currently visited buffer, if it exists."
+  (interactive)
+  (let ((auto-file (file-truename (make-auto-save-file-name))))
+    (if (and (buffer-file-name)
+             (file-exists-p auto-file))
+        (delete-file auto-file)
+      (message "No auto-save file exists."))))
+
 ;; Two useful functions borrowed from Steve Purcell
 (defun modo-delete-this-file ()
   "Delete the current file, and kill the buffer."
@@ -285,6 +294,8 @@
                                   :which-key "delete-this-file")
                         "fn" '(modo-rename-this-file-and-buffer
                                :which-key "rename-this-file-and-buffer")
+                        "f#" '(modo-delete-auto-save-file
+                               :which-key "delete-auto-save-file")
                         "b" '(:ignore t :which-key "buffers")
                         "bd" 'kill-this-buffer
                         "w" '(:ignore t :which-key "windows")
