@@ -268,6 +268,12 @@
     (evil-escape-mode 1))
   (evil-mode 1))
 
+(modo-add-package-single evil-exchange "evil-exchange/evil-exchange.el")
+(use-package evil-exchange
+  :after evil
+  :config
+  (evil-exchange-install))
+
 (modo-add-package-single evil-snipe "evil-snipe/evil-snipe.el")
 (use-package evil-snipe
   :after evil
