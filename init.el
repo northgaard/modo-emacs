@@ -371,6 +371,7 @@
 (defvar modo--last-evil-find 'find
   "Saves the last find type operation used, either the symbol find
 or the symbol snipe.")
+(make-variable-buffer-local 'modo--last-evil-find)
 
 (defun modo--set-last-find-evil (&rest r)
   (setq modo--last-evil-find 'find))
