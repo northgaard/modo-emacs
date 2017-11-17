@@ -324,6 +324,12 @@
                         (evil-snipe-enable-highlight)
                         (evil-snipe-enable-incremental-highlight))))
 
+(modo-add-package-single evil-surround "evil-surround/evil-surround.el")
+(use-package evil-surround
+  :after evil-snipe
+  :config
+  (global-evil-surround-mode 1))
+
 ;;; general.el --- get your keybinds here!
 (modo-add-package-single general "general.el/general.el")
 (use-package general :demand t)
