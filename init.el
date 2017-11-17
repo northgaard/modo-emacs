@@ -277,6 +277,7 @@
 (modo-add-package-single evil-snipe "evil-snipe/evil-snipe.el")
 (use-package evil-snipe
   :after evil
+  :diminish evil-snipe-local-mode
   :config
   (setq evil-snipe-enable-highlight nil)
   (setq evil-snipe-enable-incremental-highlight nil)
