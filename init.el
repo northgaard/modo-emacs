@@ -104,6 +104,7 @@
 (setq-default tab-width 4)
 (setq sentence-end-double-space nil)
 (setq mouse-yank-at-point t)
+(setq load-prefer-newer t)
 
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose nil)
