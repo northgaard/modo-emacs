@@ -274,6 +274,7 @@
   (setq evil-snipe-enable-highlight nil)
   (setq evil-snipe-enable-incremental-highlight nil)
   (setq evil-snipe-repeat-keys nil)
+  (setq evil-snipe-smart-case t)
   (setq evil-snipe-scope 'line)
   (setq evil-snipe-spillover-scope 'visible)
   (setq evil-snipe-repeat-scope 'buffer)
@@ -291,7 +292,27 @@
   :after avy
   :config
   (evilem-default-keybindings "C-e") ;; Not sure about this binding
-  (evilem-define "gs" 'evil-snipe-repeat
+  (evilem-make-motion modo-easymotion-snipe-repeat #'evil-snipe-repeat
+                        :bind ((evil-snipe-scope 'buffer)
+                               (evil-snipe-enable-highlight)
+                               (evil-snipe-enable-incremental-highlight)))
+  (evilem-make-motion modo-easymotion-snipe-repeat-reverse
+                        #'evil-snipe-repeat-reverse
+                        :bind ((evil-snipe-scope 'buffer)
+                               (evil-snipe-enable-highlight)
+                               (evil-snipe-enable-incremental-highlight)))
+  (evilem-make-motion modo-easymotion-find-repeat #'evil-repeat-find-char
+                      :bind ((evil-cross-lines t)))
+  (evilem-make-motion modo-easymotion-find-repeat-reverse
+                        #'evil-repeat-find-char-reverse
+                        :bind ((evil-cross-lines t)))
+  (evilem-define (kbd "C-e s") 'evil-snipe-repeat
+                 :pre-hook (save-excursion (call-interactively #'evil-snipe-s))
+                 :bind ((evil-snipe-scope 'buffer)
+                        (evil-snipe-enable-highlight)
+                        (evil-snipe-enable-incremental-highlight)))
+  (evilem-define (kbd "C-e S") 'evil-snipe-repeat-reverse
+                 :pre-hook (save-excursion (call-interactively #'evil-snipe-s))
                  :bind ((evil-snipe-scope 'buffer)
                         (evil-snipe-enable-highlight)
                         (evil-snipe-enable-incremental-highlight))))
@@ -356,12 +377,31 @@ or the symbol snipe.")
 (defun modo--set-last-find-snipe (&rest r)
   (setq modo--last-evil-find 'snipe))
 
-(defun modo-repeat-reverse (count)
+(defun modo-fs-repeat (&optional count)
+  (interactive "p")
+  (pcase modo--last-evil-find
+    (`find (evil-repeat-find-char count))
+    (`snipe (evil-snipe-repeat count))))
+
+(defun modo-fs-repeat-reverse (&optional count)
   (interactive "p")
   (pcase modo--last-evil-find
     (`find (evil-repeat-find-char-reverse count))
     (`snipe (evil-snipe-repeat-reverse count))))
 
+(defun modo-easymotion-fs-repeat (&optional count)
+  (interactive "p")
+  (pcase modo--last-evil-find
+    (`find (modo-easymotion-find-repeat count))
+    (`snipe (modo-easymotion-snipe-repeat count))))
+
+(defun modo-easymotion-fs-repeat-reverse (&optional count)
+  (interactive "p")
+  (pcase modo--last-evil-find
+    (`find (modo-easymotion-find-repeat-reverse count))
+    (`snipe (modo-easymotion-snipe-repeat-reverse count))))
+
+;; Store last find type
 (advice-add #'evil-find-char :after #'modo--set-last-find-evil)
 (advice-add #'evil-find-char-backward :after #'modo--set-last-find-evil)
 (advice-add #'evil-find-char-to :after #'modo--set-last-find-evil)
@@ -376,7 +416,13 @@ or the symbol snipe.")
         (define-key map ";" #'evil-snipe-repeat)
         (define-key map "," #'modo-major-leader-command)
         map))
-(modo-define-major-leader-key "," #'modo-repeat-reverse)
+(modo-define-major-leader-key "," #'modo-fs-repeat-reverse)
+(general-define-key :states '(motion normal visual)
+                    ";" #'modo-fs-repeat
+                    "g;" #'modo-easymotion-fs-repeat
+                    "g," #'modo-easymotion-fs-repeat-reverse
+                    "g." #'goto-last-change
+                    "g:" #'goto-last-change-reverse)
 
 ;; Info-mode
 (general-define-key :states 'motion
