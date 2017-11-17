@@ -165,7 +165,7 @@
 ;; Customizations for avy
 (custom-set-faces
  '(avy-lead-face ((t (:background "#484349" :foreground "red" :inverse-video nil :weight bold))))
- '(avy-lead-face-0 ((t (:background "#484349" :foreground "red" :inverse-video nil :weight bold)))))
+ '(avy-lead-face-0 ((t (:background "#484349" :foreground "midnight blue" :inverse-video nil :weight bold)))))
 
 ;;; use-package
 (modo-add-package-single diminish "diminish/diminish.el")
