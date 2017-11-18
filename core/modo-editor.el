@@ -9,6 +9,7 @@
 (setq-default indent-tabs-mode nil
               tab-width 4)
 (setq vc-follow-symlinks t
+      create-lockfiles nil
       sentence-end-double-space nil
       mouse-yank-at-point t)
 (global-auto-revert-mode 1)
