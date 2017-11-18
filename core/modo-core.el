@@ -54,5 +54,9 @@
 ;;; Load package system
 (require 'modo-package (concat modo-core-dir "modo-package"))
 
+;;; Load rest of core
+(unless noninteractive
+  (require 'modo-editor))
+
 (provide 'modo-core)
 ;;; modo-core.el ends here
