@@ -82,16 +82,6 @@
  '(avy-lead-face ((t (:background "#484349" :foreground "red" :inverse-video nil :weight bold))))
  '(avy-lead-face-0 ((t (:background "#484349" :foreground "midnight blue" :inverse-video nil :weight bold)))))
 
-;;; use-package
-(modo-add-package-single diminish "diminish/diminish.el")
-(modo-add-package-single bind-key "use-package/bind-key.el")
-(modo-add-package-single use-package "use-package/use-package.el")
-
-(setq use-package-verbose t)
-(setq use-package-always-defer t)
-(require 'use-package)
-(require 'diminish)
-
 ;;; which-key
 (modo-add-package-single which-key "emacs-which-key/which-key.el")
 (use-package which-key :demand t

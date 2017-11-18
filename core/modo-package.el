@@ -57,5 +57,16 @@
       (error "Failed to clone %s" repo))
     (message "Cloning %s into %s... done." repo target)))
 
+;;; use-package
+(modo-add-package-single diminish "diminish/diminish.el")
+(modo-add-package-single bind-key "use-package/bind-key.el")
+(modo-add-package-single use-package "use-package/use-package.el")
+
+(setq use-package-verbose t)
+(setq use-package-always-defer t)
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+
 (provide 'modo-package)
 ;;; modo-package.el ends here
