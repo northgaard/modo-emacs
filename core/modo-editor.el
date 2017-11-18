@@ -1,5 +1,5 @@
 ;;; modo-editor.el --- editor configuration -*- lexical-binding: t -*-
-;;; Commentary
+;;; Commentary:
 
 ;; Core customization for pleasant editing.
 
