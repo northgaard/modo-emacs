@@ -56,6 +56,36 @@
 
 ;;; Load rest of core
 (unless noninteractive
+  ;; Keybind definers
+  ;; hydra
+  (modo-add-package hydra "hydra")
+  (use-package hydra :demand t)
+
+  ;; general.el --- get your keybinds here!
+  (modo-add-package-single general "general.el/general.el")
+  (use-package general :demand t)
+
+  ;; Leader keys
+  (defcustom modo-leader "SPC"
+    "The general purpose leader accessible from normal mode.")
+
+  (defcustom modo-non-normal-leader "C-c"
+    "Equivalent to the normal mode leader, but used in insert and emacs mode.")
+
+  (defcustom modo-major-leader ","
+    "Shortcut for major mode keys, also bound to \"<leader> m\"")
+
+  ;; Definer for standard shortcuts
+  (general-create-definer modo-define-leader-key
+                          :states '(motion normal visual insert emacs)
+                          :prefix modo-leader
+                          :non-normal-prefix modo-non-normal-leader
+                          :prefix-command 'modo-leader-command)
+  (general-create-definer modo-define-major-leader-key
+                          :states '(motion normal visual)
+                          :prefix modo-major-leader
+                          :prefix-command 'modo-major-leader-command)
+  ;; Rest of the core features
   (require 'modo-editor))
 
 (provide 'modo-core)

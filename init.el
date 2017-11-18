@@ -37,10 +37,6 @@
   (setq which-key-sort-order #'which-key-prefix-then-key-order)
   (which-key-mode 1))
 
-;;; hydra
-(modo-add-package hydra "hydra")
-(use-package hydra :demand t)
-
 ;;; Utilities
 (defun modo-find-dotfile ()
   "Opens init.el in modo-emacs-dir."
@@ -182,30 +178,6 @@
   :diminish evil-commentary-mode
   :config
   (evil-commentary-mode 1))
-
-;;; general.el --- get your keybinds here!
-(modo-add-package-single general "general.el/general.el")
-(use-package general :demand t)
-
-(defcustom modo-leader "SPC"
-  "The general purpose leader accessible from normal mode.")
-
-(defcustom modo-non-normal-leader "C-c"
-  "Equivalent to the normal mode leader, but used in insert and emacs mode.")
-
-(defcustom modo-major-leader ","
-  "Shortcut for major mode keys, also bound to \"<leader> m\"")
-
-;; Definer for standard shortcuts
-(general-create-definer modo-define-leader-key
-                        :states '(motion normal visual insert emacs)
-                        :prefix modo-leader
-                        :non-normal-prefix modo-non-normal-leader
-                        :prefix-command 'modo-leader-command)
-(general-create-definer modo-define-major-leader-key
-                        :states '(motion normal visual)
-                        :prefix modo-major-leader
-                        :prefix-command 'modo-major-leader-command)
 
 ;; Standard keybinds
 (modo-define-leader-key "f" '(:ignore t :which-key "files")
