@@ -1,52 +1,6 @@
 ;; -*- lexical-binding: t -*-
 (require 'modo-core (concat user-emacs-directory "core/modo-core"))
 
-;;; package.el
-;; We're not above dirty hacks -- disable writing package-selected-packages
-(with-eval-after-load 'package
-  (defun package--save-selected-packages (&rest opt) nil))
-(setq package-enable-at-startup nil)
-(setq package-archives nil)
-(setq package-user-dir (concat modo-emacs-dir "build/"))
-;; (package-initialize) is called when quelpa is bootstrapped
-
-;;; Initialize quelpa
-(setq quelpa-self-upgrade-p nil)
-;; Don't use MELPA
-(setq quelpa-update-melpa-p nil)
-(setq quelpa-checkout-melpa-p nil)
-;; Bootstrap using local install
-(setq quelpa-ci-dir (concat modo-repo-dir "quelpa"))
-(setq quelpa-dir (concat modo-cache-dir "quelpa"))
-(load (expand-file-name "bootstrap.el" quelpa-ci-dir))
-
-(defmacro modo-add-package (pkg dir)
-  "Builds the package PKG from the directory DIR found in modo-repo-dir."
-  `(progn
-     (quelpa (quote (,pkg :fetcher file
-                          :path ,(concat modo-repo-dir dir))))
-     (add-to-list (quote package-selected-packages) (quote ,pkg))))
-
-(defmacro modo-add-package-single (pkg file)
-  "Builds the single-file package PKG from the file FILE found in modo-repo-dir."
-  `(progn
-     (quelpa (quote (,pkg :fetcher file
-                          :path ,(file-name-directory (expand-file-name file modo-repo-dir))
-                          :files ,(list (expand-file-name file modo-repo-dir)))))
-     (add-to-list (quote package-selected-packages) (quote ,pkg))))
-
-;; Clone from github
-(defun modo-github-clone (username repo)
-  "Clones the repository USERNAME/REPO from github using HTTPS."
-  (let ((target (concat modo-repo-dir repo))
-        (repo-url (format "https://github.com/%s/%s.git" username repo)))
-    (make-directory target)
-    (message "Cloning %s into %s..." repo target)
-    (when (not (= 0 (shell-command (format "git clone %s %s" repo-url target)
-                                   "*git clone output*")))
-      (error "Failed to clone %s" repo))
-    (message "Cloning %s into %s... done." repo target)))
-
 ;;; Core editor settings
 (setq inhibit-splash-screen t
       inhibit-startup-message t
@@ -65,7 +19,6 @@
 (setq-default tab-width 4)
 (setq sentence-end-double-space nil)
 (setq mouse-yank-at-point t)
-(setq load-prefer-newer t)
 
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose nil)

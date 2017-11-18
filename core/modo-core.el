@@ -27,6 +27,9 @@
 (unless (file-exists-p modo-temp-dir)
   (make-directory modo-temp-dir))
 
+(defvar modo-build-dir (concat modo-emacs-dir "build/")
+  "The directory where packages are built.")
+
 ;;; UTF-8 all the things
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
@@ -47,6 +50,9 @@
   (setq gc-cons-threshold init-gc-cons-threshold)
   (add-hook 'after-init-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+
+;;; Load package system
+(require 'modo-package (concat modo-core-dir "modo-package"))
 
 (provide 'modo-core)
 ;;; modo-core.el ends here
