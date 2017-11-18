@@ -7,6 +7,8 @@
 
 ;; Prefer newer files
 (setq load-prefer-newer t)
+;; Add core dir to load path
+(add-to-list 'load-path modo-core-dir)
 
 ;;; package.el settings
 ;; We're not above dirty hacks -- disable writing package-selected-packages...
