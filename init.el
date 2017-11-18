@@ -331,6 +331,13 @@
   :config
   (global-evil-surround-mode 1))
 
+(modo-add-package evil-commentary "evil-commentary")
+(use-package evil-commentary
+  :after evil
+  :diminish evil-commentary-mode
+  :config
+  (evil-commentary-mode 1))
+
 ;;; general.el --- get your keybinds here!
 (modo-add-package-single general "general.el/general.el")
 (use-package general :demand t)
