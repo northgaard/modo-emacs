@@ -65,6 +65,29 @@
   :general
   (modo-define-leader-key "z" '(hydra-font-size/body :which-key "font-size")))
 
+;;; Line numbers
+(use-package linum :demand t
+  :config
+  (setq linum-format "%d "))
+
+(modo-add-package-single hlinum "hlinum-mode/hlinum.el")
+(use-package hlinum
+  :after linum
+  :config
+  (hlinum-activate))
+
+(modo-add-package-single linum-relative "linum-relative/linum-relative.el")
+(use-package linum-relative
+  :after linum
+  :config
+  (setq linum-relative-format "%s ")
+  (setq linum-relative-current-symbol "")
+  (let ((toggle-linum (lambda ()
+                        (linum-mode 1)
+                        (linum-relative-on))))
+    (add-hook 'text-mode-hook toggle-linum)
+    (add-hook 'prog-mode-hook toggle-linum)))
+
 ;;; Sunburn theme
 (modo-add-package-single sunburn-theme "Sunburn-Theme/sunburn-theme.el")
 (use-package sunburn-theme
