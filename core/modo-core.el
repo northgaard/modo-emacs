@@ -89,6 +89,7 @@
   (require 'modo-editor)
   (require 'modo-ui)
   (require 'modo-utils)
+  (require 'modo-evil)
   (require 'modo-keybinds))
 
 (provide 'modo-core)
