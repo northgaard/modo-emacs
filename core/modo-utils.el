@@ -16,6 +16,21 @@
       ;; Needed to make saveplace work with this function
       (run-hooks 'find-file-hook))))
 
+(defun modo-find-core-file (name)
+  "Opens the core file modo-NAME.el in modo-core-dir."
+  (interactive "sName: ")
+  (let* ((core-file (file-truename
+                    (expand-file-name (format "modo-%s.el" name)
+                                      modo-core-dir)))
+         (buffer-name (get-file-buffer core-file)))
+    (if buffer-name
+        (switch-to-buffer buffer-name)
+      (if (file-exists-p core-file)
+          (progn
+            (find-file core-file)
+            (run-hooks 'find-file-hook))
+        (error "'%s' is not a core file!" core-file)))))
+
 (defun modo-delete-auto-save-file ()
   "Delete the autosave file in the currently visited buffer, if it exists."
   (interactive)

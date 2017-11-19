@@ -18,6 +18,8 @@
                                :which-key "rename-this-file-and-buffer")
                         "f#" '(modo-delete-auto-save-file
                                :which-key "delete-auto-save-file")
+                        "fc" '(modo-find-core-file
+                               :which-key "find-core-file")
                         "b" '(:ignore t :which-key "buffers")
                         "bb" 'switch-to-buffer
                         "bd" 'kill-this-buffer
