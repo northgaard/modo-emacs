@@ -87,7 +87,8 @@
                           :prefix-command 'modo-major-leader-command)
   ;; Rest of the core features
   (require 'modo-editor)
-  (require 'modo-ui))
+  (require 'modo-ui)
+  (require 'modo-utils))
 
 (provide 'modo-core)
 ;;; modo-core.el ends here
