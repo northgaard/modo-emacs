@@ -24,6 +24,14 @@
   (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)
   (evil-ex-define-cmd "kill" 'save-buffers-kill-emacs)
+  ;; Set cursor colors after theme is loaded
+  (defun modo--init-cursors (&rest r)
+    (setq evil-default-cursor (face-background 'cursor nil t)
+          evil-normal-state-cursor 'box
+          evil-emacs-state-cursor `(,(face-foreground 'warning) box)
+          evil-intert-state-cursor 'bar
+          evil-visual-state-cursor 'hollow))
+  (advice-add #'load-theme :after #'modo--init-cursors)
   (evil-mode 1))
 
 ;;; evil-escape
