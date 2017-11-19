@@ -27,8 +27,12 @@
 (use-package which-key :demand t
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 0.7)
-  (setq which-key-sort-order #'which-key-prefix-then-key-order)
+  (setq which-key-idle-delay 0.7
+        which-key-sort-order #'which-key-prefix-then-key-order
+        which-key-sort-uppercase-first nil
+        which-key-compute-remaps t)
+  ;; Show local bindings in bold
+  (set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
   (which-key-mode 1))
 
 ;;; window numbering
