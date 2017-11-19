@@ -73,13 +73,6 @@
   (evil-snipe-mode 1))
 
 ;;; evil-easymotion
-(modo-add-package-single avy "avy/avy.el")
-(use-package avy
-  :after evil-snipe
-  :config
-  (setq avy-timeout-seconds 0.5)
-  (setq avy-background t))
-
 (modo-add-package-single evil-easymotion "evil-easymotion/evil-easymotion.el")
 (use-package evil-easymotion
   :after avy

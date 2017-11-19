@@ -53,6 +53,17 @@
   :config
   (window-numbering-mode 1))
 
+(modo-add-package-single avy "avy/avy.el")
+(use-package avy :demand t
+  :config
+  (setq avy-timeout-seconds 0.5)
+  (setq avy-background t))
+
+(modo-add-package-single ace-link "ace-link/ace-link.el")
+(use-package ace-link :demand t
+  :config
+  (ace-link-setup-default))
+
 (modo-add-package-single ace-window "ace-window/ace-window.el")
 (use-package ace-window
   :commands (ace-window ace-swap-window))
