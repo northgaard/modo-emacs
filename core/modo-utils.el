@@ -64,5 +64,12 @@
       (set-visited-file-name new-name)
       (rename-buffer new-name))))
 
+(defun modo-alternate-buffer ()
+  "Switch between current and last buffer."
+  (interactive)
+  (if (fboundp 'evil-alternate-buffer)
+      (switch-to-buffer (car (evil-alternate-buffer)))
+    (switch-to-buffer (other-buffer (current-buffer) t))))
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here

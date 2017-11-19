@@ -36,6 +36,8 @@
                         "wu" 'winner-undo
                         "wr" 'winner-redo
                         "u" 'universal-argument
+                        "TAB" '(modo-alternate-buffer
+                                :which-key "alternate-buffer")
                         "m" '(modo-major-leader-command :which-key "major mode"))
 
 ;;; Info-mode
