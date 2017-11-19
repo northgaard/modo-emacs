@@ -32,9 +32,10 @@
                         "wm" 'delete-other-windows
                         "wd" 'delete-frame
                         "wf" 'make-frame
-                        "wo" 'other-frame
+                        "wo" 'ace-window
                         "wu" 'winner-undo
                         "wr" 'winner-redo
+                        "wp" 'ace-swap-window
                         "u" 'universal-argument
                         "TAB" '(modo-alternate-buffer
                                 :which-key "alternate-buffer")

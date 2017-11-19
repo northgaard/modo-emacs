@@ -51,6 +51,10 @@
   :config
   (window-numbering-mode 1))
 
+(modo-add-package-single ace-window "ace-window/ace-window.el")
+(use-package ace-window
+  :commands (ace-window ace-swap-window))
+
 ;;; Font
 (add-to-list 'default-frame-alist
              '(font . "Inconsolata-15"))
@@ -99,10 +103,12 @@
   (add-hook 'after-init-hook
             (lambda () (load-theme 'sunburn t)))
   :config
-  ;; Customizations for avy
+  ;; Customizations for avy and ace-window
   (custom-set-faces
    '(avy-lead-face ((t (:background "#484349" :foreground "red" :inverse-video nil :weight bold))))
-   '(avy-lead-face-0 ((t (:background "#484349" :foreground "midnight blue" :inverse-video nil :weight bold))))))
+   '(avy-lead-face-0 ((t (:background "#484349" :foreground "midnight blue" :inverse-video nil :weight bold))))
+   '(aw-background-face ((t (:background "#484349" :foreground "#aeadbd" :inverse-video nil))))
+   '(aw-leading-char-face ((t (:background "#484349" :foreground "red"))))))
 
 (provide 'modo-ui)
 ;;; modo-ui.el ends here
