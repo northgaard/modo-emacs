@@ -21,6 +21,8 @@
 (winner-mode 1)
 ;; Start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; Highlight current line
+(global-hl-line-mode 1)
 
 ;;; which-key
 (modo-add-package-single which-key "emacs-which-key/which-key.el")
