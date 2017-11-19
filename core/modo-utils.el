@@ -18,7 +18,15 @@
 
 (defun modo-find-core-file (name)
   "Opens the core file modo-NAME.el in modo-core-dir."
-  (interactive "sName: ")
+  (interactive
+   ;; TODO: automate this
+   (list (completing-read "Core file: " '("core"
+                                          "editor"
+                                          "evil"
+                                          "keybinds"
+                                          "package"
+                                          "ui"
+                                          "utils"))))
   (let* ((core-file (file-truename
                     (expand-file-name (format "modo-%s.el" name)
                                       modo-core-dir)))
