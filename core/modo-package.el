@@ -32,6 +32,15 @@
 (setq quelpa-dir (concat modo-cache-dir "quelpa"))
 (load (expand-file-name "bootstrap.el" quelpa-ci-dir))
 
+;; Some more dirty hackery, remove the dot git directory when quelpa copies
+;; into quelpa-build-dir
+(defun modo--maybe-delete-dot-git (name config file-path dir &optional fetcher)
+  (let ((dotgit (concat dir ".git")))
+    (when (file-exists-p dotgit)
+      (delete-directory dotgit t))))
+
+(advice-add #'quelpa-check-hash :after #'modo--maybe-delete-dot-git)
+
 (defmacro modo-add-package (pkg dir)
   "Builds the package PKG from the directory DIR found in modo-repo-dir."
   `(progn
