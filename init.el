@@ -50,10 +50,13 @@
   (:keymaps 'ivy-minibuffer-map
             "C-j" 'ivy-next-line
             "C-k" 'ivy-previous-line
+            "C-h" 'ivy-beginning-of-buffer
+            "C-l" 'ivy-end-of-buffer
             "M-j" 'ivy-next-history-element
             "M-k" 'ivy-previous-history-element)
   :config
-  (setq ivy-use-virtual-buffers t)
+  (setq ivy-use-virtual-buffers t
+        ivy-wrap t)
   (setq ivy-count-format "(%d/%d) ")
   (define-key ivy-mode-map [remap switch-to-buffer]
     #'ivy-switch-buffer)
