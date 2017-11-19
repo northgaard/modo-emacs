@@ -98,31 +98,6 @@
   :config
   (evil-commentary-mode 1))
 
-;; Standard keybinds
-(modo-define-leader-key "f" '(:ignore t :which-key "files")
-                        "fs" 'save-buffer
-                        "fd" '(modo-find-dotfile :which-key "find-dotfile")
-                        "f <deletechar>" '(modo-delete-this-file
-                                  :which-key "delete-this-file")
-                        "fn" '(modo-rename-this-file-and-buffer
-                               :which-key "rename-this-file-and-buffer")
-                        "f#" '(modo-delete-auto-save-file
-                               :which-key "delete-auto-save-file")
-                        "b" '(:ignore t :which-key "buffers")
-                        "bd" 'kill-this-buffer
-                        "w" '(:ignore t :which-key "windows")
-                        "ws" 'evil-window-split
-                        "wv" 'evil-window-vsplit
-                        "wc" 'evil-window-delete
-                        "wm" 'delete-other-windows
-                        "wd" 'delete-frame
-                        "wf" 'make-frame
-                        "wo" 'other-frame
-                        "wu" 'winner-undo
-                        "wr" 'winner-redo
-                        "u" 'universal-argument
-                        "m" '(modo-major-leader-command :which-key "major mode"))
-
 ;; Horrible hackery to get the repeat behavior I want with evil-snipe
 ;; TODO: Figure out a clean way to do this
 (defvar modo--last-evil-find 'find
@@ -182,22 +157,6 @@ or the symbol snipe.")
                     "g." #'goto-last-change
                     "g:" #'goto-last-change-reverse)
 
-;; Info-mode
-(general-define-key :states 'motion
-                    :keymaps 'Info-mode-map
-                    "SPC" nil ;; Get back leader
-                    "j" 'Info-scroll-up
-                    "k" 'Info-scroll-down
-                    "h" 'Info-history-back
-                    "l" 'Info-history-forward
-                    "C-j" 'evil-next-line
-                    "C-k" 'evil-previous-line
-                    "C-h" 'evil-backward-char
-                    "C-l" 'evil-forward-char
-                    "gg" 'evil-goto-first-line
-                    "G" 'evil-goto-line
-                    "s" 'swiper)
-
 ;;; org mode
 (modo-add-package org "org-mode/lisp")
 (modo-add-package org-contribdir "org-mode/contrib/lisp")
@@ -239,35 +198,48 @@ or the symbol snipe.")
 (modo-add-package-single ivy-hydra "swiper/ivy-hydra.el")
 (modo-add-package-single swiper "swiper/swiper.el")
 (modo-add-package-single counsel "swiper/counsel.el")
-(use-package ivy
-  :init
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
+(use-package ivy :demand t
+  :commands (ivy-switch-buffer ivy-resume)
+  :diminish ivy-mode
   :general
-  (modo-define-leader-key "bb" 'ivy-switch-buffer
-                          "r" 'ivy-resume)
+  (modo-define-leader-key "r" 'ivy-resume)
   (:keymaps 'ivy-minibuffer-map
             "C-j" 'ivy-next-line
             "C-k" 'ivy-previous-line
             "M-j" 'ivy-next-history-element
             "M-k" 'ivy-previous-history-element)
   :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (define-key ivy-mode-map [remap switch-to-buffer]
+    #'ivy-switch-buffer)
   (use-package ivy-hydra
-    :commands (hydra-ivy/body)))
+    :commands (hydra-ivy/body))
+  (ivy-mode 1))
 
 (use-package counsel
-  :general
-  (:states '(normal insert visual emacs motion)
-           "M-x" 'counsel-M-x)
-  (modo-define-leader-key "ff" 'counsel-find-file
-                          "fr" 'counsel-recentf
-                          "fb" 'counsel-bookmark))
+  :commands (counsel-apropos
+             counsel-find-file
+             counsel-recentf
+             counsel-bookmark
+             counsel-M-x
+             counsel-describe-function
+             counsel-describe-variable)
+  :init
+  (define-key ivy-mode-map [remap apropos] #'counsel-apropos)
+  (define-key ivy-mode-map [remap find-file] #'counsel-find-file)
+  (define-key ivy-mode-map [remap recentf-open-files]
+    #'counsel-recentf)
+  (define-key ivy-mode-map [remap bookmark-jump] #'counsel-bookmark)
+  (define-key ivy-mode-map [remap execute-extended-command]
+    #'counsel-M-x)
+  (define-key ivy-mode-map [remap describe-function] #'counsel-describe-function)
+  (define-key ivy-mode-map [remap describe-variable] #'counsel-describe-variable))
 
 (use-package swiper
   :commands (swiper)
-  :general
-  (:states '(normal insert visual emacs motion)
-           "C-s" 'swiper))
+  :init
+  (define-key ivy-mode-map [remap isearch-forward] 'swiper))
 
 ;;; elisp
 (defun modo--elisp-extra-fontification ()

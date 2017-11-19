@@ -88,7 +88,8 @@
   ;; Rest of the core features
   (require 'modo-editor)
   (require 'modo-ui)
-  (require 'modo-utils))
+  (require 'modo-utils)
+  (require 'modo-keybinds))
 
 (provide 'modo-core)
 ;;; modo-core.el ends here
