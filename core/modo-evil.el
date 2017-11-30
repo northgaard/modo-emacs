@@ -6,8 +6,7 @@
 ;;; Code:
 
 ;;; Pure evil
-(modo-add-package-single goto-chg "evil/lib/goto-chg.el")
-(modo-add-package evil "evil")
+(straight-use-package 'evil)
 (use-package evil :demand t
   :init
   (setq evil-want-C-u-scroll t
@@ -35,7 +34,7 @@
   (evil-mode 1))
 
 ;;; evil-escape
-(modo-add-package-single evil-escape "evil-escape/evil-escape.el")
+(straight-use-package 'evil-escape)
 (use-package evil-escape :demand t
   :after evil
   :diminish evil-escape-mode
@@ -44,14 +43,14 @@
   (evil-escape-mode 1))
 
 ;;; evil-exchange
-(modo-add-package-single evil-exchange "evil-exchange/evil-exchange.el")
+(straight-use-package 'evil-exchange)
 (use-package evil-exchange
   :after evil
   :config
   (evil-exchange-install))
 
 ;;; evil-snipe
-(modo-add-package-single evil-snipe "evil-snipe/evil-snipe.el")
+(straight-use-package 'evil-snipe)
 (use-package evil-snipe
   :after evil
   :diminish evil-snipe-local-mode
@@ -73,7 +72,7 @@
   (evil-snipe-mode 1))
 
 ;;; evil-easymotion
-(modo-add-package-single evil-easymotion "evil-easymotion/evil-easymotion.el")
+(straight-use-package 'evil-easymotion)
 (use-package evil-easymotion
   :after avy
   :config
@@ -104,14 +103,14 @@
                         (evil-snipe-enable-incremental-highlight))))
 
 ;;; evil-surround
-(modo-add-package-single evil-surround "evil-surround/evil-surround.el")
+(straight-use-package 'evil-surround)
 (use-package evil-surround
   :after evil-snipe
   :config
   (global-evil-surround-mode 1))
 
 ;;; evil-commentary
-(modo-add-package evil-commentary "evil-commentary")
+(straight-use-package 'evil-commentary)
 (use-package evil-commentary
   :after evil
   :diminish evil-commentary-mode

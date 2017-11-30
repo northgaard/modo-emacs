@@ -72,7 +72,7 @@
       `((".*" ,modo-temp-dir t)))
 
 ;;; undo-tree
-(modo-add-package-single undo-tree "evil/lib/undo-tree.el")
+(straight-use-package 'undo-tree)
 (use-package undo-tree :demand t
   :diminish undo-tree-mode
   :config

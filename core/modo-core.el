@@ -58,11 +58,11 @@
 (unless noninteractive
   ;; Keybind definers
   ;; hydra
-  (modo-add-package hydra "hydra")
+  (straight-use-package 'hydra)
   (use-package hydra :demand t)
 
   ;; general.el --- get your keybinds here!
-  (modo-add-package-single general "general.el/general.el")
+  (straight-use-package 'general)
   (use-package general :demand t)
 
   ;; Leader keys

@@ -25,7 +25,7 @@
 (global-hl-line-mode 1)
 
 ;;; which-key
-(modo-add-package-single which-key "emacs-which-key/which-key.el")
+(straight-use-package 'which-key)
 (use-package which-key :demand t
   :diminish which-key-mode
   :config
@@ -38,7 +38,7 @@
   (which-key-mode 1))
 
 ;;; window numbering
-(modo-add-package-single window-numbering "window-numbering.el/window-numbering.el")
+(straight-use-package 'window-numbering)
 (use-package window-numbering :demand t
   :general
   (modo-define-leader-key "1" 'select-window-1
@@ -53,18 +53,18 @@
   :config
   (window-numbering-mode 1))
 
-(modo-add-package-single avy "avy/avy.el")
+(straight-use-package 'avy)
 (use-package avy :demand t
   :config
   (setq avy-timeout-seconds 0.5)
   (setq avy-background t))
 
-(modo-add-package-single ace-link "ace-link/ace-link.el")
+(straight-use-package 'ace-link)
 (use-package ace-link :demand t
   :config
   (ace-link-setup-default))
 
-(modo-add-package-single ace-window "ace-window/ace-window.el")
+(straight-use-package 'ace-window)
 (use-package ace-window
   :commands (ace-window ace-swap-window))
 
@@ -73,7 +73,7 @@
              '(font . "Inconsolata-15"))
 
 ;;; Font scaling
-(modo-add-package-single default-text-scale "default-text-scale/default-text-scale.el")
+(straight-use-package 'default-text-scale)
 (use-package default-text-scale
   :init
   (defhydra hydra-font-size (:color red)
@@ -91,13 +91,13 @@
   :config
   (setq linum-format "%d "))
 
-(modo-add-package-single hlinum "hlinum-mode/hlinum.el")
+(straight-use-package 'hlinum)
 (use-package hlinum
   :after linum
   :config
   (hlinum-activate))
 
-(modo-add-package-single linum-relative "linum-relative/linum-relative.el")
+(straight-use-package 'linum-relative)
 (use-package linum-relative
   :after linum
   :config
@@ -110,7 +110,7 @@
     (add-hook 'prog-mode-hook toggle-linum)))
 
 ;;; Sunburn theme
-(modo-add-package-single sunburn-theme "Sunburn-Theme/sunburn-theme.el")
+(straight-use-package 'sunburn-theme)
 (use-package sunburn-theme
   :init
   (add-hook 'after-init-hook
