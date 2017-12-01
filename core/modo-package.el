@@ -44,7 +44,7 @@ For example, the module name ivy translates to a call to (require 'modo-ivy)."
         (module-name))
     (dolist (module modules)
       (setq module-name (format "modo-%s" (symbol-name module)))
-      (push `(require ',(make-symbol module-name)) expansion))
+      (push `(require ',(intern module-name)) expansion))
     (setq expansion (nreverse expansion))
     `(progn
        ,@expansion)))
