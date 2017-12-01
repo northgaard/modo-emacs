@@ -12,11 +12,6 @@
 (add-to-list 'load-path modo-modules-dir)
 
 ;;; straight.el
-;; Set profiles
-(setq straight-profiles
-      '((modo . "modo.el")
-        (nil . "default.el")))
-
 ;; Use develop branch
 (setq straight-recipe-overrides
       '((modo . ((straight :type git :host github
