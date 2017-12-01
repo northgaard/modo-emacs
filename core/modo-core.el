@@ -12,10 +12,8 @@
 (defvar modo-core-dir (concat modo-emacs-dir "core/")
   "The directory containing the core of modo emacs.")
 
-(defvar modo-repo-dir (concat modo-emacs-dir "repos/")
-  "The directory containing the modo repositories.")
-(unless (file-exists-p modo-repo-dir)
-  (make-directory modo-repo-dir))
+(defvar modo-modules-dir (concat modo-emacs-dir "modules/")
+  "The directory containing modo modules.")
 
 (defvar modo-cache-dir (concat modo-emacs-dir "cache/")
   "The directory storing persistent information.")
@@ -26,9 +24,6 @@
   "The directory storing temporary files.")
 (unless (file-exists-p modo-temp-dir)
   (make-directory modo-temp-dir))
-
-(defvar modo-build-dir (concat modo-emacs-dir "build/")
-  "The directory where packages are built.")
 
 ;;; UTF-8 all the things
 (when (fboundp 'set-charset-priority)

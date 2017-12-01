@@ -7,14 +7,15 @@
 
 ;; Prefer newer files
 (setq load-prefer-newer t)
-;; Add core dir to load path
+;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
+(add-to-list 'load-path modo-modules-dir)
 
 ;;; straight.el
 ;; Set profiles
 (setq straight-profiles
       '((modo . "modo.el")
-	(nil . "default.el")))
+        (nil . "default.el")))
 
 ;; Use develop branch
 (setq straight-recipe-overrides
@@ -34,6 +35,19 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+;; Macro for requiring modules
+(defmacro modo-module (&rest modules)
+  "Load all the modules listed in MODULES, with the prefix modo-.
+For example, the module name ivy translates to a call to (require 'modo-ivy)."
+  (let ((expansion nil)
+        (module-name))
+    (dolist (module modules)
+      (setq module-name (format "modo-%s" (symbol-name module)))
+      (push `(require ',(make-symbol module-name)) expansion))
+    (setq expansion (nreverse expansion))
+    `(progn
+       ,@expansion)))
 
 ;; Clone from github
 (defun modo-github-clone (username repo)
