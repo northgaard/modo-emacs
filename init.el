@@ -12,17 +12,18 @@
 (setq straight-profiles
       '((modo . "modo.el")
         (nil . "default.el")))
+(setq straight-current-profile 'modo)
+(add-hook 'after-init-hook
+          (lambda () (setq straight-current-profile nil)))
 
-(let ((straight-current-profile 'modo))
-
-  (require 'modo-core (concat user-emacs-directory "core/modo-core"))
-  (modo-module ivy
-               org)
+(require 'modo-core (concat user-emacs-directory "core/modo-core"))
+(modo-module ivy
+             org)
 
 ;;; elisp
-  (defun modo--elisp-extra-fontification ()
-    "Fontify modo functions."
-    (font-lock-add-keywords
-     nil `(("\\(^\\|\\s-\\|,\\)(\\(\\(modo\\|\\+\\)[^) ]+\\)[) \n]" (2 font-lock-keyword-face)))))
+(defun modo--elisp-extra-fontification ()
+  "Fontify modo functions."
+  (font-lock-add-keywords
+   nil `(("\\(^\\|\\s-\\|,\\)(\\(\\(modo\\|\\+\\)[^) ]+\\)[) \n]" (2 font-lock-keyword-face)))))
 
-  (add-hook 'emacs-lisp-mode-hook #'modo--elisp-extra-fontification))
+(add-hook 'emacs-lisp-mode-hook #'modo--elisp-extra-fontification)
