@@ -1,6 +1,8 @@
 (("Sunburn-Theme" . "c57190f87e2e6c5ef6c7fbfd40964eb8f11b32ca")
  ("ace-link" . "3bc7a61a9d7923bb71066906e17cb8a0db415c24")
  ("ace-window" . "9bec357bd3eeee1ef27822ae034e1ee3bd270f0c")
+ ("auctex" . "5f007f11d52f3460244fe8486d5eb3dfd39cbdfe")
+ ("auctex-latexmk" . "4d353522650d7685acbf1d38f7dbc504f734bd84")
  ("avy" . "c08fc7c1c6997f7e843175e632d3d812e9f5a5b5")
  ("default-text-scale" . "968e985e219235f3e744d6d967e592acbaf6e0a8")
  ("diminish.el" . "565a983a39d2e2cffab5df13b34f3b6116723208")
