@@ -62,13 +62,14 @@
         evil-snipe-scope 'line
         evil-snipe-spillover-scope 'visible
         evil-snipe-repeat-scope 'buffer)
-  ;; Hack the keymap to prevent it override leader
+  ;; Hack the keymap to prevent it overriding leader
   (setq evil-snipe-parent-transient-map
         (let ((map (make-sparse-keymap)))
-          (define-key map ";" #'modo-fs-repeat)
+          (define-key map ";" #'evil-snipe-repeat)
           map))
   (setq evil-snipe-disabled-modes '(Info-mode magit-mode))
-  (evil-snipe-mode 1))
+  (evil-snipe-mode 1)
+  (evil-snipe-override-mode 1))
 
 ;;; evil-easymotion
 (straight-use-package 'evil-easymotion)
@@ -85,11 +86,6 @@
                         :bind ((evil-snipe-scope 'buffer)
                                (evil-snipe-enable-highlight)
                                (evil-snipe-enable-incremental-highlight)))
-  (evilem-make-motion modo-easymotion-find-repeat #'evil-repeat-find-char
-                      :bind ((evil-cross-lines t)))
-  (evilem-make-motion modo-easymotion-find-repeat-reverse
-                        #'evil-repeat-find-char-reverse
-                        :bind ((evil-cross-lines t)))
   (evilem-define (kbd "C-e s") 'evil-snipe-repeat
                  :pre-hook (save-excursion (call-interactively #'evil-snipe-s))
                  :bind ((evil-snipe-scope 'buffer)
@@ -116,58 +112,12 @@
   :config
   (evil-commentary-mode 1))
 
-;;; Horrible hackery to get the repeat behavior I want with evil-snipe
-;; TODO: Figure out a clean way to do this
-(defvar modo--last-evil-find 'find
-  "Saves the last find type operation used, either the symbol find
-or the symbol snipe.")
-(make-variable-buffer-local 'modo--last-evil-find)
-
-(defun modo--set-last-find-evil (&rest r)
-  (setq modo--last-evil-find 'find))
-(defun modo--set-last-find-snipe (&rest r)
-  (setq modo--last-evil-find 'snipe))
-
-(defun modo-fs-repeat (&optional count)
-  (interactive "p")
-  (pcase modo--last-evil-find
-    (`find (evil-repeat-find-char count))
-    (`snipe (evil-snipe-repeat count))))
-
-(defun modo-fs-repeat-reverse (&optional count)
-  (interactive "p")
-  (pcase modo--last-evil-find
-    (`find (evil-repeat-find-char-reverse count))
-    (`snipe (evil-snipe-repeat-reverse count))))
-
-(defun modo-easymotion-fs-repeat (&optional count)
-  (interactive "p")
-  (pcase modo--last-evil-find
-    (`find (modo-easymotion-find-repeat count))
-    (`snipe (modo-easymotion-snipe-repeat count))))
-
-(defun modo-easymotion-fs-repeat-reverse (&optional count)
-  (interactive "p")
-  (pcase modo--last-evil-find
-    (`find (modo-easymotion-find-repeat-reverse count))
-    (`snipe (modo-easymotion-snipe-repeat-reverse count))))
-
-;; Store last find type
-(advice-add #'evil-find-char :after #'modo--set-last-find-evil)
-(advice-add #'evil-find-char-backward :after #'modo--set-last-find-evil)
-(advice-add #'evil-find-char-to :after #'modo--set-last-find-evil)
-(advice-add #'evil-find-char-to-backward :after #'modo--set-last-find-evil)
-(advice-add #'evil-snipe-s :after #'modo--set-last-find-snipe)
-(advice-add #'evil-snipe-S :after #'modo--set-last-find-snipe)
-(advice-add #'evil-snipe-x :after #'modo--set-last-find-snipe)
-(advice-add #'evil-snipe-X :after #'modo--set-last-find-snipe)
-
 ;;; Keybinds
-(modo--direct-major-leader-key "," #'modo-fs-repeat-reverse)
+(modo--direct-major-leader-key "," #'evil-snipe-repeat-reverse)
 (general-define-key :states '(motion normal visual)
-                    ";" #'modo-fs-repeat
-                    "g;" #'modo-easymotion-fs-repeat
-                    "g," #'modo-easymotion-fs-repeat-reverse
+                    ";" #'evil-snipe-repeat
+                    "g;" #'modo-easymotion-snipe-repeat
+                    "g," #'modo-easymotion-snipe-repeat-reverse
                     "g." #'goto-last-change
                     "g:" #'goto-last-change-reverse)
 
