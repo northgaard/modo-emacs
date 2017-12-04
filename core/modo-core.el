@@ -74,12 +74,22 @@
   (general-create-definer modo-define-leader-key
                           :states '(motion normal visual insert emacs)
                           :prefix modo-leader
-                          :non-normal-prefix modo-non-normal-leader
-                          :prefix-command 'modo-leader-command)
-  (general-create-definer modo-define-major-leader-key
+                          :non-normal-prefix modo-non-normal-leader)
+  (general-create-definer modo--direct-major-leader-key
                           :states '(motion normal visual)
-                          :prefix modo-major-leader
-                          :prefix-command 'modo-major-leader-command)
+                          :prefix modo-major-leader)
+  (general-create-definer modo--indirect-major-leader-key
+                          :states '(motion normal visual insert emacs)
+                          :prefix (concat modo-leader " m")
+                          :non-normal-prefix (concat modo-non-normal-leader " m"))
+  (defun modo-define-major-leader-key (&rest args)
+    (let ((map (plist-get args :keymaps)))
+      (when map
+        (modo-define-leader-key :keymaps map
+                                "m" '(:ignore t :which-key "major mode"))))
+    (apply #'modo--direct-major-leader-key args)
+    (apply #'modo--indirect-major-leader-key args))
+
   ;; Rest of the core features
   (require 'modo-editor)
   (require 'modo-ui)

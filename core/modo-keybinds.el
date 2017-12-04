@@ -38,8 +38,7 @@
                         "wp" 'ace-swap-window
                         "u" 'universal-argument
                         "TAB" '(modo-alternate-buffer
-                                :which-key "alternate-buffer")
-                        "m" '(modo-major-leader-command :which-key "major mode"))
+                                :which-key "alternate-buffer"))
 
 ;;; Info-mode
 (general-define-key :states 'motion

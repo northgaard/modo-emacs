@@ -65,8 +65,7 @@
   ;; Hack the keymap to prevent it override leader
   (setq evil-snipe-parent-transient-map
         (let ((map (make-sparse-keymap)))
-          (define-key map ";" #'evil-snipe-repeat)
-          (define-key map "," #'modo-major-leader-command)
+          (define-key map ";" #'modo-fs-repeat)
           map))
   (setq evil-snipe-disabled-modes '(Info-mode magit-mode))
   (evil-snipe-mode 1))
@@ -164,7 +163,7 @@ or the symbol snipe.")
 (advice-add #'evil-snipe-X :after #'modo--set-last-find-snipe)
 
 ;;; Keybinds
-(modo-define-major-leader-key "," #'modo-fs-repeat-reverse)
+(modo--direct-major-leader-key "," #'modo-fs-repeat-reverse)
 (general-define-key :states '(motion normal visual)
                     ";" #'modo-fs-repeat
                     "g;" #'modo-easymotion-fs-repeat
