@@ -1,5 +1,5 @@
 ;;; modo-ivy.el --- ivy-based completion -*- lexical-binding: t -*-
-;;; Commentary
+;;; Commentary:
 
 ;; Configuration of ivy/counsel/swiper for modo emacs.
 
