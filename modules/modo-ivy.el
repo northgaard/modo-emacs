@@ -37,7 +37,8 @@
              counsel-bookmark
              counsel-M-x
              counsel-describe-function
-             counsel-describe-variable)
+             counsel-describe-variable
+             counsel-company)
   :init
   (define-key ivy-mode-map [remap apropos] #'counsel-apropos)
   (define-key ivy-mode-map [remap find-file] #'counsel-find-file)
