@@ -4,6 +4,8 @@
  ("auctex" . "5f007f11d52f3460244fe8486d5eb3dfd39cbdfe")
  ("auctex-latexmk" . "4d353522650d7685acbf1d38f7dbc504f734bd84")
  ("avy" . "c08fc7c1c6997f7e843175e632d3d812e9f5a5b5")
+ ("company-mode" . "8dea61206c67951cc83e14d41cea33ba33aea173")
+ ("company-statistics" . "e62157d43b2c874d2edbd547c3bdfb05d0a7ae5c")
  ("default-text-scale" . "968e985e219235f3e744d6d967e592acbaf6e0a8")
  ("diminish.el" . "565a983a39d2e2cffab5df13b34f3b6116723208")
  ("emacs-which-key" . "1234342878f9c9c9bc23ebe754e85d7fa155a51f")
