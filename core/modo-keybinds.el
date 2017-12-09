@@ -20,6 +20,8 @@
                                :which-key "delete-auto-save-file")
                         "fc" '(modo-find-core-file
                                :which-key "find-core-file")
+                        "fm" '(modo-find-module-file
+                               :which-key "find-module-file")
                         "b" '(:ignore t :which-key "buffers")
                         "bb" 'switch-to-buffer
                         "bd" 'kill-this-buffer

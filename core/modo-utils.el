@@ -16,20 +16,25 @@
       ;; Needed to make saveplace work with this function
       (run-hooks 'find-file-hook))))
 
+(defun modo--extract-name (string)
+  (let* ((str (file-name-sans-extension string))
+         (split (split-string str "-")))
+    (string-join (cdr split) "-")))
+
+(defun modo--get-features (dir)
+  (let ((features nil)
+        (files (directory-files dir nil "modo")))
+    (dolist (file files)
+      (push (modo--extract-name file) features))
+    (nreverse features)))
+
 (defun modo-find-core-file (name)
   "Opens the core file modo-NAME.el in modo-core-dir."
   (interactive
-   ;; TODO: automate this
-   (list (completing-read "Core file: " '("core"
-                                          "editor"
-                                          "evil"
-                                          "keybinds"
-                                          "package"
-                                          "ui"
-                                          "utils"))))
+   (list (completing-read "Core file: " (modo--get-features modo-core-dir))))
   (let* ((core-file (file-truename
-                    (expand-file-name (format "modo-%s.el" name)
-                                      modo-core-dir)))
+                     (expand-file-name (format "modo-%s.el" name)
+                                       modo-core-dir)))
          (buffer-name (get-file-buffer core-file)))
     (if buffer-name
         (switch-to-buffer buffer-name)
@@ -38,6 +43,22 @@
             (find-file core-file)
             (run-hooks 'find-file-hook))
         (error "'%s' is not a core file!" core-file)))))
+
+(defun modo-find-module-file (name)
+  "Opens the module file modo-NAME.el in modo-module-dir."
+  (interactive
+   (list (completing-read "Module file: " (modo--get-features modo-modules-dir))))
+  (let* ((module-file (file-truename
+                       (expand-file-name (format "modo-%s.el" name)
+                                         modo-modules-dir)))
+         (buffer-name (get-file-buffer module-file)))
+    (if buffer-name
+        (switch-to-buffer buffer-name)
+      (if (file-exists-p module-file)
+          (progn
+            (find-file module-file)
+            (run-hooks 'find-file-hook))
+        (error "'%s' is not a module file!" module-file)))))
 
 (defun modo-delete-auto-save-file ()
   "Delete the autosave file in the currently visited buffer, if it exists."
