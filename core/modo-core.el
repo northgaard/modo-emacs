@@ -49,6 +49,15 @@
 ;;; Load package system
 (require 'modo-package (concat modo-core-dir "modo-package"))
 
+;;; Just get it over with
+(straight-use-package 'dash)
+(straight-use-package 's)
+(straight-use-package 'f)
+
+(require 'dash)
+(require 's)
+(require 'f)
+
 ;;; Load rest of core
 (unless noninteractive
   ;; Keybind definers
