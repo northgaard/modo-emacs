@@ -54,6 +54,7 @@
 (straight-use-package 's)
 (straight-use-package 'f)
 
+(require 'cl-lib)
 (require 'dash)
 (require 's)
 (require 'f)
