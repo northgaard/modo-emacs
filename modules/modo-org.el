@@ -5,13 +5,7 @@
 
 ;;; Code:
 
-(straight-use-package '(org :host github
-                            :repo "emacsmirror/org"
-                            :files ("lisp/*.el")))
-(straight-use-package '(org-contribdir
-                        :host github
-                        :repo "emacsmirror/org"
-                        :files ("contrib/lisp/*.el")))
+(straight-use-package 'org-plus-contrib)
 (use-package org
   :config
   (setq org-startup-indented t)

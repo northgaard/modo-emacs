@@ -1,2 +1,2 @@
 ()
-:mars
+:jupiter
