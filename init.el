@@ -20,7 +20,8 @@
 (modo-module ivy
              company
              org
-             latex)
+             latex
+             snippets)
 
 ;;; elisp
 (defun modo--elisp-extra-fontification ()

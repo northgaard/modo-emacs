@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: figure
+# key: fig
+# --
+\begin{figure}[${2:location}]
+  \centering
+  $0
+  \label{fig:${1:label}}
+\end{figure}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: math-total-derivative
+# key: ddx
+# --
+\frac{\mathrm{d} $1}{\mathrm{d} $2} $0

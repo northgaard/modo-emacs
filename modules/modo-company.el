@@ -28,6 +28,8 @@
                             company-echo-metadata-frontend)
         company-transformers '(company-sort-by-occurrence))
   (setq-default company-backends '(company-capf company-dabbrev company-ispell))
+  (with-eval-after-load 'yasnippet
+    (nconc company-backends '(company-yasnippet)))
   (global-company-mode 1))
 
 (straight-use-package 'company-statistics)
