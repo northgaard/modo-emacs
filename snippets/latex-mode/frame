@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: frame
+# key: fra
+# --
+\frame{
+  $0
+}
