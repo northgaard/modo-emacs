@@ -29,6 +29,7 @@
  ("/home/sebnorg/.emacs.d/straight/repos/org-bullets/" . "5b096148bc37306f73b27da838dca751d5b1936f")
  ("/home/sebnorg/.emacs.d/straight/repos/org/" . "1bb9cf1597e9cd9b2dee086d830cfe3cb3c6509e")
  ("/home/sebnorg/.emacs.d/straight/repos/s.el/" . "5e9a6857d42015c67681616aa3519f599f97b8d8")
+ ("/home/sebnorg/.emacs.d/straight/repos/smex/" . "55aaebe3d793c2c990b39a302eb26c184281c42c")
  ("/home/sebnorg/.emacs.d/straight/repos/straight.el/" . "6a47addd6a0b8c82b25a89cae6f6131654b388ec")
  ("/home/sebnorg/.emacs.d/straight/repos/swiper/" . "b960aa4fa52b19dba4d5994fb29f445164209f46")
  ("/home/sebnorg/.emacs.d/straight/repos/undo-tree/" . "e9a9102f515acd7523158f20e83f300600374989")

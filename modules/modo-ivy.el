@@ -21,13 +21,24 @@
             "M-k" 'ivy-previous-history-element)
   :config
   (setq ivy-use-virtual-buffers t
-        ivy-wrap t)
+        ivy-wrap t
+        smex-completion-method 'ivy
+        ;; Don't use ^ as initial input
+        ivy-initial-inputs-alist nil)
   (setq ivy-count-format "(%d/%d) ")
   (define-key ivy-mode-map [remap switch-to-buffer]
     #'ivy-switch-buffer)
   (use-package ivy-hydra
     :commands (hydra-ivy/body))
   (ivy-mode 1))
+
+;; counsel-M-x uses smex when available
+(straight-use-package 'smex)
+(use-package smex
+  :commands (smex smex-major-mode-commands)
+  :config
+  (setq smex-save-file (concat modo-cache-dir "smex-items"))
+  (smex-initialize))
 
 (straight-use-package 'counsel)
 (use-package counsel
