@@ -8,6 +8,10 @@
 ;;; Pure evil
 (straight-use-package 'evil)
 (use-package evil :demand t
+  :general
+  (:states '(motion normal visual)
+           "SPC" nil
+           "," nil)
   :init
   (setq evil-want-C-u-scroll t
 	evil-want-visual-char-semi-exclusive t
@@ -113,7 +117,8 @@
   (evil-commentary-mode 1))
 
 ;;; Keybinds
-(modo--direct-major-leader-key "," #'evil-snipe-repeat-reverse)
+(with-eval-after-load 'evil-snipe
+  (modo--direct-major-leader-key "," #'evil-snipe-repeat-reverse))
 (general-define-key :states '(motion normal visual)
                     ";" #'evil-snipe-repeat
                     "g;" #'modo-easymotion-snipe-repeat

@@ -37,16 +37,6 @@
 ;;; window numbering
 (straight-use-package 'window-numbering)
 (use-package window-numbering :demand t
-  :general
-  (modo-define-leader-key "1" 'select-window-1
-                          "2" 'select-window-2
-                          "3" 'select-window-3
-                          "4" 'select-window-4
-                          "5" 'select-window-5
-                          "6" 'select-window-6
-                          "7" 'select-window-7
-                          "8" 'select-window-8
-                          "9" 'select-window-9)
   :config
   (window-numbering-mode 1))
 
@@ -79,9 +69,7 @@
     ("M-+" text-scale-increase "increase (buffer)")
     ("-" default-text-scale-decrease "decrease")
     ("M--" text-scale-decrease "decrease (buffer)")
-    ("q" nil "quit"))
-  :general
-  (modo-define-leader-key "z" '(hydra-font-size/body :which-key "font-size")))
+    ("q" nil "quit")))
 
 ;;; Line numbers
 (use-package linum :demand t
