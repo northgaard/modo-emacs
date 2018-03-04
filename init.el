@@ -8,6 +8,12 @@
   (error (format "Error: modo emacs requires emacs version %s, you have %s"
                  modo-minimum-emacs-version emacs-version)))
 
+;; Patch security vulnerability in Emacs versions older than 25.3
+(when (version< emacs-version "25.3")
+  (eval-after-load "enriched"
+    '(defun enriched-decode-display-prop (start end &optional param)
+       (list start end))))
+
 ;;; Setup straight profiles
 (setq straight-profiles
       '((modo . "modo.el")
