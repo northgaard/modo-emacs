@@ -30,15 +30,16 @@
   (setq-default company-backends '(company-capf company-dabbrev company-ispell))
   (with-eval-after-load 'yasnippet
     (nconc company-backends '(company-yasnippet)))
-  (global-company-mode 1))
+  (global-company-mode 1)
+  (company-statistics-mode 1))
 
 (straight-use-package 'company-statistics)
 (use-package company-statistics
   :after company
+  :commands (company-statistics-mode)
   :config
   (setq company-statistics-file (expand-file-name "company-stats-cache.el"
-                                                  modo-cache-dir))
-  (company-statistics-mode 1))
+                                                  modo-cache-dir)))
 
 (provide 'modo-company)
 ;;; modo-company.el ends here

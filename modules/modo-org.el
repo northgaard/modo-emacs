@@ -11,6 +11,8 @@
   (setq org-startup-indented t)
   (setq org-src-tab-acts-natively t)
   (setq org-src-fontify-natively t)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1)))
   (use-package org-drill :demand t
     :init
     (require 'cl) ;; Needs the outdated cl lib
@@ -21,16 +23,16 @@
 (straight-use-package 'org-bullets)
 (use-package org-bullets
   :after org
+  :commands (org-bullets-mode)
   :config
-  (setq org-bullets-bullet-list '("•"))
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (setq org-bullets-bullet-list '("•")))
 
 (straight-use-package 'evil-org)
 (use-package evil-org
   :after org
+  :commands (evil-org-mode)
   :config
-  (evil-org-set-key-theme '(navigation insert textobjects additional))
-  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
+  (evil-org-set-key-theme '(navigation insert textobjects additional)))
 
 (provide 'modo-org)
 ;;; modo-org.el ends here

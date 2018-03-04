@@ -79,13 +79,13 @@
   (setq linum-format "%d "))
 
 (straight-use-package 'hlinum)
-(use-package hlinum
+(use-package hlinum :demand t
   :after linum
   :config
   (hlinum-activate))
 
 (straight-use-package 'linum-relative)
-(use-package linum-relative
+(use-package linum-relative :demand t
   :after linum
   :config
   (setq linum-relative-format "%s ")

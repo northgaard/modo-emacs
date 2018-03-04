@@ -20,10 +20,13 @@
       (use-package latex
         :config
         (setq LaTeX-fill-break-at-separators nil)
-        (setq LaTeX-babel-hyphen nil))
+        (setq LaTeX-babel-hyphen nil)
+        (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+        (add-hook 'LaTeX-mode-hook 'auctex-latexmk-setup))
 
       (use-package reftex
         :after latex
+        :commands (turn-on-reftex)
         :general
         (:keymaps '(reftex-select-label-mode-map
                     reftex-select-bib-mode-map)
@@ -43,8 +46,7 @@
         :config
         (setq reftex-plug-into-AUCTeX t)
         (setq reftex-toc-split-windows-horizontally t)
-        (setq reftex-toc-split-windows-fraction 0.5)
-        (add-hook 'LaTeX-mode-hook 'turn-on-reftex))
+        (setq reftex-toc-split-windows-fraction 0.5))
 
 ;;; LatexMK
       (defvar modo-latex-build-command (if (executable-find "latexmk") "LatexMk" "LaTeX")
@@ -59,13 +61,13 @@
       (straight-use-package 'auctex-latexmk)
       (use-package auctex-latexmk
         :after latex
+        :commands (auctex-latexmk-setup)
         :general
         (modo-define-major-leader-key :keymaps 'LaTeX-mode-map
                                       "e" 'TeX-next-error
                                       "b" '(modo-latex-build
                                             :which-key "latex-build"))
         :config
-        (auctex-latexmk-setup)
         (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
   (progn
     (straight-register-package 'auctex)
