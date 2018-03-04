@@ -20,6 +20,8 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; Highlight current line
 (global-hl-line-mode 1)
+;; Disable the bell
+(setq ring-bell-function 'ignore)
 
 ;;; which-key
 (straight-use-package 'which-key)
