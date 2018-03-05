@@ -100,5 +100,10 @@
       (switch-to-buffer (car (evil-alternate-buffer)))
     (switch-to-buffer (other-buffer (current-buffer) t))))
 
+(defun modo-font-family-exists-p (family-name)
+  "Checks if the font family FAMILY-NAME exists. Returns the font-entity
+if it does, nil otherwise."
+  (find-font (font-spec :family family-name)))
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here

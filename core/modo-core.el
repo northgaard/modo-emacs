@@ -109,9 +109,9 @@
     (apply #'modo--indirect-major-leader-key args))
 
   ;; Rest of the core features
+  (require 'modo-utils)
   (require 'modo-editor)
   (require 'modo-ui)
-  (require 'modo-utils)
   (require 'modo-evil)
   (require 'modo-keybinds))
 

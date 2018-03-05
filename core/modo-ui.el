@@ -60,8 +60,17 @@
   :commands (ace-window ace-swap-window))
 
 ;;; Font
-(add-to-list 'default-frame-alist
-             '(font . "Inconsolata-15"))
+(when (display-graphic-p)
+  (let ((preferred-font-families '("Consolas"
+                                   "Inconsolata"
+                                   "DejaVu Sans Mono"))
+        (existing-fonts '()))
+    (dolist (font preferred-font-families)
+      (when (modo-font-family-exists-p font)
+        (add-to-list 'existing-fonts font t)))
+    (add-to-list 'face-font-family-alternatives existing-fonts)
+    (set-face-attribute 'default nil :family (car existing-fonts) :weight 'normal
+                        :width 'normal :height 120)))
 
 ;;; Font scaling
 (straight-use-package 'default-text-scale)
