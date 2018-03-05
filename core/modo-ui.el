@@ -18,6 +18,8 @@
 (winner-mode 1)
 ;; Start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(when (eq system-type 'windows-nt)
+  (add-hook 'after-init-hook 'toggle-frame-maximized))
 ;; Highlight current line
 (global-hl-line-mode 1)
 ;; Disable the bell
