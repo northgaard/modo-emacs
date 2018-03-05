@@ -5,13 +5,14 @@
 
 ;;; Code:
 
-(with-eval-after-load 'org
-    (require 'org-version (concat modo-modules-dir "org-version-fix")))
-(straight-register-package 'git)
-
+(straight-use-package 'git)
 (straight-use-package 'org-plus-contrib)
 (use-package org
   :config
+  ;; Make double extra sure that the built-in org-version is not loaded
+  (unload-feature 'org-version t)
+  ;; Now load the fix
+  (require 'org-version (concat modo-modules-dir "org-version-fix"))
   (setq org-startup-indented t)
   (setq org-src-tab-acts-natively t)
   (setq org-src-fontify-natively t)

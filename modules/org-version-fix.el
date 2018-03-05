@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(straight-use-package 'git)
-
 (defun org-git-version ()
   "The Git version of org-mode.
 Inserted by installing org-mode or when a release is made."
