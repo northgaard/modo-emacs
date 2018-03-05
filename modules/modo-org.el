@@ -1,9 +1,12 @@
 ;;; modo-org.el --- org-mode -*- lexical-binding: t -*-
-;;; Commentary
+;;; Commentary:
 
 ;; Configuration of org-mode for modo emacs.
 
 ;;; Code:
+
+(with-eval-after-load 'org
+    (require 'org-version (concat modo-modules-dir "org-version-fix")))
 
 (straight-use-package 'org-plus-contrib)
 (use-package org
