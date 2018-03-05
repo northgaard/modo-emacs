@@ -7,6 +7,7 @@
 
 (with-eval-after-load 'org
     (require 'org-version (concat modo-modules-dir "org-version-fix")))
+(straight-register-package 'git)
 
 (straight-use-package 'org-plus-contrib)
 (use-package org

@@ -21,6 +21,7 @@
  ("evil-surround" . "2af81ab3ac64e4b0515a157a672d8cb89f0172b9")
  ("f.el" . "de6d4d40ddc844eee643e92d47b9d6a63fbebb48")
  ("general.el" . "de82992bba6226f1be3aac9ed6568f1a3b23295b")
+ ("git.el" . "a3396a7027a7d986598c6a2d6d5599bac918f3da")
  ("goto-chg" . "e5b38e4e1378f6ea48fa9e8439f49c2998654aa4")
  ("hlinum-mode" . "2b4a08db4ff361ac8eeee1ed94eca7e26c614595")
  ("hydra" . "62e0f374623df15c1eabebe78f4100850d708227")
