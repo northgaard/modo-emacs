@@ -61,7 +61,8 @@
 
 ;;; Font
 (when (display-graphic-p)
-  (let ((preferred-font-families '("Consolas"
+  (let ((preferred-font-families '("Hack"
+                                   "Consolas"
                                    "Inconsolata"
                                    "DejaVu Sans Mono"))
         (existing-fonts '()))
