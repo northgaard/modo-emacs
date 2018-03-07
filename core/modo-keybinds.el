@@ -53,9 +53,15 @@
                                 :which-key "alternate-buffer"))
 
 ;;; Info-mode
+;; Contortions to reclaim the leader key
+(define-key Info-mode-map [override-state] nil)
+(when (string= "SPC" modo-leader)
+  (general-define-key :states 'motion
+                      :keymaps 'Info-mode-map
+                      modo-leader nil))
+;; Actually interesting keybindings
 (general-define-key :states 'motion
                     :keymaps 'Info-mode-map
-                    "SPC" nil ;; Get back leader
                     "j" 'Info-scroll-up
                     "k" 'Info-scroll-down
                     "h" 'Info-history-back
