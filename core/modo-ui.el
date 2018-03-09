@@ -19,7 +19,7 @@
 ;; Start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (when (eq system-type 'windows-nt)
-  (add-hook 'after-init-hook 'toggle-frame-maximized))
+  (add-hook 'emacs-startup-hook 'toggle-frame-maximized))
 ;; Highlight current line
 (global-hl-line-mode 1)
 ;; Disable the bell
@@ -112,7 +112,7 @@
 (straight-use-package 'sunburn-theme)
 (use-package sunburn-theme
   :init
-  (add-hook 'after-init-hook
+  (add-hook 'emacs-startup-hook
             (lambda () (load-theme 'sunburn t)))
   :config
   ;; Customizations for avy and ace-window

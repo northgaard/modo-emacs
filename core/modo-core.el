@@ -49,10 +49,15 @@
 
 ;;; Initial high threshold for garbage collection
 (let ((normal-gc-cons-threshold (* 20 1024 1024)) ;; ~20 mb
-      (init-gc-cons-threshold (* 128 1024 1024))) ;; ~128 mb
-  (setq gc-cons-threshold init-gc-cons-threshold)
-  (add-hook 'after-init-hook
-            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+      (init-gc-cons-threshold (* 256 1024 1024)) ;; ~256 mb
+      (base-file-name-handler-alist file-name-handler-alist))
+  (setq gc-cons-threshold init-gc-cons-threshold
+        gc-cons-percentage 0.6
+        file-name-handler-alist nil)
+  (add-hook 'emacs-startup-hook
+            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold
+                             gc-cons-percentage 0.1
+                             file-name-handler-alist base-file-name-handler-alist))))
 
 ;;; Load package system
 (require 'modo-package (concat modo-core-dir "modo-package"))
