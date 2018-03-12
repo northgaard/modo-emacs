@@ -28,7 +28,8 @@
              org
              latex
              snippets
-             flycheck)
+             flycheck
+             csharp)
 
 ;;; elisp
 (defun modo--elisp-extra-fontification ()
