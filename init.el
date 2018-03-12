@@ -27,7 +27,8 @@
              company
              org
              latex
-             snippets)
+             snippets
+             flycheck)
 
 ;;; elisp
 (defun modo--elisp-extra-fontification ()
