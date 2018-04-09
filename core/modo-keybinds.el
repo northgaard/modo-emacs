@@ -33,7 +33,7 @@
                         "wc" 'evil-window-delete
                         "wm" 'delete-other-windows
                         "wd" 'delete-frame
-                        "wf" 'make-frame
+                        "wf" 'make-frame-command
                         "wo" 'ace-window
                         "wu" 'winner-undo
                         "wr" 'winner-redo
