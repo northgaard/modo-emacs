@@ -61,6 +61,20 @@
   (define-key ivy-mode-map [remap describe-function] #'counsel-describe-function)
   (define-key ivy-mode-map [remap describe-variable] #'counsel-describe-variable))
 
+(straight-use-package 'counsel-projectile)
+(use-package counsel-projectile
+  :after counsel
+  :commands (counsel-projectile-find-file
+             counsel-projectile-switch-to-buffer
+             counsel-projectile-find-dir
+             counsel-projectile-switch-project)
+  :preface
+  (define-key ivy-mode-map [remap projectile-find-file] #'counsel-projectile-find-file)
+  (define-key ivy-mode-map [remap projectile-switch-to-buffer]
+    #'counsel-projectile-switch-to-buffer)
+  (define-key ivy-mode-map [remap projectile-find-dir] #'counsel-projectile-find-dir)
+  (define-key ivy-mode-map [remap projectile-switch-project] #'counsel-projectile-switch-project))
+
 (straight-use-package 'swiper)
 (use-package swiper
   :commands (swiper)
