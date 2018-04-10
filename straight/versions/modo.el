@@ -6,6 +6,7 @@
  ("avy" . "34d3531a3cd35ae6b9e8dbc37343c027504fdcb0")
  ("company-mode" . "07c56b1476ca1d091e6d819725ba4515c5076fcf")
  ("company-statistics" . "e62157d43b2c874d2edbd547c3bdfb05d0a7ae5c")
+ ("counsel-projectile" . "d428d08015f83fe91c058abf7f1fa95657e90483")
  ("dash.el" . "48a5015dd1314a8bcad48f2ad8866dd911001b01")
  ("default-text-scale" . "968e985e219235f3e744d6d967e592acbaf6e0a8")
  ("diminish.el" . "565a983a39d2e2cffab5df13b34f3b6116723208")
