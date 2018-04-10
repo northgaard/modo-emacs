@@ -118,6 +118,7 @@
   (require 'modo-editor)
   (require 'modo-ui)
   (require 'modo-evil)
+  (require 'modo-projects)
   (require 'modo-keybinds))
 
 (provide 'modo-core)

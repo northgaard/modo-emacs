@@ -32,6 +32,7 @@
  ("org" . "d97ae5305943732573885ec5edeaa0dc8c175f24")
  ("org-bullets" . "5b096148bc37306f73b27da838dca751d5b1936f")
  ("pkg-info.el" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
+ ("projectile" . "fba757dcee67479e579c164ec0f4f930793de6cd")
  ("s.el" . "5968b951bd646c003f2825f31cdf9da94d6f1cae")
  ("smex" . "55aaebe3d793c2c990b39a302eb26c184281c42c")
  ("straight.el" . "8d5119eee18d661210511279a1342a9c3d024674")
