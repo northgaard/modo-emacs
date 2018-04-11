@@ -3,3 +3,4 @@ cache/
 temp/
 straight/*
 !straight/versions/
+custom.el
