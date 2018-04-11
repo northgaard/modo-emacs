@@ -70,8 +70,8 @@
         :config
         (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
   (progn
-    (straight-register-package 'auctex)
-    (straight-register-package 'auctex-latexmk)))
+    (straight-use-package-no-build 'auctex)
+    (straight-use-package-no-build 'auctex-latexmk)))
 
 (provide 'modo-latex)
 ;;; modo-latex.el ends here
