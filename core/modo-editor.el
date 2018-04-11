@@ -78,5 +78,10 @@
   :config
   (undo-tree-mode 1))
 
+;;; emacs server
+(use-package server
+  :init
+  (setq server-auth-dir (concat modo-cache-dir "server/")))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here
