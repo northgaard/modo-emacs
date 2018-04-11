@@ -13,7 +13,8 @@
   (setq projectile-cache-file (concat modo-cache-dir "projectile.cache")
         projectile-enable-caching t
         projectile-require-project-root nil
-        projectile-known-projects-file (concat modo-cache-dir "projectile.projects"))
+        projectile-known-projects-file (concat modo-cache-dir "projectile.projects")
+        projectile-indexing-method 'alien)
   (add-hook 'after-init-hook #'projectile-mode)
   ;; Get rid of the default mappings
   (setq projectile-mode-map (make-sparse-keymap))
