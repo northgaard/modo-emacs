@@ -83,5 +83,10 @@
   :init
   (setq server-auth-dir (concat modo-cache-dir "server/")))
 
+;;; eshell
+(use-package eshell
+  :init
+  (setq eshell-directory-name (concat modo-cache-dir "eshell/")))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here
