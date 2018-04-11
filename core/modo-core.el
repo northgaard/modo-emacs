@@ -117,6 +117,7 @@
   (require 'modo-utils)
   (require 'modo-editor)
   (require 'modo-ui)
+  (require 'modo-os)
   (require 'modo-evil)
   (require 'modo-projects)
   (require 'modo-keybinds))
