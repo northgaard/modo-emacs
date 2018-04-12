@@ -24,6 +24,8 @@
 (global-hl-line-mode 1)
 ;; Disable the bell
 (setq ring-bell-function 'ignore)
+;; Truncate lines by default
+(setq-default truncate-lines t)
 
 ;;; which-key
 (straight-use-package 'which-key)
