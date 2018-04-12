@@ -109,9 +109,9 @@
     (let ((map (plist-get args :keymaps)))
       (when map
         (modo-define-leader-key :keymaps map
-                                "m" '(:ignore t :which-key "major mode"))))
-    (apply #'modo--direct-major-leader-key args)
-    (apply #'modo--indirect-major-leader-key args))
+                                "m" '(:ignore t :which-key "major mode")))
+    (modo--direct-major-leader-key args)
+    (modo--indirect-major-leader-key args)))
 
   ;; Rest of the core features
   (require 'modo-utils)
