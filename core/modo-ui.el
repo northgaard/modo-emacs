@@ -100,7 +100,7 @@
 (use-package linum-relative :demand t
   :after linum
   :config
-  (setq linum-relative-format "%s ")
+  (setq linum-relative-format "%3s ")
   (setq linum-relative-current-symbol "")
   (let ((toggle-linum (lambda ()
                         (linum-mode 1)
@@ -108,19 +108,37 @@
     (add-hook 'text-mode-hook toggle-linum)
     (add-hook 'prog-mode-hook toggle-linum)))
 
-;;; Sunburn theme
+;;; Themes
+;; Sunburn
 (straight-use-package 'sunburn-theme)
 (use-package sunburn-theme
-  :init
-  (add-hook 'emacs-startup-hook
-            (lambda () (load-theme 'sunburn t)))
   :config
   ;; Customizations for avy and ace-window
-  (custom-set-faces
-   '(avy-lead-face ((t (:background "#484349" :foreground "red" :inverse-video nil :weight bold))))
-   '(avy-lead-face-0 ((t (:background "#484349" :foreground "midnight blue" :inverse-video nil :weight bold))))
-   '(aw-background-face ((t (:background "#484349" :foreground "#aeadbd" :inverse-video nil))))
-   '(aw-leading-char-face ((t (:background "#484349" :foreground "red"))))))
+  (defun modo--sunburn-customizations ()
+    (sunburn-with-color-variables
+      (custom-theme-set-faces
+       'sunburn
+       `(avy-lead-face ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
+       `(avy-lead-face-0 ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
+       `(avy-lead-face-1 ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
+       `(avy-lead-face-2 ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
+       `(aw-background-face ((t (:background ,sunburn-bg :foreground ,sunburn-fg-1 :inverse-video nil))))
+       `(aw-leading-char-face ((t (:background ,sunburn-bg :foreground "red"))))))))
+
+;; Challenger Deep
+(straight-use-package 'challenger-deep-theme)
+(use-package challenger-deep-theme
+  :config
+  (defun modo--challenger-deep-customizations ()
+  (custom-theme-set-faces
+   'challenger-deep
+   '(ivy-highlight-face ((t (:foreground "#ffe9aa")))))))
+
+;; TODO: Add hydra for changing themes
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (load-theme 'challenger-deep t)
+            (modo--challenger-deep-customizations)))
 
 (provide 'modo-ui)
 ;;; modo-ui.el ends here
