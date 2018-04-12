@@ -6,6 +6,7 @@
 ;;; Code:
 (straight-use-package 'flycheck)
 (use-package flycheck
+  :diminish flycheck-mode
   :commands (flycheck-mode flycheck-list-errors flycheck-buffer))
 
 (provide 'modo-flycheck)
