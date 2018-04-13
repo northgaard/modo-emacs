@@ -136,6 +136,9 @@
      'challenger-deep
      '(ivy-highlight-face ((t (:foreground "#ffe9aa")))))))
 
+;; Kaolin
+(straight-use-package 'kaolin-themes)
+
 (defun modo-load-theme (theme)
   "Loads the theme THEME and optionally calls a function providing custom
 modifications. This function should be named modo--THEME-customizations and
@@ -147,7 +150,7 @@ take no arguments."
       (funcall theme-customization-fun))))
 
 ;; TODO: Add hydra for changing themes
-(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'challenger-deep)))
+(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'kaolin-dark)))
 
 (provide 'modo-ui)
 ;;; modo-ui.el ends here
