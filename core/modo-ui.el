@@ -132,15 +132,22 @@
 (use-package challenger-deep-theme
   :config
   (defun modo--challenger-deep-customizations ()
-  (custom-theme-set-faces
-   'challenger-deep
-   '(ivy-highlight-face ((t (:foreground "#ffe9aa")))))))
+    (custom-theme-set-faces
+     'challenger-deep
+     '(ivy-highlight-face ((t (:foreground "#ffe9aa")))))))
+
+(defun modo-load-theme (theme)
+  "Loads the theme THEME and optionally calls a function providing custom
+modifications. This function should be named modo--THEME-customizations and
+take no arguments."
+  (let* ((theme-name (symbol-name theme))
+         (theme-customization-fun (intern-soft (format "modo--%s-customizations" theme-name))))
+    (load-theme theme t)
+    (when (functionp theme-customization-fun)
+      (funcall theme-customization-fun))))
 
 ;; TODO: Add hydra for changing themes
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (load-theme 'challenger-deep t)
-            (modo--challenger-deep-customizations)))
+(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'challenger-deep)))
 
 (provide 'modo-ui)
 ;;; modo-ui.el ends here
