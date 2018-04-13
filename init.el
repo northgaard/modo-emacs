@@ -29,6 +29,7 @@
              org
              latex
              snippets
+             spellcheck
              flycheck
              csharp)
 
