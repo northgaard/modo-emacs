@@ -49,6 +49,7 @@
                         "8" 'select-window-8
                         "9" 'select-window-9
                         "z" '(hydra-font-size/body :which-key "font-size")
+                        "Z" '(modo-load-theme :which-key "load-theme")
                         "TAB" '(modo-alternate-buffer
                                 :which-key "alternate-buffer"))
 
