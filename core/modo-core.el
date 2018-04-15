@@ -25,6 +25,14 @@
 (unless (file-exists-p modo-temp-dir)
   (make-directory modo-temp-dir))
 
+(defvar modo-private-dir (concat modo-emacs-dir "private/")
+  "Directory for storing private configuration files.")
+(unless (file-exists-p modo-private-dir)
+  (make-directory modo-private-dir))
+
+(defvar modo-private-init-file (concat modo-emacs-dir "init-private.el")
+  "Private equivalent of init.el.")
+
 ;;; UTF-8 all the things
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))

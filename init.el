@@ -40,3 +40,6 @@
    nil `(("\\(^\\|\\s-\\|,\\)(\\(\\(modo\\|\\+\\)[^) ]+\\)[) \n]" (2 font-lock-keyword-face)))))
 
 (add-hook 'emacs-lisp-mode-hook #'modo--elisp-extra-fontification)
+
+;;; Finally, load the private init file, if it exists
+(load modo-private-init-file t t)
