@@ -143,8 +143,15 @@
   "Loads the theme THEME and optionally calls a function providing custom
 modifications. This function should be named modo--THEME-customizations and
 take no arguments."
+  (interactive
+   (list
+    (intern (completing-read "Choose theme to load: "
+                             (mapcar 'symbol-name
+                                     (custom-available-themes))))))
   (let* ((theme-name (symbol-name theme))
          (theme-customization-fun (intern-soft (format "modo--%s-customizations" theme-name))))
+    (unless (custom-theme-name-valid-p theme)
+      (error "Invalid theme name `%s'" theme))
     (load-theme theme t)
     (when (functionp theme-customization-fun)
       (funcall theme-customization-fun))))
