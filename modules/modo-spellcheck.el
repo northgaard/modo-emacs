@@ -6,6 +6,9 @@
 ;;; Code:
 
 (use-package flyspell
+  :init
+  (with-eval-after-load 'magit
+    (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
   :config
   (setq ispell-program-name (executable-find "aspell")
         ispell-list-command "--list"

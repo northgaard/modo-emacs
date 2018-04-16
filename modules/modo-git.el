@@ -15,7 +15,7 @@
 (use-package magit
   :commands (magit-status magit-blame)
   ;; Start in insert mode for commit messages
-  :hook ((with-editor-mode . evil-insert-state))
+  :hook ((git-commit-setup . evil-insert-state))
   :general
   (modo-define-leader-key "s" 'magit-status)
   :config
