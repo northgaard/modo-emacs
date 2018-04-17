@@ -25,7 +25,8 @@
         smex-completion-method 'ivy
         ;; Don't use ^ as initial input
         ivy-initial-inputs-alist nil)
-  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-count-format "(%d/%d) "
+        projectile-completion-system 'ivy)
   (define-key ivy-mode-map [remap switch-to-buffer]
     #'ivy-switch-buffer)
   (use-package ivy-hydra
