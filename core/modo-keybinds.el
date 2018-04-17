@@ -27,6 +27,7 @@
                         "bd" 'kill-this-buffer
                         "bl" 'list-buffers
                         "by" 'bury-buffer
+                        "br" 'revert-buffer
                         "w" '(:ignore t :which-key "windows")
                         "ws" 'evil-window-split
                         "wv" 'evil-window-vsplit
