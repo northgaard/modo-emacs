@@ -47,5 +47,9 @@
   (setq omnisharp-autocomplete-want-documentation nil
         omnisharp-cache-directory (concat modo-cache-dir "omnisharp")))
 
+(use-package nxml-mode
+  :mode (("\\.xml\\'" . nxml-mode)
+         ("\\.xaml\\'" . nxml-mode)))
+
 (provide 'modo-csharp)
 ;;; modo-csharp.el ends here
