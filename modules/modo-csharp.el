@@ -21,6 +21,9 @@
 (use-package csharp-mode
   :hook ((csharp-mode . flycheck-mode)
          (csharp-mode . omnisharp-mode))
+  :init
+  (add-to-list 'projectile-other-file-alist '("xaml" "xaml.cs"))
+  (add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml"))
   :config
   (require 'omnisharp)
   (general-define-key :states 'normal
