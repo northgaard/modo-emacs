@@ -15,7 +15,7 @@
  ("default-text-scale" . "968e985e219235f3e744d6d967e592acbaf6e0a8")
  ("diminish.el" . "565a983a39d2e2cffab5df13b34f3b6116723208")
  ("emacs-async" . "8bb64e398897d1cc000fc295c5157b4ad1a7bd5b")
- ("emacs-kaolin-themes" . "0a80628e083db6e9d4b4af73be5d917d7d667330")
+ ("emacs-kaolin-themes" . "1fd564fbcd21e7f25ee21aff514aabb352d2b14f")
  ("emacs-which-key" . "d19fe4e037baf8a5cd6e8c0609d3999528bb5ac9")
  ("epkgs" . "6fe4edbe1cfe2ae87313cfa5c11047db1deef051")
  ("epl" . "78ab7a85c08222cd15582a298a364774e3282ce6")
