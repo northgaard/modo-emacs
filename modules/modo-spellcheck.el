@@ -17,7 +17,10 @@
     (interactive)
     (let ((flyspell-generic-check-word-predicate
            #'flyspell-generic-progmode-verify))
-      (flyspell-buffer))))
+      (flyspell-buffer)))
+  (defun flyspell-clear-overlays ()
+    (interactive)
+    (flyspell-delete-all-overlays)))
 
 (provide 'modo-spellcheck)
 ;;; modo-spellcheck.el ends here
