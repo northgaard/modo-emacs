@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: csharp-block
+# key: <cs
+# --
+#+BEGIN_SRC csharp
+  $0
+#+END_SRC
