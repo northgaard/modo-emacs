@@ -33,6 +33,21 @@
     :commands (hydra-ivy/body))
   (ivy-mode 1))
 
+(straight-use-package 'ivy-rich)
+(use-package ivy-rich
+  :init
+  ;; Load on calling ivy-switch-buffer
+  (advice-add #'ivy-switch-buffer :before (lambda () (require 'ivy-rich))
+              '((name . "load-rich")))
+  :config
+  (setq ivy-virtual-abbreviate 'full
+        ivy-rich-switch-buffer-align-virtual-buffer t
+        ivy-rich-path-style 'abbrev)
+  (ivy-set-display-transformer 'ivy-switch-buffer
+                               'ivy-rich-switch-buffer-transformer)
+  ;; Once loaded advice is no longer necessary
+  (advice-remove #'ivy-switch-buffer "load-rich"))
+
 ;; counsel-M-x uses smex when available
 (straight-use-package 'smex)
 (use-package smex
