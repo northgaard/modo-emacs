@@ -21,7 +21,14 @@
   :config
   (when (string= "SPC" modo-leader)
     (general-define-key :keymaps 'magit-mode-map
-                        modo-leader nil)))
+                        modo-leader nil))
+  ;; Use projectile to get known repositories
+  (setq magit-repository-directories
+        (mapcar (lambda (dir)
+                  (cons (directory-file-name dir) 0))
+                (cl-remove-if-not (lambda (project)
+                                    (file-directory-p (concat project "/.git/")))
+                                  (projectile-relevant-known-projects)))))
 
 (straight-use-package 'evil-magit)
 (use-package evil-magit
