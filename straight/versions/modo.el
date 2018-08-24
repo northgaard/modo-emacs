@@ -42,7 +42,7 @@
  ("magit" . "fb2d481e8e4a7c8dac23b82e4a008747e4ce9fab")
  ("magit-popup" . "32e6da899abd6657c098534c5775fc7177047f49")
  ("melpa" . "124f2a7833e3386a0bf57c8111d782ae7a7ee02e")
- ("omnisharp-emacs" . "c00a3a9157432c578fffb79169232e4a81d4ad31")
+ ("omnisharp-emacs" . "88f574a5fe6ba19c37c49ddb7772a5935c3eac46")
  ("org" . "d97ae5305943732573885ec5edeaa0dc8c175f24")
  ("org-bullets" . "5b096148bc37306f73b27da838dca751d5b1936f")
  ("pkg-info.el" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
