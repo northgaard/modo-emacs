@@ -19,9 +19,14 @@
 			   :branch "develop"
 			   :files ("straight.el"))))))
 
+;; Use the elpa mirror
+(setq straight-recipes-gnu-elpa-use-mirror t)
+
 ;; Bootstrap snippet
-(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
-      (bootstrap-version 3))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously

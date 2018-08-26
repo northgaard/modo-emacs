@@ -127,15 +127,6 @@
        `(aw-background-face ((t (:background ,sunburn-bg :foreground ,sunburn-fg-1 :inverse-video nil))))
        `(aw-leading-char-face ((t (:background ,sunburn-bg :foreground "red"))))))))
 
-;; Challenger Deep
-(straight-use-package 'challenger-deep-theme)
-(use-package challenger-deep-theme
-  :config
-  (defun modo--challenger-deep-customizations ()
-    (custom-theme-set-faces
-     'challenger-deep
-     '(ivy-highlight-face ((t (:foreground "#ffe9aa")))))))
-
 ;; Kaolin
 (straight-use-package '(kaolin-themes :type git :host github
                                       :branch "modo"
