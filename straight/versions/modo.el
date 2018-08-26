@@ -57,7 +57,7 @@
  ("straight.el" . "ea3a76c983a113c45da43bb166125cbda2a0e87f")
  ("swiper" . "e4b05e7af0ea80c91ddca6be5eae447a0ba3b8b5")
  ("undo-tree" . "e9a9102f515acd7523158f20e83f300600374989")
- ("use-package" . "6af4b6caf67f5fbd63429d27fa54a92933df966a")
+ ("use-package" . "3fb8f39f5901a4c0ef7887283e56e60b541675ea")
  ("window-numbering.el" . "10809b3993a97c7b544240bf5d7ce9b1110a1b89")
  ("with-editor" . "ff3e96929d4532e33422a5980a6e3ca9f2fcf032")
  ("yasnippet" . "3d7cafccf8d7ea9d62e0ccd63c30769de5b8cf01"))
