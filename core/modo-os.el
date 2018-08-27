@@ -12,16 +12,17 @@
 ;; its location. DO NOT expect miracles with this, but its something.
 (when (eq system-type 'windows-nt)
 
-  (defcustom modo-git-bin-path nil
-    "String specifying where the git binaries are located.")
+  (defcustom modo-git-path nil
+    "String specifying the root directory of the git for windows installation.")
 
   ;; TODO: Validate path
-  (when (stringp modo-git-bin-path)
-    (setq explicit-shell-file-name (concat modo-git-bin-path "bash.exe")
+  (when (stringp modo-git-path)
+    (setq explicit-shell-file-name
+          (expand-file-name "usr/bin/bash.exe" modo-git-path)
           shell-file-name explicit-shell-file-name
           explicit-bash.exe-args '("--login" "-i"))
     (setenv "SHELL" shell-file-name)
-    (add-to-list 'exec-path modo-git-bin-path)
+    (add-to-list 'exec-path modo-git-path)
     (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)))
 
 (provide 'modo-os)
