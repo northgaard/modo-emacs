@@ -36,6 +36,12 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Early loading of meta-packages
+(straight-use-package 'melpa)
+(straight-use-package 'epl)
+(straight-use-package 'pkg-info)
+(straight-use-package 'emacsmirror)
+
 ;; Macro for requiring modules
 (defmacro modo-module (&rest modules)
   "Load all the modules listed in MODULES, with the prefix modo-.

@@ -56,7 +56,7 @@
  ("smex" . "55aaebe3d793c2c990b39a302eb26c184281c42c")
  ("straight.el" . "ea3a76c983a113c45da43bb166125cbda2a0e87f")
  ("swiper" . "e4b05e7af0ea80c91ddca6be5eae447a0ba3b8b5")
- ("undo-tree" . "e9a9102f515acd7523158f20e83f300600374989")
+ ("undo-tree" . "d54ef13e3c69655e39f977b8bf75399a6d2b5e42")
  ("use-package" . "3fb8f39f5901a4c0ef7887283e56e60b541675ea")
  ("window-numbering.el" . "10809b3993a97c7b544240bf5d7ce9b1110a1b89")
  ("with-editor" . "ff3e96929d4532e33422a5980a6e3ca9f2fcf032")
