@@ -88,5 +88,10 @@
   :init
   (setq eshell-directory-name (concat modo-cache-dir "eshell/")))
 
+;;; Compilation
+(use-package compile
+  :config
+  (setq compilation-scroll-output 'first-error))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here

@@ -35,11 +35,31 @@
                       ",i" 'omnisharp-current-type-information
                       ",I" 'omnisharp-current-type-documentation
                       ",n" 'omnisharp-rename
-                      ",r" 'omnisharp-run-code-action-refactoring
-                      ",c" 'recompile)
+                      ",r" 'omnisharp-run-code-action-refactoring)
   (general-define-key :states 'insert
                       :keymaps 'csharp-mode-map
-                      "." 'omnisharp-add-dot-and-company-complete))
+                      "." 'omnisharp-add-dot-and-company-complete)
+  (when (and (eq system-type 'windows-nt)
+             (executable-find "MSBuild.exe"))
+    (require 'seq)
+    (defun modo-compile-csharp ()
+      "Compiles the solution. Note that MSBuild.exe must be in your path."
+      (interactive)
+      (let ((sln-candidates (seq-filter (lambda (file) (f-ext-p file "sln"))
+                                        (omnisharp--resolve-sln-candidates))))
+        (cl-case (length sln-candidates)
+          (0
+           (error "No solution candidates found"))
+          (1
+           (compile (concat "MSBuild.exe " (car sln-candidates))))
+          (t
+           (compile (concat "MSBuild.exe " (completing-read "Select solution file:"
+                                                            sln-candidates
+                                                            nil
+                                                            t)))))))
+    (general-define-key :states '(motion normal visual)
+                        :keymaps 'csharp-mode-map
+                        ",c" '(modo-compile-csharp :wk "compile"))))
 
 (straight-use-package 'omnisharp)
 (use-package omnisharp
