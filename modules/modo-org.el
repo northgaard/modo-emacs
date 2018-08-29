@@ -22,7 +22,8 @@
   (setq org-src-tab-acts-natively t)
   (setq org-src-fontify-natively t)
   (add-hook 'org-mode-hook #'modo-org-mode-setup-hook)
-  (use-package org-drill :demand t
+  (use-package org-drill
+    :demand t
     :init
     (require 'cl) ;; Needs the outdated cl lib
     (setq org-id-locations-file (expand-file-name "org-id-locations" modo-cache-dir))

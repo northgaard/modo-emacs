@@ -29,7 +29,8 @@
 
 ;;; which-key
 (straight-use-package 'which-key)
-(use-package which-key :demand t
+(use-package which-key
+  :demand t
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.7
@@ -42,18 +43,21 @@
 
 ;;; window numbering
 (straight-use-package 'window-numbering)
-(use-package window-numbering :demand t
+(use-package window-numbering
+  :demand t
   :config
   (window-numbering-mode 1))
 
 (straight-use-package 'avy)
-(use-package avy :demand t
+(use-package avy
+  :demand t
   :config
   (setq avy-timeout-seconds 0.5)
   (setq avy-background t))
 
 (straight-use-package 'ace-link)
-(use-package ace-link :demand t
+(use-package ace-link
+  :demand t
   :config
   (ace-link-setup-default))
 
@@ -88,27 +92,28 @@
     ("q" nil "quit")))
 
 ;;; Line numbers
-(use-package linum :demand t
+(use-package linum
+  :demand t
   :config
   (setq linum-format "%d "))
 
 (straight-use-package 'hlinum)
-(use-package hlinum :demand t
+(use-package hlinum
+  :demand t
   :after linum
   :config
   (hlinum-activate))
 
 (straight-use-package 'linum-relative)
-(use-package linum-relative :demand t
+(use-package linum-relative
+  :demand t
   :after linum
+  :hook ((text-mode prog-mode) . (lambda ()
+                                   (linum-mode 1)
+                                   (linum-relative-on)))
   :config
   (setq linum-relative-format "%3s ")
-  (setq linum-relative-current-symbol "")
-  (let ((toggle-linum (lambda ()
-                        (linum-mode 1)
-                        (linum-relative-on))))
-    (add-hook 'text-mode-hook toggle-linum)
-    (add-hook 'prog-mode-hook toggle-linum)))
+  (setq linum-relative-current-symbol ""))
 
 ;;; Themes
 ;; Sunburn

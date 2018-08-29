@@ -7,7 +7,8 @@
 
 ;;; Pure evil
 (straight-use-package 'evil)
-(use-package evil :demand t
+(use-package evil
+  :demand t
   :general
   (:states '(motion normal visual)
            "SPC" nil
@@ -39,7 +40,8 @@
 
 ;;; evil-escape
 (straight-use-package 'evil-escape)
-(use-package evil-escape :demand t
+(use-package evil-escape
+  :demand t
   :after evil
   :diminish evil-escape-mode
   :config
@@ -48,14 +50,16 @@
 
 ;;; evil-exchange
 (straight-use-package 'evil-exchange)
-(use-package evil-exchange :demand t
+(use-package evil-exchange
+  :demand t
   :after evil
   :config
   (evil-exchange-install))
 
 ;;; evil-snipe
 (straight-use-package 'evil-snipe)
-(use-package evil-snipe :demand t
+(use-package evil-snipe
+  :demand t
   :after evil
   :diminish evil-snipe-local-mode
   :config
@@ -77,7 +81,8 @@
 
 ;;; evil-easymotion
 (straight-use-package 'evil-easymotion)
-(use-package evil-easymotion :demand t
+(use-package evil-easymotion
+  :demand t
   :after avy
   :config
   (evilem-default-keybindings "C-e") ;; Not sure about this binding
@@ -103,14 +108,16 @@
 
 ;;; evil-surround
 (straight-use-package 'evil-surround)
-(use-package evil-surround :demand t
+(use-package evil-surround
+  :demand t
   :after evil-snipe
   :config
   (global-evil-surround-mode 1))
 
 ;;; evil-commentary
 (straight-use-package 'evil-commentary)
-(use-package evil-commentary :demand t
+(use-package evil-commentary
+  :demand t
   :after evil
   :diminish evil-commentary-mode
   :config

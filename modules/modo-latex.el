@@ -17,11 +17,11 @@
   (setq-default TeX-master nil))
 
 (use-package latex
+  :hook ((LaTeX-mode . turn-on-reftex)
+         (LaTeX-mode . auctex-latexmk-setup))
   :config
   (setq LaTeX-fill-break-at-separators nil)
-  (setq LaTeX-babel-hyphen nil)
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-  (add-hook 'LaTeX-mode-hook 'auctex-latexmk-setup))
+  (setq LaTeX-babel-hyphen nil))
 
 (use-package reftex
   :after latex
@@ -65,7 +65,7 @@
   (modo-define-major-leader-key :keymaps 'LaTeX-mode-map
                                 "e" 'TeX-next-error
                                 "b" '(modo-latex-build
-                                      :which-key "latex-build"))
+                                      :wk "latex-build"))
   :config
   (setq auctex-latexmk-inherit-TeX-PDF-mode t))
 

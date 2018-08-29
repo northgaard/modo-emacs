@@ -6,8 +6,8 @@
 ;;; Code:
 
 (straight-use-package 'ivy)
-(straight-use-package 'ivy-hydra)
-(use-package ivy :demand t
+(use-package ivy
+  :demand t
   :commands (ivy-switch-buffer ivy-resume)
   :diminish ivy-mode
   :general
@@ -29,9 +29,12 @@
         projectile-completion-system 'ivy)
   (define-key ivy-mode-map [remap switch-to-buffer]
     #'ivy-switch-buffer)
-  (use-package ivy-hydra
-    :commands (hydra-ivy/body))
   (ivy-mode 1))
+
+(straight-use-package 'ivy-hydra)
+(use-package ivy-hydra
+  :after ivy
+  :commands (hydra-ivy/body))
 
 (straight-use-package 'ivy-rich)
 (use-package ivy-rich

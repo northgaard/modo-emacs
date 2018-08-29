@@ -18,7 +18,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;; Persistent command history
-(use-package savehist :demand t
+(use-package savehist
+  :demand t
   :config
   (setq savehist-file (expand-file-name "savehist" modo-cache-dir))
   (savehist-mode 1))
@@ -31,7 +32,8 @@
     (or (string-prefix-p (file-truename modo-cache-dir) file-dir)
         (string-prefix-p (file-truename package-user-dir) file-dir))))
 
-(use-package recentf :demand t
+(use-package recentf
+  :demand t
   :config
   (setq recentf-save-file (expand-file-name "recentf" modo-cache-dir)
         recentf-max-saved-items 300
@@ -41,7 +43,8 @@
   (recentf-mode 1))
 
 ;;; Bookmarks
-(use-package bookmark :demand t
+(use-package bookmark
+  :demand t
   :config
   (setq bookmark-default-file (expand-file-name "bookmarks" modo-cache-dir)
         bookmark-save-flag 1))
@@ -51,7 +54,8 @@
 (save-place-mode 1)
 
 ;;; Better unique naming for buffers with the same base name
-(use-package uniquify :demand t
+(use-package uniquify
+  :demand t
   :config
   (setq uniquify-buffer-name-style 'forward
         uniquify-separator "/"
@@ -73,7 +77,8 @@
 
 ;;; undo-tree
 (straight-use-package 'undo-tree)
-(use-package undo-tree :demand t
+(use-package undo-tree
+  :demand t
   :diminish undo-tree-mode
   :config
   (undo-tree-mode 1))

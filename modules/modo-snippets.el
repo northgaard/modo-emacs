@@ -8,10 +8,7 @@
 (use-package yasnippet
   :commands (yas-minor-mode
              yas-minor-mode-on)
-  :init
-  (add-hook 'text-mode-hook #'yas-minor-mode-on)
-  (add-hook 'prog-mode-hook #'yas-minor-mode-on)
-  (add-hook 'snippet-mode-hook #'yas-minor-mode-on)
+  :hook ((text-mode prog-mode snippet-mode) . yas-minor-mode-on)
   :config
   (setq yas-snippet-dirs `(,(concat modo-emacs-dir "snippets/"))
         yas-triggers-in-field t

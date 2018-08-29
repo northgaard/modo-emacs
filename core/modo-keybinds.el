@@ -6,29 +6,29 @@
 ;;; Code:
 
 ;;; Global keybinds
-(modo-define-leader-key "f" '(:ignore t :which-key "files")
+(modo-define-leader-key "f" '(:ignore t :wk "files")
                         "fs" 'save-buffer
                         "ff" 'find-file
                         "fr" 'recentf-open-files
                         "fb" 'bookmark-jump
-                        "fd" '(modo-find-dotfile :which-key "find-dotfile")
+                        "fd" '(modo-find-dotfile :wk "find-dotfile")
                         "f <deletechar>" '(modo-delete-this-file
-                                  :which-key "delete-this-file")
+                                  :wk "delete-this-file")
                         "fn" '(modo-rename-this-file-and-buffer
-                               :which-key "rename-this-file-and-buffer")
+                               :wk "rename-this-file-and-buffer")
                         "f#" '(modo-delete-auto-save-file
-                               :which-key "delete-auto-save-file")
+                               :wk "delete-auto-save-file")
                         "fc" '(modo-find-core-file
-                               :which-key "find-core-file")
+                               :wk "find-core-file")
                         "fm" '(modo-find-module-file
-                               :which-key "find-module-file")
-                        "b" '(:ignore t :which-key "buffers")
+                               :wk "find-module-file")
+                        "b" '(:ignore t :wk "buffers")
                         "bb" 'switch-to-buffer
                         "bd" 'kill-this-buffer
                         "bl" 'list-buffers
                         "by" 'bury-buffer
                         "br" 'revert-buffer
-                        "w" '(:ignore t :which-key "windows")
+                        "w" '(:ignore t :wk "windows")
                         "ws" 'evil-window-split
                         "wv" 'evil-window-vsplit
                         "wc" 'evil-window-delete
@@ -49,10 +49,10 @@
                         "7" 'select-window-7
                         "8" 'select-window-8
                         "9" 'select-window-9
-                        "z" '(hydra-font-size/body :which-key "font-size")
-                        "Z" '(modo-load-theme :which-key "load-theme")
+                        "z" '(hydra-font-size/body :wk "font-size")
+                        "Z" '(modo-load-theme :wk "load-theme")
                         "TAB" '(modo-alternate-buffer
-                                :which-key "alternate-buffer"))
+                                :wk "alternate-buffer"))
 
 ;;; Info-mode
 ;; Contortions to reclaim the leader key
