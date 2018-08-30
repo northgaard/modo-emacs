@@ -30,7 +30,7 @@
  ("evil-surround" . "2af81ab3ac64e4b0515a157a672d8cb89f0172b9")
  ("f.el" . "de6d4d40ddc844eee643e92d47b9d6a63fbebb48")
  ("flycheck" . "98aa10fe220aef6dd10cb6c2d43c76456ffae5dd")
- ("general.el" . "de82992bba6226f1be3aac9ed6568f1a3b23295b")
+ ("general.el" . "3f5ab90729ff76394f20aa749299111371e3a4fa")
  ("ghub" . "21c9e94abcfa464db0dd475b26cff8059ada5798")
  ("git-modes" . "b08ac12f09a6cfe967ef70dad3f22430da4fbdab")
  ("git.el" . "a3396a7027a7d986598c6a2d6d5599bac918f3da")
