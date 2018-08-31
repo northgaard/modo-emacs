@@ -94,13 +94,13 @@
     :demand t)
 
   ;; Leader keys
-  (defcustom modo-leader "SPC"
+  (defconst modo-leader "SPC"
     "The general purpose leader accessible from normal mode.")
 
-  (defcustom modo-non-normal-leader "C-c"
+  (defconst modo-non-normal-leader "C-c"
     "Equivalent to the normal mode leader, but used in insert and emacs mode.")
 
-  (defcustom modo-major-leader ","
+  (defconst modo-major-leader ","
     "Shortcut for major mode keys, also bound to \"<leader> m\"")
 
   ;; Definer for standard shortcuts
