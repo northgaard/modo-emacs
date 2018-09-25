@@ -9,7 +9,8 @@
   (require 'company)
   (add-to-list 'company-backends #'company-omnisharp)
   (setq-local company-idle-delay 0.3)
-  (setq-local company-minimum-prefix-length 3))
+  (setq-local company-minimum-prefix-length 3)
+  (setq-local require-final-newline nil))
 
 (defun omnisharp-add-dot-and-company-complete ()
   (interactive)
