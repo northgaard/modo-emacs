@@ -26,7 +26,7 @@
  ("evil-exchange" . "47691537815150715e64e6f6ec79be7746c96120")
  ("evil-magit" . "9bd91561e7d0bfe3198d0860bae1785a543f2eee")
  ("evil-org-mode" . "491b0b302b95d44ceb73d291dedbb9d5517ccee2")
- ("evil-snipe" . "5de756fc02108cb2360908f6ec5e9630492ef422")
+ ("evil-snipe" . "8dd076cc56eb9b04494e4e303b86a959b048350b")
  ("evil-surround" . "2af81ab3ac64e4b0515a157a672d8cb89f0172b9")
  ("f.el" . "de6d4d40ddc844eee643e92d47b9d6a63fbebb48")
  ("flycheck" . "98aa10fe220aef6dd10cb6c2d43c76456ffae5dd")

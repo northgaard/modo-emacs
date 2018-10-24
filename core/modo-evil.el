@@ -75,7 +75,6 @@
         (let ((map (make-sparse-keymap)))
           (define-key map ";" #'evil-snipe-repeat)
           map))
-  (setq evil-snipe-disabled-modes '(Info-mode magit-mode git-rebase-mode))
   (evil-snipe-mode 1)
   (evil-snipe-override-mode 1))
 
