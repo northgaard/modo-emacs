@@ -42,6 +42,8 @@
 (set-selection-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
 (setq-default buffer-file-coding-system 'utf-8)
+(set-fontset-font "fontset-default" 'unicode
+                  (font-spec :family "DejaVu Sans Mono"))
 
 ;;; Custom file
 (setq custom-file (expand-file-name "custom.el" modo-emacs-dir))
@@ -124,12 +126,12 @@
     (modo--indirect-major-leader-key args)))
 
   ;; Rest of the core features
-  (require 'modo-utils)
-  (require 'modo-editor)
-  (require 'modo-ui)
   (require 'modo-os)
+  (require 'modo-utils)
   (require 'modo-evil)
+  (require 'modo-editor)
   (require 'modo-projects)
+  (require 'modo-ui)
   (require 'modo-keybinds))
 
 (provide 'modo-core)

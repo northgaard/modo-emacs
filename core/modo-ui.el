@@ -160,5 +160,12 @@ take no arguments."
 ;; TODO: Add hydra for changing themes
 (add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'kaolin-dark)))
 
+;;; Doom modeline
+(straight-use-package 'doom-modeline)
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-init)
+  :config
+  (setq doom-modeline-buffer-file-name-style 'relative-to-project))
+
 (provide 'modo-ui)
 ;;; modo-ui.el ends here
