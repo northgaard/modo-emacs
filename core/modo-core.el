@@ -93,7 +93,9 @@
   ;; general.el --- get your keybinds here!
   (straight-use-package 'general)
   (use-package general
-    :demand t)
+    :demand t
+    :config
+    (general-override-mode))
 
   ;; Leader keys
   (defconst modo-leader "SPC"
