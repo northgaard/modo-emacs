@@ -136,9 +136,9 @@
 (straight-use-package '(kaolin-themes :type git :host github
                                       :branch "modo"
                                       :files (:defaults "themes/*.el")
-                                      :repo "semutir/emacs-kaolin-themes"
-                                      :upstream (:host github
-                                                       :repo "ogdenwebb/emacs-kaolin-themes")))
+                                      :repo "ogdenwebb/emacs-kaolin-themes"
+                                      :fork (:host github
+                                                   :repo "semutir/emacs-kaolin-themes")))
 
 (defun modo-load-theme (theme)
   "Loads the theme THEME and optionally calls a function providing custom

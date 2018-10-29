@@ -54,11 +54,11 @@
  ("seq" . "095fb15a3baa082079799dd36b6caccdb062cb90")
  ("shut-up" . "a4fd18f37e20ae991c0dbba821b2c8e6f1679c39")
  ("smex" . "55aaebe3d793c2c990b39a302eb26c184281c42c")
- ("straight.el" . "ea3a76c983a113c45da43bb166125cbda2a0e87f")
+ ("straight.el" . "a791b8e9439df3cf1879bb0ac81b95225559e8fa")
  ("swiper" . "e4b05e7af0ea80c91ddca6be5eae447a0ba3b8b5")
  ("undo-tree" . "d54ef13e3c69655e39f977b8bf75399a6d2b5e42")
  ("use-package" . "3fb8f39f5901a4c0ef7887283e56e60b541675ea")
  ("window-numbering.el" . "10809b3993a97c7b544240bf5d7ce9b1110a1b89")
  ("with-editor" . "ff3e96929d4532e33422a5980a6e3ca9f2fcf032")
  ("yasnippet" . "3d7cafccf8d7ea9d62e0ccd63c30769de5b8cf01"))
-:jupiter
+:saturn
