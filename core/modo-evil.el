@@ -15,15 +15,17 @@
            "," nil)
   :init
   (setq evil-want-C-u-scroll t
-	evil-want-visual-char-semi-exclusive t
-	evil-want-Y-yank-to-eol t
-	evil-magic t
-	evil-echo-state t
-	evil-indent-convert-tabs t
-	evil-ex-search-vim-style-regexp t
-	evil-insert-skip-empty-line t
-	evil-symbol-word-search t
-	shift-select-mode nil)
+        evil-want-integration t
+        evil-want-keybinding nil
+        evil-want-visual-char-semi-exclusive t
+        evil-want-Y-yank-to-eol t
+        evil-magic t
+        evil-echo-state t
+        evil-indent-convert-tabs t
+        evil-ex-search-vim-style-regexp t
+        evil-insert-skip-empty-line t
+        evil-symbol-word-search t
+        shift-select-mode nil)
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)
