@@ -10,7 +10,11 @@
   (add-to-list 'company-backends #'company-omnisharp)
   (setq-local company-idle-delay 0.3)
   (setq-local company-minimum-prefix-length 3)
-  (setq-local require-final-newline nil))
+  (setq-local require-final-newline nil)
+  ;; Don't prompt for confirmation when closing a buffer
+  ;; with the omnisharp server running
+  (set-process-query-on-exit-flag
+   (get-buffer-process (get-buffer "OmniServer")) nil))
 
 (defun omnisharp-add-dot-and-company-complete ()
   (interactive)
