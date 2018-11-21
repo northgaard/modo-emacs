@@ -38,7 +38,7 @@
  ("goto-chg" . "e5b38e4e1378f6ea48fa9e8439f49c2998654aa4")
  ("hlinum-mode" . "2b4a08db4ff361ac8eeee1ed94eca7e26c614595")
  ("hydra" . "62e0f374623df15c1eabebe78f4100850d708227")
- ("ivy-rich" . "5258807e7aac92ab49eda8137a71a9de5489e602")
+ ("ivy-rich" . "dee5d60f655c93f4f9f0e40507244112bd90dab5")
  ("let-alist" . "4a7693b678c59a148660c736cc0bb26a5032ee9a")
  ("linum-relative" . "c74a6981b688a5e1e6b8e0809363963ff558ce4d")
  ("magit" . "fb2d481e8e4a7c8dac23b82e4a008747e4ce9fab")

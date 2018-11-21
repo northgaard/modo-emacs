@@ -39,17 +39,21 @@
 (straight-use-package 'ivy-rich)
 (use-package ivy-rich
   :init
-  ;; Load on calling ivy-switch-buffer
-  (advice-add #'ivy-switch-buffer :before (lambda () (require 'ivy-rich))
-              '((name . "load-rich")))
+  ;; Load on calling rich ivy functions
+  (defun modo--load-ivy-rich ()
+    (require 'ivy-rich))
+  (advice-add #'ivy-switch-buffer :before #'modo--load-ivy-rich)
+  (advice-add #'counsel-M-x :before #'modo--load-ivy-rich)
+  (advice-add #'counsel-recentf :before #'modo--load-ivy-rich)
   :config
   (setq ivy-virtual-abbreviate 'full
         ivy-rich-switch-buffer-align-virtual-buffer t
         ivy-rich-path-style 'abbrev)
-  (ivy-set-display-transformer 'ivy-switch-buffer
-                               'ivy-rich-switch-buffer-transformer)
+  (ivy-rich-mode 1)
   ;; Once loaded advice is no longer necessary
-  (advice-remove #'ivy-switch-buffer "load-rich"))
+  (advice-remove #'ivy-switch-buffer #'modo--load-ivy-rich)
+  (advice-remove #'counsel-M-x #'modo--load-ivy-rich)
+  (advice-remove #'councel-recentf #'modo--load-ivy-rich))
 
 ;; counsel-M-x uses smex when available
 (straight-use-package 'smex)
