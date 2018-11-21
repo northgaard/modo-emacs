@@ -133,12 +133,11 @@
        `(aw-leading-char-face ((t (:background ,sunburn-bg :foreground "red"))))))))
 
 ;; Kaolin
-(straight-use-package '(kaolin-themes :type git :host github
-                                      :branch "modo"
-                                      :files (:defaults "themes/*.el")
+(straight-use-package '(kaolin-themes :host github
                                       :repo "ogdenwebb/emacs-kaolin-themes"
-                                      :fork (:host github
-                                                   :repo "semutir/emacs-kaolin-themes")))
+                                      :files (:defaults "themes/*.el")
+                                      :fork (:repo "semutir/emacs-kaolin-themes"
+                                                   :branch "modo")))
 
 (defun modo-load-theme (theme)
   "Loads the theme THEME and optionally calls a function providing custom
