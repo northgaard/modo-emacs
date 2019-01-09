@@ -57,7 +57,7 @@
  ("shrink-path.el" . "9d06c453d1537df46a4b703a29213cc7f7857aa0")
  ("shut-up" . "081d6b01e3ba0e60326558e545c4019219e046ce")
  ("smex" . "55aaebe3d793c2c990b39a302eb26c184281c42c")
- ("straight.el" . "079cc6a6bcf6b0bbaec9b1a396be4a92bb6dd850")
+ ("straight.el" . "32f0f5789626e58a8b02d142873de918193eb772")
  ("swiper" . "02537c95baf183b6a42e142a85742d589c692aa2")
  ("undo-tree" . "d54ef13e3c69655e39f977b8bf75399a6d2b5e42")
  ("use-package" . "3fb8f39f5901a4c0ef7887283e56e60b541675ea")
