@@ -124,6 +124,34 @@
   :config
   (evil-commentary-mode 1))
 
+;;; evil-args
+(straight-use-package 'evil-args)
+(defun modo--setup-evil-args ()
+  (require 'evil-args)
+  (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+  (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+  (remove-hook 'prog-mode-hook #'modo--setup-evil-args))
+(use-package evil-args
+  :hook ((prog-mode . modo--setup-evil-args)))
+
+;;; evil-indent-plus
+(straight-use-package 'evil-indent-plus)
+(defun modo--setup-evil-indent-plus ()
+  (require 'evil-indent-plus)
+  (evil-indent-plus-default-bindings)
+  (remove-hook 'prog-mode-hook #'modo--setup-evil-indent-plus))
+(use-package evil-indent-plus
+  :hook ((prog-mode . modo--setup-evil-indent-plus)))
+
+;;; evil-matchit
+(straight-use-package 'evil-matchit)
+(defun modo--setup-evil-matchit ()
+  (require 'evil-matchit)
+  (global-evil-matchit-mode 1)
+  (remove-hook 'prog-mode-hook #'modo--setup-evil-matchit))
+(use-package evil-matchit
+  :hook ((prog-mode . modo--setup-evil-matchit)))
+
 ;;; Keybinds
 (with-eval-after-load 'evil-snipe
   (modo--direct-major-leader-key "," #'evil-snipe-repeat-reverse))
