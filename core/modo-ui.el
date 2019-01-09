@@ -92,28 +92,12 @@
     ("q" nil "quit")))
 
 ;;; Line numbers
-(use-package linum
-  :demand t
-  :config
-  (setq linum-format "%d "))
-
-(straight-use-package 'hlinum)
-(use-package hlinum
-  :demand t
-  :after linum
-  :config
-  (hlinum-activate))
-
-(straight-use-package 'linum-relative)
-(use-package linum-relative
-  :demand t
-  :after linum
-  :hook ((text-mode prog-mode) . (lambda ()
-                                   (linum-mode 1)
-                                   (linum-relative-on)))
-  :config
-  (setq linum-relative-format "%3s ")
-  (setq linum-relative-current-symbol ""))
+(setq-default display-line-numbers-type 'relative
+              display-line-numbers-current-absolute t
+              display-line-numbers-width 2
+              display-line-numbers-widen t)
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;;; Themes
 ;; Sunburn
