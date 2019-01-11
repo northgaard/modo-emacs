@@ -1,6 +1,7 @@
 (("Sunburn-Theme" . "ddb01b6f1f4f823398f7f8e08900c2b4a7811d3b")
  ("ace-link" . "fae5d508ff519ba1fab21c51f46c0906fd82229f")
  ("ace-window" . "d93e16b52ee7c1b6c9df599060e7077b4e46cbf8")
+ ("ag.el" . "77b4f50c5372bf219da496567b2b867261f0d354")
  ("all-the-icons.el" . "52d1f2d36468146c93aaf11399f581401a233306")
  ("auctex" . "94981bd97e5ca914053c5a5a596828b2de8ebd4b")
  ("auctex-latexmk" . "4d353522650d7685acbf1d38f7dbc504f734bd84")
