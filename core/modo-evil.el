@@ -152,6 +152,17 @@
 (use-package evil-matchit
   :hook ((prog-mode . modo--setup-evil-matchit)))
 
+;;; evil-numbers
+(straight-use-package 'evil-numbers)
+(use-package evil-numbers
+  :commands (evil-numbers/inc-at-pt evil-numbers/dec-at-pt)
+  :general
+  (:states '(motion normal visual)
+           "g+" 'evil-numbers/inc-at-pt
+           "g-" 'evil-numbers/dec-at-pt
+           "<kp-add>" 'evil-numbers/inc-at-pt
+           "<kp-subtract>" 'evil-numbers/dec-at-pt))
+
 ;;; Keybinds
 (with-eval-after-load 'evil-snipe
   (modo--direct-major-leader-key "," #'evil-snipe-repeat-reverse))
