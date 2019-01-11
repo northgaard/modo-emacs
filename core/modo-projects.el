@@ -15,6 +15,7 @@
         projectile-enable-caching t
         projectile-require-project-root nil
         projectile-known-projects-file (concat modo-cache-dir "projectile.projects")
+        projectile-use-git-grep t
         projectile-indexing-method 'alien)
   ;; Get rid of the default mappings
   (setq projectile-mode-map (make-sparse-keymap))
