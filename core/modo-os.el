@@ -22,7 +22,17 @@
           shell-file-name explicit-shell-file-name
           explicit-bash.exe-args '("--login" "-i"))
     (setenv "SHELL" shell-file-name)
-    (add-to-list 'exec-path modo-git-path)
+    (add-to-list 'exec-path
+                 (concat (file-name-as-directory modo-git-path) "bin/"))
+    (add-to-list 'exec-path
+                 (concat (file-name-as-directory modo-git-path) "usr/bin/"))
+    ;; Set find to be the one from git bash,
+    ;; since on Windows cmd "find" is equivalent to "grep".
+    ;; This must be formated in a way that cmd can understand
+    (setq find-program
+          (format "\"%s\""
+                  (s-replace "/" "\\"
+                             (expand-file-name "usr/bin/find.exe" modo-git-path))))
     (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)))
 
 (provide 'modo-os)
