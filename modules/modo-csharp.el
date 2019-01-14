@@ -11,6 +11,8 @@
   (setq-local company-idle-delay 0.3)
   (setq-local company-minimum-prefix-length 3)
   (setq-local require-final-newline nil)
+  ;; Activate eldoc mode for documentation
+  (eldoc-mode 1)
   ;; Don't prompt for confirmation when closing a buffer
   ;; with the omnisharp server running
   (set-process-query-on-exit-flag
