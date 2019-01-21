@@ -66,7 +66,9 @@
   (let ((auto-file (file-truename (make-auto-save-file-name))))
     (if (and (buffer-file-name)
              (file-exists-p auto-file))
-        (delete-file auto-file)
+        (progn
+          (delete-file auto-file)
+          (message (format "Deleted file %s." (file-name-nondirectory auto-file))))
       (message "No auto-save file exists."))))
 
 ;; Two useful functions borrowed from Steve Purcell
