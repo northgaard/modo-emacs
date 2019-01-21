@@ -8,14 +8,6 @@
   (error (format "Error: modo emacs requires emacs version %s, you have %s"
                  modo-minimum-emacs-version emacs-version)))
 
-;;; Setup straight profiles
-(setq straight-profiles
-      '((modo . "modo.el")
-        (nil . "default.el")))
-(setq straight-current-profile 'modo)
-(add-hook 'after-init-hook
-          (lambda () (setq straight-current-profile nil)))
-
 (require 'modo-core (concat user-emacs-directory "core/modo-core"))
 (modo-module ivy
              git

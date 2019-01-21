@@ -5,6 +5,16 @@
 
 ;;; Code:
 
+;;; Set up core profiles
+;; This is done first to ensure that straight itself and the
+;; meta-packages get versioned properly
+(setq straight-profiles
+      '((modo-core . "../../versions/modo-core-versions.el")
+        (nil . "../../versions/default.el")))
+(setq straight-current-profile 'modo-core)
+(add-hook 'after-init-hook
+          (lambda () (setq straight-current-profile nil)))
+
 ;; Prefer newer files
 (setq load-prefer-newer t)
 ;; Add core dir and modules dir to load path
@@ -47,13 +57,24 @@
   "Load all the modules listed in MODULES, with the prefix modo-.
 For example, the module name ivy translates to a call to (require 'modo-ivy)."
   (let ((expansion nil)
-        (module-name))
+        (module-name)
+        (module-symbol))
     (dolist (module modules)
       (setq module-name (format "modo-%s" (symbol-name module)))
-      (push `(require ',(intern module-name)) expansion))
+      (setq module-symbol (intern module-name))
+      (push `(push '(,module-symbol . ,(format "../../versions/%s-versions.el" module-name))
+                   straight-profiles)
+            expansion)
+      (push `(setq straight-current-profile ',module-symbol) expansion)
+      (push `(require ',module-symbol) expansion))
     (setq expansion (nreverse expansion))
     `(progn
-       ,@expansion)))
+       ,@expansion
+       ;; After loading modules we switch to private configuration for the
+       ;; remainder of init.el
+       (push '(modo-private . "../../private/modo-private-versions.el")
+             straight-profiles)
+       (setq straight-current-profile 'modo-private))))
 
 ;; Clone from github
 (defun modo-github-clone (username repo)

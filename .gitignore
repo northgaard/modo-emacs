@@ -3,6 +3,5 @@ cache/
 temp/
 private/
 straight/*
-!straight/versions/
 custom.el
 init-private.el
