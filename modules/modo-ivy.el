@@ -18,7 +18,8 @@
             "C-h" 'ivy-beginning-of-buffer
             "C-l" 'ivy-end-of-buffer
             "M-j" 'ivy-next-history-element
-            "M-k" 'ivy-previous-history-element)
+            "M-k" 'ivy-previous-history-element
+            [remap switch-to-buffer] 'ivy-switch-buffer)
   :config
   (setq ivy-use-virtual-buffers t
         ivy-wrap t
@@ -27,8 +28,6 @@
         ivy-initial-inputs-alist nil)
   (setq ivy-count-format "(%d/%d) "
         projectile-completion-system 'ivy)
-  (define-key ivy-mode-map [remap switch-to-buffer]
-    #'ivy-switch-buffer)
   (ivy-mode 1))
 
 (straight-use-package 'ivy-hydra)
@@ -73,16 +72,14 @@
              counsel-describe-function
              counsel-describe-variable
              counsel-company)
-  :init
-  (define-key ivy-mode-map [remap apropos] #'counsel-apropos)
-  (define-key ivy-mode-map [remap find-file] #'counsel-find-file)
-  (define-key ivy-mode-map [remap recentf-open-files]
-    #'counsel-recentf)
-  (define-key ivy-mode-map [remap bookmark-jump] #'counsel-bookmark)
-  (define-key ivy-mode-map [remap execute-extended-command]
-    #'counsel-M-x)
-  (define-key ivy-mode-map [remap describe-function] #'counsel-describe-function)
-  (define-key ivy-mode-map [remap describe-variable] #'counsel-describe-variable))
+  :general
+  (:keymaps 'ivy-mode-map
+            [remap apropos] 'counsel-apropos
+            [remap find-file] 'counsel-find-file
+            [remap recentf-open-files] 'counsel-recentf
+            [remap execute-extended-command] 'counsel-M-x
+            [remap describe-function] 'counsel-describe-function
+            [remap describe-variable] 'counsel-describe-variable))
 
 (straight-use-package 'counsel-projectile)
 (use-package counsel-projectile
@@ -91,18 +88,19 @@
              counsel-projectile-switch-to-buffer
              counsel-projectile-find-dir
              counsel-projectile-switch-project)
-  :preface
-  (define-key ivy-mode-map [remap projectile-find-file] #'counsel-projectile-find-file)
-  (define-key ivy-mode-map [remap projectile-switch-to-buffer]
-    #'counsel-projectile-switch-to-buffer)
-  (define-key ivy-mode-map [remap projectile-find-dir] #'counsel-projectile-find-dir)
-  (define-key ivy-mode-map [remap projectile-switch-project] #'counsel-projectile-switch-project))
+  :general
+  (:keymaps 'ivy-mode-map
+            [remap projectile-find-file] 'counsel-projectile-find-file
+            [remap projectile-switch-to-buffer] 'projectile-switch-to-buffer
+            [remap projectile-find-dir] 'counsel-projectile-find-dir
+            [remap projectile-switch-project] 'counsel-projectile-switch-project))
 
 (straight-use-package 'swiper)
 (use-package swiper
   :commands (swiper)
-  :init
-  (define-key ivy-mode-map [remap isearch-forward] 'swiper))
+  :general
+  (:keymaps 'ivy-mode-map
+            [remap isearch-forward] 'swiper))
 
 (provide 'modo-ivy)
 ;;; modo-ivy.el ends here

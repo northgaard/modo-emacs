@@ -11,8 +11,7 @@
   :config
   (defun modo-org-mode-setup-hook ()
     (org-bullets-mode 1)
-    (evil-org-mode 1)
-    (evil-normalize-keymaps))
+    (evil-org-mode 1))
   ;; Make double extra sure that the built-in org-version is not loaded
   (when (featurep 'org-version)
     (unload-feature 'org-version t))
@@ -47,6 +46,7 @@
                       :initial-point 'point-max)
   (general-define-key :states '(motion normal visual)
                       :keymaps 'evil-org-mode-map
+                      :definer 'minor-mode
                       "gs" #'modo-avy-org-goto-header
                       "gS" #'avy-org-goto-heading-timer))
 
