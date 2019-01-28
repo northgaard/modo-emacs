@@ -102,5 +102,12 @@
   :config
   (setq compilation-scroll-output 'first-error))
 
+;;; ediff
+(use-package ediff
+  :config
+  (setq ediff-split-window-function #'split-window-horizontally
+        ediff-window-setup-function #'ediff-setup-windows-plain
+        ediff-diff-options "-w"))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here
