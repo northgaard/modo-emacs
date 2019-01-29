@@ -32,8 +32,7 @@
 
 (straight-use-package 'ivy-hydra)
 (use-package ivy-hydra
-  :after ivy
-  :commands (hydra-ivy/body))
+  :demand t)
 
 (straight-use-package 'ivy-rich)
 (use-package ivy-rich
@@ -83,7 +82,6 @@
 
 (straight-use-package 'counsel-projectile)
 (use-package counsel-projectile
-  :after counsel
   :commands (counsel-projectile-find-file
              counsel-projectile-switch-to-buffer
              counsel-projectile-find-dir
