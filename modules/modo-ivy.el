@@ -91,7 +91,11 @@
             [remap projectile-find-file] 'counsel-projectile-find-file
             [remap projectile-switch-to-buffer] 'projectile-switch-to-buffer
             [remap projectile-find-dir] 'counsel-projectile-find-dir
-            [remap projectile-switch-project] 'counsel-projectile-switch-project))
+            [remap projectile-switch-project] 'counsel-projectile-switch-project)
+  :config
+  ;; Default to opening root project folder with dired
+  (counsel-projectile-modify-action 'counsel-projectile-switch-project-action
+                                    '((default 4))))
 
 (straight-use-package 'swiper)
 (use-package swiper

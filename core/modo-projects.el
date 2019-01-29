@@ -17,7 +17,8 @@
         projectile-known-projects-file (concat modo-cache-dir "projectile.projects")
         projectile-use-git-grep t
         projectile-indexing-method 'alien
-        projectile-generic-command (concat find-program " . -type f -print0"))
+        projectile-generic-command (concat find-program " . -type f -print0")
+        projectile-switch-project-action (lambda () (dired (projectile-project-root))))
   ;; Get rid of the default mappings
   (setq projectile-mode-map (make-sparse-keymap))
   :general
