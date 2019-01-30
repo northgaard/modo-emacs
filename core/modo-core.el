@@ -119,13 +119,19 @@
                           :states '(motion normal visual insert emacs)
                           :prefix (concat modo-leader " m")
                           :non-normal-prefix (concat modo-non-normal-leader " m"))
-  (defun modo-define-major-leader-key (&rest args)
-    (let ((map (plist-get args :keymaps)))
+  (defmacro modo-define-major-leader-key (&rest args)
+    "Defines leader key bindings for a major mode. Commands are
+bound both under <major-leader>, as well as \"<leader> m\"."
+    (declare (indent defun))
+    (let ((expansion nil)
+          (map (plist-get args :keymaps)))
+      (push `(modo--direct-major-leader-key ,@args) expansion)
       (when map
-        (modo-define-leader-key :keymaps map
-                                "m" '(:ignore t :which-key "major mode")))
-    (modo--direct-major-leader-key args)
-    (modo--indirect-major-leader-key args)))
+        (push '(quote (:ignore t :which-key "major mode")) args)
+        (push "m" args))
+      (push `(modo--indirect-major-leader-key ,@args) expansion)
+      `(progn
+         ,@expansion)))
 
   ;; Rest of the core features
   (require 'modo-os)
