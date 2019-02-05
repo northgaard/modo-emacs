@@ -44,11 +44,13 @@
   :custom (evil-org-key-theme '(navigation insert textobjects additional))
   :config
   (evil-org-set-key-theme)
-  (evilem-make-motion modo-avy-org-goto-header #'org-previous-visible-heading
-                      :initial-point 'point-max)
+  (defun avy-org-goto-header ()
+    "Jump to an org header at any level."
+    (interactive)
+    (avy--generic-jump "^\\*+ " nil 'pre))
   (general-define-key :states '(motion normal visual)
                       :keymaps 'evil-org-mode-map
-                      "gs" #'modo-avy-org-goto-header
+                      "gs" #'avy-org-goto-header
                       "gS" #'avy-org-goto-heading-timer))
 
 (provide 'modo-org)
