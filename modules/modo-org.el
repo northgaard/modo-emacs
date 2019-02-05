@@ -23,14 +23,7 @@
   :config
   (setq org-startup-indented t)
   (setq org-src-tab-acts-natively t)
-  (setq org-src-fontify-natively t)
-  (use-package org-drill
-    :demand t
-    :init
-    (require 'cl) ;; Needs the outdated cl lib
-    (setq org-id-locations-file (expand-file-name "org-id-locations" modo-cache-dir))
-    (setq org-drill-add-random-noise-to-intervals-p t)
-    (setq org-drill-learn-fraction 0.4)))
+  (setq org-src-fontify-natively t))
 
 (straight-use-package 'org-bullets)
 (use-package org-bullets
