@@ -5,6 +5,14 @@
 
 ;;; Code:
 
+(defcustom modo-org-root-dir "~/org"
+  "Directory for org files, typically stored in some shared folder,
+i.e. with Dropbox.")
+
+(defun modo-get-org-file (file)
+  "Returns the full path to org file FILE in `modo-org-root-dir'."
+  (expand-file-name file modo-org-root-dir))
+
 (defun modo-org-mode-setup ()
   (org-bullets-mode 1)
   (evil-org-mode 1)
@@ -14,6 +22,10 @@
 (straight-use-package 'org-plus-contrib)
 (use-package org
   :hook (org-mode . modo-org-mode-setup)
+  :general
+  (modo-define-leader-key :keymaps 'override
+    "a" 'org-agenda
+    "c" 'org-capture)
   :init
   ;; Make double extra sure that the built-in org-version is not loaded
   (when (featurep 'org-version)
@@ -21,9 +33,14 @@
   ;; Now load the fix
   (require 'org-version (concat modo-modules-dir "org-version-fix"))
   :config
-  (setq org-startup-indented t)
-  (setq org-src-tab-acts-natively t)
-  (setq org-src-fontify-natively t))
+  (setq org-startup-indented t
+        org-src-tab-acts-natively t
+        org-src-fontify-natively t)
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)"
+                    "|" "DONE(d)" "CANCELED(c)")))
+  (setq org-agenda-files (mapcar #'modo-get-org-file
+                                 '("inbox.org" "gtd.org" "tickler.org"))))
 
 (straight-use-package 'org-bullets)
 (use-package org-bullets
