@@ -12,7 +12,8 @@
   :config
   (setq ispell-program-name (executable-find "hunspell")
         ispell-list-command "--list"
-        ispell-extra-args '("--sug-mode=ultra"))
+        ispell-extra-args '("--sug-mode=ultra")
+        flyspell-issue-message-flag nil)
   (defun flyspell-prog-buffer ()
     (interactive)
     (let ((flyspell-generic-check-word-predicate
