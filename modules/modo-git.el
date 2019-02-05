@@ -11,11 +11,7 @@
 (straight-use-package 'gitignore-mode)
 (use-package gitignore-mode)
 
-(defvar modo--git-abbrev-length (let ((abbrev (shell-command-to-string
-                                               "git config core.abbrev")))
-                                  (if (string-empty-p abbrev)
-                                      "7" ;; Default value
-                                    abbrev))
+(defvar modo--git-abbrev-length nil
   "The amount of characters git minimally uses for abbreviated hashes.")
 
 (straight-use-package 'magit)
@@ -31,6 +27,13 @@
     "c" 'with-editor-finish
     "q" 'with-editor-cancel)
   :config
+  ;; Lazy initialization
+  (unless modo--git-abbrev-length
+    (setq modo--git-abbrev-length (let ((abbrev (shell-command-to-string
+                                                 "git config core.abbrev")))
+                                    (if (string-empty-p abbrev)
+                                        "7" ;; Default value
+                                      abbrev))))
   (defun avy-magit-log-goto-commit ()
     "Avy jump to an arbitrary commit in the magit-log view."
     (interactive)
