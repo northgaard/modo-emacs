@@ -14,6 +14,7 @@
  ("emacs-kaolin-themes" . "4851aab17f6d04890717b742824882518c54abba")
  ("emacs-memoize" . "9a561268ffb550b257a08710489a95cd087998b6")
  ("emacs-which-key" . "43e3e3d7641a8e1c298b37e6a277612bf0898708")
+ ("emacs-winum" . "efcb14fd306afbc738666e6b2e5a8a1bb5904392")
  ("epkgs" . "c5c9be423d2c891a277e79f3ca2b8256d6f8cb5f")
  ("epl" . "78ab7a85c08222cd15582a298a364774e3282ce6")
  ("evil" . "506f758aa431128b40c987ff634b56c49f69fdb8")
@@ -39,6 +40,5 @@
  ("shrink-path.el" . "9d06c453d1537df46a4b703a29213cc7f7857aa0")
  ("straight.el" . "093154e96ff4bbf00ab487234225e8391d533934")
  ("undo-tree" . "d54ef13e3c69655e39f977b8bf75399a6d2b5e42")
- ("use-package" . "39a8b8812c2c9f6f0b299e6a04e504ef393694ce")
- ("window-numbering.el" . "10809b3993a97c7b544240bf5d7ce9b1110a1b89"))
+ ("use-package" . "39a8b8812c2c9f6f0b299e6a04e504ef393694ce"))
 :saturn

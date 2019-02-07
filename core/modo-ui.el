@@ -42,11 +42,14 @@
   (which-key-mode 1))
 
 ;;; window numbering
-(straight-use-package 'window-numbering)
-(use-package window-numbering
+(straight-use-package 'winum)
+(use-package winum
   :demand t
+  :init
+  (setq winum-keymap (make-sparse-keymap))
   :config
-  (window-numbering-mode 1))
+  (setq winum-scope 'frame-local)
+  (winum-mode))
 
 (straight-use-package 'avy)
 (use-package avy
