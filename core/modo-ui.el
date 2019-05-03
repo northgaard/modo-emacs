@@ -123,7 +123,7 @@
 (straight-use-package '(kaolin-themes :host github
                                       :repo "ogdenwebb/emacs-kaolin-themes"
                                       :files (:defaults "themes/*.el")
-                                      :fork (:repo "semutir/emacs-kaolin-themes"
+                                      :fork (:repo "northgaard/emacs-kaolin-themes"
                                                    :branch "modo")))
 
 (defun modo-load-theme (theme)
