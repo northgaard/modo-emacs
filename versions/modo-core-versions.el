@@ -19,6 +19,7 @@
  ("epl" . "78ab7a85c08222cd15582a298a364774e3282ce6")
  ("evil" . "506f758aa431128b40c987ff634b56c49f69fdb8")
  ("evil-args" . "758ad5ae54ad34202064fec192c88151c08cb387")
+ ("evil-collection" . "4c5925ee5c35cf751fd0163be978d39b873c4324")
  ("evil-commentary" . "395f91014b69844b81660c155f42eb9b1b3d199d")
  ("evil-easymotion" . "79c13ed3bce018ac09d358e642e5bd7025e93603")
  ("evil-escape" . "f4e9116bfbaac8c9d210c17ad488e0982291245f")

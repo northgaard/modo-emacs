@@ -120,7 +120,8 @@
        `(aw-leading-char-face ((t (:background ,sunburn-bg :foreground "red"))))))))
 
 ;; Kaolin
-(straight-use-package '(kaolin-themes :host github
+(straight-use-package '(kaolin-themes :type git
+                                      :host github
                                       :repo "ogdenwebb/emacs-kaolin-themes"
                                       :files (:defaults "themes/*.el")
                                       :fork (:repo "northgaard/emacs-kaolin-themes"

@@ -58,27 +58,9 @@
           :wk "alternate-buffer"))
 
 ;;; Info-mode
-;; Contortions to reclaim the leader key
-(define-key Info-mode-map [override-state] nil)
-(when (string= "SPC" modo-leader)
-  (general-define-key :states 'motion
-                      :keymaps 'Info-mode-map
-                      modo-leader nil))
-;; Actually interesting keybindings
-(general-define-key :states 'motion
-                    :keymaps 'Info-mode-map
-                    "j" 'Info-scroll-up
-                    "k" 'Info-scroll-down
-                    "h" 'Info-history-back
-                    "l" 'Info-history-forward
-                    "C-j" 'evil-next-line
-                    "C-k" 'evil-previous-line
-                    "C-h" 'evil-backward-char
-                    "C-l" 'evil-forward-char
-                    "gg" 'evil-goto-first-line
-                    "G" 'evil-goto-line
-                    "s" 'isearch-forward
-                    "r" 'isearch-backward)
+(use-package info
+  :config
+  (evil-collection-info-setup))
 
 (provide 'modo-keybinds)
 ;;; modo-keybinds.el ends here
