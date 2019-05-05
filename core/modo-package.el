@@ -5,33 +5,7 @@
 
 ;;; Code:
 
-;;; Set up core profiles
-;; This is done first to ensure that straight itself and the
-;; meta-packages get versioned properly
-(setq straight-profiles
-      '((modo-core . "../../versions/modo-core-versions.el")
-        (nil . "../../versions/default.el")))
-(setq straight-current-profile 'modo-core)
-(add-hook 'after-init-hook
-          (lambda () (setq straight-current-profile nil)))
-
-;; Prefer newer files
-(setq load-prefer-newer t)
-;; Add core dir and modules dir to load path
-(add-to-list 'load-path modo-core-dir)
-(add-to-list 'load-path modo-modules-dir)
-
 ;;; straight.el
-;; Use develop branch
-(setq straight-recipe-overrides
-      '((modo . ((straight :type git :host github
-			   :repo "raxod502/straight.el"
-			   :branch "develop"
-			   :files ("straight.el"))))))
-
-;; Use the elpa mirror
-(setq straight-recipes-gnu-elpa-use-mirror t)
-
 ;; Bootstrap snippet
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -45,6 +19,30 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+;; Use the elpa mirror
+(setq straight-recipes-gnu-elpa-use-mirror t)
+
+;; Use develop branch
+(setq straight-recipe-overrides
+      '((modo . ((straight :type git :host github
+			   :repo "raxod502/straight.el"
+			   :branch "develop"
+			   :files ("straight.el"))))))
+
+;;; Set up core profiles
+(setq straight-profiles
+      '((modo-core . "../../versions/modo-core-versions.el")
+        (nil . "../../versions/default.el")))
+(setq straight-current-profile 'modo-core)
+(add-hook 'after-init-hook
+          (lambda () (setq straight-current-profile nil)))
+
+;; Prefer newer files
+(setq load-prefer-newer t)
+;; Add core dir and modules dir to load path
+(add-to-list 'load-path modo-core-dir)
+(add-to-list 'load-path modo-modules-dir)
 
 ;; Early loading of meta-packages
 (straight-use-package 'melpa)
