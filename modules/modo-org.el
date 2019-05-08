@@ -40,7 +40,19 @@ i.e. with Dropbox.")
         '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))
   (setq org-agenda-files (mapcar #'modo-get-org-file
-                                 '("inbox.org" "gtd.org" "tickler.org"))))
+                                 '("inbox.org" "gtd.org" "tickler.org")))
+  (setq org-capture-templates `(("t" "Todo [inbox]" entry
+                                 (file+headline ,(modo-get-org-file "inbox.org") "Tasks")
+                                 "* TODO %?")
+                                ("T" "Tickler" entry
+                                 (file+headline ,(modo-get-org-file "tickler.org") "Tickler")
+                                 "* %? \n %U")))
+  (setq org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil
+        org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-refile-targets `((,(modo-get-org-file "gtd.org") :maxlevel . 3)
+                             (,(modo-get-org-file "someday.org") :level . 1)
+                             (,(modo-get-org-file "tickler.org") :maxlevel . 2))))
 
 (straight-use-package 'org-bullets)
 (use-package org-bullets
