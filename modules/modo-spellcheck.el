@@ -7,8 +7,8 @@
 
 (defcustom modo-spellchecker-program
   (if (eq system-type 'windows-nt)
-      (executable-find "hunspell")
-    (executable-find "aspell"))
+      "hunspell"
+    "aspell")
   "Program used for spellchecking.")
 
 (use-package flyspell
@@ -16,7 +16,7 @@
   (with-eval-after-load 'magit
     (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
   :config
-  (setq ispell-program-name modo-spellchecker-program
+  (setq ispell-program-name (executable-find modo-spellchecker-program)
         ispell-list-command "--list"
         ispell-extra-args '("--sug-mode=ultra")
         flyspell-issue-message-flag nil)
