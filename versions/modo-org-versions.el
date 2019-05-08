@@ -6,4 +6,4 @@
  ("org" . "ba321d0e44b34840466dd386223f702615ff8562")
  ("org-bullets" . "b56f2e3812626f2c4ac1686073d102c71f4a8513")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e"))
-:saturn
+:neptune

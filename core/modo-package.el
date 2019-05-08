@@ -7,6 +7,8 @@
 
 ;;; straight.el
 ;; Bootstrap snippet
+(setq straight-repository-branch "develop")
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -22,13 +24,6 @@
 
 ;; Use the elpa mirror
 (setq straight-recipes-gnu-elpa-use-mirror t)
-
-;; Use develop branch
-(setq straight-recipe-overrides
-      '((modo . ((straight :type git :host github
-			   :repo "raxod502/straight.el"
-			   :branch "develop"
-			   :files ("straight.el"))))))
 
 ;;; Set up core profiles
 (setq straight-profiles

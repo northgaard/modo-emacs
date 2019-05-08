@@ -86,6 +86,7 @@
 (unless noninteractive
   ;; Keybind definers
   ;; hydra
+  (straight-use-package 'lv)
   (straight-use-package 'hydra)
   (use-package hydra
     :demand t)

@@ -4,4 +4,4 @@
  ("projectile" . "d4cec87f2571bef9ef26e586ebeb9a87abf98f31")
  ("smex" . "55aaebe3d793c2c990b39a302eb26c184281c42c")
  ("swiper" . "201c5d78c4985fb803eb681cca0ccc5a4f90b717"))
-:saturn
+:neptune

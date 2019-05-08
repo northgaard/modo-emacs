@@ -7,4 +7,4 @@
  ("omnisharp-emacs" . "1658ddc6e418d1046467761c5e38e3577821c7d8")
  ("popup-el" . "80829dd46381754639fb764da11c67235fe63282")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e"))
-:saturn
+:neptune

@@ -6,4 +6,4 @@
  ("magit" . "823f6e6ff30ef91897ebc3c5361195dd93f324eb")
  ("magit-popup" . "8eaa0becc2370484a432a8a19f40ce5e8d0f1642")
  ("with-editor" . "9dd9f176d96abc60365369de6d08c26c414ef1f3"))
-:saturn
+:neptune
