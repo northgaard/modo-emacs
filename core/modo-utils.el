@@ -107,5 +107,8 @@
 if it does, nil otherwise."
   (find-font (font-spec :family family-name)))
 
+(defun modo--get-subdirs (path)
+  (mapcar #'file-name-nondirectory (f-directories path)))
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
