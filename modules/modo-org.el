@@ -64,7 +64,42 @@ directory for completion."
         org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-refile-targets `((,(modo-get-org-file "gtd.org") :maxlevel . 3)
                              (,(modo-get-org-file "someday.org") :level . 1)
-                             (,(modo-get-org-file "tickler.org") :maxlevel . 2))))
+                             (,(modo-get-org-file "tickler.org") :maxlevel . 2)))
+  ;; Custom agenda
+  (defun modo-org-skip-subtree-if-priority (priority)
+    "Skip an agenda subtree if it has a priority of PRIORITY."
+    (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+          (pri-value (* 1000 (- org-lowest-priority priority)))
+          (pri-current (org-get-priority (thing-at-point 'line t))))
+      (if (= pri-value pri-current)
+          subtree-end
+        nil)))
+  (setq org-agenda-custom-commands
+        '(("c" "Prioritized agenda view"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'done))
+                   (org-agenda-overriding-header "High-priority tasks:")))
+            (agenda "")
+            (alltodo ""
+                     ((org-agenda-skip-function
+                       '(or (modo-org-skip-subtree-if-priority ?A)
+                            (org-agenda-skip-if nil '(scheduled deadline))))
+                      (org-agenda-overriding-header "Normal priority tasks:"))))))))
+
+(use-package org-capture
+  :commands (org-capture)
+  :general
+  (modo-define-major-leader-key :keymaps 'org-capture-mode-map
+    "c" 'org-capture-finalize
+    "r" 'org-capture-refile
+    "q" 'org-capture-kill)
+  :hook (org-capture-mode . evil-insert-state))
+
+(use-package org-agenda
+  :commands (org-agenda)
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (straight-use-package 'org-bullets)
 (use-package org-bullets
