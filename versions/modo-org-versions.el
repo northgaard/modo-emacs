@@ -3,7 +3,7 @@
  ("evil-org-mode" . "b6d652a9163d3430a9e0933a554bdbee5244bbf6")
  ("f.el" . "8191672377816a1975414cc1f116fd3b94b30bd0")
  ("git.el" . "a3396a7027a7d986598c6a2d6d5599bac918f3da")
- ("org" . "ba321d0e44b34840466dd386223f702615ff8562")
+ ("org" . "01182eb77562c5f39cc17a70e7083fb25b712cd8")
  ("org-bullets" . "b56f2e3812626f2c4ac1686073d102c71f4a8513")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e"))
 :neptune
