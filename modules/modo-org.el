@@ -18,6 +18,17 @@ i.e. with Dropbox.")
   (evil-org-mode 1)
   (evil-normalize-keymaps))
 
+(defun modo-find-org-file (filename)
+  "Find file FILENAME, using `modo-org-root-dir' as the base
+directory for completion."
+  (interactive
+   (list (read-file-name "Select file: "
+                         modo-org-root-dir
+                         (file-name-nondirectory
+                          (modo-get-org-file "gtd.org")))))
+   (find-file filename)
+   (run-hooks 'find-file-hook))
+
 (straight-use-package 'git)
 (straight-use-package 'org-plus-contrib)
 (use-package org
@@ -25,7 +36,8 @@ i.e. with Dropbox.")
   :general
   (modo-define-leader-key :keymaps 'override
     "a" 'org-agenda
-    "c" 'org-capture)
+    "c" 'org-capture
+    "fo" '(modo-find-org-file :wk "find-org-file"))
   :init
   ;; Make double extra sure that the built-in org-version is not loaded
   (when (featurep 'org-version)
