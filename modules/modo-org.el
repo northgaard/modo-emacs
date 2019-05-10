@@ -38,6 +38,16 @@ directory for completion."
     "a" 'org-agenda
     "c" 'org-capture
     "fo" '(modo-find-org-file :wk "find-org-file"))
+  (modo-define-major-leader-key :keymaps 'org-mode-map
+    "c" 'org-ctrl-c-ctrl-c
+    "r" 'org-refile
+    "d" 'org-deadline
+    "s" 'org-schedule
+    "t" 'org-todo
+    "q" 'org-set-tags-command
+    "o" 'org-open-at-point
+    "." 'org-time-stamp
+    "!" 'org-time-stamp-inactive)
   :init
   ;; Make double extra sure that the built-in org-version is not loaded
   (when (featurep 'org-version)
