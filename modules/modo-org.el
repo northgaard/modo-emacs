@@ -47,7 +47,11 @@ directory for completion."
   :config
   (setq org-startup-indented t
         org-src-tab-acts-natively t
-        org-src-fontify-natively t)
+        org-src-fontify-natively t
+        org-enforce-todo-dependencies t
+        org-enforce-todo-checkbox-dependencies t
+        org-fontify-done-headline t
+        org-fontify-whole-heading-line t)
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))
