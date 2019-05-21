@@ -79,6 +79,13 @@ directory for completion."
   (setq org-refile-targets `((,(modo-get-org-file "gtd.org") :maxlevel . 3)
                              (,(modo-get-org-file "someday.org") :level . 1)
                              (,(modo-get-org-file "tickler.org") :maxlevel . 2)))
+  ;; Periodically save org buffers
+  (defun modo--org-save-all-org-buffers ()
+    "Like `org-save-all-org-buffers', but quiet and non-interactive."
+    (save-some-buffers t (lambda () (derived-mode-p 'org-mode)))
+    (when (featurep 'org-id)
+      (org-id-locations-save)))
+  (run-with-idle-timer 60 t #'modo--org-save-all-org-buffers)
   ;; Custom agenda
   (defun modo-org-skip-subtree-if-priority (priority)
     "Skip an agenda subtree if it has a priority of PRIORITY."
