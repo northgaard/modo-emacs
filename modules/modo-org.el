@@ -98,7 +98,7 @@ directory for completion."
   (setq org-agenda-custom-commands
         '(("c" "Prioritized agenda view"
            ((tags "PRIORITY=\"A\""
-                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'done))
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
                    (org-agenda-overriding-header "High-priority tasks:")))
             (agenda "")
             (alltodo ""
