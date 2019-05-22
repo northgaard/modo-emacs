@@ -61,7 +61,8 @@ directory for completion."
         org-enforce-todo-dependencies t
         org-enforce-todo-checkbox-dependencies t
         org-fontify-done-headline t
-        org-fontify-whole-heading-line t)
+        org-fontify-whole-heading-line t
+        org-log-done 'time)
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))
