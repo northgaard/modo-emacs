@@ -89,8 +89,12 @@
 
 ;;; emacs server
 (use-package server
+  :demand t
   :init
-  (setq server-auth-dir (concat modo-cache-dir "server/")))
+  (setq server-auth-dir (concat modo-cache-dir "server/"))
+  :config
+  (unless (eq (server-running-p) t)
+    (server-start)))
 
 ;;; eshell
 (use-package eshell
