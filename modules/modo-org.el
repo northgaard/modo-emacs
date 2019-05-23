@@ -44,6 +44,7 @@ directory for completion."
     "d" 'org-deadline
     "s" 'org-schedule
     "t" 'org-todo
+    "T" 'org-todo-force-note
     "q" 'org-set-tags-command
     "o" 'org-open-at-point
     "." 'org-time-stamp
@@ -80,6 +81,11 @@ directory for completion."
   (setq org-refile-targets `((,(modo-get-org-file "gtd.org") :maxlevel . 3)
                              (,(modo-get-org-file "someday.org") :level . 1)
                              (,(modo-get-org-file "tickler.org") :maxlevel . 2)))
+  (defun org-todo-force-note ()
+    "Like `org-todo', but forces a note on the state change."
+    (interactive)
+    (let ((org-log-done 'note))
+      (call-interactively 'org-todo)))
   ;; Periodically save org buffers
   (defun modo--org-save-all-org-buffers ()
     "Like `org-save-all-org-buffers', but quiet and non-interactive."
@@ -119,7 +125,16 @@ directory for completion."
 
 (use-package org-agenda
   :commands (org-agenda)
+  :general
+  (:states 'motion
+   :keymap 'org-agenda-mode-map
+   "T" 'org-agenda-todo-force-note)
   :config
+  (defun org-agenda-todo-force-note ()
+    "Like `org-agenda-todo', but forces a note on the state change."
+    (interactive)
+    (let ((org-log-done 'note))
+      (call-interactively 'org-agenda-todo)))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 
