@@ -55,6 +55,7 @@ directory for completion."
     (unload-feature 'org-version t))
   ;; Now load the fix
   (require 'org-version (concat modo-modules-dir "org-version-fix"))
+  (setq org-modules '(org-habit org-id org-protocol org-timer))
   :config
   (setq org-startup-indented t
         org-src-tab-acts-natively t
