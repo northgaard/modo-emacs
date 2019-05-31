@@ -25,7 +25,7 @@ directory for completion."
    (list (read-file-name "Select file: "
                          modo-org-root-dir
                          (file-name-nondirectory
-                          (modo-get-org-file "gtd.org")))))
+                          (modo-get-org-file "inbox.org")))))
    (find-file filename)
    (run-hooks 'find-file-hook))
 
@@ -69,7 +69,7 @@ directory for completion."
         '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))
   (setq org-agenda-files (mapcar #'modo-get-org-file
-                                 '("inbox.org" "gtd.org" "tickler.org")))
+                                 '("inbox.org" "work.org" "personal.org" "tickler.org")))
   (setq org-capture-templates `(("t" "Todo [inbox]" entry
                                  (file+headline ,(modo-get-org-file "inbox.org") "Tasks")
                                  "* TODO %?")
@@ -79,7 +79,8 @@ directory for completion."
   (setq org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm)
-  (setq org-refile-targets `((,(modo-get-org-file "gtd.org") :maxlevel . 3)
+  (setq org-refile-targets `((,(modo-get-org-file "work.org") :maxlevel . 3)
+                             (,(modo-get-org-file "personal.org") :maxlevel . 3)
                              (,(modo-get-org-file "someday.org") :level . 1)
                              (,(modo-get-org-file "tickler.org") :maxlevel . 2)))
   (defun org-todo-force-note ()
@@ -138,6 +139,9 @@ directory for completion."
       (call-interactively 'org-agenda-todo)))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
+
+(use-package org-archive
+  :custom (org-archive-save-context-info '(time olpath category todo itags)))
 
 (straight-use-package 'org-bullets)
 (use-package org-bullets
