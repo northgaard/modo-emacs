@@ -85,7 +85,6 @@
 
 ;;; ag from emacs
 (straight-use-package 'ag)
-(use-package ag)
 
 ;;; emacs server
 (use-package server

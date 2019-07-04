@@ -67,5 +67,10 @@
   :config
   (evil-collection-ediff-setup))
 
+;;; ag
+(use-package ag
+  :config
+  (evil-collection-ag-setup))
+
 (provide 'modo-keybinds)
 ;;; modo-keybinds.el ends here
