@@ -185,5 +185,17 @@
                     "g." #'goto-last-change
                     "g:" #'goto-last-change-reverse)
 
+;; General purpose hydras
+(defhydra hydra-quick-scroll (:color red)
+  "Quickly scroll through buffer"
+  ("j" evil-scroll-down "down")
+  ("k" evil-scroll-up "up")
+  ("n" evil-scroll-page-down "page down")
+  ("p" evil-scroll-page-up "page up")
+  ("g" beginning-of-buffer "top")
+  ("G" end-of-buffer "bottom")
+  ("q" nil "quit")
+  ("SPC" nil "quit"))
+
 (provide 'modo-evil)
 ;;; modo-evil.el ends here

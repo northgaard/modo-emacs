@@ -55,7 +55,8 @@
   "z" '(hydra-font-size/body :wk "font-size")
   "Z" '(modo-load-theme :wk "load-theme")
   "TAB" '(modo-alternate-buffer
-          :wk "alternate-buffer"))
+          :wk "alternate-buffer")
+  "SPC" '(hydra-quick-scroll/body :wk "quick-scroll"))
 
 ;;; Info-mode
 (use-package info
