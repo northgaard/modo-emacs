@@ -127,6 +127,13 @@
                                       :fork (:repo "northgaard/emacs-kaolin-themes"
                                                    :branch "modo")))
 
+;; Nord
+(straight-use-package '(nord-theme :type git
+                                   :host github
+                                   :repo "arcticicestudio/nord-emacs"
+                                   :fork (:repo "northgaard/nord-emacs"
+                                                :branch "modo")))
+
 (defun modo-load-theme (theme)
   "Loads the theme THEME and optionally calls a function providing custom
 modifications. This function should be named modo--THEME-customizations and
@@ -145,7 +152,7 @@ take no arguments."
       (funcall theme-customization-fun))))
 
 ;; TODO: Add hydra for changing themes
-(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'kaolin-dark)))
+(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'nord)))
 
 ;;; Doom modeline
 (straight-use-package 'doom-modeline)
