@@ -35,7 +35,7 @@
  ("goto-chg" . "1829a13026c597e358f716d2c7793202458120b5")
  ("hydra" . "67098cc9149854a95b589c3763843eabc82c9b2d")
  ("melpa" . "43808f57146a395b92ed498803fa948a33e5f3c2")
- ("nord-emacs" . "8b6b1cad3676b8426bc932d05c6585951f2ec5f7")
+ ("nord-emacs" . "836e3f29f2f32881bb9d6d0964238cc0c0868454")
  ("pkg-info.el" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
  ("projectile" . "d4cec87f2571bef9ef26e586ebeb9a87abf98f31")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e")
