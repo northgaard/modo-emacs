@@ -43,7 +43,6 @@
 (straight-use-package 'melpa)
 (straight-use-package 'epl)
 (straight-use-package 'pkg-info)
-(straight-use-package 'emacsmirror)
 
 ;; Macro for requiring modules
 (defmacro modo-module (&rest modules)
