@@ -67,6 +67,7 @@ For example, the module name ivy translates to a call to (require 'modo-ivy)."
        ;; remainder of init.el
        (push '(modo-private . "../../private/modo-private-versions.el")
              straight-profiles)
+       (setq straight-profiles (nreverse straight-profiles))
        (setq straight-current-profile 'modo-private))))
 
 ;; Clone from github
