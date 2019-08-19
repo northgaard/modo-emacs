@@ -37,7 +37,6 @@ directory for completion."
    :local-repo "org"
    :files (:defaults "contrib/lisp/*.el")
    :includes (org)))
-(straight-use-package 'git)
 
 (use-package org
   :hook (org-mode . modo-org-mode-setup)
@@ -62,7 +61,7 @@ directory for completion."
   (when (featurep 'org-version)
     (unload-feature 'org-version t))
   ;; Now load the fix
-  (require 'org-version (concat modo-modules-dir "org-version-fix"))
+  (straight--fix-org-function "org")
   (setq org-modules '(org-habit org-id org-protocol org-timer))
   :config
   (setq org-startup-indented t

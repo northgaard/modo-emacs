@@ -7,7 +7,8 @@
 
 ;;; straight.el
 ;; Bootstrap snippet
-(setq straight-repository-branch "develop")
+(setq straight-repository-branch "develop"
+      straight-fix-org nil)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
