@@ -42,8 +42,6 @@ directory for completion."
   :hook (org-mode . modo-org-mode-setup)
   :general
   (modo-define-leader-key :keymaps 'override
-    "a" 'org-agenda
-    "c" 'org-capture
     "fo" '(modo-find-org-file :wk "find-org-file"))
   (modo-define-major-leader-key :keymaps 'org-mode-map
     "c" 'org-ctrl-c-ctrl-c
@@ -64,6 +62,7 @@ directory for completion."
   (straight--fix-org-function "org")
   (setq org-modules '(org-habit org-id org-protocol org-timer))
   :config
+  (require 'evil-org)
   (setq org-startup-indented t
         org-src-tab-acts-natively t
         org-src-fontify-natively t
@@ -101,60 +100,7 @@ directory for completion."
     (save-some-buffers t (lambda () (derived-mode-p 'org-mode)))
     (when (featurep 'org-id)
       (org-id-locations-save)))
-  (run-with-idle-timer 60 t #'modo--org-save-all-org-buffers)
-  ;; Custom agenda
-  (defun modo-org-skip-subtree-if-priority (priority)
-    "Skip an agenda subtree if it has a priority of PRIORITY."
-    (let ((subtree-end (save-excursion (org-end-of-subtree t)))
-          (pri-value (* 1000 (- org-lowest-priority priority)))
-          (pri-current (org-get-priority (thing-at-point 'line t))))
-      (if (= pri-value pri-current)
-          subtree-end
-        nil)))
-  (setq org-agenda-custom-commands
-        '(("c" "Prioritized agenda view"
-           ((tags "PRIORITY=\"A\""
-                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                   (org-agenda-overriding-header "High-priority tasks:")))
-            (agenda "")
-            (alltodo ""
-                     ((org-agenda-skip-function
-                       '(or (modo-org-skip-subtree-if-priority ?A)
-                            (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "Normal priority tasks:"))))))))
-
-(use-package org-capture
-  :commands (org-capture)
-  :general
-  (modo-define-major-leader-key :keymaps 'org-capture-mode-map
-    "c" 'org-capture-finalize
-    "r" 'org-capture-refile
-    "q" 'org-capture-kill)
-  :hook (org-capture-mode . evil-insert-state))
-
-(use-package org-agenda
-  :commands (org-agenda)
-  :general
-  (:states 'motion
-   :keymap 'org-agenda-mode-map
-   "T" 'org-agenda-todo-force-note)
-  :config
-  (defun org-agenda-todo-force-note ()
-    "Like `org-agenda-todo', but forces a note on the state change."
-    (interactive)
-    (let ((org-log-done 'note))
-      (call-interactively 'org-agenda-todo)))
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
-
-(use-package org-archive
-  :custom (org-archive-save-context-info '(time olpath category todo itags)))
-
-(straight-use-package 'org-bullets)
-(use-package org-bullets
-  :commands (org-bullets-mode)
-  :config
-  (setq org-bullets-bullet-list '("•")))
+  (run-with-idle-timer 60 t #'modo--org-save-all-org-buffers))
 
 (straight-use-package 'evil-org)
 (use-package evil-org
@@ -170,6 +116,92 @@ directory for completion."
                       :keymaps 'evil-org-mode-map
                       "gs" #'avy-org-goto-header
                       "gS" #'avy-org-goto-heading-timer))
+
+(use-package org-capture
+  :general
+  (modo-define-leader-key :keymaps 'override
+    "c" 'org-capture)
+  (modo-define-major-leader-key :keymaps 'org-capture-mode-map
+    "c" 'org-capture-finalize
+    "r" 'org-capture-refile
+    "q" 'org-capture-kill)
+  :hook (org-capture-mode . evil-insert-state))
+
+(use-package org-agenda
+  :general
+  (modo-define-leader-key :keymaps 'override
+    "a" 'org-agenda)
+  (:states 'motion
+   :keymap 'org-agenda-mode-map
+   "T" 'org-agenda-todo-force-note)
+  :config
+  (setq org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-include-deadlines t
+        org-agenda-block-separator nil
+        org-agenda-compact-blocks t)
+  (defun org-agenda-todo-force-note ()
+    "Like `org-agenda-todo', but forces a note on the state change."
+    (interactive)
+    (let ((org-log-done 'note))
+      (call-interactively 'org-agenda-todo)))
+  (require 'evil-org-agenda)
+  (require 'org-super-agenda)
+  (setq org-agenda-custom-commands '(("c" "Prioritized agenda view"
+                                      ((agenda "" ((org-agenda-span 'day)
+                                                   (org-super-agenda-groups
+                                                    '((:name "Today:"
+                                                             :time-grid t
+                                                             :date today
+                                                             :scheduled today
+                                                             :order 1)
+                                                      (:name "Missed schedule:"
+                                                             :scheduled past
+                                                             :order 0)
+                                                      (:name "Due today:"
+                                                             :deadline today
+                                                             :order 2)
+                                                      (:name "Overdue:"
+                                                             :deadline past
+                                                             :order 0)
+                                                      (:name "Due soon:"
+                                                             :deadline future
+                                                             :order 3)))))
+                                       (alltodo "" ((org-agenda-overriding-header "")
+                                                    (org-super-agenda-groups
+                                                     '((:name "High-priority tasks:"
+                                                              :priority "A"
+                                                              :order 0)
+                                                       (:name "Work:"
+                                                              :tag "work"
+                                                              :order 1)
+                                                       (:name "Personal:"
+                                                              :tag "personal"
+                                                              :order 2))))))))))
+
+(use-package evil-org-agenda
+  :config
+  (evil-org-agenda-set-keys))
+
+(straight-use-package 'org-super-agenda)
+(use-package org-super-agenda
+  :config
+  (org-super-agenda-mode 1)
+  ;; When the header map is active, evil state is ignored
+  ;; for some reason. This is the best work-around I've found
+  ;; so far.
+  (setq org-super-agenda-header-map (make-sparse-keymap))
+  (general-define-key :keymaps 'org-super-agenda-header-map
+                      "q" 'org-agenda-quit))
+
+(use-package org-archive
+  :custom (org-archive-save-context-info '(time olpath category todo itags)))
+
+(straight-use-package 'org-bullets)
+(use-package org-bullets
+  :commands (org-bullets-mode)
+  :config
+  (setq org-bullets-bullet-list '("•")))
 
 (provide 'modo-org)
 ;;; modo-org.el ends here
