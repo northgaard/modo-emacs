@@ -150,32 +150,32 @@ directory for completion."
   (setq org-agenda-custom-commands '(("c" "Prioritized agenda view"
                                       ((agenda "" ((org-agenda-span 'day)
                                                    (org-super-agenda-groups
-                                                    '((:name "Today:"
+                                                    '((:name "Today"
                                                              :time-grid t
                                                              :date today
                                                              :scheduled today
                                                              :order 1)
-                                                      (:name "Missed schedule:"
+                                                      (:name "Missed schedule"
                                                              :scheduled past
                                                              :order 0)
-                                                      (:name "Due today:"
+                                                      (:name "Due today"
                                                              :deadline today
                                                              :order 2)
-                                                      (:name "Overdue:"
+                                                      (:name "Overdue"
                                                              :deadline past
                                                              :order 0)
-                                                      (:name "Due soon:"
+                                                      (:name "Due soon"
                                                              :deadline future
                                                              :order 3)))))
                                        (alltodo "" ((org-agenda-overriding-header "")
                                                     (org-super-agenda-groups
-                                                     '((:name "High-priority tasks:"
+                                                     '((:name "High-priority tasks"
                                                               :priority "A"
                                                               :order 0)
-                                                       (:name "Work:"
+                                                       (:name "Work"
                                                               :tag "work"
                                                               :order 1)
-                                                       (:name "Personal:"
+                                                       (:name "Personal"
                                                               :tag "personal"
                                                               :order 2))))))))))
 
