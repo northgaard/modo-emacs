@@ -177,7 +177,10 @@ directory for completion."
                                                               :order 1)
                                                        (:name "Personal"
                                                               :tag "personal"
-                                                              :order 2))))))))))
+                                                              :order 2)
+                                                       (:name "Inbox"
+                                                              :tag "inbox"
+                                                              :order 3))))))))))
 
 (use-package evil-org-agenda
   :config
