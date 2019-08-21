@@ -145,6 +145,17 @@ directory for completion."
     (interactive)
     (let ((org-log-done 'note))
       (call-interactively 'org-agenda-todo)))
+  (defun modo--color-org-header (header forecolor)
+    (goto-char (point-min))
+    (when (re-search-forward header nil t)
+      (add-text-properties (match-beginning 0) (match-end 0)
+                           `(face (:foreground ,forecolor)))))
+  (defun modo--color-overdue-headers ()
+    (let ((err-foreground (face-foreground 'error)))
+      (save-excursion
+        (modo--color-org-header "Overdue" err-foreground)
+        (modo--color-org-header "Missed schedule" err-foreground))))
+  (add-hook 'org-agenda-finalize-hook 'modo--color-overdue-headers)
   (require 'evil-org-agenda)
   (require 'org-super-agenda)
   (setq org-agenda-custom-commands '(("c" "Prioritized agenda view"
