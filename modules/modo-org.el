@@ -180,7 +180,10 @@ directory for completion."
                                                              :order 3)))))
                                        (alltodo "" ((org-agenda-overriding-header "")
                                                     (org-super-agenda-groups
-                                                     '((:name "High-priority tasks"
+                                                     '((:discard (:scheduled t
+                                                                  :deadline t
+                                                                  :date t))
+                                                       (:name "High-priority tasks"
                                                               :priority "A"
                                                               :order 0)
                                                        (:name "Work"
