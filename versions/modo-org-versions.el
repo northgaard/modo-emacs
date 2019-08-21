@@ -5,5 +5,6 @@
  ("org" . "9a543b97a54bddcf5fda624389425d2dec9cf2f7")
  ("org-bullets" . "b56f2e3812626f2c4ac1686073d102c71f4a8513")
  ("org-super-agenda" . "4ad333643276ba1a604e8bec4a72ab68bafb8a94")
+ ("origami.el" . "1f38085c8f9af7842765ed63f7d6dfe4dab59366")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e"))
 :neptune

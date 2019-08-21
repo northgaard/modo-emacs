@@ -198,7 +198,9 @@ directory for completion."
   (evil-org-agenda-set-keys))
 
 (straight-use-package 'org-super-agenda)
+(straight-use-package 'origami)
 (use-package org-super-agenda
+  :hook (org-agenda-mode . origami-mode)
   :config
   (org-super-agenda-mode 1)
   ;; When the header map is active, evil state is ignored
@@ -206,7 +208,8 @@ directory for completion."
   ;; so far.
   (setq org-super-agenda-header-map (make-sparse-keymap))
   (general-define-key :keymaps 'org-super-agenda-header-map
-                      "q" 'org-agenda-quit))
+                      "q" 'org-agenda-quit
+                      "<tab>" 'origami-toggle-node))
 
 (use-package org-archive
   :custom (org-archive-save-context-info '(time olpath category todo itags)))
