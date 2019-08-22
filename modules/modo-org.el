@@ -145,17 +145,6 @@ directory for completion."
     (interactive)
     (let ((org-log-done 'note))
       (call-interactively 'org-agenda-todo)))
-  (defun modo--color-org-header (header forecolor)
-    (goto-char (point-min))
-    (when (re-search-forward header nil t)
-      (add-text-properties (match-beginning 0) (match-end 0)
-                           `(face (:foreground ,forecolor)))))
-  (defun modo--color-overdue-headers ()
-    (let ((err-foreground (face-foreground 'error)))
-      (save-excursion
-        (modo--color-org-header "Overdue" err-foreground)
-        (modo--color-org-header "Missed schedule" err-foreground))))
-  (add-hook 'org-agenda-finalize-hook 'modo--color-overdue-headers)
   (require 'evil-org-agenda)
   (require 'org-super-agenda)
   (setq org-agenda-custom-commands '(("c" "Prioritized agenda view"
@@ -167,12 +156,14 @@ directory for completion."
                                                              :scheduled today
                                                              :order 1)
                                                       (:name "Missed schedule"
+                                                             :header-face error
                                                              :scheduled past
                                                              :order 0)
                                                       (:name "Due today"
                                                              :deadline today
                                                              :order 2)
                                                       (:name "Overdue"
+                                                             :header-face error
                                                              :deadline past
                                                              :order 0)
                                                       (:name "Due soon"
@@ -200,8 +191,14 @@ directory for completion."
   :config
   (evil-org-agenda-set-keys))
 
-(straight-use-package 'org-super-agenda)
+(straight-use-package
+ '(org-super-agenda :type git
+                    :host github
+                    :repo "alphapapa/org-super-agenda"
+                    :fork (:repo "northgaard/org-super-agenda"
+                                 :branch "header-face")))
 (straight-use-package 'origami)
+
 (use-package org-super-agenda
   :hook (org-agenda-mode . origami-mode)
   :config
