@@ -47,6 +47,8 @@
   (setq ivy-virtual-abbreviate 'full
         ivy-rich-switch-buffer-align-virtual-buffer t
         ivy-rich-path-style 'abbrev)
+  ;; Recommended by the ivy-rich README
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   (ivy-rich-mode 1)
   ;; Once loaded advice is no longer necessary
   (advice-remove #'ivy-switch-buffer #'modo--load-ivy-rich)
