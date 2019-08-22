@@ -28,6 +28,7 @@
         ivy-initial-inputs-alist nil)
   (setq ivy-count-format "(%d/%d) "
         projectile-completion-system 'ivy)
+  (setq ivy-switch-buffer-map (make-sparse-keymap))
   (ivy-mode 1))
 
 (straight-use-package 'ivy-hydra)
