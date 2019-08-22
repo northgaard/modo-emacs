@@ -30,6 +30,7 @@
   "bl" 'list-buffers
   "by" 'bury-buffer
   "br" 'revert-buffer
+  "h" 'help-command
   "w" '(:ignore t :wk "windows")
   "ws" 'evil-window-split
   "wv" 'evil-window-vsplit
