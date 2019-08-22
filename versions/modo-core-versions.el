@@ -37,7 +37,7 @@
  ("melpa" . "43808f57146a395b92ed498803fa948a33e5f3c2")
  ("nord-emacs" . "836e3f29f2f32881bb9d6d0964238cc0c0868454")
  ("pkg-info.el" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
- ("projectile" . "d4cec87f2571bef9ef26e586ebeb9a87abf98f31")
+ ("projectile" . "71a01f409a319d57eb3832e93e8a412fbc9d7a65")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e")
  ("shrink-path.el" . "9d06c453d1537df46a4b703a29213cc7f7857aa0")
  ("straight.el" . "8eda9939fa4418238f94b5f1fa78a4f7494e0420")
