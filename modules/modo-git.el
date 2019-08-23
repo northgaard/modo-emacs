@@ -11,6 +11,9 @@
 (straight-use-package 'gitignore-mode)
 (use-package gitignore-mode)
 
+(straight-use-package 'gitattributes-mode)
+(use-package gitattributes-mode)
+
 (defvar modo--git-abbrev-length nil
   "The amount of characters git minimally uses for abbreviated hashes.")
 
