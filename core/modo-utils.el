@@ -110,5 +110,15 @@ if it does, nil otherwise."
 (defun modo--get-subdirs (path)
   (mapcar #'file-name-nondirectory (f-directories path)))
 
+(defun modo-get-faces (pos)
+  ;; TODO: Finish this
+  ""
+  (interactive "d")
+  (remq nil
+        (list
+         (get-char-property pos 'read-face-name)
+         (get-char-property pos 'face)
+         (plist-get (text-properties-at pos) 'face))))
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
