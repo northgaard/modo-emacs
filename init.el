@@ -13,6 +13,7 @@
              git
              company
              org
+             treemacs
              latex
              snippets
              spellcheck
