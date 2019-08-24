@@ -147,6 +147,12 @@ directory for completion."
       (call-interactively 'org-agenda-todo)))
   (require 'evil-org-agenda)
   (require 'org-super-agenda)
+  ;; This makes the two faces independent. It's a bit
+  ;; of a hack, since org-super-agenda-header now won't
+  ;; change when changing theme (unless set explicitly by
+  ;; the theme).
+  (copy-face 'org-agenda-structure 'org-super-agenda-header)
+  (set-face-underline 'org-agenda-structure t)
   (setq org-agenda-custom-commands '(("c" "Prioritized agenda view"
                                       ((agenda "" ((org-agenda-span 'day)
                                                    (org-super-agenda-groups
@@ -169,7 +175,7 @@ directory for completion."
                                                       (:name "Due soon"
                                                              :deadline future
                                                              :order 3)))))
-                                       (alltodo "" ((org-agenda-overriding-header "")
+                                       (alltodo "" ((org-agenda-overriding-header "Tasks")
                                                     (org-super-agenda-groups
                                                      '((:discard (:scheduled t
                                                                   :deadline t
@@ -185,7 +191,9 @@ directory for completion."
                                                               :order 2)
                                                        (:name "Inbox"
                                                               :tag "inbox"
-                                                              :order 3))))))))))
+                                                              :order 3))))))
+                                      ((org-agenda-compact-blocks nil)
+                                       (org-agenda-block-separator ""))))))
 
 (use-package evil-org-agenda
   :config
