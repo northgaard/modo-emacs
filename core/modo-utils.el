@@ -111,14 +111,17 @@ if it does, nil otherwise."
   (mapcar #'file-name-nondirectory (f-directories path)))
 
 (defun modo-get-faces (pos)
-  ;; TODO: Finish this
+  ;; TODO: Add documentation
   ""
   (interactive "d")
-  (remq nil
-        (list
-         (get-char-property pos 'read-face-name)
-         (get-char-property pos 'face)
-         (plist-get (text-properties-at pos) 'face))))
+  (let ((faces (remq nil
+                     (list
+                      (get-char-property pos 'read-face-name)
+                      (get-char-property pos 'face)
+                      (plist-get (text-properties-at pos) 'face)))))
+    (if (called-interactively-p 'interactive)
+        (message (format "%s" faces))
+      faces)))
 
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
