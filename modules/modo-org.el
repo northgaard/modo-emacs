@@ -9,6 +9,9 @@
   "Directory for org files, typically stored in some shared folder,
 i.e. with Dropbox.")
 
+(defvar modo--agenda-tab-dispatch-fold-faces
+  '(org-agenda-structure org-super-agenda-header error))
+
 (defun modo-get-org-file (file)
   "Returns the full path to org file FILE in `modo-org-root-dir'."
   (expand-file-name file modo-org-root-dir))
@@ -131,9 +134,6 @@ directory for completion."
   :general
   (modo-define-leader-key :keymaps 'override
     "a" 'org-agenda)
-  (:states 'motion
-   :keymap 'org-agenda-mode-map
-   "T" 'org-agenda-todo-force-note)
   :config
   (setq org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
@@ -145,6 +145,17 @@ directory for completion."
     (interactive)
     (let ((org-log-done 'note))
       (call-interactively 'org-agenda-todo)))
+  (defun modo-org-agenda-tab-dispatch ()
+    ;; TODO: document this
+    ""
+    (interactive)
+    (save-excursion
+      (back-to-indentation)
+      (if (-intersection
+           modo--agenda-tab-dispatch-fold-faces
+           (modo-get-faces (point)))
+          (call-interactively 'origami-toggle-node)
+        (call-interactively 'org-agenda-goto))))
   (require 'evil-org-agenda)
   (require 'org-super-agenda)
   ;; This makes the two faces independent. It's a bit
@@ -197,7 +208,12 @@ directory for completion."
 
 (use-package evil-org-agenda
   :config
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  (general-define-key
+   :states 'motion
+   :keymaps 'org-agenda-mode-map
+   "T" 'org-agenda-todo-force-note
+   "<tab>" 'modo-org-agenda-tab-dispatch))
 
 (straight-use-package
  '(org-super-agenda :type git
@@ -217,7 +233,7 @@ directory for completion."
   (setq org-super-agenda-header-map (make-sparse-keymap))
   (general-define-key :keymaps 'org-super-agenda-header-map
                       "q" 'org-agenda-quit
-                      "<tab>" 'origami-toggle-node))
+                      "<tab>" 'modo-org-agenda-tab-dispatch))
 
 (use-package org-archive
   :custom (org-archive-save-context-info '(time olpath category todo itags)))
