@@ -130,6 +130,20 @@ directory for completion."
     "q" 'org-capture-kill)
   :hook (org-capture-mode . evil-insert-state))
 
+(defun modo--org-agenda-count-group-items ()
+  ;; TODO: Call recursively to count items in top level headers
+  (let ((cind (current-indentation))
+        (items 0))
+    (save-excursion
+      (forward-line)
+      (while (and (not (eq cind (current-indentation)))
+                  (not (eobp)))
+        (when (org-find-text-property-in-string 'todo-state
+                                                (thing-at-point 'line))
+          (setq items (+ items 1)))
+        (forward-line)))
+    items))
+
 (use-package org-agenda
   :general
   (modo-define-leader-key :keymaps 'override
@@ -151,11 +165,18 @@ directory for completion."
     (interactive)
     (save-excursion
       (back-to-indentation)
-      (if (-intersection
-           modo--agenda-tab-dispatch-fold-faces
-           (modo-get-faces (point)))
-          (call-interactively 'origami-toggle-node)
-        (call-interactively 'org-agenda-goto))))
+      (let ((faces (modo-get-faces (point))))
+        (if (-intersection
+             modo--agenda-tab-dispatch-fold-faces
+             faces)
+            (progn
+              (let ((origami-fold-replacement
+                     (if (not (memq 'org-agenda-structure faces))
+                         (format "... (%s items)" ; TODO: Correct plural
+                                 (modo--org-agenda-count-group-items))
+                       "...")))
+              (call-interactively 'origami-toggle-node)))
+          (call-interactively 'org-agenda-goto)))))
   (require 'evil-org-agenda)
   (require 'org-super-agenda)
   ;; This makes the two faces independent. It's a bit
