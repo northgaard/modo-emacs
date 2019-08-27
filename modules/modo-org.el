@@ -101,9 +101,8 @@ directory for completion."
   ;; Periodically save org buffers
   (defun modo--org-save-all-org-buffers ()
     "Like `org-save-all-org-buffers', but quiet and non-interactive."
-    (save-some-buffers t (lambda () (derived-mode-p 'org-mode)))
-    (when (featurep 'org-id)
-      (org-id-locations-save)))
+    (cl-letf (((symbol-function 'message) #'ignore))
+             (org-save-all-org-buffers)))
   (run-with-idle-timer 60 t #'modo--org-save-all-org-buffers))
 
 (straight-use-package 'evil-org)
