@@ -1,7 +1,7 @@
 ;;; modo-org.el --- org-mode -*- lexical-binding: t -*-
 ;;; Commentary:
 
-;; Configuration of org-mode for modo emacs.
+;; My life in plain text and elisp hacks.
 
 ;;; Code:
 
