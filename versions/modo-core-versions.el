@@ -4,7 +4,7 @@
  ("ag.el" . "77b4f50c5372bf219da496567b2b867261f0d354")
  ("all-the-icons.el" . "52d1f2d36468146c93aaf11399f581401a233306")
  ("autothemer" . "69488c71dfc182cf2e7be2d745037f230ade678e")
- ("avy" . "24b51374bef91cb24ec5993217187bf616fcb663")
+ ("avy" . "034de4c0e900717ebcb6e19a973cf66beea54420")
  ("cl-lib" . "deb92588d9d83d46c4698936ea31c5f58d244f04")
  ("dash.el" . "6514359b8606a6a9a94068ccd601fcd6379d6584")
  ("default-text-scale" . "f425d3765c4dea3f2e550720278f9d424579ee5d")

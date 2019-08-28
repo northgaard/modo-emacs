@@ -114,7 +114,7 @@ directory for completion."
   (defun avy-org-goto-header ()
     "Jump to an org header at any level."
     (interactive)
-    (avy--generic-jump "^\\*+ " nil 'pre))
+    (avy-jump "^\\*+ "))
   (general-define-key :states '(motion normal visual)
                       :keymaps 'evil-org-mode-map
                       "gs" #'avy-org-goto-header

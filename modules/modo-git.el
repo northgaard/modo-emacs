@@ -50,8 +50,7 @@ directories installed with straight.el."
   (defun avy-magit-log-goto-commit ()
     "Avy jump to an arbitrary commit in the magit-log view."
     (interactive)
-    (avy--generic-jump (format "^[a-zA-Z0-9]\\{%s,\\} [*|] " modo--git-abbrev-length)
-                       nil 'at-full))
+    (avy-jump (format "^[a-zA-Z0-9]\\{%s,\\} [*|] " modo--git-abbrev-length)))
   (when (string= "SPC" modo-leader)
     (general-define-key :keymaps 'magit-mode-map
                         modo-leader nil))
