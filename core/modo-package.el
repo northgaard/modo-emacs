@@ -5,6 +5,15 @@
 
 ;;; Code:
 
+;;; org shenanigans
+;; This deletes the built-in org from the load path, _hopefully_ preventing it
+;; from interfering with the straight provided one
+;; TODO: condition this on org module being requested
+(require 'subr-x)
+(when-let* ((org-path (locate-library "org")))
+ (setq load-path (delete (substring (file-name-directory org-path) 0 -1)
+                         load-path)))
+
 ;;; straight.el
 ;; Bootstrap snippet
 (setq straight-repository-branch "develop"
