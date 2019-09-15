@@ -27,12 +27,17 @@ directories installed with straight.el."
   (require 'magit)
   (magit-status (straight--repos-dir package-dir)))
 
+(defun modo--activate-smerge-hydra ()
+  (when smerge-mode
+    (smerge-hydra/body)))
+
 (straight-use-package 'magit)
 (use-package magit
   :commands (magit-status magit-blame)
   ;; Start in insert mode for commit messages
   :hook ((git-commit-setup . evil-normalize-keymaps)
-         (git-commit-setup . evil-insert-state))
+         (git-commit-setup . evil-insert-state)
+         (magit-diff-visit-file . modo--activate-smerge-hydra))
   :general
   (modo-define-leader-key "s" 'magit-status)
   ;; Let's pretend with-editor-mode is a major mode

@@ -112,5 +112,49 @@
         ediff-window-setup-function #'ediff-setup-windows-plain
         ediff-diff-options "-w"))
 
+;;; smerge
+(use-package smerge-mode
+  :after hydra
+  :config
+  (defhydra smerge-hydra
+    (:color pink
+            :hint nil
+            :pre (if (not smerge-mode) (smerge-mode 1))
+            ;; Disable smerge-mode if no conflicts remain
+            :post (smerge-auto-leave)) 
+    "
+^Move^          ^Keep^               ^Diff^                 ^Other^
+^^--------------^^-------------------^^---------------------^^-------
+_j_: next       _b_ase               _<_: upper/base        _C_ombine
+_k_: prev       _u_pper              _=_: upper/lower       _r_esolve
+_C-j_: up       _l_ower              _>_: base/lower        _K_ill current
+_C-k_: down     _a_ll                _R_efine
+^^              _RET_: current       _E_diff
+"
+    ("C-j" next-line)
+    ("C-k" previous-line)
+    ("j" smerge-next)
+    ("k" smerge-prev)
+    ("b" smerge-keep-base)
+    ("u" smerge-keep-upper)
+    ("l" smerge-keep-lower)
+    ("a" smerge-keep-all)
+    ("RET" smerge-keep-current)
+    ("\C-m" smerge-keep-current)
+    ("<" smerge-diff-base-upper)
+    ("=" smerge-diff-upper-lower)
+    (">" smerge-diff-base-lower)
+    ("R" smerge-refine)
+    ("E" smerge-ediff)
+    ("C" smerge-combine-with-next)
+    ("r" smerge-resolve)
+    ("K" smerge-kill-current)
+    ("ZZ" (lambda ()
+            (interactive)
+            (save-buffer)
+            (bury-buffer))
+     "Save and bury buffer" :color blue)
+    ("q" nil "cancel" :color blue)))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here
