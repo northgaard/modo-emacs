@@ -42,6 +42,7 @@
   "wu" 'winner-undo
   "wr" 'winner-redo
   "wp" 'ace-swap-window
+  "y" 'hydra-pause-resume
   "u" 'universal-argument
   "1" 'winum-select-window-1
   "2" 'winum-select-window-2
