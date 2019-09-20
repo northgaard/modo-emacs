@@ -105,7 +105,8 @@
   :commands (swiper)
   :general
   (:keymaps 'ivy-mode-map
-            [remap isearch-forward] 'swiper))
+            [remap isearch-forward] 'swiper
+            [remap isearch-backward] 'swiper-backward))
 
 (provide 'modo-ivy)
 ;;; modo-ivy.el ends here
