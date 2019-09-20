@@ -172,8 +172,9 @@ directory for completion."
             (progn
               (let ((origami-fold-replacement
                      (if (not (memq 'org-agenda-structure faces))
-                         (format "... (%s items)" ; TODO: Correct plural
-                                 (modo--org-agenda-count-group-items))
+                         (let ((num-items (modo--org-agenda-count-group-items)))
+                           (format "... (%s %s)"
+                                   num-items (modo-pluralize num-items "item" "items")))
                        "...")))
               (call-interactively 'origami-toggle-node)))
           (call-interactively 'org-agenda-goto)))))

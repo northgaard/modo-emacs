@@ -123,5 +123,12 @@ if it does, nil otherwise."
         (message (format "%s" faces))
       faces)))
 
+(defun modo-pluralize (count singular plural)
+  "Given the SINGULAR and PLURAL forms of a word, returns
+the relevant form based on COUNT."
+  (if (> count 1)
+      plural
+    singular))
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
