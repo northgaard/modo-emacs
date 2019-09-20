@@ -65,6 +65,11 @@ directory for completion."
   (straight--fix-org-function "org")
   (setq org-modules '(org-habit org-id org-protocol org-timer))
   :config
+  (modo-define-leader-key
+    :keymaps 'override
+    "nb" 'org-narrow-to-block
+    "ne" 'org-narrow-to-element
+    "ns" 'org-narrow-to-subtree)
   (require 'evil-org)
   (setq org-startup-indented t
         org-src-tab-acts-natively t

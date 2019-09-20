@@ -42,6 +42,11 @@
   "wu" 'winner-undo
   "wr" 'winner-redo
   "wp" 'ace-swap-window
+  "n" '(:ignore t :wk "narrow")
+  "nd" 'narrow-to-defun
+  "nn" 'narrow-to-region
+  "np" 'narrow-to-page
+  "nw" 'widen
   "y" 'hydra-pause-resume
   "u" 'universal-argument
   "1" 'winum-select-window-1
