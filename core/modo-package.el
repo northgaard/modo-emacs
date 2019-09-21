@@ -54,14 +54,18 @@
 (straight-use-package 'epl)
 (straight-use-package 'pkg-info)
 
+(defcustom modo-additional-modules nil
+  "Additional modules that will be loaded by `modo-module'")
+
 ;; Macro for requiring modules
 (defmacro modo-module (&rest modules)
   "Load all the modules listed in MODULES, with the prefix modo-.
 For example, the module name ivy translates to a call to (require 'modo-ivy)."
   (let ((expansion nil)
         (module-name)
-        (module-symbol))
-    (dolist (module modules)
+        (module-symbol)
+        (all-modules (append modules modo-additional-modules)))
+    (dolist (module all-modules)
       (setq module-name (format "modo-%s" (symbol-name module)))
       (setq module-symbol (intern module-name))
       (push `(push '(,module-symbol . ,(format "../../versions/%s-versions.el" module-name))
