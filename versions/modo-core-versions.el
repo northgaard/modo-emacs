@@ -40,7 +40,7 @@
  ("projectile" . "71a01f409a319d57eb3832e93e8a412fbc9d7a65")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e")
  ("shrink-path.el" . "9d06c453d1537df46a4b703a29213cc7f7857aa0")
- ("straight.el" . "8eda9939fa4418238f94b5f1fa78a4f7494e0420")
+ ("straight.el" . "11ae699d67114068e86f5e3ceb6646e42503ac6e")
  ("undo-tree" . "d54ef13e3c69655e39f977b8bf75399a6d2b5e42")
  ("use-package" . "39a8b8812c2c9f6f0b299e6a04e504ef393694ce"))
 :neptune
