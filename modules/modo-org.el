@@ -81,7 +81,7 @@ directory for completion."
         org-log-done 'time
         org-refile-use-cache t)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)"
+        '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))
   (setq org-agenda-files (mapcar #'modo-get-org-file
                                  '("inbox.org" "work.org" "personal.org" "tickler.org")))
