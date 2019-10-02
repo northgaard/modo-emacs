@@ -189,7 +189,71 @@ directory for completion."
           (call-interactively 'org-agenda-goto)))))
   (require 'evil-org-agenda)
   (require 'org-super-agenda)
-  (setq org-agenda-custom-commands '(("c" "Prioritized agenda view"
+  (setq org-agenda-custom-commands '(("p" "Personal agenda view"
+                                      ((agenda "" ((org-agenda-span 'day)
+                                                   (org-super-agenda-groups
+                                                    '((:name "Today"
+                                                             :time-grid t
+                                                             :date today
+                                                             :scheduled today
+                                                             :order 1)
+                                                      (:name "Missed schedule"
+                                                             :header-face error
+                                                             :scheduled past
+                                                             :order 0)
+                                                      (:name "Due today"
+                                                             :deadline today
+                                                             :order 2)
+                                                      (:name "Overdue"
+                                                             :header-face error
+                                                             :deadline past
+                                                             :order 0)
+                                                      (:name "Due soon"
+                                                             :deadline future
+                                                             :order 3)))))
+                                       (alltodo "" ((org-agenda-overriding-header "Tasks")
+                                                    (org-super-agenda-groups
+                                                     '((:discard (:scheduled t
+                                                                  :deadline t
+                                                                  :date t))
+                                                       (:auto-parent t))))))
+                                      ((org-agenda-compact-blocks nil)
+                                       (org-agenda-block-separator "")
+                                       (org-agenda-files (mapcar #'modo-get-org-file
+                                                                 '("personal.org")))))
+                                     ("w" "Work agenda view"
+                                      ((agenda "" ((org-agenda-span 'day)
+                                                   (org-super-agenda-groups
+                                                    '((:name "Today"
+                                                             :time-grid t
+                                                             :date today
+                                                             :scheduled today
+                                                             :order 1)
+                                                      (:name "Missed schedule"
+                                                             :header-face error
+                                                             :scheduled past
+                                                             :order 0)
+                                                      (:name "Due today"
+                                                             :deadline today
+                                                             :order 2)
+                                                      (:name "Overdue"
+                                                             :header-face error
+                                                             :deadline past
+                                                             :order 0)
+                                                      (:name "Due soon"
+                                                             :deadline future
+                                                             :order 3)))))
+                                       (alltodo "" ((org-agenda-overriding-header "Tasks")
+                                                    (org-super-agenda-groups
+                                                     '((:discard (:scheduled t
+                                                                  :deadline t
+                                                                  :date t))
+                                                       (:auto-parent t))))))
+                                      ((org-agenda-compact-blocks nil)
+                                       (org-agenda-block-separator "")
+                                       (org-agenda-files (mapcar #'modo-get-org-file
+                                                                 '("work.org")))))
+                                     ("c" "Prioritized agenda view"
                                       ((agenda "" ((org-agenda-span 'day)
                                                    (org-super-agenda-groups
                                                     '((:name "Today"
