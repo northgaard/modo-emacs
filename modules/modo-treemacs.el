@@ -12,7 +12,10 @@
   :init
   (setq treemacs-persist-file
         (expand-file-name
-         "treemacs-persist" modo-cache-dir)))
+         "treemacs-persist" modo-cache-dir)
+        treemacs-last-error-persist-file
+        (expand-file-name
+         "treemacs-persist-at-last-error" modo-cache-dir)))
 
 (straight-use-package 'treemacs-evil)
 (use-package treemacs-evil
