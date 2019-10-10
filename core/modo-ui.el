@@ -102,37 +102,7 @@
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
-;;; Themes
-;; Sunburn
-(straight-use-package 'sunburn-theme)
-(use-package sunburn-theme
-  :config
-  ;; Customizations for avy and ace-window
-  (defun modo--sunburn-customizations ()
-    (sunburn-with-color-variables
-      (custom-theme-set-faces
-       'sunburn
-       `(avy-lead-face ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
-       `(avy-lead-face-0 ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
-       `(avy-lead-face-1 ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
-       `(avy-lead-face-2 ((t (:background ,sunburn-bg :foreground "red" :inverse-video nil :weight bold))))
-       `(aw-background-face ((t (:background ,sunburn-bg :foreground ,sunburn-fg-1 :inverse-video nil))))
-       `(aw-leading-char-face ((t (:background ,sunburn-bg :foreground "red"))))))))
-
-;; Kaolin
-(straight-use-package '(kaolin-themes :type git
-                                      :host github
-                                      :repo "ogdenwebb/emacs-kaolin-themes"
-                                      :files (:defaults "themes/*.el")
-                                      :fork (:repo "northgaard/emacs-kaolin-themes"
-                                                   :branch "modo")))
-
-;; Nord
-(straight-use-package '(nord-theme :type git
-                                   :host github
-                                   :repo "arcticicestudio/nord-emacs"
-                                   :fork (:repo "northgaard/nord-emacs"
-                                                :branch "modo")))
+;;; Theme
 
 ;; Doom themes
 (straight-use-package 'doom-themes)
@@ -142,25 +112,7 @@
     '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
     '(org-super-agenda-header :foreground (doom-color 'fg) :weight 'ultra-bold)))
 
-(defun modo-load-theme (theme)
-  "Loads the theme THEME and optionally calls a function providing custom
-modifications. This function should be named modo--THEME-customizations and
-take no arguments."
-  (interactive
-   (list
-    (intern (completing-read "Choose theme to load: "
-                             (mapcar 'symbol-name
-                                     (custom-available-themes))))))
-  (let* ((theme-name (symbol-name theme))
-         (theme-customization-fun (intern-soft (format "modo--%s-customizations" theme-name))))
-    (unless (custom-theme-name-valid-p theme)
-      (error "Invalid theme name `%s'" theme))
-    (load-theme theme t)
-    (when (functionp theme-customization-fun)
-      (funcall theme-customization-fun))))
-
-;; TODO: Add hydra for changing themes
-(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'doom-nord)))
+(add-hook 'emacs-startup-hook (lambda () (load-theme 'doom-nord t)))
 
 ;;; Doom modeline
 (straight-use-package 'doom-modeline)
