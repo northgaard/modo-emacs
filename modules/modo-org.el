@@ -296,6 +296,7 @@ directory for completion."
                                        (org-agenda-block-separator ""))))))
 
 (use-package evil-org-agenda
+  :hook (org-agenda-finalize . evil-normalize-keymaps)
   :config
   (evil-org-agenda-set-keys)
   (general-define-key
