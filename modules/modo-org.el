@@ -84,9 +84,9 @@ directory for completion."
         '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))
   ;; TODO: Need a better way to reference theme colors
-  (setq org-todo-keyword-faces '(("NEXT" . 'org-level-8)
-                                 ("IN-PROGRESS" . 'org-agenda-date-today)
-                                 ("WAITING" . 'org-agenda-date-today)))
+  (setq org-todo-keyword-faces '(("NEXT" . 'org-level-1)
+                                 ("IN-PROGRESS" . 'org-level-2)
+                                 ("WAITING" . 'org-level-2)))
   (setq org-agenda-files (mapcar #'modo-get-org-file
                                  '("inbox.org" "work.org" "personal.org" "tickler.org")))
   (setq org-capture-templates `(("t" "Todo [inbox]" entry

@@ -91,7 +91,7 @@
     ("+" default-text-scale-increase "increase")
     ("M-+" text-scale-increase "increase (buffer)")
     ("-" default-text-scale-decrease "decrease")
-    ("M--" text-scale-decrease "decrease (buffer)")
+ ("M--" text-scale-decrease "decrease (buffer)")
     ("q" nil "quit")))
 
 ;;; Line numbers
@@ -134,6 +134,14 @@
                                    :fork (:repo "northgaard/nord-emacs"
                                                 :branch "modo")))
 
+;; Doom themes
+(straight-use-package 'doom-themes)
+(use-package doom-themes
+  :config
+  (doom-themes-set-faces 'user
+    '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
+    '(org-super-agenda-header :foreground (doom-color 'fg) :weight 'ultra-bold)))
+
 (defun modo-load-theme (theme)
   "Loads the theme THEME and optionally calls a function providing custom
 modifications. This function should be named modo--THEME-customizations and
@@ -152,7 +160,7 @@ take no arguments."
       (funcall theme-customization-fun))))
 
 ;; TODO: Add hydra for changing themes
-(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'nord)))
+(add-hook 'emacs-startup-hook (lambda () (modo-load-theme 'doom-nord)))
 
 ;;; Doom modeline
 (straight-use-package 'doom-modeline)
