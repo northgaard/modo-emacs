@@ -112,7 +112,7 @@
     '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
     '(org-super-agenda-header :foreground (doom-color 'fg) :weight 'ultra-bold)))
 
-(add-hook 'emacs-startup-hook (lambda () (load-theme 'doom-nord t)))
+(add-hook 'emacs-startup-hook (lambda () (load-theme 'doom-one t)))
 
 ;;; Doom modeline
 (straight-use-package 'doom-modeline)
