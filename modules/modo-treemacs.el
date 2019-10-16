@@ -15,7 +15,10 @@
          "treemacs-persist" modo-cache-dir)
         treemacs-last-error-persist-file
         (expand-file-name
-         "treemacs-persist-at-last-error" modo-cache-dir)))
+         "treemacs-persist-at-last-error" modo-cache-dir))
+  :config
+  (when (featurep 'doom-themes)
+    (doom-themes-treemacs-config)))
 
 (straight-use-package 'treemacs-evil)
 (use-package treemacs-evil
