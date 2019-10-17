@@ -105,6 +105,17 @@
   :config
   (setq compilation-scroll-output 'first-error))
 
+;;; ansi-color
+(use-package ansi-color
+  :preface
+  (autoload 'ansi-color-apply-on-region "ansi-color")
+  (defun colorize-compilation-buffer ()
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region (point-min) (point-max))))
+  :hook (compilation-filter . colorize-compilation-buffer)
+  :config
+  (add-hook 'comint-preoutput-filter-functions 'ansi-color-filter-apply))
+
 ;;; ediff
 (use-package ediff
   :config
