@@ -34,7 +34,7 @@
  ("gnu-elpa-mirror" . "9da4418ff98528688c1c8b0c53691984fa52006e")
  ("goto-chg" . "1829a13026c597e358f716d2c7793202458120b5")
  ("hydra" . "67098cc9149854a95b589c3763843eabc82c9b2d")
- ("melpa" . "29dc2ef3801a1cd7cf8edd2eae68b03bf00e96a0")
+ ("melpa" . "6c2287c7b4c543e92ccfab120388b2c05174d2db")
  ("nord-emacs" . "4f1f51e2c8491e157223e2740784e64528aea537")
  ("pkg-info.el" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
  ("projectile" . "71a01f409a319d57eb3832e93e8a412fbc9d7a65")
