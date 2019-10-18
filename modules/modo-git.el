@@ -31,6 +31,13 @@ directories installed with straight.el."
   (when smerge-mode
     (smerge-hydra/body)))
 
+(straight-use-package 'transient)
+(use-package transient
+  :config
+  (setq transient-history-file (concat modo-cache-dir "transient/history.el")
+        transient-levels-file (concat modo-cache-dir "transient/levels.el")
+        transient-values-file (concat modo-cache-dir "transient/values.el")))
+
 (straight-use-package 'magit)
 (use-package magit
   :commands (magit-status magit-blame)
