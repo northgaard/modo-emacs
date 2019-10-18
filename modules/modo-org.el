@@ -314,7 +314,19 @@ directory for completion."
 (straight-use-package 'origami)
 
 (use-package org-super-agenda
-  :hook (org-agenda-mode . origami-mode)
+  :preface
+  (defun modo--org-super-agenda-hook ()
+    (origami-mode 1)
+    (setq-local face-remapping-alist
+                '((org-level-1 . org-super-agenda-header)
+                  (org-level-2 . org-super-agenda-header)
+                  (org-level-3 . org-super-agenda-header)
+                  (org-level-4 . org-super-agenda-header)
+                  (org-level-5 . org-super-agenda-header)
+                  (org-level-6 . org-super-agenda-header)
+                  (org-level-7 . org-super-agenda-header)
+                  (org-level-8 . org-super-agenda-header))))
+  :hook (org-agenda-mode . modo--org-super-agenda-hook)
   :config
   (org-super-agenda-mode 1)
   ;; When the header map is active, evil state is ignored

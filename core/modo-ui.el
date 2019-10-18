@@ -106,13 +106,13 @@
 
 ;; Doom themes
 (straight-use-package 'doom-themes)
-(use-package doom-themes
-  :config
+(defun modo--load-theme ()
+  (load-theme 'doom-one t)
   (doom-themes-set-faces 'user
     '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
-    '(org-super-agenda-header :foreground (doom-color 'fg) :weight 'ultra-bold)))
+    '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)))
 
-(add-hook 'emacs-startup-hook (lambda () (load-theme 'doom-one t)))
+(add-hook 'emacs-startup-hook #'modo--load-theme)
 
 ;;; Doom modeline
 (straight-use-package 'doom-modeline)
