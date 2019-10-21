@@ -27,6 +27,8 @@
   "b" '(:ignore t :wk "buffers")
   "bb" 'switch-to-buffer
   "bd" 'kill-this-buffer
+  "bD" '(modo-kill-non-default-buffers
+         :wk "kill-non-default-buffers")
   "bl" 'list-buffers
   "by" 'bury-buffer
   "br" 'revert-buffer

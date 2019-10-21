@@ -131,5 +131,15 @@ the relevant form based on COUNT."
       plural
     singular))
 
+(defun modo-kill-non-default-buffers ()
+  "Kill all buffers except the startup ones."
+  (interactive)
+  ;; I don't currently have a dashboard, but historically I change my mind...
+  (let ((preserved-buffers '("*dashboard*" "*Messages*" "*scratch*")))
+    (mapc (lambda (buffer-name)
+            (unless (member buffer-name preserved-buffers)
+              (kill-buffer buffer-name)))
+          (mapcar #'buffer-name (buffer-list)))))
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
