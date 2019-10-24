@@ -44,6 +44,8 @@
   "wu" 'winner-undo
   "wr" 'winner-redo
   "wp" 'ace-swap-window
+  "wt" '(modo-toggle-window-split
+         :wk "toggle-window-split")
   "n" '(:ignore t :wk "narrow")
   "nd" 'narrow-to-defun
   "nn" 'narrow-to-region
