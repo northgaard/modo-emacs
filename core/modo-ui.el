@@ -14,6 +14,11 @@
 (blink-cursor-mode -1)
 (setq-default indicate-empty-lines t)
 (column-number-mode 1)
+;; Scrolling
+(setq scroll-margin 0
+      scroll-conservatively 10000
+      scroll-preserve-screen-position t
+      auto-window-vscroll nil)
 ;; Window undo/redo
 (winner-mode 1)
 ;; Start maximized
