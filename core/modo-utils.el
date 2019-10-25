@@ -136,10 +136,10 @@ the relevant form based on COUNT."
   (interactive)
   ;; I don't currently have a dashboard, but historically I change my mind...
   (let ((preserved-buffers '("*dashboard*" "*Messages*" "*scratch*")))
-    (mapc (lambda (buffer-name)
-            (unless (member buffer-name preserved-buffers)
-              (kill-buffer buffer-name)))
-          (mapcar #'buffer-name (buffer-list)))))
+    (mapc (lambda (buffer)
+            (unless (member (buffer-name buffer) preserved-buffers)
+              (kill-buffer buffer)))
+          (buffer-list))))
 
 (defun modo-toggle-window-split ()
   "Toggle between horizontal and vertial split, when there are
