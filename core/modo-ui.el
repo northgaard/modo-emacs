@@ -109,6 +109,9 @@
 
 ;;; Theme
 
+(defface error-bold '((t (:inherit error :weight bold)))
+  "Same as standard error face, but always bold.")
+
 ;; Doom themes
 (straight-use-package 'doom-themes)
 (defun modo--load-theme ()

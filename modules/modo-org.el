@@ -10,7 +10,7 @@
 i.e. with Dropbox.")
 
 (defvar modo--agenda-tab-dispatch-fold-faces
-  '(org-agenda-structure org-super-agenda-header error))
+  '(org-agenda-structure org-super-agenda-header error-bold))
 
 (defun modo-get-org-file (file)
   "Returns the full path to org file FILE in `modo-org-root-dir'."
@@ -198,14 +198,14 @@ directory for completion."
                                                              :scheduled today
                                                              :order 1)
                                                       (:name "Missed schedule"
-                                                             :header-face error
+                                                             :header-face error-bold
                                                              :scheduled past
                                                              :order 0)
                                                       (:name "Due today"
                                                              :deadline today
                                                              :order 2)
                                                       (:name "Overdue"
-                                                             :header-face error
+                                                             :header-face error-bold
                                                              :deadline past
                                                              :order 0)
                                                       (:name "Due soon"
@@ -230,14 +230,14 @@ directory for completion."
                                                              :scheduled today
                                                              :order 1)
                                                       (:name "Missed schedule"
-                                                             :header-face error
+                                                             :header-face error-bold
                                                              :scheduled past
                                                              :order 0)
                                                       (:name "Due today"
                                                              :deadline today
                                                              :order 2)
                                                       (:name "Overdue"
-                                                             :header-face error
+                                                             :header-face error-bold
                                                              :deadline past
                                                              :order 0)
                                                       (:name "Due soon"
@@ -262,14 +262,14 @@ directory for completion."
                                                              :scheduled today
                                                              :order 1)
                                                       (:name "Missed schedule"
-                                                             :header-face error
+                                                             :header-face error-bold
                                                              :scheduled past
                                                              :order 0)
                                                       (:name "Due today"
                                                              :deadline today
                                                              :order 2)
                                                       (:name "Overdue"
-                                                             :header-face error
+                                                             :header-face error-bold
                                                              :deadline past
                                                              :order 0)
                                                       (:name "Due soon"
