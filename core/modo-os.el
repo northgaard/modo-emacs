@@ -29,6 +29,7 @@
     ;; Set find to be the one from git bash,
     ;; since on Windows cmd "find" is equivalent to "grep".
     ;; This must be formated in a way that cmd can understand
+    ;; because the path may contain spaces on Windows
     (setq find-program
           (format "\"%s\""
                   (s-replace "/" "\\"
