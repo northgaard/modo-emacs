@@ -168,5 +168,16 @@ two windows."
           (select-window first-win)
           (if this-win-2nd (other-window 1))))))
 
+;; Adapted from:
+;; https://www.emacswiki.org/emacs/BrowseKillRing
+(defun modo-kill-ring-insert (to-insert)
+  (interactive
+   (list (completing-read "Yank: " (cl-delete-duplicates
+                                    kill-ring :test #'equal))))
+            (when (and to-insert (region-active-p))
+              ;; The currently highlighted section is to be replaced by the yank
+              (delete-region (region-beginning) (region-end)))
+            (insert to-insert))
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
