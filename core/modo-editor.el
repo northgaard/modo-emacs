@@ -11,7 +11,8 @@
 (setq vc-follow-symlinks t
       create-lockfiles nil
       sentence-end-double-space nil
-      mouse-yank-at-point t)
+      mouse-yank-at-point t
+      save-interprogram-paste-before-kill t)
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose nil)
 ;; Enable y/n answers
