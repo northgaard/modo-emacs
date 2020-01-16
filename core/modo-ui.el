@@ -75,7 +75,8 @@
 
 ;;; Font
 (when (display-graphic-p)
-  (let ((preferred-font-families '("Hack"
+  (let ((preferred-font-families '("Iosevka Term"
+                                   "Hack"
                                    "Consolas"
                                    "Inconsolata"
                                    "DejaVu Sans Mono"))
