@@ -75,7 +75,7 @@
 
 ;;; Font
 (when (display-graphic-p)
-  (let ((preferred-font-families '("Iosevka Term"
+  (let ((preferred-font-families '("Fira Code"
                                    "Hack"
                                    "Consolas"
                                    "Inconsolata"
