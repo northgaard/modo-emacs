@@ -38,17 +38,16 @@
 (defvar modo-private-init-file (concat modo-emacs-dir "init-private.el")
   "Private equivalent of init.el.")
 
-;;; UTF-8 all the things
+;;; UTF-8
+;; I have sort of given up on figuring out what is the "proper" way to
+;; handle this. This is what Doom Emacs currently has, which I suppose
+;; is good enough for me too.
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
 (prefer-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
-(setq-default buffer-file-coding-system 'utf-8)
-(set-fontset-font "fontset-default" 'unicode
-                  (font-spec :family "DejaVu Sans Mono"))
+(unless IS-WINDOWS
+  (setq selection-coding-system 'utf-8))
 
 ;;; Custom file
 (setq custom-file (expand-file-name "custom.el" modo-emacs-dir))
