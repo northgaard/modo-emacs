@@ -10,7 +10,7 @@
 ;; Since we are using straight.el, git is required to be installed. Thus,
 ;; M-x shell is configured to use git-bash once the user has configured
 ;; its location. DO NOT expect miracles with this, but its something.
-(when (eq system-type 'windows-nt)
+(when IS-WINDOWS
 
   (defcustom modo-git-path nil
     "String specifying the root directory of the git for windows installation.")

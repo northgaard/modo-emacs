@@ -46,7 +46,7 @@
   (general-define-key :states 'insert
                       :keymaps 'csharp-mode-map
                       "." 'omnisharp-add-dot-and-company-complete)
-  (when (and (eq system-type 'windows-nt)
+  (when (and IS-WINDOWS
              (executable-find "MSBuild.exe"))
     (require 'seq)
     (defun modo-compile-csharp ()

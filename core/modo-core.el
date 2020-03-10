@@ -5,6 +5,11 @@
 
 ;;; Code:
 
+(defconst IS-LINUX   (eq system-type 'gnu/linux))
+(defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
+(defconst IS-MAC     (eq system-type 'darwin))
+(defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
+
 ;;; Directory variables
 (defvar modo-emacs-dir (file-truename (expand-file-name user-emacs-directory))
   "The path to the emacs.d directory containing the modo emacs files.")

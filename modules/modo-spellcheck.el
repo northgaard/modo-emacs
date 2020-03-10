@@ -6,7 +6,7 @@
 ;;; Code:
 
 (defcustom modo-spellchecker-program
-  (if (eq system-type 'windows-nt)
+  (if IS-WINDOWS
       "hunspell"
     "aspell")
   "Program used for spellchecking.")
