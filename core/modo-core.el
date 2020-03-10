@@ -54,12 +54,12 @@
 (load custom-file t t)
 
 ;; Be quiet at startup
-(advice-add #'display-startup-echo-area-message :override #'ignore)
 (setq inhibit-splash-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message user-login-name
       initial-major-mode 'fundamental-mode
       initial-scratch-message nil)
+(fset #'display-startup-echo-area-message #'ignore)
 
 ;;; Initial high threshold for garbage collection
 (let ((normal-gc-cons-threshold (* 20 1024 1024)) ;; ~20 mb
