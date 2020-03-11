@@ -1,7 +1,7 @@
 ;;; modo-utils.el --- utility functions -*- lexical-binding: t -*-
 ;;; Commentary:
 
-;; Useful interactive functions.
+;; Useful interactive functions and helper functions/macros.
 
 ;;; Code:
 
@@ -178,6 +178,11 @@ two windows."
               ;; The currently highlighted section is to be replaced by the yank
               (delete-region (region-beginning) (region-end)))
             (insert to-insert))
+
+(defmacro modo-quieten (&rest body)
+  "Runs the body with calls to `message' suppressed."
+  `(cl-letf (((symbol-function 'message) #'ignore))
+     ,@body))
 
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
