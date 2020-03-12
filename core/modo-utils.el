@@ -17,6 +17,7 @@
       (run-hooks 'find-file-hook))))
 
 (defun modo--extract-name (string)
+  (declare (pure t) (side-effect-free t))
   (let* ((str (file-name-sans-extension string))
          (split (split-string str "-")))
     (string-join (cdr split) "-")))
@@ -127,6 +128,7 @@ if it does, nil otherwise."
 (defun modo-pluralize (count singular plural)
   "Given the SINGULAR and PLURAL forms of a word, returns
 the relevant form based on COUNT."
+  (declare (pure t) (side-effect-free t))
   (if (> count 1)
       plural
     singular))
