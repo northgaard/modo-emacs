@@ -26,8 +26,8 @@
 2. Visible treemacs window
 3. Otherwise, calls `winum-select-window-0-or-10'"
     (interactive)
-    (pcase (if-let ((minibuff-window (active-minibuffer-window)))
-               minibuff-window
+    (pcase (if-let ((minibuff (active-minibuffer-window)))
+               minibuff
              (treemacs-current-visibility))
       ((and (pred windowp) minibuff)
        (select-window minibuff))
