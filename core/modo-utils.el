@@ -125,13 +125,21 @@ if it does, nil otherwise."
         (message (format "%s" faces))
       faces)))
 
-(defun modo-pluralize (count singular plural)
-  "Given the SINGULAR and PLURAL forms of a word, returns
-the relevant form based on COUNT."
+(defun modo-pluralize (count singular &optional plural)
+  "Returns the singular or plural form of a word, depending on
+  the value of COUNT. If only the form SINGULAR is provided, it
+  is assumed that the word has a regular plural. Otherwise, the
+  input PLURAL can be used to provide an irregular plural."
   (declare (pure t) (side-effect-free t))
-  (if (> count 1)
-      plural
-    singular))
+  (cond
+   ((eq count 1)
+    singular)
+   ((> count 1)
+    (if plural
+        plural
+      (concat singular "s")))
+   (t
+    (error "The input count must be a natural number"))))
 
 (defun modo-kill-non-default-buffers ()
   "Kill all buffers except the startup ones."

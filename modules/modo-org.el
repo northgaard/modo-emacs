@@ -183,7 +183,7 @@ directory for completion."
                      (if (not (memq 'org-agenda-structure faces))
                          (let ((num-items (modo--org-agenda-count-group-items)))
                            (format "... (%s %s)"
-                                   num-items (modo-pluralize num-items "item" "items")))
+                                   num-items (modo-pluralize num-items "item")))
                        "...")))
               (call-interactively 'origami-toggle-node)))
           (call-interactively 'org-agenda-goto)))))
