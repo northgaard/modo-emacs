@@ -70,6 +70,7 @@
 (use-package counsel
   :commands (counsel-apropos
              counsel-find-file
+             counsel-file-jump
              counsel-recentf
              counsel-bookmark
              counsel-M-x
@@ -77,6 +78,9 @@
              counsel-describe-variable
              counsel-company)
   :general
+  (modo-define-leader-key
+    :keymaps 'ivy-mode-map
+    "fj" 'counsel-file-jump)
   (:keymaps 'ivy-mode-map
             [remap apropos] 'counsel-apropos
             [remap find-file] 'counsel-find-file
