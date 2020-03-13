@@ -64,7 +64,6 @@
   "9" 'winum-select-window-9
   "0" 'winum-select-window-0-or-10
   "z" '(hydra-font-size/body :wk "font-size")
-  "Z" '(modo-load-theme :wk "load-theme")
   "TAB" '(modo-alternate-buffer
           :wk "alternate-buffer")
   "SPC" '(hydra-quick-scroll/body :wk "quick-scroll"))
