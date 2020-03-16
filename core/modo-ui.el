@@ -116,7 +116,7 @@
 ;; Doom themes
 (straight-use-package 'doom-themes)
 (defun modo--load-theme ()
-  (load-theme 'doom-one t)
+  (load-theme 'doom-nord t)
   (doom-themes-set-faces 'user
     '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
     '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)))
