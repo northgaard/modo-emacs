@@ -1,0 +1,10 @@
+(("ace-window" . "2e3b9562b52e3ce2def3adf32f5ec8fe77f573d6")
+ ("dash.el" . "6514359b8606a6a9a94068ccd601fcd6379d6584")
+ ("evil" . "506f758aa431128b40c987ff634b56c49f69fdb8")
+ ("f.el" . "8191672377816a1975414cc1f116fd3b94b30bd0")
+ ("ht.el" . "fff8c43f0e03d5b98deb9f988522b839ce2ca253")
+ ("hydra" . "67098cc9149854a95b589c3763843eabc82c9b2d")
+ ("pfuture" . "fbecd1562b34fcd15563b7cc00d98e5af0d7e43d")
+ ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e")
+ ("treemacs" . "81b69d9ee26326178cef08d5aef2811df4f659ed"))
+:alpha

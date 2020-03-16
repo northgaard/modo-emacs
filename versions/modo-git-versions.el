@@ -6,4 +6,4 @@
  ("magit" . "cd7adbd17a645964381c0f379af869ec2ad94fd6")
  ("transient" . "ad7f2553088faf633d32b51894de796e01a1cacf")
  ("with-editor" . "19ebf53f44532b5c31aaa5b6870fbc567e6889a4"))
-:neptune
+:alpha

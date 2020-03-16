@@ -1,5 +1,4 @@
 (("auto-complete" . "2e83566ddfa758c69afe50b8a1c62a66f47471e3")
- ("cl-lib" . "deb92588d9d83d46c4698936ea31c5f58d244f04")
  ("csharp-mode" . "239527c1f27cf5246505f1faf23269487fdbfdd2")
  ("dash.el" . "6514359b8606a6a9a94068ccd601fcd6379d6584")
  ("f.el" . "8191672377816a1975414cc1f116fd3b94b30bd0")
@@ -7,4 +6,4 @@
  ("omnisharp-emacs" . "1658ddc6e418d1046467761c5e38e3577821c7d8")
  ("popup-el" . "80829dd46381754639fb764da11c67235fe63282")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e"))
-:neptune
+:alpha

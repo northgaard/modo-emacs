@@ -15,10 +15,15 @@
                          load-path)))
 
 ;;; straight.el
-;; Bootstrap snippet
+;; Initial setup
 (setq straight-repository-branch "develop"
-      straight-fix-org nil)
+      straight-fix-org nil
+      straight-recipes-gnu-elpa-use-mirror t
+      straight-recipes-emacsmirror-use-mirror t)
+(setq straight-profiles '((modo-core . "../../versions/modo-core-versions.el")))
+(setq straight-current-profile 'modo-core)
 
+;; Bootstrap snippet
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -32,27 +37,16 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; Use the elpa mirror
-(setq straight-recipes-gnu-elpa-use-mirror t)
-
-;;; Set up core profiles
-(setq straight-profiles
-      '((modo-core . "../../versions/modo-core-versions.el")
-        (nil . "../../versions/default.el")))
-(setq straight-current-profile 'modo-core)
-(add-hook 'after-init-hook
-          (lambda () (setq straight-current-profile nil)))
+;; Early loading of recipe packages
+(straight-use-package 'melpa)
+(straight-use-package 'gnu-elpa-mirror)
+(straight-use-package 'emacsmirror-mirror)
 
 ;; Prefer newer files
 (setq load-prefer-newer t)
 ;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
 (add-to-list 'load-path modo-modules-dir)
-
-;; Early loading of meta-packages
-(straight-use-package 'melpa)
-(straight-use-package 'epl)
-(straight-use-package 'pkg-info)
 
 (defcustom modo-additional-modules nil
   "Additional modules that will be loaded by `modo-module'")
