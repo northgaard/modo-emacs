@@ -73,8 +73,14 @@
                              gc-cons-percentage 0.1
                              file-name-handler-alist base-file-name-handler-alist))))
 
+;; Add core dir and modules dir to load path
+(add-to-list 'load-path modo-core-dir)
+(add-to-list 'load-path modo-modules-dir)
+
+;; Load operating system specific configuration as early as possible
+(require 'modo-os)
 ;;; Load package system
-(require 'modo-package (concat modo-core-dir "modo-package"))
+(require 'modo-package)
 
 ;;; Just get it over with
 (straight-use-package 'dash)
@@ -139,7 +145,6 @@ bound both under <major-leader>, as well as \"<leader> m\"."
          ,@expansion)))
 
   ;; Rest of the core features
-  (require 'modo-os)
   (require 'modo-utils)
   (require 'modo-evil)
   (require 'modo-editor)

@@ -30,6 +30,7 @@
     ;; the front of PATH. Note that this may or may not cause issues
     ;; if the path contains spaces.
     (setq find-program (executable-find "find"))
+    (setq straight-find-executable find-program)
     (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)))
 
 (provide 'modo-os)

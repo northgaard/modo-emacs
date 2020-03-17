@@ -19,7 +19,8 @@
 (setq straight-repository-branch "develop"
       straight-fix-org nil
       straight-recipes-gnu-elpa-use-mirror t
-      straight-recipes-emacsmirror-use-mirror t)
+      straight-recipes-emacsmirror-use-mirror t
+      straight-check-for-modifications '(find-at-startup find-when-checking))
 (setq straight-profiles '((modo-core . "../../versions/modo-core-versions.el")))
 (setq straight-current-profile 'modo-core)
 
@@ -44,9 +45,6 @@
 
 ;; Prefer newer files
 (setq load-prefer-newer t)
-;; Add core dir and modules dir to load path
-(add-to-list 'load-path modo-core-dir)
-(add-to-list 'load-path modo-modules-dir)
 
 (defcustom modo-additional-modules nil
   "Additional modules that will be loaded by `modo-module'")
