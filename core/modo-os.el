@@ -26,14 +26,10 @@
                  (concat (file-name-as-directory modo-git-path) "bin/"))
     (add-to-list 'exec-path
                  (concat (file-name-as-directory modo-git-path) "usr/bin/"))
-    ;; Set find to be the one from git bash,
-    ;; since on Windows cmd "find" is equivalent to "grep".
-    ;; This must be formated in a way that cmd can understand
-    ;; because the path may contain spaces on Windows
-    (setq find-program
-          (format "\"%s\""
-                  (s-replace "/" "\\"
-                             (expand-file-name "usr/bin/find.exe" modo-git-path))))
+    ;; Set find to be the one from git bash, which should now be at
+    ;; the front of PATH. Note that this may or may not cause issues
+    ;; if the path contains spaces.
+    (setq find-program (executable-find "find"))
     (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)))
 
 (provide 'modo-os)
