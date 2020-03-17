@@ -17,16 +17,6 @@
 (defvar modo--git-abbrev-length nil
   "The amount of characters git minimally uses for abbreviated hashes.")
 
-(defun modo-magit-status-package (package-dir)
-  "Open the magit status buffer for the directory PACKAGE-DIR.
-When called interactively, selects PACKAGE-DIR from repository
-directories installed with straight.el."
-  (interactive
-   (list (completing-read "Select repo dir: "
-                          (modo--get-subdirs (straight--repos-dir)))))
-  (require 'magit)
-  (magit-status (straight--repos-dir package-dir)))
-
 (defun modo--activate-smerge-hydra ()
   (when smerge-mode
     (smerge-hydra/body)))

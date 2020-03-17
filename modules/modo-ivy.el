@@ -100,7 +100,17 @@
             [remap projectile-switch-to-buffer] 'projectile-switch-to-buffer
             [remap projectile-find-dir] 'counsel-projectile-find-dir
             [remap projectile-switch-project] 'counsel-projectile-switch-project)
+  (:keymaps 'projectile-command-map
+            "y" '(modo-switch-straight-project :wk "switch-straight-project"))
   :config
+  (defun modo-switch-straight-project ()
+    "Like `counsel-projectile-switch-project', but only lists
+    projects cloned using straight.el"
+    (interactive)
+    (let ((projectile-known-projects (f-directories (straight--repos-dir)))
+          (ivy--display-transformers-list '(counsel-projectile-switch-project
+                                            abbreviate-file-name)))
+      (call-interactively #'counsel-projectile-switch-project)))
   ;; Default to opening root project folder with dired
   (counsel-projectile-modify-action 'counsel-projectile-switch-project-action
                                     '((default 4))))
