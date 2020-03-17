@@ -25,7 +25,8 @@
         ivy-wrap t
         smex-completion-method 'ivy)
   (setq ivy-count-format "(%d/%d) "
-        projectile-completion-system 'ivy)
+        projectile-completion-system 'ivy
+        ivy-read-action-function #'ivy-hydra-read-action)
   (setq ivy-switch-buffer-map (make-sparse-keymap))
   ;; The kill ring doesn't require sorting
   (push '(modo-kill-ring-insert) ivy-sort-functions-alist)
