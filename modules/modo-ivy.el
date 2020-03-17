@@ -23,9 +23,7 @@
   :config
   (setq ivy-use-virtual-buffers t
         ivy-wrap t
-        smex-completion-method 'ivy
-        ;; Don't use ^ as initial input
-        ivy-initial-inputs-alist nil)
+        smex-completion-method 'ivy)
   (setq ivy-count-format "(%d/%d) "
         projectile-completion-system 'ivy)
   (setq ivy-switch-buffer-map (make-sparse-keymap))
