@@ -14,8 +14,13 @@
 (straight-use-package 'gitattributes-mode)
 (use-package gitattributes-mode)
 
-(defvar modo--git-abbrev-length nil
-  "The amount of characters git minimally uses for abbreviated hashes.")
+(modo-deflazy modo--git-abbrev-length
+              (let ((abbrev (shell-command-to-string
+                             "git config core.abbrev")))
+                (if (string-empty-p abbrev)
+                    "7" ;; Default value
+                  abbrev))
+              "The amount of characters git minimally uses for abbreviated hashes.")
 
 (defun modo--activate-smerge-hydra ()
   (when smerge-mode
@@ -43,16 +48,11 @@
     "q" 'with-editor-cancel)
   :config
   ;; Lazy initialization
-  (unless modo--git-abbrev-length
-    (setq modo--git-abbrev-length (let ((abbrev (shell-command-to-string
-                                                 "git config core.abbrev")))
-                                    (if (string-empty-p abbrev)
-                                        "7" ;; Default value
-                                      abbrev))))
   (defun avy-magit-log-goto-commit ()
     "Avy jump to an arbitrary commit in the magit-log view."
     (interactive)
-    (avy-jump (format "^[a-zA-Z0-9]\\{%s,\\} [*|] " modo--git-abbrev-length)))
+    (avy-jump (format "^[a-zA-Z0-9]\\{%s,\\} [*|] "
+                      (modo--git-abbrev-length-value))))
   (when (string= "SPC" modo-leader)
     (general-define-key :keymaps 'magit-mode-map
                         modo-leader nil))
