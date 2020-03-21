@@ -4,7 +4,6 @@
  ("evil-magit" . "0b79aa33a478770865716dc0e09f95d91ec042a2")
  ("git-modes" . "55468314a5f6b77d2c96be62c7005ac94545e217")
  ("magit" . "e293416cee73dc47a6dc7f0bc2f4624d69625634")
- ("melpa" . "203e7d21e2387866107740ead4ec28787d82ebfb")
  ("transient" . "a269614c69ad8b2703e6e5093d0017d6afad6cca")
  ("with-editor" . "4fe66d4d55c8eacebda53a13cc38e01d32bdaaa2"))
 :alpha

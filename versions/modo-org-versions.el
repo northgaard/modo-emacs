@@ -2,7 +2,6 @@
  ("evil" . "296932406a0b55474fe4b6cb8db8b7d5e05633aa")
  ("evil-org-mode" . "9d4be14118bf27094a30dbff349b815f098aacbf")
  ("ht.el" . "fff8c43f0e03d5b98deb9f988522b839ce2ca253")
- ("melpa" . "203e7d21e2387866107740ead4ec28787d82ebfb")
  ("org" . "cff97c361af361f00f6123d35c7914cf12857155")
  ("org-bullets" . "c19b13be00df8d8dc596e4f1aef4a094b08ac801")
  ("org-super-agenda" . "0a8ea523380e5a6b0b2b97d053d8c396b33dfc93")

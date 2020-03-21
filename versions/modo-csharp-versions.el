@@ -3,7 +3,6 @@
  ("dash.el" . "721436b04da4e2795387cb48a98ac6de37ece0fd")
  ("f.el" . "1814209e2ff43cf2e6d38c4cd476218915f550fb")
  ("flycheck" . "1acb24a862a74b83c12061b671e9e127cbce4c43")
- ("melpa" . "203e7d21e2387866107740ead4ec28787d82ebfb")
  ("omnisharp-emacs" . "e658a18a762438c3e1737612737b05d02a21ca2a")
  ("popup-el" . "80829dd46381754639fb764da11c67235fe63282")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e"))

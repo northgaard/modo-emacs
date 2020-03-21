@@ -4,7 +4,6 @@
  ("f.el" . "1814209e2ff43cf2e6d38c4cd476218915f550fb")
  ("ht.el" . "fff8c43f0e03d5b98deb9f988522b839ce2ca253")
  ("hydra" . "16fa8d109ec5799931a793b2e866ea9d593bee84")
- ("melpa" . "203e7d21e2387866107740ead4ec28787d82ebfb")
  ("pfuture" . "fbecd1562b34fcd15563b7cc00d98e5af0d7e43d")
  ("s.el" . "03410e6a7a2b11e47e1fea3b7d9899c7df26435e")
  ("treemacs" . "81b69d9ee26326178cef08d5aef2811df4f659ed"))
