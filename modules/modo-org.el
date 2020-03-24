@@ -9,6 +9,10 @@
   "Directory for org files, typically stored in some shared folder,
 i.e. with Dropbox.")
 
+(defun modo-get-org-file (file)
+  "Returns the full path to org file FILE in `modo-org-root-dir'."
+  (expand-file-name file modo-org-root-dir))
+
 (modo-deflazy modo--org-files-at-root
   (-filter (lambda (file) (f-ext-p file "org"))
            (f-entries modo-org-root-dir)))
