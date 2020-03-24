@@ -31,14 +31,10 @@ directory for completion."
    (find-file filename)
    (run-hooks 'find-file-hook))
 
-;; This recipe ensures that org-plus-contrib satisfies any package
+;; This ensures that org-plus-contrib satisfies any package
 ;; that may depend on org. See straight.el issue #352
-(straight-use-package
- '(org-plus-contrib
-   :repo "https://code.orgmode.org/bzg/org-mode.git"
-   :local-repo "org"
-   :files (:defaults "contrib/lisp/*.el")
-   :includes (org)))
+(straight-use-package 'org-plus-contrib)
+(straight-use-package '(org :local-repo nil))
 
 (use-package org
   :hook (org-mode . modo-org-mode-setup)
