@@ -35,7 +35,6 @@
 
 (straight-use-package 'magit)
 (use-package magit
-  :commands (magit-status magit-blame)
   ;; Start in insert mode for commit messages
   :hook ((git-commit-setup . evil-normalize-keymaps)
          (git-commit-setup . evil-insert-state)
@@ -46,6 +45,13 @@
   (modo-define-major-leader-key :keymaps 'with-editor-mode-map
     "c" 'with-editor-finish
     "q" 'with-editor-cancel)
+  (modo-define-leader-key
+    :keymaps 'override
+    "v" '(:ignore t :wk "version control")
+    "vb" 'magit-blame
+    "vf" 'magit-find-file
+    "vd" 'magit-dispatch
+    "vD" 'magit-file-dispatch)
   :config
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
