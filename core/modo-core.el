@@ -91,20 +91,26 @@
 (add-to-list 'load-path modo-core-dir)
 (add-to-list 'load-path modo-modules-dir)
 
+;;; Just get it over with (built in)
+(require 'cl-lib)
+(require 'subr-x)
+
 ;; Load operating system specific configuration as early as possible
 (require 'modo-os)
 ;;; Load package system
 (require 'modo-package)
 
-;;; Just get it over with
+;;; Just get it over with (external)
 (straight-use-package 'dash)
 (straight-use-package 's)
 (straight-use-package 'f)
 
-(require 'cl-lib)
 (require 'dash)
 (require 's)
 (require 'f)
+
+;;; Load shared library functions
+(require 'modo-lib)
 
 ;;; Load rest of core
 (unless noninteractive

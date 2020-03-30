@@ -1,7 +1,7 @@
 ;;; modo-utils.el --- utility functions -*- lexical-binding: t -*-
 ;;; Commentary:
 
-;; Useful interactive functions and helper functions/macros.
+;; Useful interactive functions.
 
 ;;; Code:
 
@@ -15,19 +15,6 @@
       (find-file dotfile)
       ;; Needed to make saveplace work with this function
       (run-hooks 'find-file-hook))))
-
-(defun modo--extract-name (string)
-  (declare (pure t) (side-effect-free t))
-  (let* ((str (file-name-sans-extension string))
-         (split (split-string str "-")))
-    (string-join (cdr split) "-")))
-
-(defun modo--get-features (dir)
-  (let ((features nil)
-        (files (directory-files dir nil "modo")))
-    (dolist (file files)
-      (push (modo--extract-name file) features))
-    (nreverse features)))
 
 (defun modo-find-core-file (name)
   "Opens the core file modo-NAME.el in modo-core-dir."
@@ -103,14 +90,6 @@
       (switch-to-buffer (car (evil-alternate-buffer)))
     (switch-to-buffer (other-buffer (current-buffer) t))))
 
-(defun modo-font-family-exists-p (family-name)
-  "Checks if the font family FAMILY-NAME exists. Returns the font-entity
-if it does, nil otherwise."
-  (find-font (font-spec :family family-name)))
-
-(defun modo--get-subdirs (path)
-  (mapcar #'file-name-nondirectory (f-directories path)))
-
 (defun modo-get-faces (pos)
   ;; TODO: Add documentation
   ""
@@ -124,22 +103,6 @@ if it does, nil otherwise."
     (if (called-interactively-p 'interactive)
         (message (format "%s" faces))
       faces)))
-
-(defun modo-pluralize (count singular &optional plural)
-  "Returns the singular or plural form of a word, depending on
-  the value of COUNT. If only the form SINGULAR is provided, it
-  is assumed that the word has a regular plural. Otherwise, the
-  input PLURAL can be used to provide an irregular plural."
-  (declare (pure t) (side-effect-free t))
-  (cond
-   ((eq count 1)
-    singular)
-   ((> count 1)
-    (if plural
-        plural
-      (concat singular "s")))
-   (t
-    (error "The input count must be a natural number"))))
 
 (defun modo-kill-non-default-buffers ()
   "Kill all buffers except the startup ones."
@@ -189,34 +152,6 @@ two windows."
               (delete-region (region-beginning) (region-end)))
             (insert to-insert))
 
-(defmacro modo-quieten (&rest body)
-  "Runs the body with calls to `message' suppressed."
-  `(cl-letf (((symbol-function 'message) #'ignore))
-     ,@body))
-
-(defun modo--map-symbol (mapping symbol)
-  (intern (funcall mapping (symbol-name symbol))))
-
-;; TODO: Add docstring and proper docstring for both backing value and
-;; initializer function
-(defmacro modo-deflazy (name evaluator &optional docstring)
-  (declare (doc-string 3))
-  (let ((initializer (cond
-                      ((functionp evaluator)
-                       `(funcall ,evaluator))
-                      ((listp evaluator)
-                       evaluator)
-                      (t
-                       (error "Malformed evaluator"))))
-        (initializer-name (modo--map-symbol (lambda (str)
-                                              (concat str "-value"))
-                                              name)))
-    `(progn
-       (defvar ,name nil ,docstring)
-       (defun ,initializer-name ()
-           (unless ,name
-             (setq ,name ,initializer))
-         ,name))))
 
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
