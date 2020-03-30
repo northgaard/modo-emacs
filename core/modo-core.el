@@ -49,6 +49,20 @@
 (unless IS-WINDOWS
   (setq selection-coding-system 'utf-8))
 
+;;; Unified setting of variables
+(defmacro modo-set-1 (variable value)
+  `(funcall (or (get ',variable 'custom-set)
+                'set-default)
+            ',variable ,value))
+(defmacro modo-set (&rest binds)
+  (pcase binds
+    (`(,var ,val)
+     `(modo-set-1 ,var ,val))
+    (`(,var ,val . ,rest)
+     `(progn
+        (modo-set-1 ,var ,val)
+        (modo-set ,@rest)))))
+
 ;;; Custom file
 (setq custom-file (expand-file-name "custom.el" modo-emacs-dir))
 (load custom-file t t)
