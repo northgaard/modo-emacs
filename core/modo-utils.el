@@ -152,6 +152,24 @@ two windows."
               (delete-region (region-beginning) (region-end)))
             (insert to-insert))
 
+(defun modo-byte-compile-core ()
+  "Byte compiles the modo core, i.e. elisp files found in
+`modo-core-dir'."
+  (interactive)
+  (byte-recompile-directory modo-core-dir 0 t))
+
+(defun modo-byte-compile-modules ()
+  "Byte compiles the modo modules, i.e. elisp files found in
+`modo-modules-dir'."
+  (interactive)
+  (byte-recompile-directory modo-modules-dir 0 t))
+
+(defun modo-byte-compile-all ()
+  "Byte compiles all of modo emacs."
+  (interactive)
+  (modo-byte-compile-core)
+  (modo-byte-compile-modules)
+  (byte-compile-file user-init-file))
 
 (provide 'modo-utils)
 ;;; modo-utils.el ends here

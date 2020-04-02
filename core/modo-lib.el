@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(defun modo--is-elisp-file-p (file)
+  (string-equal (file-name-extension file) "el"))
+
 (defun modo--extract-name (string)
   (declare (pure t) (side-effect-free t))
   (let* ((str (file-name-sans-extension string))
@@ -15,7 +18,8 @@
   (let ((features nil)
         (files (directory-files dir nil "modo")))
     (dolist (file files)
-      (push (modo--extract-name file) features))
+      (when (modo--is-elisp-file-p file)
+        (push (modo--extract-name file) features)))
     (nreverse features)))
 
 (defun modo-font-family-exists-p (family-name)
