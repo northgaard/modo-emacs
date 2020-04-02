@@ -7,7 +7,9 @@
 
 (defcustom modo-org-root-dir "~/org"
   "Directory for org files, typically stored in some shared folder,
-i.e. with Dropbox.")
+i.e. with Dropbox."
+  :type 'directory
+  :group 'modo-emacs)
 
 (defun modo-get-org-file (file)
   "Returns the full path to org file FILE in `modo-org-root-dir'."
