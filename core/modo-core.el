@@ -10,6 +10,11 @@
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 
+(defgroup modo-emacs nil
+  "A modular and modal emacs configuration."
+  :group 'applications
+  :prefix "modo-")
+
 ;;; Directory variables
 (defvar modo-emacs-dir (file-truename (expand-file-name user-emacs-directory))
   "The path to the emacs.d directory containing the modo emacs files.")

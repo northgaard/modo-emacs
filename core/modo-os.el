@@ -13,7 +13,9 @@
 (when IS-WINDOWS
 
   (defcustom modo-git-path nil
-    "String specifying the root directory of the git for windows installation.")
+    "String specifying the root directory of the git for windows installation."
+    :type 'directory
+    :group 'modo-emacs)
 
   ;; TODO: Validate path
   (when (stringp modo-git-path)

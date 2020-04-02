@@ -112,7 +112,8 @@
 ;;; Theme
 
 (defface error-bold '((t (:inherit error :weight bold)))
-  "Same as standard error face, but always bold.")
+  "Same as standard error face, but always bold."
+  :group 'faces)
 
 ;; Doom themes
 (straight-use-package 'doom-themes)
@@ -127,7 +128,7 @@
 ;;; Doom modeline
 (straight-use-package 'doom-modeline)
 (use-package doom-modeline
-  :hook (after-init . doom-modeline-init)
+  :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-buffer-file-name-style 'relative-to-project))
 

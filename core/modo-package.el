@@ -46,7 +46,9 @@
 (setq load-prefer-newer t)
 
 (defcustom modo-additional-modules nil
-  "Additional modules that will be loaded by `modo-module'")
+  "Additional modules that will be loaded by `modo-module'"
+  :type '(list symbol)
+  :group 'modo-emacs)
 
 ;; Macro for requiring modules
 (defmacro modo-module (&rest modules)
@@ -73,18 +75,6 @@ For example, the module name ivy translates to a call to (require 'modo-ivy)."
              straight-profiles)
        (setq straight-profiles (nreverse straight-profiles))
        (setq straight-current-profile 'modo-private))))
-
-;; Clone from github
-(defun modo-github-clone (username repo)
-  "Clones the repository USERNAME/REPO from github using HTTPS."
-  (let ((target (concat modo-repo-dir repo))
-        (repo-url (format "https://github.com/%s/%s.git" username repo)))
-    (make-directory target)
-    (message "Cloning %s into %s..." repo target)
-    (when (not (= 0 (shell-command (format "git clone %s %s" repo-url target)
-                                   "*git clone output*")))
-      (error "Failed to clone %s" repo))
-    (message "Cloning %s into %s... done." repo target)))
 
 ;;; use-package
 (straight-use-package 'diminish)
