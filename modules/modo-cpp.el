@@ -5,11 +5,7 @@
 
 ;;; Code:
 
-;; Clone from emacsmirror, since the default is to clone the entire
-;; cmake repository (seems a bit excessive).
-(straight-use-package '(cmake-mode :type git
-                                   :host github
-                                   :repo "emacsmirror/cmake-mode"))
+(straight-use-package 'cmake-mode)
 (use-package cmake-mode)
 
 (straight-use-package 'clang-format)
