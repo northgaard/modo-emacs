@@ -145,8 +145,9 @@ two windows."
 ;; https://www.emacswiki.org/emacs/BrowseKillRing
 (defun modo-kill-ring-insert (to-insert)
   (interactive
-   (list (completing-read "Yank: " (cl-delete-duplicates
-                                    kill-ring :test #'equal))))
+   (let ((completion-list (cl-delete-duplicates kill-ring :test #'equal)))
+     (list (completing-read "Yank: " completion-list nil nil nil nil
+                            (cadr completion-list)))))
             (when (and to-insert (region-active-p))
               ;; The currently highlighted section is to be replaced by the yank
               (delete-region (region-beginning) (region-end)))
