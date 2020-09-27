@@ -17,6 +17,9 @@
     :type 'directory
     :group 'modo-emacs)
 
+  (setq w32-pipe-buffer-size 65536 ; 64 KB
+        w32-pipe-read-delay 0)
+
   ;; TODO: Validate path
   (when (stringp modo-git-path)
     (setq explicit-shell-file-name
