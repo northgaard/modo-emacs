@@ -30,6 +30,8 @@
   :init
   (add-to-list 'projectile-other-file-alist '("xaml" "xaml.cs"))
   (add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml"))
+  (when modo-ligatures-active
+    (ligature-set-ligatures 'csharp-mode '(".?" "??")))
   :config
   (require 'omnisharp)
   (general-define-key :states 'normal
