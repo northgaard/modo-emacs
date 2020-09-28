@@ -70,6 +70,9 @@
   :commands (ace-window ace-swap-window))
 
 ;;; Font
+(straight-use-package '(ligature :type git
+                                 :host github
+                                 :repo "mickeynp/ligature.el"))
 (when (display-graphic-p)
   (let ((preferred-font-families '("Fira Code"
                                    "Hack"
@@ -83,7 +86,17 @@
     (setq existing-fonts (nreverse existing-fonts))
     (add-to-list 'face-font-family-alternatives existing-fonts)
     (set-face-attribute 'default nil :family (car existing-fonts) :weight 'normal
-                        :width 'normal :height 120)))
+                        :width 'normal :height 120)
+    (when (and (string-equal (car existing-fonts) "Fira Code")
+               (fboundp 'cairo-version-string))
+      (ligature-set-ligatures 't '("www"))
+      (ligature-set-ligatures 'prog-mode '("++" "--" "/=" "||" "||="
+                                           "->" "=>" "::" "__"
+                                           "==" "===" "!=" "=/=" "!=="
+                                           "<=" ">=" "<=>"
+                                           "/*" "*/" "//" "///"
+                                           "<<" "<<<" "<<=" ">>" ">>>" ">>=" "|=" "^="))
+      (global-ligature-mode 1))))
 
 ;;; Font scaling
 (straight-use-package 'default-text-scale)
