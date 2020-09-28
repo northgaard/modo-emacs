@@ -80,17 +80,12 @@
       initial-scratch-message nil)
 (fset #'display-startup-echo-area-message #'ignore)
 
-;;; Initial high threshold for garbage collection
-(let ((normal-gc-cons-threshold (* 20 1024 1024)) ;; ~20 mb
-      (init-gc-cons-threshold (* 256 1024 1024)) ;; ~256 mb
-      (base-file-name-handler-alist file-name-handler-alist))
-  (setq gc-cons-threshold init-gc-cons-threshold
-        gc-cons-percentage 0.6
-        file-name-handler-alist nil)
+;;; Set empty file-name-handler-alist to slightly boost startup time
+(let ((base-file-name-handler-alist file-name-handler-alist))
+  (setq file-name-handler-alist nil)
   (add-hook 'emacs-startup-hook
-            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold
-                             gc-cons-percentage 0.1
-                             file-name-handler-alist base-file-name-handler-alist))))
+            (lambda ()
+              (setq file-name-handler-alist base-file-name-handler-alist))))
 
 ;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
@@ -104,6 +99,13 @@
 (require 'modo-os)
 ;;; Load package system
 (require 'modo-package)
+
+(straight-use-package 'gcmh)
+(use-package gcmh
+  :diminish gcmh-mode
+  :init
+  (add-hook 'emacs-startup-hook
+            (lambda () (gcmh-mode 1))))
 
 ;;; Just get it over with (external)
 (straight-use-package 'dash)

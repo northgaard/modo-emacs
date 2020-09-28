@@ -6,10 +6,6 @@
 ;;; Code:
 
 ;;; Base settings
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(when (boundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
 (show-paren-mode 1)
 (blink-cursor-mode -1)
 (setq-default indicate-empty-lines t)

@@ -1,7 +1,7 @@
 ;;; init.el -*- lexical-binding: t -*-
 
 ;;; Check version
-(defconst modo-minimum-emacs-version "26.1"
+(defconst modo-minimum-emacs-version "27.1"
   "The minimum version of emacs required by modo emacs.")
 
 (when (version< emacs-version modo-minimum-emacs-version)
