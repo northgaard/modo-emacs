@@ -78,7 +78,8 @@
 
 (use-package nxml-mode
   :mode (("\\.xml\\'" . nxml-mode)
-         ("\\.xaml\\'" . nxml-mode)))
+         ("\\.xaml\\'" . nxml-mode)
+         ("\\.csproj\\'" . nxml-mode)))
 
 (provide 'modo-csharp)
 ;;; modo-csharp.el ends here
