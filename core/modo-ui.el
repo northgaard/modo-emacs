@@ -70,6 +70,14 @@
   :commands (ace-window ace-swap-window))
 
 ;;; Font
+(defcustom modo-allow-ligatures nil
+  "If non-nil, allow experimental support for font ligatures."
+  :type 'boolean
+  :group 'modo-emacs)
+
+(defvar modo-ligatures-active nil
+  "Non-nil if ligatures are enabled and a font supporting them is used.")
+
 (straight-use-package '(ligature :type git
                                  :host github
                                  :repo "mickeynp/ligature.el"))
@@ -88,7 +96,8 @@
     (set-face-attribute 'default nil :family (car existing-fonts) :weight 'normal
                         :width 'normal :height 120)
     (when (and (string-equal (car existing-fonts) "Fira Code")
-               (fboundp 'cairo-version-string))
+               modo-allow-ligatures)
+      (setq modo-ligatures-active t)
       (ligature-set-ligatures 't '("www"))
       (ligature-set-ligatures 'prog-mode '("++" "--" "/=" "||" "||="
                                            "->" "=>" "::" "__"
