@@ -31,7 +31,7 @@
   "A predicate which decides whether to exclude FILE from recentf."
   (let ((file-dir (file-truename (file-name-directory file))))
     (or (string-prefix-p (file-truename modo-cache-dir) file-dir)
-        (string-prefix-p (file-truename package-user-dir) file-dir))))
+        (string-prefix-p (file-truename modo-temp-dir) file-dir))))
 
 (use-package recentf
   :demand t

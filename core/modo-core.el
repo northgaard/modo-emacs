@@ -72,6 +72,9 @@
 (setq custom-file (expand-file-name "custom.el" modo-emacs-dir))
 (load custom-file t t)
 
+;;; Temp directory
+(setq temporary-file-directory modo-temp-dir)
+
 ;; Be quiet at startup
 (setq inhibit-splash-screen t
       inhibit-startup-message t
