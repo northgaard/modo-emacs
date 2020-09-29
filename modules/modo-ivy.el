@@ -79,7 +79,8 @@
   :general
   (modo-define-leader-key
     :keymaps 'ivy-mode-map
-    "fj" 'counsel-file-jump)
+    "fj" 'counsel-file-jump
+    "fl" 'counsel-locate)
   (:keymaps 'ivy-mode-map
             [remap apropos] 'counsel-apropos
             [remap find-file] 'counsel-find-file
