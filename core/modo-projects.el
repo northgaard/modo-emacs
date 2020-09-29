@@ -16,7 +16,8 @@
         projectile-require-project-root nil
         projectile-known-projects-file (concat modo-cache-dir "projectile.projects")
         projectile-use-git-grep t
-        projectile-indexing-method 'alien
+        projectile-indexing-method 'hybrid
+        projectile-sort-order 'recentf
         projectile-switch-project-action (lambda () (dired (projectile-project-root))))
   ;; Get rid of the default mappings
   (setq projectile-mode-map (make-sparse-keymap))
