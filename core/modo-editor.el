@@ -13,7 +13,8 @@
       sentence-end-double-space nil
       mouse-yank-at-point t
       save-interprogram-paste-before-kill t
-      disabled-command-function nil)
+      disabled-command-function nil
+      confirm-kill-processes nil)
 
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose nil)
