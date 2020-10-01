@@ -116,6 +116,7 @@
 (straight-use-package 'f)
 
 (require 'dash)
+(dash-enable-font-lock)
 (require 's)
 (require 'f)
 
