@@ -37,5 +37,5 @@
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("straight.el" . "1faefbbc96cdae1f9eadb57b6434f22c39e8beac")
  ("undo-tree" . "5b6df03781495d8a25695d846b0cce496d3d3058")
- ("use-package" . "42db6b3d90ee57d0f5947d3b0bf4b0010bdf7b40"))
+ ("use-package" . "4fb1f9a68f1e7e7d614652afc017a6652fd029f1"))
 :alpha
