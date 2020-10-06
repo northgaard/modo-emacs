@@ -97,6 +97,7 @@
 ;;; Just get it over with (built in)
 (require 'cl-lib)
 (require 'subr-x)
+(require 'seq)
 
 ;; Load operating system specific configuration as early as possible
 (require 'modo-os)

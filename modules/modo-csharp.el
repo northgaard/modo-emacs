@@ -46,7 +46,6 @@
                       "." 'omnisharp-add-dot-and-company-complete)
   (when (and IS-WINDOWS
              (executable-find "MSBuild.exe"))
-    (require 'seq)
     (defun modo-compile-csharp ()
       "Compiles the solution. Note that MSBuild.exe must be in your path."
       (interactive)
