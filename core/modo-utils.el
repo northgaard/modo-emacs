@@ -87,9 +87,10 @@
 (defun modo-alternate-buffer ()
   "Switch between current and last buffer."
   (interactive)
-  (if (fboundp 'evil-alternate-buffer)
-      (switch-to-buffer (car (evil-alternate-buffer)))
-    (switch-to-buffer (other-buffer (current-buffer) t))))
+  (let ((buf (window-buffer)))
+    (switch-to-buffer
+     (cl-find-if (lambda (b) (not (eq b buf)))
+                 (mapcar 'car (window-prev-buffers))))))
 
 (defun modo-get-faces (pos)
   ;; TODO: Add documentation
