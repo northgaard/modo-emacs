@@ -28,6 +28,14 @@
 ;; Truncate lines by default
 (setq-default truncate-lines t)
 
+(use-package frame
+  :demand t
+  :config
+  (setq window-divider-default-places t
+        window-divider-default-bottom-width 1
+        window-divider-default-right-width 1)
+  (window-divider-mode 1))
+
 ;;; which-key
 (straight-use-package 'which-key)
 (use-package which-key
