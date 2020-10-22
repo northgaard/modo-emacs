@@ -90,6 +90,9 @@
             (lambda ()
               (setq file-name-handler-alist base-file-name-handler-alist))))
 
+;;; Settings pertaining to Emacs itself that do not fit better elsewhere
+(setq inhibit-compacting-font-caches t)
+
 ;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
 (add-to-list 'load-path modo-modules-dir)
