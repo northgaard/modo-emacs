@@ -81,5 +81,14 @@
   :init
   (setq evil-magit-want-horizontal-movement t))
 
+(straight-use-package 'git-timemachine)
+(use-package git-timemachine
+  :general
+  (modo-define-leader-key
+    :keymaps 'override
+    "vt" 'git-timemachine)
+  :config
+  (setq git-timemachine-mode-map (make-sparse-keymap)))
+
 (provide 'modo-git)
 ;;; modo-git.el ends here
