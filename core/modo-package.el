@@ -20,8 +20,8 @@
       straight-recipes-gnu-elpa-use-mirror t
       straight-recipes-emacsmirror-use-mirror t
       straight-check-for-modifications '(find-at-startup find-when-checking))
-(setq straight-profiles '((modo-core . "../../versions/modo-core-versions.el")))
-(setq straight-current-profile 'modo-core)
+(setq straight-profiles '((modo . "../../versions.el")))
+(setq straight-current-profile 'modo)
 
 ;; Bootstrap snippet
 (defvar bootstrap-version)
@@ -45,36 +45,20 @@
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
-(defcustom modo-additional-modules nil
-  "Additional modules that will be loaded by `modo-module'"
-  :type '(list symbol)
-  :group 'modo-emacs)
-
 ;; Macro for requiring modules
 (defmacro modo-module (&rest modules)
   "Load all the modules listed in MODULES, with the prefix modo-.
 For example, the module name ivy translates to a call to (require 'modo-ivy)."
   (let ((expansion nil)
         (module-name)
-        (module-symbol)
-        (all-modules (append modules modo-additional-modules)))
-    (dolist (module all-modules)
+        (module-symbol))
+    (dolist (module modules)
       (setq module-name (format "modo-%s" (symbol-name module)))
       (setq module-symbol (intern module-name))
-      (push `(push '(,module-symbol . ,(format "../../versions/%s-versions.el" module-name))
-                   straight-profiles)
-            expansion)
-      (push `(setq straight-current-profile ',module-symbol) expansion)
       (push `(require ',module-symbol) expansion))
     (setq expansion (nreverse expansion))
     `(progn
-       ,@expansion
-       ;; After loading modules we switch to private configuration for the
-       ;; remainder of init.el
-       (push '(modo-private . "../../private/modo-private-versions.el")
-             straight-profiles)
-       (setq straight-profiles (nreverse straight-profiles))
-       (setq straight-current-profile 'modo-private))))
+       ,@expansion)))
 
 ;;; use-package
 (straight-use-package 'diminish)

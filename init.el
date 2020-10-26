@@ -19,7 +19,8 @@
              spellcheck
              flycheck
              elisp
-             csharp)
+             csharp
+             cpp)
 
 ;;; Finally, load the private init file, if it exists
 (load modo-private-init-file t t)
