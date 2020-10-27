@@ -43,6 +43,7 @@
  ("gcmh" . "84c43a4c0b41a595ac6e299fa317d2831813e580")
  ("general.el" . "7fdb13e9f90600968d15704851df9c45b5df8ca5")
  ("git-modes" . "55468314a5f6b77d2c96be62c7005ac94545e217")
+ ("git-timemachine" . "8d675750e921a047707fcdc36d84f8439b19a907")
  ("gnu-elpa-mirror" . "bc2110cbf5ae44a167c87b89b113cfca1a6ed3ca")
  ("goto-chg" . "1829a13026c597e358f716d2c7793202458120b5")
  ("ht.el" . "fff8c43f0e03d5b98deb9f988522b839ce2ca253")
