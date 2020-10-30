@@ -75,5 +75,22 @@ if it does, nil otherwise."
              (setq ,name ,initializer))
          ,name))))
 
+(cl-defmacro modo-add-hook ((hook &key name transient) &body body)
+  "Run BODY in HOOK.
+
+If the optional argument NAME is specified, use that to name the
+generated defun. If the optional argument TRANSIENT is specified,
+the hook function removes itself from HOOK when run."
+  (declare (indent 1))
+  (let* ((funcname (intern (if name
+                              name
+                             (format "modo-hook--%s" hook))))
+         (defun-form `(defun ,funcname () ,@body)))
+    (when transient
+      (add-to-list 'defun-form `(remove-hook ',hook ',funcname) t)
+    `(progn
+       ,defun-form
+       (add-hook ',hook ',funcname)))))
+
 (provide 'modo-lib)
 ;;; modo-lib.el ends here

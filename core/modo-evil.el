@@ -126,28 +126,34 @@
 
 ;;; evil-args
 (straight-use-package 'evil-args)
-(defun modo--setup-evil-args ()
-  (require 'evil-args)
-  (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-  (define-key evil-outer-text-objects-map "a" 'evil-outer-arg))
 (use-package evil-args
-  :ghook ('prog-mode-hook #'modo--setup-evil-args nil nil t))
+  :init
+  (modo-add-hook (prog-mode-hook
+                  :name "modo--setup-evil-args"
+                  :transient t)
+    (require 'evil-args)
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)))
 
 ;;; evil-indent-plus
 (straight-use-package 'evil-indent-plus)
-(defun modo--setup-evil-indent-plus ()
-  (require 'evil-indent-plus)
-  (evil-indent-plus-default-bindings))
 (use-package evil-indent-plus
-  :ghook ('prog-mode-hook #'modo--setup-evil-indent-plus nil nil t))
+  :init
+  (modo-add-hook (prog-mode-hook
+                  :name "modo--setup-evil-indent-plus"
+                  :transient t)
+    (require 'evil-indent-plus)
+    (evil-indent-plus-default-bindings)))
 
 ;;; evil-matchit
 (straight-use-package 'evil-matchit)
-(defun modo--setup-evil-matchit ()
-  (require 'evil-matchit)
-  (global-evil-matchit-mode 1))
 (use-package evil-matchit
-  :ghook ('prog-mode-hook #'modo--setup-evil-matchit nil nil t))
+  :init
+  (modo-add-hook (prog-mode-hook
+                  :name "modo--setup-evil-matchit"
+                  :transient t)
+    (require 'evil-matchit)
+    (global-evil-matchit-mode 1)))
 
 ;;; evil-numbers
 (straight-use-package 'evil-numbers)
