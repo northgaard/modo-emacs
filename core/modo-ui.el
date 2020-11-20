@@ -141,13 +141,18 @@
   "Same as standard error face, but always bold."
   :group 'faces)
 
+(defface modo-pulse-face '((t (:inherit hl-line)))
+  "Face used for pulsing the current line."
+  :group 'faces)
+
 ;; Doom themes
 (straight-use-package 'doom-themes)
 (defun modo--load-theme ()
   (load-theme 'doom-nord t)
   (doom-themes-set-faces 'user
     '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
-    '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)))
+    '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)
+    '(modo-pulse-face :background (doom-lighten (face-attribute 'hl-line :background) 0.2))))
 
 (add-hook 'emacs-startup-hook #'modo--load-theme)
 
@@ -157,6 +162,24 @@
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-buffer-file-name-style 'relative-to-project))
+
+;;; Pulse on window change, trying out to see if I like it
+(defun modo-pulse-line (&rest _)
+  (require 'pulse)
+  (pulse-momentary-highlight-one-line (point) 'modo-pulse-face))
+
+(dolist (command '(aw-switch-to-window
+                   winum-select-window-1
+                   winum-select-window-2
+                   winum-select-window-3
+                   winum-select-window-4
+                   winum-select-window-5
+                   winum-select-window-6
+                   winum-select-window-7
+                   winum-select-window-8
+                   winum-select-window-9
+                   winum-select-window-0-or-10))
+  (advice-add command :after #'modo-pulse-line))
 
 (provide 'modo-ui)
 ;;; modo-ui.el ends here
