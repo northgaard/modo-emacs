@@ -20,7 +20,8 @@
              flycheck
              elisp
              csharp
-             cpp)
+             cpp
+             groovy)
 
 ;;; Finally, load the private init file, if it exists
 (load modo-private-init-file t t)
