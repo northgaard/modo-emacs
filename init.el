@@ -11,6 +11,7 @@
 (require 'modo-core (concat user-emacs-directory "core/modo-core"))
 (modo-module ivy
              git
+             progutils
              company
              org
              treemacs
