@@ -55,7 +55,13 @@
   :init
   (with-eval-after-load 'counsel
     (defun modo--magit-status-find-file-action (input)
-      (magit-status (file-name-directory input)))
+      (require 'magit-git)
+      (require 'magit-process)
+      (let ((dotgit-dir (magit-gitdir (file-name-directory input))))
+        (if (and dotgit-dir
+                 (magit-git-repo-p dotgit-dir))
+            (magit-status (f-parent dotgit-dir))
+          (message "Not a git repository!"))))
     (ivy-add-actions #'counsel-find-file
                      '(("s" modo--magit-status-find-file-action "magit status"))))
   :config
