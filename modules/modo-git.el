@@ -63,7 +63,7 @@
             (magit-status (f-parent dotgit-dir))
           (message "Not a git repository!"))))
     (ivy-add-actions #'counsel-find-file
-                     '(("s" modo--magit-status-find-file-action "magit status"))))
+                     '(("v" modo--magit-status-find-file-action "magit status"))))
   :config
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
