@@ -52,6 +52,12 @@
     "vf" 'magit-find-file
     "vd" 'magit-dispatch
     "vD" 'magit-file-dispatch)
+  :init
+  (with-eval-after-load 'counsel
+    (defun modo--magit-status-find-file-action (input)
+      (magit-status (file-name-directory input)))
+    (ivy-add-actions #'counsel-find-file
+                     '(("s" modo--magit-status-find-file-action "magit status"))))
   :config
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
