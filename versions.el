@@ -78,5 +78,6 @@
  ("undo-tree" . "5b6df03781495d8a25695d846b0cce496d3d3058")
  ("use-package" . "4fb1f9a68f1e7e7d614652afc017a6652fd029f1")
  ("with-editor" . "236c1586c3df5e0e53badf6ff6f997a6bfd31667")
+ ("yaml-mode" . "fc5e1c58f94472944c4aa838f00f6adcac6fa992")
  ("yasnippet" . "3bf9a3b1af37174a004798b7195826af0123fa6a"))
 :alpha

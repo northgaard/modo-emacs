@@ -24,5 +24,9 @@
   :config
   (setq nxml-slash-auto-complete-flag t))
 
+;; YAML
+(straight-use-package 'yaml-mode)
+(use-package yaml-mode)
+
 (provide 'modo-progutils)
 ;;; modo-progutils.el ends here
