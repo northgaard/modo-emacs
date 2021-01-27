@@ -5,6 +5,11 @@
 
 ;;; Code:
 
+;;; Packages
+(with-eval-after-load 'modo-package
+  (straight-use-package 'powershell)
+  (use-package powershell))
+
 ;;; Windows
 
 ;; Since we are using straight.el, git is required to be installed. Thus,
