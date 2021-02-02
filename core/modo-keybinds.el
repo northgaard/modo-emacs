@@ -80,7 +80,7 @@
   (evil-collection-info-setup)
   (evil-collection-define-key 'normal 'Info-mode-map
     "o" 'ace-link-info
-    " " nil))
+    (kbd modo-leader) nil))
 
 ;;; ediff
 (use-package ediff
