@@ -37,11 +37,7 @@ directory for completion."
    (find-file filename)
    (run-hooks 'find-file-hook))
 
-;; This ensures that org-plus-contrib satisfies any package
-;; that may depend on org. See straight.el issue #352
 (straight-use-package 'org-plus-contrib)
-(straight-use-package '(org :local-repo nil))
-
 (use-package org
   :hook (org-mode . modo-org-mode-setup)
   :general
@@ -62,8 +58,6 @@ directory for completion."
   ;; Make double extra sure that the built-in org-version is not loaded
   (when (featurep 'org-version)
     (unload-feature 'org-version t))
-  ;; Now load the fix
-  (straight--fix-org-function "org")
   (setq org-modules '(org-habit org-id org-protocol org-timer))
   :config
   (modo-define-leader-key

@@ -16,7 +16,6 @@
 ;;; straight.el
 ;; Initial setup
 (setq straight-repository-branch "develop"
-      straight-fix-org nil
       straight-recipes-gnu-elpa-use-mirror t
       straight-recipes-emacsmirror-use-mirror t
       straight-check-for-modifications '(find-at-startup find-when-checking))
