@@ -167,16 +167,7 @@
            "<kp-subtract>" 'evil-numbers/dec-at-pt))
 
 ;;; evil-collection
-;; I use my own fork to allow more opinionated keybinds.
-;; evil-collection init calls are added to the use-package forms
-;; of the relevant modes.
-(straight-use-package
- '(evil-collection :type git
-                   :host github
-                   :repo "emacs-evil/evil-collection"
-                   :files (:defaults "modes")
-                   :fork (:repo "northgaard/evil-collection"
-                                :branch "modo")))
+(straight-use-package 'evil-collection)
 
 ;;; Keybinds
 (with-eval-after-load 'evil-snipe

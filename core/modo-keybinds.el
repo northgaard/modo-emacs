@@ -76,7 +76,11 @@
 ;;; Info-mode
 (use-package info
   :config
-  (evil-collection-info-setup))
+  (evil-collection-require 'info)
+  (evil-collection-info-setup)
+  (evil-collection-define-key 'normal 'Info-mode-map
+    "o" 'ace-link-info
+    " " nil))
 
 ;;; ediff
 (use-package ediff
@@ -90,7 +94,7 @@
                                                  'A ediff-control-buffer)
                       (ediff-get-region-contents ediff-current-difference
                                                  'B ediff-control-buffer))))
-  (require 'evil-collection-ediff)
+  (evil-collection-require 'ediff)
   ;; Mnemonic "All"
   (push '("A" . ediff-copy-both-to-C) evil-collection-ediff-bindings)
   (evil-collection-ediff-setup))
@@ -98,6 +102,7 @@
 ;;; ag
 (use-package ag
   :config
+  (evil-collection-require 'ag)
   (evil-collection-ag-setup))
 
 (provide 'modo-keybinds)
