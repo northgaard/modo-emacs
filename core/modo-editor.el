@@ -85,6 +85,7 @@
   :demand t
   :diminish undo-tree-mode
   :config
+  (setq undo-tree-history-directory-alist `(("." . ,modo-temp-dir)))
   (global-undo-tree-mode 1))
 
 (provide 'modo-editor)
