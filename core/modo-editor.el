@@ -80,7 +80,7 @@
       `((".*" ,modo-temp-dir t)))
 
 ;;; undo-tree
-(straight-use-package 'undo-tree)
+(straight-use-package '(undo-tree :type git :host gitlab :repo "tsc25/undo-tree"))
 (use-package undo-tree
   :demand t
   :diminish undo-tree-mode

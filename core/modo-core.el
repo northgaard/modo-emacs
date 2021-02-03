@@ -181,9 +181,9 @@ bound both under <major-leader>, as well as \"<leader> m\"."
 
   ;; Rest of the core features
   (require 'modo-utils)
-  (require 'modo-evil)
   (require 'modo-editor)
   (require 'modo-emacs)
+  (require 'modo-evil)
   (require 'modo-projects)
   (require 'modo-ui)
   (require 'modo-keybinds))
