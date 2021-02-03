@@ -85,7 +85,7 @@
   :demand t
   :diminish undo-tree-mode
   :config
-  (undo-tree-mode 1))
+  (global-undo-tree-mode 1))
 
 ;;; ediff
 (use-package ediff

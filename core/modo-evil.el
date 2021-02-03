@@ -25,6 +25,7 @@
         evil-ex-search-vim-style-regexp t
         evil-insert-skip-empty-line t
         evil-symbol-word-search t
+        evil-undo-system 'undo-tree
         shift-select-mode nil)
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
