@@ -82,23 +82,6 @@
     "o" 'ace-link-info
     (kbd modo-leader) nil))
 
-;;; ediff
-(use-package ediff
-  :config
-  ;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version
-  (defun ediff-copy-both-to-C ()
-    (interactive)
-    (ediff-copy-diff ediff-current-difference nil 'C nil
-                     (concat
-                      (ediff-get-region-contents ediff-current-difference
-                                                 'A ediff-control-buffer)
-                      (ediff-get-region-contents ediff-current-difference
-                                                 'B ediff-control-buffer))))
-  (evil-collection-require 'ediff)
-  ;; Mnemonic "All"
-  (push '("A" . ediff-copy-both-to-C) evil-collection-ediff-bindings)
-  (evil-collection-ediff-setup))
-
 ;;; ag
 (use-package ag
   :config
