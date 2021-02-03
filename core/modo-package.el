@@ -37,9 +37,8 @@
   (load bootstrap-file nil 'nomessage))
 
 ;; Early loading of recipe packages
-(straight-use-package 'melpa)
-(straight-use-package 'gnu-elpa-mirror)
-(straight-use-package 'emacsmirror-mirror)
+(dolist (repo straight-recipe-repositories)
+  (straight-use-package repo))
 
 ;; Prefer newer files
 (setq load-prefer-newer t)
