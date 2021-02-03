@@ -87,7 +87,10 @@
             [remap recentf-open-files] 'counsel-recentf
             [remap execute-extended-command] 'counsel-M-x
             [remap describe-function] 'counsel-describe-function
-            [remap describe-variable] 'counsel-describe-variable))
+            [remap describe-variable] 'counsel-describe-variable)
+  :config
+  (setq counsel-describe-function-function #'helpful-callable
+        counsel-describe-variable-function #'helpful-variable))
 
 (straight-use-package 'counsel-projectile)
 (use-package counsel-projectile

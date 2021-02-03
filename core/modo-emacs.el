@@ -41,5 +41,15 @@
 ;;; Powershell
 (straight-use-package 'powershell)
 
+;;; Helpful -- better help buffers
+(straight-use-package 'helpful)
+(use-package helpful
+  :config
+  (evil-collection-require 'helpful)
+  (evil-collection-helpful-setup)
+  (evil-collection-define-key 'normal 'helpful-mode-map
+    "o" 'ace-link
+    "q" 'quit-window))
+
 (provide 'modo-emacs)
 ;;; modo-emacs.el ends here
