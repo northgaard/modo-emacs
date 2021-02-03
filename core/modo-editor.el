@@ -79,14 +79,5 @@
 (setq auto-save-file-name-transforms
       `((".*" ,modo-temp-dir t)))
 
-;;; undo-tree
-(straight-use-package '(undo-tree :type git :host gitlab :repo "tsc25/undo-tree"))
-(use-package undo-tree
-  :demand t
-  :diminish undo-tree-mode
-  :config
-  (setq undo-tree-history-directory-alist `(("." . ,modo-temp-dir)))
-  (global-undo-tree-mode 1))
-
 (provide 'modo-editor)
 ;;; modo-editor.el ends here

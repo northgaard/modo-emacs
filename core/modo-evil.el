@@ -5,6 +5,15 @@
 
 ;;; Code:
 
+;;; undo-tree for undo/redo
+(straight-use-package '(undo-tree :type git :host gitlab :repo "tsc25/undo-tree"))
+(use-package undo-tree
+  :demand t
+  :diminish undo-tree-mode
+  :config
+  (setq undo-tree-history-directory-alist `(("." . ,modo-temp-dir)))
+  (global-undo-tree-mode 1))
+
 ;;; Pure evil
 (straight-use-package 'evil)
 (use-package evil
