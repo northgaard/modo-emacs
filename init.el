@@ -8,6 +8,12 @@
   (error (format "Error: modo emacs requires emacs version %s, you have %s"
                  modo-minimum-emacs-version emacs-version)))
 
+;;; Explicitly load early-init.el if it hasn't been (i.e. if this file
+;;; is loaded as part of a batch run).
+(unless (boundp 'modo--early-init-loaded)
+  (load (concat (file-name-directory load-file-name) "early-init")
+        nil t))
+
 (require 'modo-core (concat user-emacs-directory "core/modo-core"))
 (modo-module ivy
              git

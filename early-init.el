@@ -10,3 +10,5 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 
 (setq frame-inhibit-implied-resize t)
+
+(defvar modo--early-init-loaded t)
