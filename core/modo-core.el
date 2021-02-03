@@ -128,65 +128,65 @@
 (require 'modo-lib)
 
 ;;; Load rest of core
-(unless noninteractive
-  ;; Keybind definers
-  ;; hydra
-  (straight-use-package 'lv)
-  (straight-use-package 'hydra)
-  (use-package hydra
-    :demand t)
 
-  ;; general.el --- get your keybinds here!
-  (straight-use-package 'general)
-  (use-package general
-    :demand t
-    :config
-    (general-override-mode))
+;; Keybind definers
+;; hydra
+(straight-use-package 'lv)
+(straight-use-package 'hydra)
+(use-package hydra
+  :demand t)
 
-  ;; Leader keys
-  (defconst modo-leader "SPC"
-    "The general purpose leader accessible from normal mode.")
+;; general.el --- get your keybinds here!
+(straight-use-package 'general)
+(use-package general
+  :demand t
+  :config
+  (general-override-mode))
 
-  (defconst modo-non-normal-leader "C-c"
-    "Equivalent to the normal mode leader, but used in insert and emacs mode.")
+;; Leader keys
+(defconst modo-leader "SPC"
+  "The general purpose leader accessible from normal mode.")
 
-  (defconst modo-major-leader ","
-    "Shortcut for major mode keys, also bound to \"<leader> m\"")
+(defconst modo-non-normal-leader "C-c"
+  "Equivalent to the normal mode leader, but used in insert and emacs mode.")
 
-  ;; Definer for standard shortcuts
-  (general-create-definer modo-define-leader-key
-                          :states '(motion normal visual insert emacs)
-                          :prefix modo-leader
-                          :non-normal-prefix modo-non-normal-leader)
-  (general-create-definer modo--direct-major-leader-key
-                          :states '(motion normal visual)
-                          :prefix modo-major-leader)
-  (general-create-definer modo--indirect-major-leader-key
-                          :states '(motion normal visual insert emacs)
-                          :prefix (concat modo-leader " m")
-                          :non-normal-prefix (concat modo-non-normal-leader " m"))
-  (defmacro modo-define-major-leader-key (&rest args)
-    "Defines leader key bindings for a major mode. Commands are
+(defconst modo-major-leader ","
+  "Shortcut for major mode keys, also bound to \"<leader> m\"")
+
+;; Definer for standard shortcuts
+(general-create-definer modo-define-leader-key
+  :states '(motion normal visual insert emacs)
+  :prefix modo-leader
+  :non-normal-prefix modo-non-normal-leader)
+(general-create-definer modo--direct-major-leader-key
+  :states '(motion normal visual)
+  :prefix modo-major-leader)
+(general-create-definer modo--indirect-major-leader-key
+  :states '(motion normal visual insert emacs)
+  :prefix (concat modo-leader " m")
+  :non-normal-prefix (concat modo-non-normal-leader " m"))
+(defmacro modo-define-major-leader-key (&rest args)
+  "Defines leader key bindings for a major mode. Commands are
 bound both under <major-leader>, as well as \"<leader> m\"."
-    (declare (indent defun))
-    (let ((expansion nil)
-          (map (plist-get args :keymaps)))
-      (push `(modo--direct-major-leader-key ,@args) expansion)
-      (when map
-        (push '(quote (:ignore t :which-key "major mode")) args)
-        (push "m" args))
-      (push `(modo--indirect-major-leader-key ,@args) expansion)
-      `(progn
-         ,@expansion)))
+  (declare (indent defun))
+  (let ((expansion nil)
+        (map (plist-get args :keymaps)))
+    (push `(modo--direct-major-leader-key ,@args) expansion)
+    (when map
+      (push '(quote (:ignore t :which-key "major mode")) args)
+      (push "m" args))
+    (push `(modo--indirect-major-leader-key ,@args) expansion)
+    `(progn
+       ,@expansion)))
 
-  ;; Rest of the core features
-  (require 'modo-utils)
-  (require 'modo-editor)
-  (require 'modo-emacs)
-  (require 'modo-evil)
-  (require 'modo-projects)
-  (require 'modo-ui)
-  (require 'modo-keybinds))
+;; Rest of the core features
+(require 'modo-utils)
+(require 'modo-editor)
+(require 'modo-emacs)
+(require 'modo-evil)
+(require 'modo-projects)
+(require 'modo-ui)
+(require 'modo-keybinds)
 
 (provide 'modo-core)
 ;;; modo-core.el ends here
