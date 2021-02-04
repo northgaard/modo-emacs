@@ -7,6 +7,7 @@
 
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 (defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
+(defconst IS-WSL     (and IS-LINUX (getenv "WSLENV"))) ; Not bullet-proof, WSLENV is not implicitly defined
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 
