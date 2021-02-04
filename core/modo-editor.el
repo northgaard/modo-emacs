@@ -68,6 +68,7 @@
 
 ;;; Auto-save and backup
 (setq make-backup-files t
+      vc-make-backup-files t
       backup-by-copying t
       version-control t
       delete-old-versions t
