@@ -87,10 +87,10 @@ the hook function removes itself from HOOK when run."
                              (format "modo-hook--%s" hook))))
          (defun-form `(defun ,funcname () ,@body)))
     (when transient
-      (add-to-list 'defun-form `(remove-hook ',hook ',funcname) t)
+      (add-to-list 'defun-form `(remove-hook ',hook ',funcname) t))
     `(progn
        ,defun-form
-       (add-hook ',hook ',funcname)))))
+       (add-hook ',hook ',funcname))))
 
 (provide 'modo-lib)
 ;;; modo-lib.el ends here
