@@ -48,10 +48,6 @@ _C-k_: down     _a_ll                _R_efine
      "Save and bury buffer" :color blue)
     ("q" nil "cancel" :color blue)))
 
-(defun modo--activate-smerge-hydra ()
-  (when smerge-mode
-    (smerge-hydra/body)))
-
 (use-package ediff
   :config
   (setq ediff-split-window-function #'split-window-horizontally
@@ -97,10 +93,14 @@ _C-k_: down     _a_ll                _R_efine
 
 (straight-use-package 'magit)
 (use-package magit
-  ;; Start in insert mode for commit messages
-  :hook ((git-commit-setup . evil-normalize-keymaps)
-         (git-commit-setup . evil-insert-state)
-         (magit-diff-visit-file . modo--activate-smerge-hydra))
+  :init
+  (modo-add-hook (git-commit-setup-hook)
+    (setq-local undo-tree-auto-save-history nil)
+    (evil-normalize-keymaps)
+    (evil-insert-state))
+  (modo-add-hook (magit-diff-visit-file-hook)
+    (when smerge-mode
+      (smerge-hydra/body)))
   :general
   (modo-define-leader-key "s" 'magit-status)
   ;; Let's pretend with-editor-mode is a major mode
