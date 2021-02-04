@@ -52,7 +52,6 @@
   "np" 'narrow-to-page
   "nw" 'widen
   "y" 'hydra-pause-resume
-  "u" 'universal-argument
   "1" 'winum-select-window-1
   "2" 'winum-select-window-2
   "3" 'winum-select-window-3

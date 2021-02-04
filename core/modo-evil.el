@@ -23,8 +23,7 @@
            "SPC" nil
            "," nil)
   :init
-  (setq evil-want-C-u-scroll t
-        evil-want-integration t
+  (setq evil-want-integration t
         evil-want-keybinding nil
         evil-want-visual-char-semi-exclusive t
         evil-want-Y-yank-to-eol t
