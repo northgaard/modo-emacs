@@ -68,6 +68,7 @@
 
 ;;; Auto-save and backup
 (setq make-backup-files t
+      auto-save-default t
       vc-make-backup-files t
       backup-by-copying t
       version-control t
@@ -79,6 +80,11 @@
 (setq auto-save-list-file-name (expand-file-name "autosave-list" modo-cache-dir))
 (setq auto-save-file-name-transforms
       `((".*" ,modo-temp-dir t)))
+
+(defun modo-disable-auto-save-backup-locally ()
+  "Disables auto saving and backups in the local buffer."
+  (setq-local make-backup-files nil)
+  (setq-local auto-save-default nil))
 
 (provide 'modo-editor)
 ;;; modo-editor.el ends here

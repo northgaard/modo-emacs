@@ -96,6 +96,7 @@ _C-k_: down     _a_ll                _R_efine
   :init
   (modo-add-hook (git-commit-setup-hook)
     (setq-local undo-tree-auto-save-history nil)
+    (modo-disable-auto-save-backup-locally)
     (evil-normalize-keymaps)
     (evil-insert-state))
   (modo-add-hook (magit-diff-visit-file-hook)
