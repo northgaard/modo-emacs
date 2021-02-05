@@ -29,5 +29,8 @@
   :ghook ('c++-mode-hook #'modo--load-clang-format nil nil t)
   :hook (c++-mode . modern-c++-font-lock-mode))
 
+;; Search cppreference.com
+(modo-install-search-engine "cppreference" "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=" "cpp[ref]")
+
 (provide 'modo-cpp)
 ;;; modo-cpp.el ends here

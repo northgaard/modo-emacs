@@ -92,5 +92,10 @@ the hook function removes itself from HOOK when run."
        ,defun-form
        (add-hook ',hook ',funcname))))
 
+(defun modo-url-search (query-url prompt)
+  "Search the web for PROMPT with a search url constructed with QUERY-URL."
+  (browse-url
+   (concat query-url (url-hexify-string prompt))))
+
 (provide 'modo-lib)
 ;;; modo-lib.el ends here

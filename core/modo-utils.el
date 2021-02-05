@@ -174,5 +174,22 @@ two windows."
   (modo-byte-compile-modules)
   (byte-compile-file user-init-file))
 
+(defmacro modo-install-search-engine (engine-name engine-url ex-prompt)
+  "Given the ENGINE-NAME of a search engine, the ENGINE-URL to
+construct a search prompt, and an EX-PROMPT, construct an ex
+command to search the given search engine."
+  (let ((defun-symbol (intern (format "modo--ex-%s" engine-name))))
+  `(progn
+     (evil-define-command ,defun-symbol (prompt)
+       ,(format "Search %s with ex query." engine-name)
+       (interactive "<a>")
+       (modo-url-search ,engine-url prompt))
+     (evil-ex-define-cmd ,ex-prompt ',defun-symbol))))
+
+(modo-install-search-engine "google" "https://www.google.com/search?q=" "google")
+(modo-install-search-engine "duck-duck-go" "https://www.duckduckgo.com/?t=lm&q=" "ddg")
+(modo-install-search-engine "github" "https://www.github.com/search?q=" "ghub")
+(modo-install-search-engine "wikipedia" "https://en.wikipedia.org/w/index.php?search=" "wiki")
+
 (provide 'modo-utils)
 ;;; modo-utils.el ends here
