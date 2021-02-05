@@ -39,5 +39,15 @@
     (setq straight-find-executable find-program)
     (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)))
 
+;;; WSL
+(when IS-WSL
+  ;; Open links in your default browser
+  (let ((cmd-exe "/mnt/c/Windows/System32/cmd.exe")
+        (cmd-args '("/c" "start")))
+    (when (file-exists-p cmd-exe)
+      (setq browse-url-generic-program cmd-exe
+            browse-url-generic-args cmd-args
+            browse-url-browser-function 'browse-url-generic))))
+
 (provide 'modo-os)
 ;;; modo-os.el ends here
