@@ -18,7 +18,9 @@
 (setq straight-repository-branch "develop"
       straight-recipes-gnu-elpa-use-mirror t
       straight-recipes-emacsmirror-use-mirror t
-      straight-check-for-modifications '(find-at-startup find-when-checking))
+      straight-check-for-modifications (if (executable-find "watchexec")
+                                           '(watch-files)
+                                         '(find-at-startup find-when-checking)))
 (setq straight-profiles '((modo . "../../versions.el")))
 (setq straight-current-profile 'modo)
 
