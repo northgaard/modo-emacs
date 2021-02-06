@@ -5,7 +5,8 @@ ${EMACS:=emacs} -nw --batch \
                               (url-show-status nil)
                               (user-emacs-directory default-directory)
                               (user-init-file (expand-file-name "init.el"))
-                              (load-path (delq default-directory load-path)))
+                              (load-path (delq default-directory load-path))
+                              (straight-vc-git-default-clone-depth 1))
                            (load-file user-init-file)
                            (run-hooks (quote after-init-hook)))'
 echo "Startup successful"
