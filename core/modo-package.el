@@ -49,16 +49,11 @@
 (defmacro modo-module (&rest modules)
   "Load all the modules listed in MODULES, with the prefix modo-.
 For example, the module name ivy translates to a call to (require 'modo-ivy)."
-  (let ((expansion nil)
-        (module-name)
-        (module-symbol))
-    (dolist (module modules)
-      (setq module-name (format "modo-%s" (symbol-name module)))
-      (setq module-symbol (intern module-name))
-      (push `(require ',module-symbol) expansion))
-    (setq expansion (nreverse expansion))
-    `(progn
-       ,@expansion)))
+  (macroexp-progn
+   (mapcar
+    (lambda (module)
+      `(require ',(intern (format "modo-%s" module))))
+    modules)))
 
 ;;; use-package
 (straight-use-package 'diminish)
