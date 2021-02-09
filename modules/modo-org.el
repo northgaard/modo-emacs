@@ -15,9 +15,9 @@ i.e. with Dropbox."
   "Returns the full path to org file FILE in `modo-org-root-dir'."
   (expand-file-name file modo-org-root-dir))
 
-(modo-deflazy modo--org-files-at-root
-  (-filter (lambda (file) (f-ext-p file "org"))
-           (f-entries modo-org-root-dir)))
+(defvar modo--org-files-at-root
+  (thunk-delay (-filter (lambda (file) (f-ext-p file "org"))
+                        (f-entries modo-org-root-dir))))
 
 (defvar modo--agenda-tab-dispatch-fold-faces
   '(org-agenda-structure org-super-agenda-header error-bold))
@@ -33,7 +33,7 @@ directory for completion."
   (interactive
    (list (read-file-name "Select file: "
                          modo-org-root-dir
-                         (car (modo--org-files-at-root-value)))))
+                         (car (thunk-force modo--org-files-at-root)))))
    (find-file filename)
    (run-hooks 'find-file-hook))
 
@@ -82,7 +82,7 @@ directory for completion."
   (setq org-todo-keyword-faces '(("NEXT" . 'org-level-1)
                                  ("IN-PROGRESS" . 'org-level-2)
                                  ("WAITING" . 'org-level-2)))
-  (setq org-agenda-files (modo--org-files-at-root-value))
+  (setq org-agenda-files (thunk-force modo--org-files-at-root))
   (setq org-capture-templates `(("t" "Todo [inbox]" entry
                                  (file+headline ,(modo-get-org-file "inbox.org") "Tasks")
                                  "* TODO %?")

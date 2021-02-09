@@ -76,13 +76,13 @@ _C-k_: down     _a_ll                _R_efine
 (straight-use-package 'gitattributes-mode)
 (use-package gitattributes-mode)
 
-(modo-deflazy modo--git-abbrev-length
-              (let ((abbrev (shell-command-to-string
-                             "git config core.abbrev")))
-                (if (string-empty-p abbrev)
-                    "7" ;; Default value
-                  abbrev))
-              "The amount of characters git minimally uses for abbreviated hashes.")
+(defvar modo--git-abbrev-length
+  (thunk-delay (let ((abbrev (shell-command-to-string
+                              "git config core.abbrev")))
+                 (if (string-empty-p abbrev)
+                     "7" ;; Default value
+                   abbrev)))
+  "The amount of characters git minimally uses for abbreviated hashes.")
 
 (straight-use-package 'transient)
 (use-package transient
@@ -133,7 +133,7 @@ _C-k_: down     _a_ll                _R_efine
     "Avy jump to an arbitrary commit in the magit-log view."
     (interactive)
     (avy-jump (format "^[a-zA-Z0-9]\\{%s,\\} [*|] "
-                      (modo--git-abbrev-length-value))))
+                      (thunk-force modo--git-abbrev-length))))
   (when (string= "SPC" modo-leader)
     (general-define-key :keymaps 'magit-mode-map
                         modo-leader nil))

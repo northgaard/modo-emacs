@@ -54,27 +54,6 @@ if it does, nil otherwise."
   `(cl-letf (((symbol-function 'message) #'ignore))
      ,@body))
 
-;; TODO: Add docstring and proper docstring for both backing value and
-;; initializer function
-(defmacro modo-deflazy (name evaluator &optional docstring)
-  (declare (doc-string 3))
-  (let ((initializer (cond
-                      ((functionp evaluator)
-                       `(funcall ,evaluator))
-                      ((listp evaluator)
-                       evaluator)
-                      (t
-                       (error "Malformed evaluator"))))
-        (initializer-name (modo--map-symbol (lambda (str)
-                                              (concat str "-value"))
-                                              name)))
-    `(progn
-       (defvar ,name nil ,docstring)
-       (defun ,initializer-name ()
-           (unless ,name
-             (setq ,name ,initializer))
-         ,name))))
-
 (cl-defmacro modo-add-hook ((hook &key name transient) &body body)
   "Run BODY in HOOK.
 

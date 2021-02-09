@@ -102,6 +102,7 @@
 (require 'cl-lib)
 (require 'subr-x)
 (require 'seq)
+(require 'thunk)
 
 ;; Load operating system specific configuration as early as possible
 (require 'modo-os)
