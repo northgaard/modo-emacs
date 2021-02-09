@@ -16,6 +16,7 @@
         projectile-require-project-root nil
         projectile-known-projects-file (concat modo-cache-dir "projectile.projects")
         projectile-use-git-grep t
+        projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
         projectile-indexing-method 'hybrid
         projectile-sort-order 'recentf
         projectile-switch-project-action (lambda () (dired (projectile-project-root))))
