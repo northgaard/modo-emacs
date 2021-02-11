@@ -41,7 +41,7 @@
  ("evil-snipe" . "6dcac7f2516c6137a2de532fc2c052f242559ee3")
  ("evil-surround" . "346d4d85fcf1f9517e9c4991c1efe68b4130f93a")
  ("f.el" . "1814209e2ff43cf2e6d38c4cd476218915f550fb")
- ("flycheck" . "1acb24a862a74b83c12061b671e9e127cbce4c43")
+ ("flycheck" . "01396a5eff9fa494285e0d3139838231c05e3948")
  ("flyspell-lazy" . "3ebf68cc9eb10c972a2de8d7861cbabbbce69570")
  ("gcmh" . "84c43a4c0b41a595ac6e299fa317d2831813e580")
  ("general.el" . "7fdb13e9f90600968d15704851df9c45b5df8ca5")
