@@ -25,6 +25,7 @@
              snippets
              spellcheck
              flycheck
+             lsp
              elisp
              csharp
              cpp
