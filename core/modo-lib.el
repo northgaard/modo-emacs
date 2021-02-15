@@ -62,11 +62,11 @@ generated defun. If the optional argument TRANSIENT is specified,
 the hook function removes itself from HOOK when run."
   (declare (indent 1))
   (let* ((funcname (intern (if name
-                              name
+                               name
                              (format "modo-hook--%s" hook))))
-         (defun-form `(defun ,funcname () ,@body)))
-    (when transient
-      (add-to-list 'defun-form `(remove-hook ',hook ',funcname) t))
+         (defun-form (append `(defun ,funcname () ,@body)
+                             (when transient
+                               `((remove-hook ',hook ',funcname))))))
     `(progn
        ,defun-form
        (add-hook ',hook ',funcname))))
