@@ -33,7 +33,6 @@
  ("evil-escape" . "f4e9116bfbaac8c9d210c17ad488e0982291245f")
  ("evil-exchange" . "3030e21ee16a42dfce7f7cf86147b778b3f5d8c1")
  ("evil-indent-plus" . "0c7501e6efed661242c3a20e0a6c79a6455c2c40")
- ("evil-magit" . "88dc26ce59dbf4acb4e2891c79c4bd329553ba56")
  ("evil-matchit" . "cdb9b90381ac0a225b01fb99472f5b23b612eb6e")
  ("evil-numbers" . "6ea1c8c3a9b37bed63d48f1128e9a4910e68187e")
  ("evil-org-mode" . "9d4be14118bf27094a30dbff349b815f098aacbf")

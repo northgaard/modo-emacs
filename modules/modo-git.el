@@ -102,6 +102,18 @@ _C-k_: down     _a_ll                _R_efine
   (modo-add-hook (magit-diff-visit-file-hook)
     (when smerge-mode
       (smerge-hydra/body)))
+  (setq evil-collection-magit-want-horizontal-movement t)
+  (with-eval-after-load 'counsel
+    (defun modo--magit-status-find-file-action (input)
+      (require 'magit-git)
+      (require 'magit-process)
+      (let ((dotgit-dir (magit-gitdir (file-name-directory input))))
+        (if (and dotgit-dir
+                 (magit-git-repo-p dotgit-dir))
+            (magit-status (f-parent dotgit-dir))
+          (message "Not a git repository!"))))
+    (ivy-add-actions #'counsel-find-file
+                     '(("v" modo--magit-status-find-file-action "magit status"))))
   :general
   (modo-define-leader-key "s" 'magit-status)
   ;; Let's pretend with-editor-mode is a major mode
@@ -115,18 +127,9 @@ _C-k_: down     _a_ll                _R_efine
     "vf" 'magit-find-file
     "vd" 'magit-dispatch
     "vD" 'magit-file-dispatch)
-  :init
-  (with-eval-after-load 'counsel
-    (defun modo--magit-status-find-file-action (input)
-      (require 'magit-git)
-      (require 'magit-process)
-      (let ((dotgit-dir (magit-gitdir (file-name-directory input))))
-        (if (and dotgit-dir
-                 (magit-git-repo-p dotgit-dir))
-            (magit-status (f-parent dotgit-dir))
-          (message "Not a git repository!"))))
-    (ivy-add-actions #'counsel-find-file
-                     '(("v" modo--magit-status-find-file-action "magit status"))))
+  (:states '(motion normal visual)
+           :keymaps 'magit-log-mode-map
+           "gs" #'avy-magit-log-goto-commit)
   :config
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
@@ -143,18 +146,9 @@ _C-k_: down     _a_ll                _R_efine
                   (cons (directory-file-name dir) 0))
                 (cl-remove-if-not (lambda (project)
                                     (file-directory-p (concat project "/.git/")))
-                                  (projectile-relevant-known-projects)))))
-
-(straight-use-package 'evil-magit)
-(use-package evil-magit
-  :demand t
-  :after magit
-  :general
-  (:states '(motion normal visual)
-           :keymaps 'magit-log-mode-map
-           "gs" #'avy-magit-log-goto-commit)
-  :init
-  (setq evil-magit-want-horizontal-movement t))
+                                  (projectile-relevant-known-projects))))
+  (evil-collection-require 'magit)
+  (evil-collection-magit-setup))
 
 (straight-use-package 'git-timemachine)
 (use-package git-timemachine
