@@ -75,7 +75,7 @@
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("smex" . "55aaebe3d793c2c990b39a302eb26c184281c42c")
  ("spinner" . "61f59fab44d22cd5add61a1baf3f0b88a5d829d7")
- ("straight.el" . "ac4df5c689557f5434d6fc9f713e907e7b37a6bd")
+ ("straight.el" . "0f9b828d8a41cf3d312678e82573066aebf2ab6e")
  ("swiper" . "8fae568daafdc79d4990ad739bac42ee230d3234")
  ("transient" . "990eb0a292d622b80b52460d445aa58232ef2645")
  ("treemacs" . "81b69d9ee26326178cef08d5aef2811df4f659ed")
