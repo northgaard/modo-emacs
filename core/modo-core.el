@@ -89,7 +89,9 @@
   (setq file-name-handler-alist nil)
   (add-hook 'emacs-startup-hook
             (lambda ()
-              (setq file-name-handler-alist base-file-name-handler-alist))))
+              (setq file-name-handler-alist
+                    (append base-file-name-handler-alist file-name-handler-alist))
+              (cl-delete-duplicates file-name-handler-alist :test 'equal))))
 
 ;;; Settings pertaining to Emacs itself that do not fit better elsewhere
 (setq inhibit-compacting-font-caches t)
