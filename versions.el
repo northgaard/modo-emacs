@@ -65,6 +65,7 @@
  ("omnisharp-emacs" . "e658a18a762438c3e1737612737b05d02a21ca2a")
  ("org" . "cff97c361af361f00f6123d35c7914cf12857155")
  ("org-bullets" . "c19b13be00df8d8dc596e4f1aef4a094b08ac801")
+ ("org-edna" . "de6454949045453e0fa025e605b445c3ca05c62a")
  ("pfuture" . "fbecd1562b34fcd15563b7cc00d98e5af0d7e43d")
  ("pkg-info" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
  ("popup-el" . "80829dd46381754639fb764da11c67235fe63282")

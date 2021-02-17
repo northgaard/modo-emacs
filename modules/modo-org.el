@@ -67,6 +67,7 @@ directory for completion."
     "nb" 'org-narrow-to-block
     "ne" 'org-narrow-to-element
     "ns" 'org-narrow-to-subtree)
+  (require 'org-edna)
   (require 'evil-org)
   (setq org-startup-indented t
         org-src-tab-acts-natively t
@@ -110,6 +111,12 @@ directory for completion."
     (modo-quieten
      (org-save-all-org-buffers)))
   (run-with-idle-timer 60 t #'modo--org-save-all-org-buffers))
+
+(straight-use-package 'org-edna)
+(use-package org-edna
+  :custom (org-edna-use-inheritance t)
+  :config
+  (org-edna-mode 1))
 
 (straight-use-package 'evil-org)
 (use-package evil-org
