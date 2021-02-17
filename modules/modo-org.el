@@ -11,6 +11,11 @@ i.e. with Dropbox."
   :type 'directory
   :group 'modo-emacs)
 
+(defconst modo--org-inbox "inbox.org")
+(defconst modo--org-work "work.org")
+(defconst modo--org-personal "personal.org")
+(defconst modo--org-incubator "incubator.org")
+
 (defun modo-get-org-file (file)
   "Returns the full path to org file FILE in `modo-org-root-dir'."
   (expand-file-name file modo-org-root-dir))
@@ -81,20 +86,19 @@ directory for completion."
                                  ("WAITING" . 'org-level-2)))
   (setq org-agenda-files (thunk-force modo--org-files-at-root))
   (setq org-capture-templates `(("i" "GTD item"
-                                 entry (file ,(modo-get-org-file "inbox.org"))
+                                 entry (file ,(modo-get-org-file modo--org-inbox))
                                  "* %?\n%U\n\n  %i"
                                  :kill-buffer t)
                                 ("l" "GTD item with link to where you are in Emacs now"
-                                 entry (file ,(modo-get-org-file "inbox.org"))
+                                 entry (file ,(modo-get-org-file modo--org-inbox))
                                  "* %?\n%U\n\n  %i\n  %a"
                                  :kill-buffer t)))
   (setq org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm)
-  (setq org-refile-targets `((,(modo-get-org-file "work.org") :maxlevel . 3)
-                             (,(modo-get-org-file "personal.org") :maxlevel . 3)
-                             (,(modo-get-org-file "someday.org") :level . 1)
-                             (,(modo-get-org-file "tickler.org") :maxlevel . 2)))
+  (setq org-refile-targets `((,(modo-get-org-file modo--org-work) :maxlevel . 3)
+                             (,(modo-get-org-file modo--org-personal) :maxlevel . 3)
+                             (,(modo-get-org-file modo--org-incubator) :maxlevel . 2)))
   (defun org-todo-force-note ()
     "Like `org-todo', but forces a note on the state change."
     (interactive)
