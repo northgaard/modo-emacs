@@ -19,9 +19,6 @@ i.e. with Dropbox."
   (thunk-delay (-filter (lambda (file) (f-ext-p file "org"))
                         (f-entries modo-org-root-dir))))
 
-(defvar modo--agenda-tab-dispatch-fold-faces
-  '(org-agenda-structure org-super-agenda-header error-bold))
-
 (defun modo-org-mode-setup ()
   (org-bullets-mode 1)
   (evil-org-mode 1)
@@ -133,20 +130,6 @@ directory for completion."
     "q" 'org-capture-kill)
   :hook (org-capture-mode . evil-insert-state))
 
-(defun modo--org-agenda-count-group-items ()
-  ;; TODO: Call recursively to count items in top level headers
-  (let ((cind (current-indentation))
-        (items 0))
-    (save-excursion
-      (forward-line)
-      (while (and (not (eq cind (current-indentation)))
-                  (not (eobp)))
-        (when (org-find-text-property-in-string 'todo-state
-                                                (thing-at-point 'line))
-          (setq items (+ items 1)))
-        (forward-line)))
-    items))
-
 (use-package org-agenda
   :general
   (modo-define-leader-key :keymaps 'override
@@ -162,132 +145,7 @@ directory for completion."
     (interactive)
     (let ((org-log-done 'note))
       (call-interactively 'org-agenda-todo)))
-  (defun modo-org-agenda-tab-dispatch ()
-    ;; TODO: document this
-    ""
-    (interactive)
-    (save-excursion
-      (back-to-indentation)
-      (let ((faces (modo-get-faces (point))))
-        (if (-intersection
-             modo--agenda-tab-dispatch-fold-faces
-             faces)
-            (progn
-              (let ((origami-fold-replacement
-                     (if (not (memq 'org-agenda-structure faces))
-                         (let ((num-items (modo--org-agenda-count-group-items)))
-                           (format "... (%s %s)"
-                                   num-items (modo-pluralize num-items "item")))
-                       "...")))
-              (call-interactively 'origami-toggle-node)))
-          (call-interactively 'org-agenda-goto)))))
-  (require 'evil-org-agenda)
-  (require 'org-super-agenda)
-  (setq org-agenda-custom-commands '(("p" "Personal agenda view"
-                                      ((agenda "" ((org-agenda-span 'day)
-                                                   (org-super-agenda-groups
-                                                    '((:name "Today"
-                                                             :time-grid t
-                                                             :date today
-                                                             :scheduled today
-                                                             :order 1)
-                                                      (:name "Missed schedule"
-                                                             :header-face error-bold
-                                                             :scheduled past
-                                                             :order 0)
-                                                      (:name "Due today"
-                                                             :deadline today
-                                                             :order 2)
-                                                      (:name "Overdue"
-                                                             :header-face error-bold
-                                                             :deadline past
-                                                             :order 0)
-                                                      (:name "Due soon"
-                                                             :deadline future
-                                                             :order 3)))))
-                                       (alltodo "" ((org-agenda-overriding-header "Tasks")
-                                                    (org-super-agenda-groups
-                                                     '((:discard (:scheduled t
-                                                                  :deadline t
-                                                                  :date t))
-                                                       (:auto-parent t))))))
-                                      ((org-agenda-compact-blocks nil)
-                                       (org-agenda-block-separator "")
-                                       (org-agenda-files (mapcar #'modo-get-org-file
-                                                                 '("personal.org")))))
-                                     ("w" "Work agenda view"
-                                      ((agenda "" ((org-agenda-span 'day)
-                                                   (org-super-agenda-groups
-                                                    '((:name "Today"
-                                                             :time-grid t
-                                                             :date today
-                                                             :scheduled today
-                                                             :order 1)
-                                                      (:name "Missed schedule"
-                                                             :header-face error-bold
-                                                             :scheduled past
-                                                             :order 0)
-                                                      (:name "Due today"
-                                                             :deadline today
-                                                             :order 2)
-                                                      (:name "Overdue"
-                                                             :header-face error-bold
-                                                             :deadline past
-                                                             :order 0)
-                                                      (:name "Due soon"
-                                                             :deadline future
-                                                             :order 3)))))
-                                       (alltodo "" ((org-agenda-overriding-header "Tasks")
-                                                    (org-super-agenda-groups
-                                                     '((:discard (:scheduled t
-                                                                  :deadline t
-                                                                  :date t))
-                                                       (:auto-parent t))))))
-                                      ((org-agenda-compact-blocks nil)
-                                       (org-agenda-block-separator "")
-                                       (org-agenda-files (mapcar #'modo-get-org-file
-                                                                 '("work.org")))))
-                                     ("c" "Prioritized agenda view"
-                                      ((agenda "" ((org-agenda-span 'day)
-                                                   (org-super-agenda-groups
-                                                    '((:name "Today"
-                                                             :time-grid t
-                                                             :date today
-                                                             :scheduled today
-                                                             :order 1)
-                                                      (:name "Missed schedule"
-                                                             :header-face error-bold
-                                                             :scheduled past
-                                                             :order 0)
-                                                      (:name "Due today"
-                                                             :deadline today
-                                                             :order 2)
-                                                      (:name "Overdue"
-                                                             :header-face error-bold
-                                                             :deadline past
-                                                             :order 0)
-                                                      (:name "Due soon"
-                                                             :deadline future
-                                                             :order 3)))))
-                                       (alltodo "" ((org-agenda-overriding-header "Tasks")
-                                                    (org-super-agenda-groups
-                                                     '((:discard (:scheduled t
-                                                                  :deadline t
-                                                                  :date t))
-                                                       (:name "High-priority tasks"
-                                                              :priority "A"
-                                                              :order 0)
-                                                       (:name "Work"
-                                                              :tag "work"
-                                                              :order 1)
-                                                       (:name "Personal"
-                                                              :tag "personal"
-                                                              :order 2)
-                                                       (:name "Inbox"
-                                                              :tag "inbox"
-                                                              :order 3))))))
-                                      ((org-agenda-compact-blocks nil)
-                                       (org-agenda-block-separator ""))))))
+  (require 'evil-org-agenda))
 
 (use-package evil-org-agenda
   :hook (org-agenda-finalize . evil-normalize-keymaps)
@@ -296,40 +154,7 @@ directory for completion."
   (general-define-key
    :states 'motion
    :keymaps 'org-agenda-mode-map
-   "T" 'org-agenda-todo-force-note
-   "<tab>" 'modo-org-agenda-tab-dispatch))
-
-(straight-use-package
- '(org-super-agenda :type git
-                    :host github
-                    :repo "alphapapa/org-super-agenda"
-                    :fork (:repo "northgaard/org-super-agenda"
-                                 :branch "header-face")))
-(straight-use-package 'origami)
-
-(use-package org-super-agenda
-  :preface
-  (defun modo--org-super-agenda-hook ()
-    (origami-mode 1)
-    (setq-local face-remapping-alist
-                '((org-level-1 . org-super-agenda-header)
-                  (org-level-2 . org-super-agenda-header)
-                  (org-level-3 . org-super-agenda-header)
-                  (org-level-4 . org-super-agenda-header)
-                  (org-level-5 . org-super-agenda-header)
-                  (org-level-6 . org-super-agenda-header)
-                  (org-level-7 . org-super-agenda-header)
-                  (org-level-8 . org-super-agenda-header))))
-  :hook (org-agenda-mode . modo--org-super-agenda-hook)
-  :config
-  (org-super-agenda-mode 1)
-  ;; When the header map is active, evil state is ignored
-  ;; for some reason. This is the best work-around I've found
-  ;; so far.
-  (setq org-super-agenda-header-map (make-sparse-keymap))
-  (general-define-key :keymaps 'org-super-agenda-header-map
-                      "q" 'org-agenda-quit
-                      "<tab>" 'modo-org-agenda-tab-dispatch))
+   "T" 'org-agenda-todo-force-note))
 
 (use-package org-archive
   :custom (org-archive-save-context-info '(time olpath category todo itags)))
