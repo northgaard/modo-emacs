@@ -80,12 +80,14 @@ directory for completion."
                                  ("IN-PROGRESS" . 'org-level-2)
                                  ("WAITING" . 'org-level-2)))
   (setq org-agenda-files (thunk-force modo--org-files-at-root))
-  (setq org-capture-templates `(("t" "Todo [inbox]" entry
-                                 (file+headline ,(modo-get-org-file "inbox.org") "Tasks")
-                                 "* TODO %?")
-                                ("T" "Tickler" entry
-                                 (file+headline ,(modo-get-org-file "tickler.org") "Tickler")
-                                 "* %? \n %U")))
+  (setq org-capture-templates `(("i" "GTD item"
+                                 entry (file ,(modo-get-org-file "inbox.org"))
+                                 "* %?\n%U\n\n  %i"
+                                 :kill-buffer t)
+                                ("l" "GTD item with link to where you are in Emacs now"
+                                 entry (file ,(modo-get-org-file "inbox.org"))
+                                 "* %?\n%U\n\n  %i\n  %a"
+                                 :kill-buffer t)))
   (setq org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm)
