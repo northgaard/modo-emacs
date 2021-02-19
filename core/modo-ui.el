@@ -28,6 +28,14 @@
 ;; Truncate lines by default
 (setq-default truncate-lines t)
 
+;; More intuitive behavior for new windows
+;; From here: https://github.com/nex3/perspective-el#some-musings-on-emacs-window-layouts
+(setq display-buffer-alist
+      '((".*"
+         (display-buffer-reuse-window display-buffer-same-window)
+         (reusable-frames . t))))
+(setq even-window-sizes nil)  ; display-buffer hint: avoid resizing
+
 (use-package frame
   :demand t
   :config
