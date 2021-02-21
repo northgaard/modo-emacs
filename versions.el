@@ -71,6 +71,7 @@
  ("powershell.el" . "d1b3f95669343399f199f291ef76c09a0ede5e60")
  ("projectile" . "588692ad56395ed4fd072bac496b33992096bfe4")
  ("queue" . "52206c0f78afc0dfb9a287cb928c1e725103336d")
+ ("rust-mode" . "c5c7ed31a2e1106ab4835b135618a34570796dc7")
  ("s.el" . "43ba8b563bee3426cead0e6d4ddc09398e1a349d")
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("smex" . "55aaebe3d793c2c990b39a302eb26c184281c42c")

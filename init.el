@@ -29,6 +29,7 @@
              elisp
              csharp
              cpp
+             rust
              groovy)
 
 ;;; Finally, load the private init file, if it exists
