@@ -165,7 +165,7 @@
     (global-evil-matchit-mode 1)))
 
 ;;; evil-numbers
-(straight-use-package 'evil-numbers)
+(straight-use-package '(evil-numbers :type git :host github :repo "juliapath/evil-numbers"))
 (use-package evil-numbers
   :commands (evil-numbers/inc-at-pt evil-numbers/dec-at-pt)
   :general
