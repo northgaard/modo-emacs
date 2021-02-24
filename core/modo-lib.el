@@ -55,7 +55,7 @@ if it does, nil otherwise."
      ,@body))
 
 (cl-defmacro modo-add-hook ((hook &key name transient) &body body)
-  "Run BODY in HOOK.
+  "Run BODY in HOOK. HOOK may be a hook or a list of hooks.
 
 If the optional argument NAME is specified, use that to name the
 generated defun. If the optional argument TRANSIENT is specified,
@@ -64,12 +64,20 @@ the hook function removes itself from HOOK when run."
   (let* ((funcname (intern (if name
                                name
                              (format "modo-hook--%s" hook))))
+         (hooks (cond
+                 ((symbolp hook)
+                  (list hook))
+                 ((listp hook)
+                        hook)))
          (defun-form (append `(defun ,funcname () ,@body)
                              (when transient
-                               `((remove-hook ',hook ',funcname))))))
+                               (mapcar (lambda (h) `(remove-hook ',h #',funcname))
+                                       hooks)))))
     `(progn
        ,defun-form
-       (add-hook ',hook ',funcname))))
+       ,@(mapcar (lambda (h)
+                 `(add-hook ',h #',funcname))
+               hooks))))
 
 (defun modo-url-search (query-url prompt)
   "Search the web for PROMPT with a search url constructed with QUERY-URL."
