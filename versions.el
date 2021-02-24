@@ -49,6 +49,7 @@
  ("goto-chg" . "2af612153bc9f5bed135d25abe62f46ddaa9027f")
  ("groovy-emacs-modes" . "26da902d1158c0312628d57578109be54eca2415")
  ("helpful" . "584ecc887bb92133119f93a6716cdf7af0b51dca")
+ ("hl-todo" . "4d18ccde596aef84ef278aa60144390ab41f0046")
  ("ht.el" . "fff8c43f0e03d5b98deb9f988522b839ce2ca253")
  ("hydra" . "16fa8d109ec5799931a793b2e866ea9d593bee84")
  ("ivy-rich" . "0f22aff4c7d7d01bb11561578f5fcd7a2eaa7058")

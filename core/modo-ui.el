@@ -143,6 +143,15 @@
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
+;;; Highlight todo type notes
+(straight-use-package 'hl-todo)
+(use-package hl-todo
+  :init
+  (modo-add-hook ((text-mode-hook prog-mode-hook)
+                  :name "modo--hl-todo-hook"
+                  :transient t)
+    (global-hl-todo-mode 1)))
+
 ;;; Theme
 
 (defface error-bold '((t (:inherit error :weight bold)))
