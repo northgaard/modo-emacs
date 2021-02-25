@@ -46,6 +46,10 @@
   "wp" 'ace-swap-window
   "wt" '(modo-toggle-window-split
          :wk "toggle-window-split")
+  "wj" 'windmove-down
+  "wk" 'windmove-up
+  "wh" 'windmove-left
+  "wl" 'windmove-right
   "n" '(:ignore t :wk "narrow")
   "nd" 'narrow-to-defun
   "nn" 'narrow-to-region
