@@ -77,7 +77,9 @@ directory for completion."
         org-fontify-done-headline t
         org-fontify-whole-heading-line t
         org-log-done 'time
-        org-refile-use-cache t)
+        org-refile-use-cache t
+        org-hide-emphasis-markers t
+        org-ellipsis " ▾")
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))

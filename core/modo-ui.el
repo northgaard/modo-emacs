@@ -200,6 +200,7 @@
   (doom-themes-set-faces 'user
     '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
     '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)
+    '(org-ellipsis :foreground (doom-darken (doom-color 'yellow) 0.4))
     '(modo-pulse-face :background (doom-lighten (face-attribute 'hl-line :background) 0.2))))
 
 (add-hook 'emacs-startup-hook #'modo--load-theme)
