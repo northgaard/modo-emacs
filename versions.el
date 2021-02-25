@@ -51,7 +51,7 @@
  ("helpful" . "584ecc887bb92133119f93a6716cdf7af0b51dca")
  ("hl-todo" . "4d18ccde596aef84ef278aa60144390ab41f0046")
  ("ht.el" . "fff8c43f0e03d5b98deb9f988522b839ce2ca253")
- ("hydra" . "16fa8d109ec5799931a793b2e866ea9d593bee84")
+ ("hydra" . "2d553787aca1aceb3e6927e426200e9bb9f056f1")
  ("ivy-rich" . "0f22aff4c7d7d01bb11561578f5fcd7a2eaa7058")
  ("json-mode" . "54788b3f8a50009db330a5715472c13bd5e86fe1")
  ("let-alist" . "6708ec0b2e6dff80ff5b64698aa009d9070a2ed2")
