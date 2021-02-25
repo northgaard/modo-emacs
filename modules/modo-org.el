@@ -80,6 +80,20 @@ directory for completion."
         org-refile-use-cache t
         org-hide-emphasis-markers t
         org-ellipsis " ▾")
+    ;; Set face height for heading levels
+  (dolist (face '((org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.0)
+                  (org-level-6 . 1.0)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (set-face-attribute (car face) nil :height (cdr face)))
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "WAITING(w)"
                     "|" "DONE(d)" "CANCELED(c)")))
@@ -177,8 +191,8 @@ directory for completion."
 (straight-use-package 'org-bullets)
 (use-package org-bullets
   :commands (org-bullets-mode)
-  :config
-  (setq org-bullets-bullet-list '("•")))
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
 (provide 'modo-org)
 ;;; modo-org.el ends here
