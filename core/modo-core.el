@@ -164,11 +164,19 @@
   :non-normal-prefix modo-non-normal-leader)
 (general-create-definer modo--direct-major-leader-key
   :states '(motion normal visual)
-  :prefix modo-major-leader)
+  :prefix modo-major-leader
+  "" '(:ignore t
+       :which-key (lambda (arg)
+                      `(,(cadr (split-string (car arg) " ")) .
+                          ,(replace-regexp-in-string "-mode$" "" (symbol-name major-mode))))))
 (general-create-definer modo--indirect-major-leader-key
   :states '(motion normal visual insert emacs)
   :prefix (concat modo-leader " m")
-  :non-normal-prefix (concat modo-non-normal-leader " m"))
+  :non-normal-prefix (concat modo-non-normal-leader " m")
+  "" '(:ignore t
+       :which-key (lambda (arg)
+                      `(,(cadr (split-string (car arg) " ")) .
+                          ,(replace-regexp-in-string "-mode$" "" (symbol-name major-mode))))))
 (defmacro modo-define-major-leader-key (&rest args)
   "Defines leader key bindings for a major mode. Commands are
 bound both under <major-leader>, as well as \"<leader> m\"."
