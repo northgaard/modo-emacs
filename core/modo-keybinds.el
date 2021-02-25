@@ -40,6 +40,7 @@
   "wm" 'delete-other-windows
   "wd" 'delete-frame
   "wf" 'make-frame-command
+  "wF" 'make-frame-on-monitor
   "wo" 'ace-window
   "wu" 'winner-undo
   "wr" 'winner-redo
