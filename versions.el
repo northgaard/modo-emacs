@@ -63,7 +63,7 @@
  ("modern-cpp-font-lock" . "865955d0035382a17a7f03add0d00d0bd812b103")
  ("move-border" . "79787ae93129fd98029c74780a79a2b659803061")
  ("omnisharp-emacs" . "e658a18a762438c3e1737612737b05d02a21ca2a")
- ("org" . "cff97c361af361f00f6123d35c7914cf12857155")
+ ("org" . "abedf386b3f13af2769728755d00c4698ac5d3b0")
  ("org-bullets" . "c19b13be00df8d8dc596e4f1aef4a094b08ac801")
  ("org-edna" . "de6454949045453e0fa025e605b445c3ca05c62a")
  ("pfuture" . "fbecd1562b34fcd15563b7cc00d98e5af0d7e43d")
