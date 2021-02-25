@@ -87,6 +87,24 @@
 (use-package ace-window
   :commands (ace-window ace-swap-window))
 
+;;; Window size adjustment
+(defhydra hydra-window-resize (:pre (setq which-key-inhibit t)
+                                       :post (setq which-key-inhibit nil))
+  ;;newline is necessary here!
+  "
+^Resize Windows^ "
+  ;;Entry
+  ("H" (lambda () (interactive) (shrink-window-horizontally 5)) "shrink-horizontal" :column "Large")
+  ("J" (lambda () (interactive) (enlarge-window 5)) "enlarge-vertical")
+  ("K" (lambda () (interactive) (shrink-window 5)) "shrink-vertical")
+  ("L" (lambda () (interactive) (enlarge-window-horizontally 5)) "enlarge-horizontal")
+  ("=" (lambda () (interactive) (balance-windows)) "balance-windows" :column "Balance")
+  ("h" (lambda () (interactive) (shrink-window-horizontally 1)) "shrink-horizontal" :column "Small")
+  ("j" (lambda () (interactive) (enlarge-window 1)) "enlarge-vertical")
+  ("k" (lambda () (interactive) (shrink-window 1)) "shrink-vertical")
+  ("l" (lambda () (interactive) (enlarge-window-horizontally 1)) "enlarge-horizontal")
+  ("q" nil "quit" :column "End"))
+
 ;;; Font
 (defcustom modo-allow-ligatures nil
   "If non-nil, allow experimental support for font ligatures."

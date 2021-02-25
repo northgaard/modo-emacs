@@ -50,6 +50,7 @@
   "wk" 'windmove-up
   "wh" 'windmove-left
   "wl" 'windmove-right
+  "wz" 'hydra-window-resize/body
   "n" '(:ignore t :wk "narrow")
   "nd" 'narrow-to-defun
   "nn" 'narrow-to-region
