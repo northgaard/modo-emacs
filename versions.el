@@ -61,6 +61,7 @@
  ("markdown-mode" . "3e380572a5177d0fa527c15efd15e340f53a923b")
  ("melpa" . "8d08307e483c328075bbf933b2ea0c03bffe8b7c")
  ("modern-cpp-font-lock" . "865955d0035382a17a7f03add0d00d0bd812b103")
+ ("move-border" . "79787ae93129fd98029c74780a79a2b659803061")
  ("omnisharp-emacs" . "e658a18a762438c3e1737612737b05d02a21ca2a")
  ("org" . "cff97c361af361f00f6123d35c7914cf12857155")
  ("org-bullets" . "c19b13be00df8d8dc596e4f1aef4a094b08ac801")

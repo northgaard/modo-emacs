@@ -88,22 +88,27 @@
   :commands (ace-window ace-swap-window))
 
 ;;; Window size adjustment
-(defhydra hydra-window-resize (:pre (setq which-key-inhibit t)
+(straight-use-package '(move-border :type git :host github :repo "ramnes/move-border"))
+(use-package move-border
+  :init
+  (defhydra hydra-window-resize (:pre (progn
+                                        (setq which-key-inhibit t)
+                                        (require 'move-border))
                                        :post (setq which-key-inhibit nil))
-  ;;newline is necessary here!
-  "
+    ;;newline is necessary here!
+    "
 ^Resize Windows^ "
   ;;Entry
-  ("H" (lambda () (interactive) (shrink-window-horizontally 5)) "shrink-horizontal" :column "Large")
-  ("J" (lambda () (interactive) (enlarge-window 5)) "enlarge-vertical")
-  ("K" (lambda () (interactive) (shrink-window 5)) "shrink-vertical")
-  ("L" (lambda () (interactive) (enlarge-window-horizontally 5)) "enlarge-horizontal")
+  ("H" (lambda () (interactive) (move-border-left 5)) "left" :column "Large")
+  ("J" (lambda () (interactive) (move-border-down 5)) "down")
+  ("K" (lambda () (interactive) (move-border-up 5)) "up")
+  ("L" (lambda () (interactive) (move-border-right 5)) "right")
   ("=" (lambda () (interactive) (balance-windows)) "balance-windows" :column "Balance")
-  ("h" (lambda () (interactive) (shrink-window-horizontally 1)) "shrink-horizontal" :column "Small")
-  ("j" (lambda () (interactive) (enlarge-window 1)) "enlarge-vertical")
-  ("k" (lambda () (interactive) (shrink-window 1)) "shrink-vertical")
-  ("l" (lambda () (interactive) (enlarge-window-horizontally 1)) "enlarge-horizontal")
-  ("q" nil "quit" :column "End"))
+  ("h" (lambda () (interactive) (move-border-left 1)) "left" :column "Small")
+  ("j" (lambda () (interactive) (move-border-down 1)) "down")
+  ("k" (lambda () (interactive) (move-border-up 1)) "up")
+  ("l" (lambda () (interactive) (move-border-right 1)) "right")
+  ("q" nil "quit" :column "End")))
 
 ;;; Font
 (defcustom modo-allow-ligatures nil
