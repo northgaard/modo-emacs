@@ -144,10 +144,9 @@ directory for completion."
     "Jump to an org header at any level."
     (interactive)
     (avy-jump "^\\*+ "))
-  (general-define-key :states '(motion normal visual)
-                      :keymaps 'evil-org-mode-map
-                      "gs" #'avy-org-goto-header
-                      "gS" #'avy-org-goto-heading-timer))
+  (evil-define-key '(motion normal visual) 'evil-org-mode
+    "gs" #'avy-org-goto-header
+    "gS" #'avy-org-goto-heading-timer))
 
 (use-package org-capture
   :general
