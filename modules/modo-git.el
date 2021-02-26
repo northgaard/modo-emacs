@@ -126,6 +126,7 @@ _C-k_: down     _a_ll                _R_efine
     "vb" 'magit-blame
     "vf" 'magit-find-file
     "vd" 'magit-dispatch
+    "vl" 'magit-log-buffer-file
     "vD" 'magit-file-dispatch)
   (:states '(motion normal visual)
            :keymaps 'magit-log-mode-map
