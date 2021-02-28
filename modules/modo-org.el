@@ -95,8 +95,8 @@ directory for completion."
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "WAITING(w)"
-                    "|" "DONE(d)" "CANCELED(c)")))
+        '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p!)" "WAITING(w@/!)"
+                    "|" "DONE(d!)" "CANCELED(c@/@)")))
   ;; TODO: Need a better way to reference theme colors
   (setq org-todo-keyword-faces '(("NEXT" . 'org-level-1)
                                  ("IN-PROGRESS" . 'org-level-2)
