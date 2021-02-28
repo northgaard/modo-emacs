@@ -77,6 +77,8 @@ directory for completion."
         org-fontify-done-headline t
         org-fontify-whole-heading-line t
         org-log-done 'time
+        org-agenda-start-with-log-mode t
+        org-log-into-drawer t
         org-refile-use-cache t
         org-hide-emphasis-markers t
         org-ellipsis " ▾")
