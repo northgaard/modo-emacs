@@ -69,6 +69,25 @@
         (modo-set-1 ,var ,val)
         (modo-set ,@rest)))))
 
+(defvar modo--temporary-restore nil)
+(defmacro modo-temporary-set-1 (variable value)
+  (let ((old-value (symbol-value variable)))
+    `(progn
+       (push '(,variable . ,old-value) modo--temporary-restore)
+       (modo-set-1 ,variable ,value))))
+(defmacro modo-temporary-set (&rest binds)
+  (pcase binds
+    (`(,var ,val)
+     `(modo-temporary-set-1 ,var ,val))
+    (`(,var ,val . ,rest)
+     `(progn
+        (modo-temporary-set-1 ,var ,val)
+        (modo-temporary-set ,@rest)))))
+(defun modo-temporary-reset ()
+  (dolist (restore modo--temporary-restore)
+    (eval `(modo-set-1 ,(car restore) ,(cdr restore))))
+  (setq modo--temporary-restore nil))
+
 ;;; Custom file
 (setq custom-file (expand-file-name "custom.el" modo-emacs-dir))
 (load custom-file t t)
