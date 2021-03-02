@@ -69,6 +69,7 @@
  ("pfuture" . "fbecd1562b34fcd15563b7cc00d98e5af0d7e43d")
  ("pkg-info" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
  ("popup-el" . "80829dd46381754639fb764da11c67235fe63282")
+ ("posframe" . "3454a4cb9d218c38f9c5b88798dfb2f7f85ad936")
  ("powershell.el" . "d1b3f95669343399f199f291ef76c09a0ede5e60")
  ("projectile" . "588692ad56395ed4fd072bac496b33992096bfe4")
  ("queue" . "52206c0f78afc0dfb9a287cb928c1e725103336d")
