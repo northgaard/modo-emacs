@@ -28,9 +28,16 @@
         company-require-match 'never
         company-dabbrev-downcase nil
         company-frontends '(company-pseudo-tooltip-frontend
-                            company-echo-metadata-frontend)
-        company-transformers '(company-sort-by-occurrence))
+                            company-echo-metadata-frontend))
   (global-company-mode 1))
+
+(straight-use-package 'company-prescient)
+(use-package company-prescient
+  :demand t
+  :after company
+  :config
+  (setq prescient-save-file (concat modo-cache-dir "prescient-save.el"))
+  (company-prescient-mode 1))
 
 (provide 'modo-company)
 ;;; modo-company.el ends here

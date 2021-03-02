@@ -70,6 +70,7 @@
  ("popup-el" . "80829dd46381754639fb764da11c67235fe63282")
  ("posframe" . "3454a4cb9d218c38f9c5b88798dfb2f7f85ad936")
  ("powershell.el" . "d1b3f95669343399f199f291ef76c09a0ede5e60")
+ ("prescient.el" . "b6da466e552a710a9362c73a3c1c265984de9790")
  ("projectile" . "588692ad56395ed4fd072bac496b33992096bfe4")
  ("queue" . "52206c0f78afc0dfb9a287cb928c1e725103336d")
  ("rust-mode" . "c5c7ed31a2e1106ab4835b135618a34570796dc7")
