@@ -73,7 +73,8 @@
 (defmacro modo-temporary-set-1 (variable value)
   (let ((old-value (symbol-value variable)))
     `(progn
-       (push '(,variable . ,old-value) modo--temporary-restore)
+       (cl-pushnew '(,variable . ,old-value) modo--temporary-restore
+                   :test 'equal)
        (modo-set-1 ,variable ,value))))
 (defmacro modo-temporary-set (&rest binds)
   (pcase binds
@@ -85,7 +86,9 @@
         (modo-temporary-set ,@rest)))))
 (defun modo-temporary-reset ()
   (dolist (restore modo--temporary-restore)
-    (eval `(modo-set-1 ,(car restore) ,(cdr restore))))
+    (eval (if (symbolp (cdr restore))
+              `(modo-set-1 ,(car restore) ',(cdr restore))
+            `(modo-set-1 ,(car restore) ,(cdr restore)))))
   (setq modo--temporary-restore nil))
 
 ;;; Custom file
