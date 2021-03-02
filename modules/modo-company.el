@@ -9,27 +9,27 @@
   :commands (company-mode
              global-company-mode
              company-complete
-             company-complete-common)
+             company-complete-common
+             company-yasnippet)
   :general
   (:states '(insert emacs)
            "C-SPC" 'company-complete)
+  (:states '(insert)
+          "C-y" 'company-yasnippet)
   (:keymaps 'company-active-map
             "C-j" 'company-select-next
             "C-k" 'company-select-previous
             "C-o" 'counsel-company
             [tab] 'company-complete-common-or-cycle)
   :config
-  (make-variable-buffer-local 'company-backends)
   (setq company-idle-delay nil
         company-tooltip-align-annotations t
         company-selection-wrap-around t
         company-require-match 'never
+        company-dabbrev-downcase nil
         company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend)
         company-transformers '(company-sort-by-occurrence))
-  (setq-default company-backends '(company-capf company-dabbrev company-ispell))
-  (with-eval-after-load 'yasnippet
-    (nconc company-backends '(company-yasnippet)))
   (global-company-mode 1)
   (company-statistics-mode 1))
 
