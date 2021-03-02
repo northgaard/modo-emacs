@@ -30,16 +30,7 @@
         company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend)
         company-transformers '(company-sort-by-occurrence))
-  (global-company-mode 1)
-  (company-statistics-mode 1))
-
-(straight-use-package 'company-statistics)
-(use-package company-statistics
-  :after company
-  :commands (company-statistics-mode)
-  :config
-  (setq company-statistics-file (expand-file-name "company-stats-cache.el"
-                                                  modo-cache-dir)))
+  (global-company-mode 1))
 
 (provide 'modo-company)
 ;;; modo-company.el ends here
