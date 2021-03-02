@@ -92,9 +92,11 @@
 (use-package move-border
   :init
   (defhydra hydra-window-resize (:pre (progn
-                                        (setq which-key-inhibit t)
+                                        (modo-temporary-set
+                                         which-key-inhibit t
+                                         hydra-hint-display-type 'posframe)
                                         (require 'move-border))
-                                       :post (setq which-key-inhibit nil))
+                                       :post (modo-temporary-reset))
     ;;newline is necessary here!
     "
 ^Resize Windows^ "
@@ -152,7 +154,11 @@
 (straight-use-package 'default-text-scale)
 (use-package default-text-scale
   :init
-  (defhydra hydra-font-size (:color red)
+  (defhydra hydra-font-size (:color red
+                                    :pre (modo-temporary-set
+                                          hydra-hint-display-type
+                                          'message)
+                                    :post (modo-temporary-reset))
     "Change font size"
     ("+" default-text-scale-increase "increase")
     ("M-+" text-scale-increase "increase (buffer)")

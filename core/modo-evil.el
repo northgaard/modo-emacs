@@ -189,7 +189,10 @@
                     "g:" #'goto-last-change-reverse)
 
 ;; General purpose hydras
-(defhydra hydra-quick-scroll (:color red)
+(defhydra hydra-quick-scroll (:color red
+                                     :pre (modo-temporary-set
+                                           hydra-hint-display-type 'message)
+                                     :post (modo-temporary-reset))
   "Quickly scroll through buffer"
   ("j" evil-scroll-down "down")
   ("k" evil-scroll-up "up")

@@ -158,6 +158,7 @@
 ;; Keybind definers
 ;; hydra
 (straight-use-package 'lv)
+(straight-use-package 'posframe)
 (straight-use-package 'hydra)
 (use-package hydra
   :demand t)
