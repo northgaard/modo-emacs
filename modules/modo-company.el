@@ -38,6 +38,7 @@
   :after company
   :config
   (setq prescient-save-file (concat modo-cache-dir "prescient-save.el"))
+  (prescient-persist-mode 1)
   (company-prescient-mode 1))
 
 (provide 'modo-company)
