@@ -38,5 +38,19 @@
   :config
   (selectrum-prescient-mode 1))
 
+(straight-use-package 'marginalia)
+(use-package marginalia
+  :demand t
+  :general
+  (:keymaps 'selectrum-minibuffer-map
+            "M-m" 'marginalia-cycle)
+  :config
+  (marginalia-mode 1)
+  (setq marginalia-annotators
+        '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  (advice-add #'marginalia-cycle :after
+              (lambda () (selectrum-exhibit 'keep-selected))))
+
+
 (provide 'modo-completion)
 ;;; modo-completion.el ends here
