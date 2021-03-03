@@ -10,7 +10,8 @@
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-session-file (concat modo-cache-dir "lsp-session-v1")
-        lsp-server-install-dir (concat modo-cache-dir "lsp/"))
+        lsp-server-install-dir (concat modo-cache-dir "lsp/")
+        lsp-keymap-prefix nil)
   :config
   (require 'company)
   (lsp-enable-which-key-integration t))
