@@ -9,10 +9,10 @@
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
-  (setq lsp-keymap-prefix (concat modo-leader " l"))
-  :config
   (setq lsp-session-file (concat modo-cache-dir "lsp-session-v1")
         lsp-server-install-dir (concat modo-cache-dir "lsp/"))
+  :config
+  (require 'company)
   (lsp-enable-which-key-integration t))
 
 (provide 'modo-lsp)
