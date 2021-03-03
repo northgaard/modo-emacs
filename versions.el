@@ -71,7 +71,7 @@
  ("posframe" . "3454a4cb9d218c38f9c5b88798dfb2f7f85ad936")
  ("powershell.el" . "d1b3f95669343399f199f291ef76c09a0ede5e60")
  ("prescient.el" . "b6da466e552a710a9362c73a3c1c265984de9790")
- ("projectile" . "588692ad56395ed4fd072bac496b33992096bfe4")
+ ("projectile" . "f3f8a6505d50ca0f03f7deef99a1c8aa3bcd9e58")
  ("queue" . "52206c0f78afc0dfb9a287cb928c1e725103336d")
  ("rust-mode" . "c5c7ed31a2e1106ab4835b135618a34570796dc7")
  ("s.el" . "43ba8b563bee3426cead0e6d4ddc09398e1a349d")
