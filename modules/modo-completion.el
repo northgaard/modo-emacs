@@ -9,7 +9,8 @@
 (use-package prescient
   :demand t
   :config
-  (setq prescient-save-file (concat modo-cache-dir "prescient-save.el"))
+  (setq prescient-save-file (concat modo-cache-dir "prescient-save.el")
+        prescient-aggressive-file-save t)
   (prescient-persist-mode 1))
 
 (straight-use-package 'selectrum)
@@ -28,6 +29,7 @@
             "M-j" 'next-history-element
             "M-k" 'previous-history-element)
   :config
+  (setq selectrum-count-style 'current/matches)
   (selectrum-mode 1))
 
 (straight-use-package 'selectrum-prescient)
