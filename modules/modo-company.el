@@ -6,6 +6,7 @@
 ;;; Code:
 (straight-use-package 'company)
 (use-package company
+  :defer 5
   :commands (company-mode
              global-company-mode
              company-complete

@@ -67,6 +67,7 @@
 
 (straight-use-package 'counsel)
 (use-package counsel
+  :defer 3
   :commands (counsel-apropos
              counsel-find-file
              counsel-file-jump

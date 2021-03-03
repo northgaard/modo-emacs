@@ -93,6 +93,7 @@ _C-k_: down     _a_ll                _R_efine
 
 (straight-use-package 'magit)
 (use-package magit
+  :defer 20
   :init
   (modo-add-hook (git-commit-setup-hook)
     (setq-local undo-tree-auto-save-history nil)

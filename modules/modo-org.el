@@ -41,6 +41,7 @@ directory for completion."
 
 (straight-use-package 'org-plus-contrib)
 (use-package org
+  :defer 10
   :hook (org-mode . modo-org-mode-setup)
   :general
   (modo-define-leader-key :keymaps 'override
