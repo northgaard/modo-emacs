@@ -38,7 +38,7 @@
  ("evil-surround" . "346d4d85fcf1f9517e9c4991c1efe68b4130f93a")
  ("f.el" . "c4dbf8c8e83df834f5d6f72cd5649b9d8a8812ec")
  ("flycheck" . "01396a5eff9fa494285e0d3139838231c05e3948")
- ("flyspell-lazy" . "3ebf68cc9eb10c972a2de8d7861cbabbbce69570")
+ ("flyspell-lazy" . "d57382cf06462931cb354f5630469425fce56396")
  ("gcmh" . "0089f9c3a6d4e9a310d0791cf6fa8f35642ecfd9")
  ("general.el" . "7fdb13e9f90600968d15704851df9c45b5df8ca5")
  ("git-modes" . "55468314a5f6b77d2c96be62c7005ac94545e217")
