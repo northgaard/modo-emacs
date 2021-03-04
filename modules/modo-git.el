@@ -91,6 +91,14 @@ _C-k_: down     _a_ll                _R_efine
         transient-levels-file (concat modo-cache-dir "transient/levels.el")
         transient-values-file (concat modo-cache-dir "transient/values.el")))
 
+(defun modo-magit-status-straight-package (package)
+  "Run magit status on PACKAGE installed by straight.el"
+  (interactive (list (straight--select-package "Select package"
+                                               #'straight--installed-p)))
+  (magit-status (straight--repos-dir
+                 (plist-get (gethash package straight--recipe-cache)
+                            :local-repo))))
+
 (straight-use-package 'magit)
 (use-package magit
   :defer 20
@@ -133,6 +141,8 @@ _C-k_: down     _a_ll                _R_efine
   (:states '(motion normal visual)
            :keymaps 'magit-log-mode-map
            "gs" #'avy-magit-log-goto-commit)
+  (:keymaps 'projectile-command-map
+            "y" 'modo-magit-status-straight-package)
   :config
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
