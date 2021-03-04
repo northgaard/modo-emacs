@@ -12,6 +12,14 @@
   "Program used for spellchecking.")
 
 (use-package flyspell
+  :general
+  (modo-define-leader-key
+    :keymaps 'override
+    "k" '(:ignore t :wk "spellcheck")
+    "kb" 'modo-flyspell-buffer
+    "kq" 'flyspell-clear-overlays
+    "kt" 'modo-toggle-flyspell-mode
+    "kl" 'flyspell-lazy-local-mode)
   :init
   (with-eval-after-load 'magit
     (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
@@ -21,19 +29,40 @@
         ispell-extra-args '("--sug-mode=ultra")
         flyspell-issue-message-flag nil)
   (defun flyspell-prog-buffer ()
+    "Spellcheck buffer as in `flyspell-prog-mode'."
     (interactive)
     (let ((flyspell-generic-check-word-predicate
            #'flyspell-generic-progmode-verify))
       (flyspell-buffer)))
   (defun flyspell-clear-overlays ()
+    "Clear all flyspell overlays."
     (interactive)
-    (flyspell-delete-all-overlays)))
+    (flyspell-delete-all-overlays))
+  (defun modo-flyspell-buffer ()
+    "Spellcheck the current buffer, respecting major mode.
+
+This will spellcheck comments and strings in `prog-mode' buffers,
+and check everything anywhere else."
+    (interactive)
+    (if (derived-mode-p 'prog-mode)
+        (flyspell-prog-buffer)
+      (flyspell-buffer)))
+  (defun modo-toggle-flyspell-mode ()
+    "Toggle `flyspell-mode', respecting major mode.
+
+This will toggle `flyspell-prog-mode' in `prog-mode' buffers, and
+`flyspell-mode' everywhere else."
+    (interactive)
+    (if (and (derived-mode-p 'prog-mode)
+             (not flyspell-mode))
+        (flyspell-prog-mode)
+      (flyspell-mode 'toggle))))
 
 (straight-use-package 'flyspell-lazy)
 (use-package flyspell-lazy
   :config
   (setq flyspell-lazy-idle-seconds 1.5
-        flyspell-lazy-window-idle-seconds 15))
+        flyspell-lazy-window-idle-seconds 5))
 
 (define-minor-mode flyspell-lazy-local-mode
   "Turn on flyspell-lazy-local-mode.
