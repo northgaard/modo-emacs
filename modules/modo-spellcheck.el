@@ -91,5 +91,25 @@ package like this is not possible with the global
       (flyspell-lazy-unload)
       (flyspell-mode -1)))))
 
+(straight-use-package 'flyspell-correct)
+(use-package flyspell-correct
+  :general
+  (modo-define-leader-key
+    :keymaps 'override
+    "kc" 'flyspell-correct-wrapper
+    "ks" 'modo-flyspell-correct-session)
+  :config
+  ;; TODO write a proper selectrum interface for flyspell-correct
+  (defun modo-flyspell-correct-session ()
+    "Start an interactive session to correct spelling mistakes."
+    (interactive)
+    (let ((flyspell-was-active flyspell-mode))
+      (unwind-protect
+          (progn
+            (modo-flyspell-buffer)
+            (flyspell-correct-move (point-min) 'forward 'rapid))
+        (unless flyspell-was-active
+          (flyspell-clear-overlays))))))
+
 (provide 'modo-spellcheck)
 ;;; modo-spellcheck.el ends here
