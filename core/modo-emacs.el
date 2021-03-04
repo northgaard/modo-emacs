@@ -44,6 +44,11 @@
 ;;; Helpful -- better help buffers
 (straight-use-package 'helpful)
 (use-package helpful
+  :general
+  (:keymaps 'override
+            [remap describe-function] 'helpful-function
+            [remap describe-variable] 'helpful-variable
+            [remap describe-key] 'helpful-key)
   :config
   (evil-collection-require 'helpful)
   (evil-collection-helpful-setup)
