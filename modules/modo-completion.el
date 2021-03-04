@@ -51,6 +51,19 @@
   (advice-add #'marginalia-cycle :after
               (lambda () (selectrum-exhibit 'keep-selected))))
 
+(straight-use-package 'embark)
+(use-package embark
+  :demand t
+  :general
+  (:keymaps 'selectrum-minibuffer-map
+            "M-o" 'embark-act)
+  :config
+  (setq embark-action-indicator
+        (lambda (map _target)
+          (which-key--show-keymap "Embark" map nil nil 'no-paging)
+          #'which-key--hide-popup-ignore-command)
+        embark-become-indicator embark-action-indicator))
+
 (straight-use-package 'consult)
 (use-package consult
   :general
@@ -63,6 +76,12 @@
         xref-show-definitions-function #'consult-xref)
   :config
   (setq consult-project-root-function #'projectile-project-root))
+
+(straight-use-package 'embark-consult)
+(use-package embark-consult
+  :demand t
+  :after consult
+  :hook (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (provide 'modo-completion)
 ;;; modo-completion.el ends here
