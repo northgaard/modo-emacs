@@ -113,17 +113,6 @@ _C-k_: down     _a_ll                _R_efine
     (when smerge-mode
       (smerge-hydra/body)))
   (setq evil-collection-magit-want-horizontal-movement t)
-  (with-eval-after-load 'counsel
-    (defun modo--magit-status-find-file-action (input)
-      (require 'magit-git)
-      (require 'magit-process)
-      (let ((dotgit-dir (magit-gitdir (file-name-directory input))))
-        (if (and dotgit-dir
-                 (magit-git-repo-p dotgit-dir))
-            (magit-status (f-parent dotgit-dir))
-          (message "Not a git repository!"))))
-    (ivy-add-actions #'counsel-find-file
-                     '(("v" modo--magit-status-find-file-action "magit status"))))
   :general
   (modo-define-leader-key "s" 'magit-status)
   ;; Let's pretend with-editor-mode is a major mode

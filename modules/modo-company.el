@@ -20,7 +20,6 @@
   (:keymaps 'company-active-map
             "C-j" 'company-select-next
             "C-k" 'company-select-previous
-            "C-o" 'counsel-company
             [tab] 'company-complete-common-or-cycle)
   :config
   (setq company-idle-delay nil
