@@ -51,6 +51,18 @@
   (advice-add #'marginalia-cycle :after
               (lambda () (selectrum-exhibit 'keep-selected))))
 
+(straight-use-package 'consult)
+(use-package consult
+  :general
+  (:keymaps 'override
+            [remap isearch-forward] 'consult-line
+            [remap switch-to-buffer] 'consult-buffer
+            [remap recentf-open-files] 'consult-recent-file)
+  :init
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  :config
+  (setq consult-project-root-function #'projectile-project-root))
 
 (provide 'modo-completion)
 ;;; modo-completion.el ends here
