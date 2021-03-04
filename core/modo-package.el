@@ -48,7 +48,7 @@
 ;; Macro for requiring modules
 (defmacro modo-module (&rest modules)
   "Load all the modules listed in MODULES, with the prefix modo-.
-For example, the module name ivy translates to a call to (require 'modo-ivy)."
+For example, the module name git translates to a call to (require 'modo-git)."
   (macroexp-progn
    (mapcar
     (lambda (module)
