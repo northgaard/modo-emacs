@@ -144,7 +144,7 @@ package like this is not possible with the global
             (modo-flyspell-buffer)
             (flyspell-correct-move (point-min) 'forward 'rapid))
         (unless flyspell-was-active
-          (flyspell-clear-overlays))))))
+          (flyspell-delete-all-overlays))))))
 
 (provide 'modo-spellcheck)
 ;;; modo-spellcheck.el ends here
