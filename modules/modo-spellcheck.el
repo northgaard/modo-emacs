@@ -35,9 +35,16 @@
            #'flyspell-generic-progmode-verify))
       (flyspell-buffer)))
   (defun flyspell-clear-overlays ()
-    "Clear all flyspell overlays."
+    "Clear flyspell overlays.
+
+If the region is active, clear overlays in region. Otherwise
+clear overlays in entire buffer."
     (interactive)
-    (flyspell-delete-all-overlays))
+    (cl-destructuring-bind (beg . end)
+        (if (region-active-p)
+            (cons (region-beginning) (region-end))
+          (cons (point-min) (point-max)))
+    (flyspell-delete-region-overlays beg end)))
   (defun modo-flyspell-buffer ()
     "Spellcheck the current buffer, respecting major mode.
 
