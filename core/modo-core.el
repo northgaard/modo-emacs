@@ -116,7 +116,8 @@
               (cl-delete-duplicates file-name-handler-alist :test 'equal))))
 
 ;;; Settings pertaining to Emacs itself that do not fit better elsewhere
-(setq inhibit-compacting-font-caches t)
+(setq inhibit-compacting-font-caches t
+      enable-recursive-minibuffers t)
 
 ;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
