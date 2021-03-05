@@ -48,7 +48,8 @@
   (:keymaps 'override
             [remap describe-function] 'helpful-function
             [remap describe-variable] 'helpful-variable
-            [remap describe-key] 'helpful-key)
+            [remap describe-key] 'helpful-key
+            [remap describe-symbol] 'helpful-symbol)
   :config
   (evil-collection-require 'helpful)
   (evil-collection-helpful-setup)
