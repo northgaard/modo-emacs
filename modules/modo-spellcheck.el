@@ -97,6 +97,7 @@ package like this is not possible with the global
   (modo-define-leader-key
     :keymaps 'override
     "kc" 'flyspell-correct-wrapper
+    "kk" 'flyspell-correct-wrapper
     "ks" 'modo-flyspell-correct-session)
   :config
   (with-eval-after-load 'embark
