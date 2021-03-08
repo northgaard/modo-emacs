@@ -118,13 +118,14 @@ package like this is not possible with the global
       (throw 'flyspell-correct-return (cons 'buffer word)))
     (defun flyspell-correct-embark-stop (word)
       (throw 'flyspell-correct-return (cons 'stop word)))
-    (embark-define-keymap embark-flyspell-correct-map
-      "Keymap for actions with flyspell-correct."
-      ("s" flyspell-correct-embark-save)
-      ("S" flyspell-correct-embark-session)
-      ("b" flyspell-correct-embark-buffer)
-      ("k" flyspell-correct-embark-skip)
-      ("q" flyspell-correct-embark-stop))
+    (defvar embark-flyspell-correct-map (make-sparse-keymap)
+      "Keymap for actions with flyspell-correct.")
+    (general-define-key :keymaps 'embark-flyspell-correct-map
+                        "s" '(flyspell-correct-embark-save :wk "save")
+                        "S" '(flyspell-correct-embark-session :wk "save (session)")
+                        "b" '(flyspell-correct-embark-buffer :wk "save (buffer)")
+                        "k" '(flyspell-correct-embark-skip :wk "skip")
+                        "q" '(flyspell-correct-embark-stop :wk "stop"))
     (add-to-list 'embark-keymap-alist '(flyspell-correct . embark-flyspell-correct-map))
   (defun flyspell-correct-embark (candidates word)
     (catch 'flyspell-correct-return
