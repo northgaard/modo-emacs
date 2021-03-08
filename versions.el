@@ -38,6 +38,7 @@
  ("evil-surround" . "346d4d85fcf1f9517e9c4991c1efe68b4130f93a")
  ("f.el" . "c4dbf8c8e83df834f5d6f72cd5649b9d8a8812ec")
  ("flycheck" . "01396a5eff9fa494285e0d3139838231c05e3948")
+ ("flyspell-correct" . "d19a090b978a249fc8f6d8b14309a5705a6bb483")
  ("flyspell-lazy" . "d57382cf06462931cb354f5630469425fce56396")
  ("gcmh" . "0089f9c3a6d4e9a310d0791cf6fa8f35642ecfd9")
  ("general.el" . "7fdb13e9f90600968d15704851df9c45b5df8ca5")
