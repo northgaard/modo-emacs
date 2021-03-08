@@ -82,6 +82,7 @@
  ("undo-tree" . "35a438bee8222247aa1e173456d0fb3fac30994d")
  ("use-package" . "317137b07687f16ea97a2493b0a6768c9df381a0")
  ("with-editor" . "2848a90addae086b657605b84a7fbecf2c4c1c65")
+ ("ws-butler" . "2bb49d3ee7d2cba133bc7e9cdac416cd1c5e4fe0")
  ("yaml-mode" . "fc5e1c58f94472944c4aa838f00f6adcac6fa992")
  ("yasnippet" . "3bf9a3b1af37174a004798b7195826af0123fa6a"))
 :beta

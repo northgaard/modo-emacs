@@ -86,5 +86,12 @@
   (setq-local make-backup-files nil)
   (setq-local auto-save-default nil))
 
+(straight-use-package '(ws-butler :type git :host github :repo "hlissner/ws-butler"))
+(use-package ws-butler
+  :demand t
+  :config
+  (setq ws-butler-keep-whitespace-before-point nil)
+  (ws-butler-global-mode 1))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here
