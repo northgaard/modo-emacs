@@ -82,6 +82,7 @@ directory for completion."
         org-log-into-drawer t
         org-refile-use-cache t
         org-hide-emphasis-markers t
+        org-hidden-keywords '(title)
         org-ellipsis " ▾")
     ;; Set face height for heading levels
   (dolist (face '((org-level-1 . 1.2)
@@ -93,6 +94,10 @@ directory for completion."
                   (org-level-7 . 1.0)
                   (org-level-8 . 1.0)))
     (set-face-attribute (car face) nil :height (cdr face)))
+  (set-face-attribute 'org-document-title nil
+                      :height 1.7
+                      :foreground 'unspecified
+                      :inherit 'org-level-1)
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p!)" "WAITING(w@/!)"
                     "|" "DONE(d!)" "CANCELED(c@/@)")))
