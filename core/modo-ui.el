@@ -183,6 +183,13 @@
                   :transient t)
     (global-hl-todo-mode 1)))
 
+;;; Code folding
+(use-package hideshow
+  :general
+  (:keymaps 'hs-minor-mode-map
+            "½" 'hs-toggle-hiding
+            "§" 'hs-show-all))
+
 ;;; Theme
 
 (defface error-bold '((t (:inherit error :weight bold)))

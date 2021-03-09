@@ -23,11 +23,15 @@
     (add-hook 'before-save-hook #'modo--clang-format-on-save)))
 
 (straight-use-package 'modern-cpp-font-lock)
-(defun modo--load-clang-format ()
-  (require 'clang-format))
 (use-package c++-mode
-  :ghook ('c++-mode-hook #'modo--load-clang-format nil nil t)
-  :hook (c++-mode . modern-c++-font-lock-mode))
+  :init
+  (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
+                                :transient t)
+    (require 'clang-format))
+  (modo-add-hook (c++-mode-hook :name "modo--c++-mode-setup")
+    (modern-c++-font-lock-mode 1)
+    (hs-minor-mode 1)
+    (evil-normalize-keymaps)))
 
 ;; Search cppreference.com
 (modo-install-search-engine "cppreference" "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=" "cpp[ref]")
