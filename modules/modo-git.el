@@ -149,6 +149,7 @@ _C-k_: down     _a_ll                _R_efine
                 (cl-remove-if-not (lambda (project)
                                     (file-directory-p (concat project "/.git/")))
                                   (projectile-relevant-known-projects))))
+  (setq magit-completing-read-function #'selectrum-completing-read)
   (evil-collection-require 'magit)
   (evil-collection-magit-setup))
 
