@@ -103,6 +103,13 @@ _C-k_: down     _a_ll                _R_efine
 (use-package magit
   :defer 20
   :init
+  (with-eval-after-load 'embark
+    (defun embark-magit-status (file)
+      "Run `magit-status` on repo containing the embark target."
+      (interactive "GFile: ")
+      (magit-status (locate-dominating-file file ".git")))
+    (general-define-key :keymaps 'embark-file-map
+                        "v" 'embark-magit-status))
   (setq projectile-switch-project-action (lambda () (magit-status (projectile-project-root))))
   (modo-add-hook (git-commit-setup-hook)
     (setq-local undo-tree-auto-save-history nil)
