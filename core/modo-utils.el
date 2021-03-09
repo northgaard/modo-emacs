@@ -116,32 +116,22 @@
               (kill-buffer buffer)))
           (buffer-list))))
 
-(defun modo-toggle-window-split ()
-  "Toggle between horizontal and vertial split, when there are
-two windows."
-  (interactive)
-  (if (= (count-windows) 2)
-      (let* ((this-win-buffer (window-buffer))
-             (next-win-buffer (window-buffer (next-window)))
-             (this-win-edges (window-edges (selected-window)))
-             (next-win-edges (window-edges (next-window)))
-             (this-win-2nd (not (and (<= (car this-win-edges)
-                                         (car next-win-edges))
-                                     (<= (cadr this-win-edges)
-                                         (cadr next-win-edges)))))
-             (splitter
-              (if (= (car this-win-edges)
-                     (car (window-edges (next-window))))
-                  'split-window-horizontally
-                'split-window-vertically)))
-        (delete-other-windows)
-        (let ((first-win (selected-window)))
-          (funcall splitter)
-          (if this-win-2nd (other-window 1))
-          (set-window-buffer (selected-window) this-win-buffer)
-          (set-window-buffer (next-window) next-win-buffer)
-          (select-window first-win)
-          (if this-win-2nd (other-window 1))))))
+(straight-use-package 'transpose-frame)
+(defun modo-rotate-frame-wrapper (arg)
+  "Rotate the current frame.
+
+Without prefix arguments, rotates the frame 90 degrees clockwise.
+With one prefix argument, rotates the frame 90 degrees
+counter-clockwise. With two prefix arguments, rotates the frame
+180 degrees."
+  (interactive "P")
+  (cond
+   ((equal arg '(4))
+    (rotate-frame-anticlockwise))
+   ((equal arg '(16))
+    (rotate-frame))
+   (t
+    (rotate-frame-clockwise))))
 
 ;; Adapted from:
 ;; https://www.emacswiki.org/emacs/BrowseKillRing

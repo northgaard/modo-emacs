@@ -45,8 +45,8 @@
   "wu" 'winner-undo
   "wr" 'winner-redo
   "wp" 'ace-swap-window
-  "wt" '(modo-toggle-window-split
-         :wk "toggle-window-split")
+  "wt" '(modo-rotate-frame-wrapper
+         :wk "rotate-frame")
   "wj" 'windmove-down
   "wk" 'windmove-up
   "wh" 'windmove-left

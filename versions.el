@@ -78,6 +78,7 @@
  ("spinner" . "61f59fab44d22cd5add61a1baf3f0b88a5d829d7")
  ("straight.el" . "0f9b828d8a41cf3d312678e82573066aebf2ab6e")
  ("transient" . "1e090b0cd4ea58c9fb5e807e4ebd7bdb9a7b66ba")
+ ("transpose-frame" . "12e523d70ff78cc8868097b56120848befab5dbc")
  ("treemacs" . "81b69d9ee26326178cef08d5aef2811df4f659ed")
  ("undo-tree" . "35a438bee8222247aa1e173456d0fb3fac30994d")
  ("use-package" . "317137b07687f16ea97a2493b0a6768c9df381a0")
