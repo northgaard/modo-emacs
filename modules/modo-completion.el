@@ -75,7 +75,8 @@
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   :config
-  (setq consult-project-root-function #'projectile-project-root))
+  (setq consult-project-root-function #'projectile-project-root
+        consult-config '((consult-recent-file :preview-key nil))))
 
 (straight-use-package 'embark-consult)
 (use-package embark-consult
