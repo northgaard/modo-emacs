@@ -25,7 +25,7 @@ i.e. with Dropbox."
                         (f-entries modo-org-root-dir))))
 
 (defun modo-org-mode-setup ()
-  (org-bullets-mode 1)
+  (org-superstar-mode 1)
   (evil-org-mode 1)
   (evil-normalize-keymaps))
 
@@ -93,10 +93,6 @@ directory for completion."
                   (org-level-7 . 1.0)
                   (org-level-8 . 1.0)))
     (set-face-attribute (car face) nil :height (cdr face)))
-  ;; Replace list hyphen with dot
-  (font-lock-add-keywords 'org-mode
-                          '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p!)" "WAITING(w@/!)"
                     "|" "DONE(d!)" "CANCELED(c@/@)")))
@@ -192,11 +188,13 @@ directory for completion."
 (use-package org-archive
   :custom (org-archive-save-context-info '(time olpath category todo itags)))
 
-(straight-use-package 'org-bullets)
-(use-package org-bullets
-  :commands (org-bullets-mode)
+(straight-use-package 'org-superstar)
+(use-package org-superstar
   :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+  (org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●" "○" "●"))
+  (org-superstar-item-bullet-alist '((?* . ?•)
+                                     (?+ . ?➤)
+                                     (?- . ?→))))
 
 (provide 'modo-org)
 ;;; modo-org.el ends here
