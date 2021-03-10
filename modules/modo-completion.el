@@ -32,10 +32,22 @@
   (setq selectrum-count-style 'current/matches)
   (selectrum-mode 1))
 
+(straight-use-package 'orderless)
+(use-package orderless
+  :demand t
+  :custom
+  (completion-styles '(orderless))
+  (orderless-matching-styles
+   '(orderless-regexp orderless-initialism orderless-flex))
+  :config
+  (setq orderless-skip-highlighting (lambda () selectrum-is-active)
+        selectrum-highlight-candidates-function #'orderless-highlight-matches))
+
 (straight-use-package 'selectrum-prescient)
 (use-package selectrum-prescient
   :demand t
   :config
+  (setq selectrum-prescient-enable-filtering nil)
   (selectrum-prescient-mode 1))
 
 ;; selectrum-info from the selectrum wiki
