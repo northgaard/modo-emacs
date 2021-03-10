@@ -99,6 +99,13 @@
           #'which-key--hide-popup-ignore-command)
         embark-become-indicator embark-action-indicator))
 
+(straight-use-package 'avy-embark-collect)
+(use-package avy-embark-collect
+  :general
+  (modo-define-major-leader-key :keymaps 'embark-collect-mode-map
+    "c" 'avy-embark-collect-choose
+    "a" 'avy-embark-collect-act))
+
 (straight-use-package 'consult)
 (use-package consult
   :general
