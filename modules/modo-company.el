@@ -23,6 +23,10 @@
     (when len
       (completion-in-region (- (point) len) (point) company-candidates))))
 
+(defun company-orderless-just-one-face (fn &rest args)
+  (let ((orderless-match-faces [completions-common-part]))
+    (apply fn args)))
+
 (straight-use-package 'company)
 (use-package company
   :defer 5
@@ -49,6 +53,7 @@
         company-dabbrev-downcase nil
         company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
+  (advice-add 'company-capf--candidates :around #'company-orderless-just-one-face)
   (global-company-mode 1))
 
 (straight-use-package 'company-prescient)
