@@ -100,7 +100,7 @@
            (reusable-frames . t))
         display-buffer-alist)
   (setq embark-action-indicator
-        (lambda (map _target)
+        (lambda (map)
           (which-key--show-keymap "Embark" map nil nil 'no-paging)
           #'which-key--hide-popup-ignore-command)
         embark-become-indicator embark-action-indicator))
