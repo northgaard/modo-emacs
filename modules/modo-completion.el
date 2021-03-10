@@ -116,7 +116,7 @@
 (straight-use-package 'embark-consult)
 (use-package embark-consult
   :demand t
-  :after consult
+  :after (embark consult)
   :hook (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (provide 'modo-completion)
