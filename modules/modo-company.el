@@ -4,6 +4,25 @@
 ;; Configuration of company mode for insertion completion.
 
 ;;; Code:
+
+(defun company-completing-read ()
+  "Completion for `company-candidates'. Adapted from counsel-company."
+  (interactive)
+  (company-mode 1)
+  (unless company-candidates
+    (company-complete))
+  (let ((len (cond ((let (l)
+                      (and company-common
+                           (string= company-common
+                                    (buffer-substring
+                                     (- (point) (setq l (length company-common)))
+                                     (point)))
+                           l)))
+                   (company-prefix
+                    (length company-prefix)))))
+    (when len
+      (completion-in-region (- (point) len) (point) company-candidates))))
+
 (straight-use-package 'company)
 (use-package company
   :defer 5
@@ -20,6 +39,7 @@
   (:keymaps 'company-active-map
             "C-j" 'company-select-next
             "C-k" 'company-select-previous
+            "C-o" 'company-completing-read
             [tab] 'company-complete-common-or-cycle)
   :config
   (setq company-idle-delay nil
