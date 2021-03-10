@@ -39,9 +39,18 @@
   (completion-styles '(orderless))
   (orderless-matching-styles
    '(orderless-regexp orderless-initialism orderless-flex))
+  :general
+  (:keymaps 'selectrum-minibuffer-map
+            "C-l" 'modo-match-components-literally)
   :config
   (setq orderless-skip-highlighting (lambda () selectrum-is-active)
-        selectrum-highlight-candidates-function #'orderless-highlight-matches))
+        selectrum-highlight-candidates-function #'orderless-highlight-matches)
+  (defun modo-match-components-literally ()
+    "Components match literally for the rest of the session."
+    (interactive)
+    (setq-local orderless-matching-styles '(orderless-literal)
+                orderless-style-dispatchers nil)
+    (message "Matching literally")))
 
 (straight-use-package 'selectrum-prescient)
 (use-package selectrum-prescient
