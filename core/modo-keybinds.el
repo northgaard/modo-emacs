@@ -73,11 +73,6 @@
           :wk "alternate-buffer")
   "SPC" '(hydra-quick-scroll/body :wk "quick-scroll"))
 
-(general-define-key
- :states '(motion normal visual)
- "gp" '(modo-kill-ring-insert
-        :wk "kill-ring-insert"))
-
 ;;; Info-mode
 (use-package info
   :config

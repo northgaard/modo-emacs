@@ -133,20 +133,6 @@ counter-clockwise. With two prefix arguments, rotates the frame
    (t
     (rotate-frame-clockwise))))
 
-;; Adapted from:
-;; https://www.emacswiki.org/emacs/BrowseKillRing
-(defun modo-kill-ring-insert (to-insert)
-  (interactive
-   (let ((completion-list (cl-remove-duplicates kill-ring :test #'equal
-                                                :from-end t))
-         (selectrum-should-sort nil))
-     (list (completing-read "Yank: " completion-list nil 'require-match nil nil
-                            (cadr completion-list)))))
-            (when (and to-insert (region-active-p))
-              ;; The currently highlighted section is to be replaced by the yank
-              (delete-region (region-beginning) (region-end)))
-            (insert to-insert))
-
 (defun modo-byte-compile-core ()
   "Byte compiles the modo core, i.e. elisp files found in
 `modo-core-dir'."

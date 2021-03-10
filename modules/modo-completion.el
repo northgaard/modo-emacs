@@ -106,6 +106,8 @@
             [remap isearch-forward] 'consult-line
             [remap switch-to-buffer] 'consult-buffer
             [remap recentf-open-files] 'consult-recent-file)
+  (:states '(motion normal visual)
+           "gp" 'consult-yank)
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
