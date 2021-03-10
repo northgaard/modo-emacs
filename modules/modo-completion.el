@@ -93,6 +93,12 @@
   (:keymaps 'selectrum-minibuffer-map
             "M-o" 'embark-act)
   :config
+  (push '((lambda (buffer-name action)
+            (with-current-buffer (get-buffer buffer-name)
+              (derived-mode-p 'embark-collect-mode)))
+           (display-buffer-reuse-window display-buffer-pop-up-window)
+           (reusable-frames . t))
+        display-buffer-alist)
   (setq embark-action-indicator
         (lambda (map _target)
           (which-key--show-keymap "Embark" map nil nil 'no-paging)
