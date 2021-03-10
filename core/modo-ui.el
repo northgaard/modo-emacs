@@ -217,7 +217,15 @@
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
   :config
-  (setq doom-modeline-buffer-file-name-style 'relative-to-project))
+  (setq doom-modeline-buffer-file-name-style 'relative-to-project
+        doom-modeline-minor-modes t))
+
+(straight-use-package 'minions)
+(use-package minions
+  :demand t
+  :after doom-modeline
+  :config
+  (minions-mode 1))
 
 ;;; Pulse on window change, trying out to see if I like it
 (defun modo-pulse-line (&rest _)

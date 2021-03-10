@@ -6,6 +6,10 @@
 ;;; Code:
 (straight-use-package 'flycheck)
 (use-package flycheck
+  :defer 5
+  :init
+  (with-eval-after-load 'minions
+    (push '(flycheck-mode . nil) minions-whitelist))
   :diminish flycheck-mode
   :commands (flycheck-mode flycheck-list-errors flycheck-buffer))
 

@@ -59,6 +59,7 @@
  ("marginalia" . "58f397dd20330a4083474f094b0eb5331f1b76bc")
  ("markdown-mode" . "3e380572a5177d0fa527c15efd15e340f53a923b")
  ("melpa" . "e7e20f00482f143ac67589a48f7bc591e075b5da")
+ ("minions" . "4a81446e13f5bfb514e593d0e1c5253a60113301")
  ("modern-cpp-font-lock" . "865955d0035382a17a7f03add0d00d0bd812b103")
  ("move-border" . "79787ae93129fd98029c74780a79a2b659803061")
  ("org" . "abedf386b3f13af2769728755d00c4698ac5d3b0")
