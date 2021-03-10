@@ -38,7 +38,7 @@
   :custom
   (completion-styles '(orderless))
   (orderless-matching-styles
-   '(orderless-regexp orderless-initialism orderless-flex))
+   '(orderless-prefixes orderless-initialism orderless-regexp))
   :general
   (:keymaps 'selectrum-minibuffer-map
             "C-l" 'modo-match-components-literally)
