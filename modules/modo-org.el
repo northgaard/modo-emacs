@@ -44,6 +44,8 @@ directory for completion."
   :defer 10
   :hook (org-mode . modo-org-mode-setup)
   :general
+  (:keymaps 'org-mode-map
+            "M-s" 'consult-outline)
   (modo-define-leader-key :keymaps 'override
     "fo" '(modo-find-org-file :wk "find-org-file"))
   (modo-define-major-leader-key :keymaps 'org-mode-map
