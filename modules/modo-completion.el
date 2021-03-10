@@ -38,6 +38,20 @@
   :config
   (selectrum-prescient-mode 1))
 
+;; selectrum-info from the selectrum wiki
+(let* ((selectrum-info-el (concat modo-modules-dir "selectrum-info.el"))
+       (selectrum-info-elc (byte-compile-dest-file selectrum-info-el)))
+  (unless (file-exists-p selectrum-info-elc)
+    (byte-compile-file selectrum-info-el)))
+(use-package selectrum-info
+  :general
+  (modo-define-leader-key :keymaps 'override
+    "i" '(:ignore t :wk "info")
+    "ii" 'selectrum-info
+    "ie" 'selectrum-info-elisp-manual
+    "im" 'selectrum-info-emacs-manual
+    "io" 'selectrum-info-org-manual))
+
 (straight-use-package 'marginalia)
 (use-package marginalia
   :demand t
