@@ -65,6 +65,7 @@
  ("orderless" . "9d5b95f40275dc47a57e9d4ee9b9994ee3a4b426")
  ("org" . "abedf386b3f13af2769728755d00c4698ac5d3b0")
  ("org-edna" . "de6454949045453e0fa025e605b445c3ca05c62a")
+ ("org-html-themes" . "39a8ce24babbf55667e3f4be21e37c619f55f257")
  ("org-superstar-mode" . "9d64c42e5029910153ec74cb9b5747b074281140")
  ("pfuture" . "fbecd1562b34fcd15563b7cc00d98e5af0d7e43d")
  ("pkg-info" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")

@@ -1,0 +1,25 @@
+#+TITLE:Babel library
+
+This contains library functions to be loaded by
+[[help:org-babe-lob-ingest]] at init time. They can then be called in
+other org files by using the "#+CALL:" keyword.
+
+* Load org-html-themes setup
+** bigblow
+#+NAME: setup-bigblow
+#+BEGIN_SRC emacs-lisp :results drawer
+  (let ((setup-file (concat
+                     (straight--repos-dir "org-html-themes" "org")
+                     "theme-bigblow.setup")))
+    (concat "#+SETUPFILE: "
+            (expand-file-name setup-file)))
+#+END_SRC
+** readtheorg
+#+NAME: setup-readtheorg
+#+BEGIN_SRC emacs-lisp :results drawer
+  (let ((setup-file (concat
+                     (straight--repos-dir "org-html-themes" "org")
+                     "theme-readtheorg.setup")))
+    (concat "#+SETUPFILE: "
+            (expand-file-name setup-file)))
+#+END_SRC

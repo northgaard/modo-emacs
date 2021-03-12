@@ -195,6 +195,14 @@ directory for completion."
 (use-package org-archive
   :custom (org-archive-save-context-info '(time olpath category todo itags)))
 
+(straight-use-package '(org-html-themes :type git
+                                        :host github
+                                        :repo "fniessen/org-html-themes"
+                                        :build nil))
+(use-package ob-lob
+  :config
+  (org-babel-lob-ingest (concat modo-modules-dir "org-babel-library.org")))
+
 (straight-use-package 'org-superstar)
 (use-package org-superstar
   :custom
