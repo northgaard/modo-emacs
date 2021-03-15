@@ -44,12 +44,20 @@
 ;;; Helpful -- better help buffers
 (straight-use-package 'helpful)
 (use-package helpful
+  :init
+  (modo-define-leader-key :keymaps 'override
+    "hl" 'view-lossage)
   :general
-  (:keymaps 'override
-            [remap describe-function] 'helpful-function
-            [remap describe-variable] 'helpful-variable
-            [remap describe-key] 'helpful-key
-            [remap describe-symbol] 'helpful-symbol)
+  (modo-define-leader-key :keymaps 'override
+    "h"  '(:ignore t :wk "helpful")
+    "hk" 'helpful-key
+    "hf" 'helpful-function
+    "hv" 'helpful-variable
+    "hs" 'helpful-symbol
+    "hh" 'helpful-at-point
+    "hc" 'helpful-callable
+    "hx" 'helpful-command
+    "hm" 'helpful-macro)
   :config
   (evil-collection-require 'helpful)
   (evil-collection-helpful-setup)

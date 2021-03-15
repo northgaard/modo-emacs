@@ -32,8 +32,8 @@
   "bl" 'list-buffers
   "by" 'bury-buffer
   "br" 'revert-buffer
-  "h" '(help-command :wk "help")
-  "w" '(:ignore t :wk "windows")
+  "H"  'help-command
+  "w"  '(:ignore t :wk "windows")
   "ws" 'evil-window-split
   "wv" 'evil-window-vsplit
   "wc" 'evil-window-delete
