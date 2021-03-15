@@ -38,7 +38,17 @@
 
 (straight-use-package 'treemacs-evil)
 (use-package treemacs-evil
-  :after treemacs
+  :after (evil treemacs)
+  :demand t)
+
+(straight-use-package 'treemacs-projectile)
+(use-package treemacs-projectile
+  :after (projectile treemacs)
+  :demand t)
+
+(straight-use-package 'treemacs-magit)
+(use-package treemacs-magit
+  :after (magit treemacs)
   :demand t)
 
 (provide 'modo-treemacs)
