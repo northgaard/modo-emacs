@@ -93,18 +93,16 @@
                  (mapcar 'car (window-prev-buffers))))))
 
 (defun modo-get-faces (pos)
-  ;; TODO: Add documentation
-  ""
+  "Get a list of active faces at position POS."
+  (flatten-tree (list
+                 (get-char-property pos 'read-face-name)
+                 (get-char-property pos 'face)
+                 (plist-get (text-properties-at pos) 'face))))
+
+(defun modo-show-faces (pos)
+  "Show the active faces at the current point."
   (interactive "d")
-  (let ((faces (-flatten
-                (remq nil
-                      (list
-                       (get-char-property pos 'read-face-name)
-                       (get-char-property pos 'face)
-                       (plist-get (text-properties-at pos) 'face))))))
-    (if (called-interactively-p 'interactive)
-        (message (format "%s" faces))
-      faces)))
+  (message (format "%s" (modo-get-faces pos))))
 
 (defun modo-kill-non-default-buffers ()
   "Kill all buffers except the startup ones."
