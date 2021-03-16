@@ -73,5 +73,9 @@
   (setq dgi-commit-message-format "%h %cs %s"
         dgi-auto-hide-details-p nil))
 
+(straight-use-package 'dired-collapse)
+(use-package dired-collapse
+  :hook (dired-mode . dired-collapse-mode))
+
 (provide 'modo-dired)
 ;;; modo-dired.el ends here
