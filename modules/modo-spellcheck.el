@@ -132,8 +132,7 @@ package like this is not possible with the global
       ;; Using cl-letf here doesn't feel right, probably should open
       ;; an issue on the embark repo.
       (cl-letf (((symbol-function 'embark--quit-and-run)
-                 (lambda (fn &rest args)
-                   (apply fn args))))
+                 #'funcall))
         (completing-read
          (format "Correcting '%s': " word)
          (lambda (input predicate action)
