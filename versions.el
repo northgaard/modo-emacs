@@ -84,7 +84,7 @@
  ("transient" . "1e090b0cd4ea58c9fb5e807e4ebd7bdb9a7b66ba")
  ("transpose-frame" . "12e523d70ff78cc8868097b56120848befab5dbc")
  ("treemacs" . "2d5ec4a9437bfaa21d351497871bf1884305ac8e")
- ("undo-tree" . "35a438bee8222247aa1e173456d0fb3fac30994d")
+ ("undo-tree" . "594ed6a788c8a51ee97da071aac22ea0c12b43d4")
  ("use-package" . "317137b07687f16ea97a2493b0a6768c9df381a0")
  ("with-editor" . "2848a90addae086b657605b84a7fbecf2c4c1c65")
  ("ws-butler" . "2bb49d3ee7d2cba133bc7e9cdac416cd1c5e4fe0")
