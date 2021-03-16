@@ -20,6 +20,7 @@
              progutils
              company
              org
+             dired
              treemacs
              latex
              snippets
