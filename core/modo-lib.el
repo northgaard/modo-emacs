@@ -54,7 +54,14 @@ if it does, nil otherwise."
   `(cl-letf (((symbol-function 'message) #'ignore))
      ,@body))
 
-(cl-defmacro modo-add-hook ((hook &key name transient) &body body)
+(defun modo-with-inhibit-message (fn &rest args)
+  "Calls FN with ARGS withs messages inhibited. Intended for use
+with advice."
+  (let ((inhibit-message t))
+    (apply fn args)))
+
+(cl-defmacro modo-add-hook ((hook &key name transient) &body
+body)
   "Run BODY in HOOK. HOOK may be a hook or a list of hooks.
 
 If the optional argument NAME is specified, use that to name the

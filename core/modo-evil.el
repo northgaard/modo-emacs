@@ -12,6 +12,9 @@
   :diminish undo-tree-mode
   :config
   (setq undo-tree-history-directory-alist `(("." . ,modo-temp-dir)))
+  ;; Get rid of some of undo-trees overt verbosity
+  (advice-add 'undo-tree-load-history :around #'modo-with-inhibit-message)
+  (advice-add 'undo-tree-save-history :around #'modo-with-inhibit-message)
   (global-undo-tree-mode 1))
 
 ;;; Pure evil
