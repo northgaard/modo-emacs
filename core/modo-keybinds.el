@@ -33,6 +33,7 @@
   "by" 'bury-buffer
   "br" 'revert-buffer
   "bw" 'follow-mode
+  "bc" '(clone-indirect-buffer :wk "clone")
   "H"  'help-command
   "w"  '(:ignore t :wk "windows")
   "ws" 'evil-window-split
