@@ -11,10 +11,24 @@
   :demand t
   :diminish undo-tree-mode
   :config
-  (setq undo-tree-history-directory-alist `(("." . ,modo-temp-dir)))
+  (defun modo-conditionally-enable-persistent-undo ()
+    "Enables persistent undo history for files that are not under
+version control."
+    (when undo-tree-mode
+      (require 'vc-hooks)
+      (let* ((this-file (buffer-file-name))
+             (state (when this-file
+                      (vc-state this-file))))
+        (when (and this-file
+                   (or (equal state nil)
+                       (equal state 'unregistered)))
+          (setq-local undo-tree-auto-save-history t)))))
+  (setq undo-tree-history-directory-alist `(("." . ,modo-temp-dir))
+        undo-tree-auto-save-history nil)
   ;; Get rid of some of undo-trees overt verbosity
   (advice-add 'undo-tree-load-history :around #'modo-with-inhibit-message)
   (advice-add 'undo-tree-save-history :around #'modo-with-inhibit-message)
+  (add-hook 'undo-tree-mode-hook #'modo-conditionally-enable-persistent-undo)
   (global-undo-tree-mode 1))
 
 ;;; Pure evil

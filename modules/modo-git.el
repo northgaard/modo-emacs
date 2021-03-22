@@ -48,20 +48,11 @@ _C-k_: down     _a_ll                _R_efine
      "Save and bury buffer" :color blue)
     ("q" nil "cancel" :color blue)))
 
-;; TODO this is not robust if I decide to disable auto-save-histroy in future
-(defun modo-disable-history-save ()
-  (setq undo-tree-auto-save-history nil))
-
-(defun modo-enable-history-save ()
-  (setq undo-tree-auto-save-history t))
-
 (use-package ediff
   :config
   (setq ediff-split-window-function #'split-window-horizontally
         ediff-window-setup-function #'ediff-setup-windows-plain
         ediff-diff-options "-w")
-  (add-hook 'ediff-startup-hook #'modo-disable-history-save)
-  (add-hook 'ediff-quit-hook #'modo-enable-history-save)
   ;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version
   (defun ediff-copy-both-to-C ()
     (interactive)
@@ -149,7 +140,6 @@ _C-k_: down     _a_ll                _R_efine
   (:keymaps 'projectile-command-map
             "y" 'modo-magit-status-straight-package)
   :config
-  (add-hook 'magit-ediff-quit-hook #'modo-enable-history-save)
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
     "Avy jump to an arbitrary commit in the magit-log view."
