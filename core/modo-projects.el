@@ -24,5 +24,11 @@
   :general
   (modo-define-leader-key "p" '(projectile-command-map :wk "projectile")))
 
+(evil-define-command projectile-grep-ex-command (prompt)
+  "Grep in the current project with an ex query."
+  (interactive "<a>")
+  (projectile-grep prompt))
+(evil-ex-define-cmd "pgrep" #'projectile-grep-ex-command)
+
 (provide 'modo-projects)
 ;;; modo-projects.el ends here
