@@ -22,7 +22,8 @@
   ;; Get rid of the default mappings
   (setq projectile-mode-map (make-sparse-keymap))
   :general
-  (modo-define-leader-key "p" '(projectile-command-map :wk "projectile")))
+  (modo-define-leader-key :keymaps 'override
+    "p" '(projectile-command-map :wk "projectile")))
 
 (evil-define-command projectile-grep-ex-command (prompt)
   "Grep in the current project with an ex query."
