@@ -121,7 +121,8 @@ _C-k_: down     _a_ll                _R_efine
       (smerge-hydra/body)))
   (setq evil-collection-magit-want-horizontal-movement t)
   :general
-  (modo-define-leader-key "s" 'magit-status)
+  (modo-define-leader-key :keymaps 'override
+    "s" 'magit-status)
   ;; Let's pretend with-editor-mode is a major mode
   (modo-define-major-leader-key :keymaps 'with-editor-mode-map
     "c" 'with-editor-finish
