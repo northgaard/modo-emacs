@@ -73,7 +73,7 @@
   (setq dgi-commit-message-format "%h %cs %s"
         dgi-auto-hide-details-p nil))
 
-(straight-use-package 'dired-collapse)
+(straight-use-package '(dired-collapse :fork "northgaard"))
 (use-package dired-collapse
   :hook (dired-mode . dired-collapse-mode))
 
