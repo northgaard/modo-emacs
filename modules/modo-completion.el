@@ -21,7 +21,10 @@
   (:keymaps 'selectrum-minibuffer-map
             "C-j" 'selectrum-next-candidate
             "C-k" 'selectrum-previous-candidate
+            "C-n" 'selectrum-submit-exact-input
             "C-w" 'backward-kill-word
+            "C-q" 'backward-kill-sexp
+            "C-p" 'quoted-insert ; rebound from C-q
             "C-d" 'selectrum-next-page
             "C-b" 'selectrum-previous-page
             "C-v" 'selectrum-goto-end
