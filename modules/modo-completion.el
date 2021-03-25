@@ -89,13 +89,26 @@
   (advice-add #'marginalia-cycle :after
               (lambda () (selectrum-exhibit 'keep-selected))))
 
+(defhydra selectrum-quick-move (:color pink)
+  ("j" selectrum-next-candidate "next" :column "Move")
+  ("k" selectrum-previous-candidate "previous")
+  ("h" backward-kill-word "back word")
+  ("H" backward-kill-sexp "back sexp")
+  ("l" selectrum-insert-current-candidate "insert" :column "Jump")
+  ("n" selectrum-next-page "next page")
+  ("p" selectrum-previous-page "previous page")
+  ("q" nil "quit"))
+
 (straight-use-package 'embark)
 (use-package embark
   :demand t
   :general
   (:keymaps 'selectrum-minibuffer-map
-            "M-o" 'embark-act)
+            "M-o" 'embark-act
+            "C-o" 'selectrum-quick-move/body)
   :config
+  ;; Fully exit quick move hydra on C-g
+  (add-hook 'minibuffer-exit-hook #'selectrum-quick-move/nil)
   (push '((lambda (buffer-name action)
             (with-current-buffer (get-buffer buffer-name)
               (derived-mode-p 'embark-collect-mode)))
