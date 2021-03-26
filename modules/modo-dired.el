@@ -26,6 +26,7 @@
         image-dired-temp-rotate-image-file (concat image-dired-dir "temp-rotate-image")
         image-dired-thumb-size 150)
   :config
+  (require 'dired-subtree)
   (evil-collection-require 'dired)
   (evil-collection-dired-setup))
 
@@ -76,6 +77,8 @@
 (straight-use-package '(dired-collapse :fork "northgaard"))
 (use-package dired-collapse
   :hook (dired-mode . dired-collapse-mode))
+
+(straight-use-package 'dired-subtree)
 
 (provide 'modo-dired)
 ;;; modo-dired.el ends here
