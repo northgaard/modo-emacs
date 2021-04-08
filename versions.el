@@ -77,6 +77,7 @@
  ("powershell.el" . "d1b3f95669343399f199f291ef76c09a0ede5e60")
  ("prescient.el" . "84b0918666f0415a92bac3468add4f3ff9c3b522")
  ("projectile" . "f3f8a6505d50ca0f03f7deef99a1c8aa3bcd9e58")
+ ("qml-mode" . "6c5f33ba88ae010bf201a80ee8095e20a724558c")
  ("queue" . "52206c0f78afc0dfb9a287cb928c1e725103336d")
  ("rust-mode" . "c5c7ed31a2e1106ab4835b135618a34570796dc7")
  ("s.el" . "43ba8b563bee3426cead0e6d4ddc09398e1a349d")

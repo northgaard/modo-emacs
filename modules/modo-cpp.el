@@ -36,5 +36,8 @@
 ;; Search cppreference.com
 (modo-install-search-engine "cppreference" "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=" "cpp[ref]")
 
+;; QT
+(straight-use-package 'qml-mode)
+
 (provide 'modo-cpp)
 ;;; modo-cpp.el ends here
