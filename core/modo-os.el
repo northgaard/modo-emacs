@@ -49,5 +49,10 @@
             browse-url-generic-args cmd-args
             browse-url-browser-function 'browse-url-generic))))
 
+;;; Linux
+(when IS-LINUX
+  (setq select-enable-clipboard t
+        select-enable-primary t))
+
 (provide 'modo-os)
 ;;; modo-os.el ends here
