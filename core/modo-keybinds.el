@@ -75,6 +75,10 @@
           :wk "alternate-buffer")
   "SPC" '(hydra-quick-scroll/body :wk "quick-scroll"))
 
+(when (fboundp 'modo-insert-primary)
+  (general-define-key :states '(motion normal visual)
+                      "gP" '(modo-insert-primary :wk "insert-primary")))
+
 ;;; Info-mode
 (use-package info
   :config

@@ -52,7 +52,12 @@
 ;;; Linux
 (when IS-LINUX
   (setq select-enable-clipboard t
-        select-enable-primary t))
+        select-enable-primary t)
+
+  (defun modo-insert-primary ()
+    "Insert the primary selection at point."
+    (interactive)
+    (insert (gui-get-primary-selection))))
 
 (provide 'modo-os)
 ;;; modo-os.el ends here
