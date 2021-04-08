@@ -83,7 +83,7 @@
  ("selectrum" . "62fc67e1ba553cc8f7185b30bbb2e78abd3ccb1a")
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("spinner" . "61f59fab44d22cd5add61a1baf3f0b88a5d829d7")
- ("straight.el" . "0f9b828d8a41cf3d312678e82573066aebf2ab6e")
+ ("straight.el" . "af113a09db6d7606710c6c090dae7377454abccf")
  ("transient" . "1e090b0cd4ea58c9fb5e807e4ebd7bdb9a7b66ba")
  ("transpose-frame" . "12e523d70ff78cc8868097b56120848befab5dbc")
  ("treemacs" . "2d5ec4a9437bfaa21d351497871bf1884305ac8e")
