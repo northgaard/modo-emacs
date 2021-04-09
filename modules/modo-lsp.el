@@ -11,9 +11,10 @@
   :init
   (setq lsp-session-file (concat modo-cache-dir "lsp-session-v1")
         lsp-server-install-dir (concat modo-cache-dir "lsp/")
-        lsp-keymap-prefix nil)
+        lsp-keymap-prefix "SPC l")
   :config
   (require 'company)
+  (setq lsp-headerline-breadcrumb-enable nil)
   (lsp-enable-which-key-integration t))
 
 (provide 'modo-lsp)
