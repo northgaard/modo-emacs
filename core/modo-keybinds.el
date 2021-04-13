@@ -88,6 +88,21 @@
     "o" 'ace-link-info
     (kbd modo-leader) nil))
 
+(use-package compile
+  :config
+  (evil-collection-require 'compile)
+  (evil-collection-compile-setup)
+  (dolist (keymap evil-collection-compile-maps)
+    (evil-collection-define-key 'normal keymap
+      "o" 'ace-link-compilation)))
+
+(use-package grep
+  :config
+  (evil-collection-require 'grep)
+  (evil-collection-grep-setup)
+  (evil-collection-define-key 'normal 'grep-mode-map
+    "o" 'ace-link-compilation))
+
 ;;; ag
 (use-package ag
   :config
