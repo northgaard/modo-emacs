@@ -67,7 +67,7 @@
  ("modern-cpp-font-lock" . "865955d0035382a17a7f03add0d00d0bd812b103")
  ("move-border" . "79787ae93129fd98029c74780a79a2b659803061")
  ("orderless" . "9d5b95f40275dc47a57e9d4ee9b9994ee3a4b426")
- ("org" . "abedf386b3f13af2769728755d00c4698ac5d3b0")
+ ("org" . "287af207fe3df69a5feb2387035fba63a58b3557")
  ("org-edna" . "de6454949045453e0fa025e605b445c3ca05c62a")
  ("org-html-themes" . "39a8ce24babbf55667e3f4be21e37c619f55f257")
  ("org-superstar-mode" . "9d64c42e5029910153ec74cb9b5747b074281140")
