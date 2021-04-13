@@ -128,7 +128,7 @@ directory for completion."
     (let ((org-log-done 'note))
       (call-interactively 'org-todo)))
   ;; Periodically save org buffers
-  (defun modo--org-save-all-org-buffers ()
+  (defun modo--org-save-all-org-buffers (&rest args)
     "Like `org-save-all-org-buffers', but quiet and non-interactive."
     (modo-quieten
      (org-save-all-org-buffers)))
