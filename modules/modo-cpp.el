@@ -28,6 +28,11 @@ on the buffer before saving.")
   (when (executable-find clang-format-executable)
     (add-hook 'before-save-hook #'modo--clang-format-on-save)))
 
+(defvar-local modo-c++-enable-lsp nil
+  "Buffer local variable to determine whether the opened C++ file
+should use lsp-mode.")
+(put 'modo-c++-enable-lsp 'safe-local-variable #'booleanp)
+
 (straight-use-package 'modern-cpp-font-lock)
 (use-package c++-mode
   :init
@@ -36,7 +41,13 @@ on the buffer before saving.")
     (require 'clang-format))
   (modo-add-hook (c++-mode-hook :name "modo--c++-mode-setup")
     (modern-c++-font-lock-mode 1)
-    (hs-minor-mode 1)
+    (hs-minor-mode 1))
+  (modo-add-hook (c++-mode-local-vars-hook :name "modo--c++-mode-local-vars-setup")
+    (when modo-c++-enable-lsp
+      (require 'company)
+      (lsp-deferred)
+      (setq-local company-idle-delay 0
+                  company-minimum-prefix-length 1))
     (evil-normalize-keymaps)))
 
 ;; Search cppreference.com
