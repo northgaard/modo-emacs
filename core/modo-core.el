@@ -118,6 +118,13 @@
 ;;; Settings pertaining to Emacs itself that do not fit better elsewhere
 (setq inhibit-compacting-font-caches t
       enable-recursive-minibuffers t)
+;; Some hacks regarding directory local variables, see first answer here:
+;; https://stackoverflow.com/questions/5147060/how-can-i-access-directory-local-variables-in-my-major-mode-hooks
+;; TODO probably could organize this more elegantly
+(defun modo-run-local-vars-mode-hook ()
+  "Run a hook for the major-mode after the local variables have been processed."
+  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+(add-hook 'hack-local-variables-hook 'modo-run-local-vars-mode-hook)
 
 ;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
