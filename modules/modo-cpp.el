@@ -8,17 +8,23 @@
 (straight-use-package 'cmake-mode)
 (use-package cmake-mode)
 
+(defvar-local modo-c++-enable-clang-format-on-save t
+  "Buffer local variable to determine whether to run clang-format
+on the buffer before saving.")
+(put 'modo-c++-enable-clang-format-on-save 'safe-local-variable #'booleanp)
+
 (straight-use-package 'clang-format)
 (use-package clang-format
   :commands (clang-format-region clang-format-buffer)
   :config
   (defun modo--clang-format-on-save ()
-    (when (member major-mode '(c-mode c++-mode glsl-mode))
+    (when (and modo-c++-enable-clang-format-on-save
+               (member major-mode '(c-mode c++-mode glsl-mode)))
       (progn
         (when (locate-dominating-file "." ".clang-format")
           (clang-format-buffer))
-          ;; Return nil, to continue saving
-          nil)))
+        ;; Return nil, to continue saving
+        nil)))
   (when (executable-find clang-format-executable)
     (add-hook 'before-save-hook #'modo--clang-format-on-save)))
 
