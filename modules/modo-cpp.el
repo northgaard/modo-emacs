@@ -41,14 +41,13 @@ should use lsp-mode.")
     (require 'clang-format))
   (modo-add-hook (c++-mode-hook :name "modo--c++-mode-setup")
     (modern-c++-font-lock-mode 1)
-    (hs-minor-mode 1))
+    (hs-minor-mode 1)
+    (evil-normalize-keymaps))
   (modo-add-hook (c++-mode-local-vars-hook :name "modo--c++-mode-local-vars-setup")
     (when modo-c++-enable-lsp
-      (require 'company)
       (lsp-deferred)
       (setq-local company-idle-delay 0
-                  company-minimum-prefix-length 1))
-    (evil-normalize-keymaps)))
+                  company-minimum-prefix-length 1))))
 
 ;; Search cppreference.com
 (modo-install-search-engine "cppreference" "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=" "cpp[ref]")
