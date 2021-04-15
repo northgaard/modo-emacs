@@ -17,7 +17,7 @@
         lsp-keep-workspace-alive nil)
   :config
   (modo-define-leader-key :keymaps 'lsp-mode-map
-    "l" lsp-command-map)
+    "l" `(,lsp-command-map :wk "lsp"))
   (require 'company)
   (setq lsp-headerline-breadcrumb-enable nil))
 
