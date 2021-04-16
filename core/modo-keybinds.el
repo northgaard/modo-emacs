@@ -34,6 +34,7 @@
   "br" 'revert-buffer
   "bw" 'follow-mode
   "bc" '(clone-indirect-buffer :wk "clone")
+  "bn" 'rename-buffer
   "H"  'help-command
   "w"  '(:ignore t :wk "windows")
   "ws" 'evil-window-split
