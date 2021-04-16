@@ -13,6 +13,7 @@
   "ff" 'find-file
   "fr" 'recentf-open-files
   "fb" 'bookmark-jump
+  "fk" 'bookmark-set
   "fd" '(modo-find-dotfile :wk "find-dotfile")
   "f <deletechar>" '(modo-delete-this-file
                      :wk "delete-this-file")
