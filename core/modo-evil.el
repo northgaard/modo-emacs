@@ -5,31 +5,14 @@
 
 ;;; Code:
 
-;;; undo-tree for undo/redo
-(straight-use-package '(undo-tree :type git :host gitlab :repo "tsc25/undo-tree"))
-(use-package undo-tree
-  :demand t
-  :diminish undo-tree-mode
-  :config
-  (defun modo-conditionally-enable-persistent-undo ()
-    "Enables persistent undo history for files that are not under
-version control."
-    (when undo-tree-mode
-      (require 'vc-hooks)
-      (let* ((this-file (buffer-file-name))
-             (state (when this-file
-                      (vc-state this-file))))
-        (when (and this-file
-                   (or (equal state nil)
-                       (equal state 'unregistered)))
-          (setq-local undo-tree-auto-save-history t)))))
-  (setq undo-tree-history-directory-alist `(("." . ,modo-temp-dir))
-        undo-tree-auto-save-history nil)
-  ;; Get rid of some of undo-trees overt verbosity
-  (advice-add 'undo-tree-load-history :around #'modo-with-inhibit-message)
-  (advice-add 'undo-tree-save-history :around #'modo-with-inhibit-message)
-  (add-hook 'undo-tree-mode-hook #'modo-conditionally-enable-persistent-undo)
-  (global-undo-tree-mode 1))
+;;; undo for evil
+(let ((builtin-undo (version< "28" emacs-version)))
+  (straight-use-package 'undo-fu nil builtin-undo)
+  (unless builtin-undo
+    (require 'undo-fu))
+  (setq evil-undo-system (if builtin-undo
+                             'undo-redo
+                           'undo-fu)))
 
 ;;; Pure evil
 (straight-use-package 'evil)
@@ -50,7 +33,6 @@ version control."
         evil-ex-search-vim-style-regexp t
         evil-insert-skip-empty-line t
         evil-symbol-word-search t
-        evil-undo-system 'undo-tree
         shift-select-mode nil)
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
