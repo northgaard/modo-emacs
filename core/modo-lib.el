@@ -60,6 +60,12 @@ with advice."
   (let ((inhibit-message t))
     (apply fn args)))
 
+(defun modo-with-quiet-message (fn &rest args)
+  "Calls FN with ARGS with messages suppressed. Intended for use
+with advice."
+  (modo-quieten
+   (apply fn args)))
+
 (cl-defmacro modo-add-hook ((hook &key name transient) &body
 body)
   "Run BODY in HOOK. HOOK may be a hook or a list of hooks.

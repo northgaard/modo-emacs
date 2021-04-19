@@ -8,7 +8,10 @@
 ;;; undo for evil
 (let ((builtin-undo (version< "28" emacs-version)))
   (straight-use-package 'undo-fu nil builtin-undo)
-  (unless builtin-undo
+  (if builtin-undo
+      (progn
+        (advice-add 'undo-only :around #'modo-with-quiet-message)
+        (advice-add 'undo-redo :around #'modo-with-quiet-message))
     (require 'undo-fu))
   (setq evil-undo-system (if builtin-undo
                              'undo-redo
