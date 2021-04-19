@@ -124,9 +124,9 @@
 (straight-use-package 'avy-embark-collect)
 (use-package avy-embark-collect
   :general
-  (modo-define-major-leader-key :keymaps 'embark-collect-mode-map
-    "c" 'avy-embark-collect-choose
-    "a" 'avy-embark-collect-act))
+  (:states '(motion normal visual)
+           :keymaps 'embark-collect-mode-map
+           "o" 'avy-embark-collect-choose))
 
 (straight-use-package 'consult)
 (use-package consult
