@@ -81,6 +81,9 @@
   (general-define-key :states '(motion normal visual)
                       "gP" '(modo-insert-primary :wk "insert-primary")))
 
+;; Like in the standard terminal bindings
+(global-set-key (kbd "C-w") #'backward-kill-word)
+
 ;;; Info-mode
 (use-package info
   :config
