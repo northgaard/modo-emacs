@@ -23,6 +23,7 @@
   :init
   (with-eval-after-load 'magit
     (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
+  (setenv "LANG" "en_US")
   :config
   (setq ispell-program-name (executable-find modo-spellchecker-program)
         ispell-list-command "--list"
