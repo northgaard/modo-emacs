@@ -169,7 +169,7 @@
 ;;; Line numbers
 (setq-default display-line-numbers-type 'relative
               display-line-numbers-current-absolute t
-              display-line-numbers-width 2
+              display-line-numbers-width-start t
               display-line-numbers-widen t)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
