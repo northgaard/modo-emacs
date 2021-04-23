@@ -8,7 +8,7 @@
  ("avy" . "e92cb37457b43336b765630dbfbea8ba4be601fa")
  ("cfrs" . "7c42f2c82c7ae689f3ef291b066688c58ab96298")
  ("clang-format" . "e48ff8ae18dc7ab6118c1f6752deb48cb1fc83ac")
- ("cmake" . "9692931f8376c47ea335c90f3544e281ddc4ca8d")
+ ("cmake" . "7de707cd7e04d8c203426c93bb01923536cc688b")
  ("company-mode" . "4037e82cf82b459b6a1d8529f2a3bb3e310fbdf7")
  ("consult" . "923a34330207ed868b6388acf0f432ae989f1427")
  ("csharp-mode" . "57bd21bda4edc16671a85c7d6d51484e40a6e640")
