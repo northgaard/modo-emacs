@@ -1,6 +1,5 @@
 *~
 *.elc
-eln-cache/
 cache/
 temp/
 private/
