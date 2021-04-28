@@ -52,7 +52,12 @@
 ;;; Linux
 (when IS-LINUX
   (setq select-enable-clipboard t
-        select-enable-primary t)
+        select-enable-primary t
+        ;; Maybe help out with "Timed out waiting for reply from
+        ;; selection owner" issue.
+        ;; See Emacs bug #16737
+        ;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2015-01/msg00529.html
+        x-selection-timeout 50)
 
   (defun modo-insert-primary ()
     "Insert the primary selection at point."
