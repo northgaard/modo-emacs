@@ -28,6 +28,9 @@ on the buffer before saving.")
   (when (executable-find clang-format-executable)
     (add-hook 'before-save-hook #'modo--clang-format-on-save)))
 
+(defcustom modo-clangd-number-of-worker-threads 2
+  "Number of worker threads allowed for clangd.")
+
 (defvar-local modo-c++-enable-lsp nil
   "Buffer local variable to determine whether the opened C++ file
 should use lsp-mode.")
@@ -35,6 +38,9 @@ should use lsp-mode.")
 
 (straight-use-package 'modern-cpp-font-lock)
 (use-package c++-mode
+  :custom
+  (lsp-clients-clangd-args `("--clang-tidy" "--log=info" "--pretty" "--background-index"
+                             ,(format "-j=%d" modo-clangd-number-of-worker-threads)))
   :init
   (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
                                 :transient t)

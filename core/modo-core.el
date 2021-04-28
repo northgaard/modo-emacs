@@ -117,7 +117,8 @@
 
 ;;; Settings pertaining to Emacs itself that do not fit better elsewhere
 (setq inhibit-compacting-font-caches t
-      enable-recursive-minibuffers t)
+      enable-recursive-minibuffers t
+      read-process-output-max (* 1024 1024))
 ;; Some hacks regarding directory local variables, see first answer here:
 ;; https://stackoverflow.com/questions/5147060/how-can-i-access-directory-local-variables-in-my-major-mode-hooks
 ;; TODO probably could organize this more elegantly

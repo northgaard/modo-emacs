@@ -14,7 +14,10 @@
   (setq lsp-session-file (concat modo-cache-dir "lsp-session-v1")
         lsp-server-install-dir (concat modo-cache-dir "lsp/")
         lsp-keymap-prefix nil
-        lsp-keep-workspace-alive nil)
+        lsp-keep-workspace-alive nil
+        lsp-lens-enable t
+        lsp-auto-guess-root t
+        lsp-idle-delay 0.1)
   :config
   (modo-define-leader-key :keymaps 'lsp-mode-map
     "l" `(,lsp-command-map :wk "lsp"))
