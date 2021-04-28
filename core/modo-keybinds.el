@@ -84,6 +84,11 @@
 ;; Like in the standard terminal bindings
 (global-set-key (kbd "C-w") #'backward-kill-word)
 
+;; Evil re-bindings
+(evil-define-key '(normal visual motion) 'global
+  "M" 'evil-goto-mark
+  "zm" 'evil-window-middle)
+
 ;;; Info-mode
 (use-package info
   :config
