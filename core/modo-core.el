@@ -127,8 +127,7 @@
 (add-hook 'hack-local-variables-hook 'modo-run-local-vars-mode-hook)
 
 ;; Native comp
-(setq comp-deferred-compilation nil
-      comp-async-report-warnings-errors nil)
+(setq comp-async-report-warnings-errors nil)
 (when (boundp 'comp-eln-load-path)
   (add-to-list 'comp-eln-load-path (concat modo-cache-dir "eln/")))
 
