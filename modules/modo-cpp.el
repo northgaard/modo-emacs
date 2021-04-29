@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(straight-use-package 'cmake-mode)
+(straight-use-package '(cmake-mode :depth 1))
 (use-package cmake-mode)
 
 (defvar-local modo-c++-enable-clang-format-on-save t
