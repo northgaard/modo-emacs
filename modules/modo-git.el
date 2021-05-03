@@ -112,7 +112,6 @@ _C-k_: down     _a_ll                _R_efine
                         "v" 'embark-magit-status))
   (setq projectile-switch-project-action (lambda () (magit-status (projectile-project-root))))
   (modo-add-hook (git-commit-setup-hook)
-    (setq-local undo-tree-auto-save-history nil)
     (modo-disable-auto-save-backup-locally)
     (evil-normalize-keymaps)
     (evil-insert-state))
