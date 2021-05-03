@@ -209,5 +209,34 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
             ("?" nil "close" :color blue)
             ("q" git-timemachine-quit "quit timemachine" :color blue)))
 
+(defun modo-git-gutter-load ()
+  "Loads git gutter upon first opening a file versioned by git."
+  (when (equal (projectile-project-vcs) 'git)
+    (require 'git-gutter-fringe)
+    (global-git-gutter-mode 1)
+    (remove-hook 'find-file-hook #'modo-git-gutter-load)))
+
+(straight-use-package 'git-gutter)
+(use-package git-gutter
+  :init
+  (add-hook 'find-file-hook #'modo-git-gutter-load)
+  :custom
+  (git-gutter:verbosity 0))
+
+(straight-use-package 'git-gutter-fringe)
+(use-package git-gutter-fringe
+  :config
+  ;; standardize default fringe width
+  (if (fboundp 'fringe-mode) (fringe-mode '4))
+  ;; places the git gutter outside the margins.
+  (setq-default fringes-outside-margins t)
+  ;; thin fringe bitmaps
+  (define-fringe-bitmap 'git-gutter-fr:added [224]
+    nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224]
+    nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240]
+    nil nil 'bottom))
+
 (provide 'modo-git)
 ;;; modo-git.el ends here
