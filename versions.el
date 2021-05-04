@@ -9,7 +9,7 @@
  ("cfrs" . "7c42f2c82c7ae689f3ef291b066688c58ab96298")
  ("clang-format" . "e48ff8ae18dc7ab6118c1f6752deb48cb1fc83ac")
  ("cmake" . "7de707cd7e04d8c203426c93bb01923536cc688b")
- ("company-mode" . "91d7bb61523e69803bfd1eee0efaaa3eb50673e2")
+ ("company-mode" . "a0adb3c8d1d3ff980782ff199892ed0562ba70b2")
  ("consult" . "923a34330207ed868b6388acf0f432ae989f1427")
  ("csharp-mode" . "57bd21bda4edc16671a85c7d6d51484e40a6e640")
  ("dash.el" . "b9286a84975874b10493f1cb4ea051c501f51273")
