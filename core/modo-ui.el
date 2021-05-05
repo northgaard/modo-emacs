@@ -60,16 +60,44 @@
   (set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
   (which-key-mode 1))
 
-;;; window numbering
+;;; Window movement
+(defvar modo-switch-window-hook nil
+  "Hooks run after switching the focused window.")
+
+(defun modo--switch-window-with-hooks (fn &rest args)
+  (let ((window (selected-window)))
+    (apply fn args)
+    (unless (eq window (selected-window))
+      (run-hooks 'modo-switch-window-hook))))
+
 (straight-use-package 'winum)
 (use-package winum
   :demand t
   :init
   (setq winum-keymap (make-sparse-keymap))
   :config
+  (advice-add 'winum-select-window-1 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-2 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-3 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-4 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-5 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-6 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-7 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-8 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-9 :around #'modo--switch-window-with-hooks)
+  (advice-add 'winum-select-window-0-or-10 :around #'modo--switch-window-with-hooks)
   (setq winum-scope 'frame-local)
   (winum-mode))
 
+(use-package windmove
+  :demand t
+  :config
+  (advice-add 'windmove-down :around #'modo--switch-window-with-hooks)
+  (advice-add 'windmove-up :around #'modo--switch-window-with-hooks)
+  (advice-add 'windmove-left :around #'modo--switch-window-with-hooks)
+  (advice-add 'windmove-right :around #'modo--switch-window-with-hooks))
+
+;;; Keyboard driven selection
 (straight-use-package 'avy)
 (use-package avy
   :demand t
