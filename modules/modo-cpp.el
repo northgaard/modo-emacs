@@ -25,6 +25,16 @@ on the buffer before saving.")
           (clang-format-buffer))
         ;; Return nil, to continue saving
         nil)))
+  (defun clang-format-defun (&optional style assume-file-name)
+    "Use clang-format to format the current function."
+    (interactive)
+    (let (beg end)
+      (save-excursion
+        (beginning-of-defun-comments)
+        (setq beg (point))
+        (end-of-defun)
+        (setq end (point)))
+      (clang-format-region beg end style assume-file-name)))
   (when (executable-find clang-format-executable)
     (add-hook 'before-save-hook #'modo--clang-format-on-save)))
 
