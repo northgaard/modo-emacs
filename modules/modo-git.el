@@ -209,19 +209,37 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
             ("?" nil "close" :color blue)
             ("q" git-timemachine-quit "quit timemachine" :color blue)))
 
-(defun modo-git-gutter-load ()
-  "Loads git gutter upon first opening a file versioned by git."
-  (when (equal (projectile-project-vcs) 'git)
-    (require 'git-gutter-fringe)
-    (global-git-gutter-mode 1)
-    (remove-hook 'find-file-hook #'modo-git-gutter-load)))
+(defun modo--git-gutter-activate-maybe ()
+  (let ((file-name (buffer-file-name (buffer-base-buffer))))
+    (if (not (and file-name
+                  (equal (projectile-project-vcs) 'git)))
+        (add-hook 'after-save-hook #'modo--git-gutter-activate-maybe
+                  nil 'local)
+      (require 'git-gutter-fringe)
+      (unless (memq major-mode git-gutter:disabled-modes)
+        (git-gutter-mode 1)
+        (remove-hook 'after-save-hook #'modo--git-gutter-activate-maybe 'local)))))
+
+(defun modo--git-gutter-update (&rest _)
+  (or (memq this-command '(git-gutter:stage-hunk
+                           git-gutter:revert-hunk))
+      inhibit-redisplay
+      (when git-gutter-mode
+        (git-gutter))))
 
 (straight-use-package 'git-gutter)
 (use-package git-gutter
   :init
-  (add-hook 'find-file-hook #'modo-git-gutter-load)
+  (add-hook 'find-file-hook #'modo--git-gutter-activate-maybe)
+  (add-hook 'modo-switch-window-hook #'modo--git-gutter-update)
   :custom
-  (git-gutter:verbosity 0))
+  (git-gutter:verbosity 0)
+  (git-gutter:disabled-modes '(fundamental-mode image-mode pdf-view-mode org-mode))
+  :config
+  (add-hook 'focus-in-hook #'git-gutter:update-all-windows)
+  (with-eval-after-load 'magit
+    (advice-add #'magit-stage-file :after #'modo--git-gutter-update)
+    (advice-add #'magit-unstage-file :after #'modo--git-gutter-update)))
 
 (straight-use-package 'git-gutter-fringe)
 (use-package git-gutter-fringe
