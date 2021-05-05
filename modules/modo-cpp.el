@@ -51,6 +51,12 @@ should use lsp-mode.")
   :custom
   (lsp-clients-clangd-args `("--clang-tidy" "--log=info" "--pretty" "--background-index"
                              ,(format "-j=%d" modo-clangd-number-of-worker-threads)))
+  :general
+  (modo-define-major-leader-key :keymaps 'c++-mode-map
+    "f" '(:ignore t :wk "format")
+    "fb" 'clang-format-buffer
+    "fr" 'clang-format-region
+    "fd" 'clang-format-defun)
   :init
   (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
                                 :transient t)
