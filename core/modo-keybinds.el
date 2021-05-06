@@ -25,6 +25,7 @@
          :wk "find-core-file")
   "fm" '(modo-find-module-file
          :wk "find-module-file")
+  "fv" 'set-visited-file-name
   "b" '(:ignore t :wk "buffers")
   "bb" 'switch-to-buffer
   "bd" 'kill-this-buffer
