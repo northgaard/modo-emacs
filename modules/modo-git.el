@@ -214,7 +214,7 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
 (defun modo--git-gutter-activate-maybe ()
   (let ((file-name (buffer-file-name (buffer-base-buffer))))
     (if (not (and file-name
-                  (equal (projectile-project-vcs) 'git)))
+                  (equal (vc-backend file-name) 'Git)))
         (add-hook 'after-save-hook #'modo--git-gutter-activate-maybe
                   nil 'local)
       (require 'git-gutter-fringe)
