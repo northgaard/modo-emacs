@@ -133,6 +133,8 @@ _C-k_: down     _a_ll                _R_efine
     "vf" 'magit-find-file
     "vd" 'magit-dispatch
     "vl" 'magit-log-buffer-file
+    "vS" 'magit-stage-file
+    "vu" 'magit-unstage-file
     "vD" 'magit-file-dispatch)
   (:states '(motion normal visual)
            :keymaps 'magit-log-mode-map
@@ -229,6 +231,12 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
 
 (straight-use-package 'git-gutter)
 (use-package git-gutter
+  :general
+  (modo-define-leader-key :keymaps 'override
+    "vj" 'git-gutter:next-hunk
+    "vk" 'git-gutter:previous-hunk
+    "vs" 'git-gutter:stage-hunk
+    "vR" 'git-gutter:revert-hunk)
   :init
   (add-hook 'find-file-hook #'modo--git-gutter-activate-maybe)
   (add-hook 'modo-switch-window-hook #'modo--git-gutter-update)
