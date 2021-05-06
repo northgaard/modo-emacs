@@ -35,6 +35,30 @@ on the buffer before saving.")
         (end-of-defun)
         (setq end (point)))
       (clang-format-region beg end style assume-file-name)))
+  ;; NOTE This currently relies on git-gutter, which only updates on
+  ;; save. Ideally we would like to have this work with the diff of
+  ;; the current buffer state and the latest checked-in version, so
+  ;; that it could be run in before-save-hook. But this method is
+  ;; simple and works for now.
+  (defun clang-format-hunks (&optional style assume-file-name)
+    "Use clang-format to format all unstaged hunk in the current buffer."
+    (interactive)
+    (require 'git-gutter-fringe)
+    (if (not git-gutter-mode)
+        (message "git gutter not enabled!")
+      (save-excursion
+        (dolist (diffinfo git-gutter:diffinfos)
+          (let (beg
+                end
+                (start-line (git-gutter-hunk-start-line diffinfo))
+                (end-line (git-gutter-hunk-end-line diffinfo)))
+            (goto-char (point-min))
+            (forward-line (1- start-line))
+            (setq beg (point))
+            (forward-line (- end-line start-line))
+            (end-of-line)
+            (setq end (point))
+            (clang-format-region beg end style assume-file-name))))))
   (when (executable-find clang-format-executable)
     (add-hook 'before-save-hook #'modo--clang-format-on-save)))
 
@@ -56,7 +80,8 @@ should use lsp-mode.")
     "f" '(:ignore t :wk "format")
     "fb" 'clang-format-buffer
     "fr" 'clang-format-region
-    "fd" 'clang-format-defun)
+    "fd" 'clang-format-defun
+    "fv" 'clang-format-hunks)
   :init
   (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
                                 :transient t)
