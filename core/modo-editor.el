@@ -15,11 +15,18 @@
       save-interprogram-paste-before-kill t
       disabled-command-function nil
       confirm-kill-processes nil)
+;; These settings should speed up redisplay, but will break rendering
+;; of right-to-left languages. This is not an issue for me personally,
+;; but caveat emptor.
+(setq-default bidi-paragraph-direction 'left-to-right
+              bidi-inhibit-bpa t)
 
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose nil)
 ;; Enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
+;; Mitigate performance issues with files with long lines
+(global-so-long-mode 1)
 
 ;;; Persistent command history
 (use-package savehist
