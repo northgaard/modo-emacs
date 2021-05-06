@@ -81,7 +81,9 @@ should use lsp-mode.")
     "fb" 'clang-format-buffer
     "fr" 'clang-format-region
     "fd" 'clang-format-defun
-    "fv" 'clang-format-hunks)
+    "fv" 'clang-format-hunks
+    "j" 'flycheck-next-error
+    "k" 'flycheck-previous-error)
   :init
   (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
                                 :transient t)
