@@ -65,12 +65,6 @@ on the buffer before saving.")
 (defcustom modo-clangd-number-of-worker-threads 2
   "Number of worker threads allowed for clangd.")
 
-(defvar-local modo-c++-enable-lsp nil
-  "Buffer local variable to determine whether the opened C++ file
-should use lsp-mode.")
-(put 'modo-c++-enable-lsp 'safe-local-variable #'booleanp)
-(cl-pushnew 'c++-mode modo-consult-lsp-modes)
-
 (straight-use-package 'modern-cpp-font-lock)
 (use-package c++-mode
   :custom
@@ -86,6 +80,7 @@ should use lsp-mode.")
     "j" 'flycheck-next-error
     "k" 'flycheck-previous-error)
   :init
+  (cl-pushnew 'c++-mode modo-consult-lsp-modes)
   (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
                                 :transient t)
     (require 'clang-format))
@@ -94,7 +89,7 @@ should use lsp-mode.")
     (hs-minor-mode 1)
     (evil-normalize-keymaps))
   (modo-add-hook (c++-mode-local-vars-hook :name "modo--c++-mode-local-vars-setup")
-    (when modo-c++-enable-lsp
+    (when modo-enable-lsp
       (lsp-deferred)
       (setq-local company-idle-delay 0
                   company-minimum-prefix-length 1))))

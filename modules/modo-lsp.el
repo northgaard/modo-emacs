@@ -5,6 +5,11 @@
 
 ;;; Code:
 
+(defvar-local modo-enable-lsp nil
+  "Buffer local variable to determine whether the opened file
+should use lsp-mode.")
+(put 'modo-enable-lsp 'safe-local-variable #'booleanp)
+
 (straight-use-package 'lsp-mode)
 (use-package lsp-mode
   :hook (lsp-mode . lsp-enable-which-key-integration)
