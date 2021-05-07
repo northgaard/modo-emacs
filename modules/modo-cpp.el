@@ -69,6 +69,7 @@ on the buffer before saving.")
   "Buffer local variable to determine whether the opened C++ file
 should use lsp-mode.")
 (put 'modo-c++-enable-lsp 'safe-local-variable #'booleanp)
+(cl-pushnew 'c++-mode modo-consult-lsp-modes)
 
 (straight-use-package 'modern-cpp-font-lock)
 (use-package c++-mode

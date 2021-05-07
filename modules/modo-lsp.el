@@ -25,5 +25,18 @@
   (require 'company)
   (setq lsp-headerline-breadcrumb-enable nil))
 
+(defvar modo-consult-lsp-modes nil
+  "List of major modes in which to use consult-lsp.")
+
+(straight-use-package 'consult-lsp)
+(use-package consult-lsp
+  :after lsp-mode
+  :demand t
+  :config
+  (-doto lsp-command-map
+    (lsp-define-conditional-key
+      "cd" consult-lsp-diagnostics "diagnostics" (memq major-mode modo-consult-lsp-modes)
+      "cs" consult-lsp-symbols "symbols" (memq major-mode modo-consult-lsp-modes))))
+
 (provide 'modo-lsp)
 ;;; modo-lsp.el ends here
