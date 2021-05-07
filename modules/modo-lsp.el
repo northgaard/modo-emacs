@@ -21,6 +21,7 @@
   :config
   (modo-define-leader-key :keymaps 'lsp-mode-map
     "l" `(,lsp-command-map :wk "lsp"))
+  (require 'flycheck)
   (require 'company)
   (setq lsp-headerline-breadcrumb-enable nil))
 
