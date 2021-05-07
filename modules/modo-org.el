@@ -39,7 +39,7 @@ directory for completion."
    (find-file filename)
    (run-hooks 'find-file-hook))
 
-(straight-use-package '(org-plus-contrib :depth 1))
+(straight-use-package '(org :depth 1))
 (use-package org
   :defer 10
   :hook (org-mode . modo-org-mode-setup)
