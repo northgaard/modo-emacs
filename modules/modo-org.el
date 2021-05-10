@@ -45,7 +45,8 @@ directory for completion."
   :hook (org-mode . modo-org-mode-setup)
   :general
   (:keymaps 'org-mode-map
-            "M-s" 'consult-outline)
+            "M-s" 'consult-outline
+            "C-M-<return>" 'org-insert-subheading)
   (modo-define-leader-key :keymaps 'override
     "fo" '(modo-find-org-file :wk "find-org-file"))
   (modo-define-major-leader-key :keymaps 'org-mode-map
