@@ -72,23 +72,23 @@ on the buffer before saving.")
   :keymap (make-sparse-keymap))
 
 (modo-define-major-leader-key :keymaps 'lsp-c++-mode-map
-  "g" '(:ignore t :wk "goto")
+  "g" '(:prefix-command lsp-c++-goto-command :wk "goto")
   "gg" 'lsp-find-definition
   "gd" 'lsp-find-declaration
   "gr" 'lsp-find-references
-  "h" '(:ignore t :wk "help")
+  "h" '(:prefix-command lsp-c++-help-command :wk "help")
   "hh" 'lsp-describe-thing-at-point
   "hs" 'lsp-signature-activate
-  "s" '(:ignore t :wk "session")
+  "s" '(:prefix-command lsp-c++-session-command :wk "session")
   "sd" 'lsp-describe-session
   "sr" 'lsp-workspace-restart
   "sq" 'lsp-workspace-shutdown
   "ss" 'lsp
-  "r" '(:ignore t :wk "refactor")
+  "r" '(:prefix-command lsp-c++-refactor-command :wk "refactor")
   "rr" 'lsp-rename
   "ro" 'lsp-organize-imports
   "a" 'lsp-execute-code-action
-  "c" '(:ignore t :wk "consult")
+  "c" '(:prefix-command lsp-c++-consult-command :wk "consult")
   "cd" 'consult-lsp-diagnostics
   "cs" 'consult-lsp-symbols)
 (add-hook 'lsp-c++-mode-hook #'evil-normalize-keymaps)
