@@ -65,6 +65,34 @@ on the buffer before saving.")
 (defcustom modo-clangd-number-of-worker-threads 2
   "Number of worker threads allowed for clangd.")
 
+;; TODO Generalize this into a macro for defining a specialized mode
+;; for any language
+(define-minor-mode lsp-c++-mode
+  "Specialized minor mode for c++-mode with lsp."
+  :keymap (make-sparse-keymap))
+
+(modo-define-major-leader-key :keymaps 'lsp-c++-mode-map
+  "g" '(:ignore t :wk "goto")
+  "gg" 'lsp-find-definition
+  "gd" 'lsp-find-declaration
+  "gr" 'lsp-find-references
+  "h" '(:ignore t :wk "help")
+  "hh" 'lsp-describe-thing-at-point
+  "hs" 'lsp-signature-activate
+  "s" '(:ignore t :wk "session")
+  "sd" 'lsp-describe-session
+  "sr" 'lsp-workspace-restart
+  "sq" 'lsp-workspace-shutdown
+  "ss" 'lsp
+  "r" '(:ignore t :wk "refactor")
+  "rr" 'lsp-rename
+  "ro" 'lsp-organize-imports
+  "a" 'lsp-execute-code-action
+  "c" '(:ignore t :wk "consult")
+  "cd" 'consult-lsp-diagnostics
+  "cs" 'consult-lsp-symbols)
+(add-hook 'lsp-c++-mode-hook #'evil-normalize-keymaps)
+
 (straight-use-package 'modern-cpp-font-lock)
 (use-package c++-mode
   :custom
@@ -80,7 +108,6 @@ on the buffer before saving.")
     "j" 'flycheck-next-error
     "k" 'flycheck-previous-error)
   :init
-  (cl-pushnew 'c++-mode modo-consult-lsp-modes)
   (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
                                 :transient t)
     (require 'clang-format))
@@ -91,6 +118,7 @@ on the buffer before saving.")
   (modo-add-hook (c++-mode-local-vars-hook :name "modo--c++-mode-local-vars-setup")
     (when modo-enable-lsp
       (lsp-deferred)
+      (lsp-c++-mode 1)
       (setq-local company-idle-delay 0
                   company-minimum-prefix-length 1))))
 
