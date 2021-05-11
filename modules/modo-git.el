@@ -130,6 +130,7 @@ _C-k_: down     _a_ll                _R_efine
     :keymaps 'override
     "v" '(:ignore t :wk "version control")
     "vb" 'magit-blame
+    "vc" 'magit-commit
     "vf" 'magit-find-file
     "vd" 'magit-dispatch
     "vl" 'magit-log-buffer-file
