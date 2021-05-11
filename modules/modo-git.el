@@ -236,10 +236,26 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
     "vj" 'git-gutter:next-hunk
     "vk" 'git-gutter:previous-hunk
     "vs" 'git-gutter:stage-hunk
-    "vR" 'git-gutter:revert-hunk)
+    "vR" 'git-gutter:revert-hunk
+    "vC" 'modo-git-gutter-hunk-quick-commit)
   :init
   (add-hook 'find-file-hook #'modo--git-gutter-activate-maybe)
   (add-hook 'modo-switch-window-hook #'modo--git-gutter-update)
+  (defun modo-git-gutter-hunk-quick-commit ()
+    (interactive)
+    (require 'magit-git)
+    (let ((staged-files (magit-staged-files))
+          (hunkinfo (ignore-errors
+                      (git-gutter:search-here-diffinfo git-gutter:diffinfos))))
+      (unless hunkinfo
+        (error "Not a changed hunk"))
+      (when staged-files
+        (error "Quick commit requires that no other changes are staged"))
+      (let ((git-gutter:ask-p nil)
+            (git-gutter:diffinfos (list hunkinfo))
+            (commit-message (read-from-minibuffer "Commit message: ")))
+        (git-gutter:stage-hunk)
+        (message (magit-git-string "commit" "-m" commit-message)))))
   :custom
   (git-gutter:verbosity 0)
   (git-gutter:disabled-modes '(fundamental-mode image-mode pdf-view-mode org-mode))
