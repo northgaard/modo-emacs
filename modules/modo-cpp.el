@@ -88,6 +88,7 @@ on the buffer before saving.")
   "rr" 'lsp-rename
   "ro" 'lsp-organize-imports
   "a" 'lsp-execute-code-action
+  "<tab>" 'lsp-treemacs-symbols
   "c" '(:prefix-command lsp-c++-consult-command :wk "consult")
   "cd" 'consult-lsp-diagnostics
   "cs" 'consult-lsp-symbols)
