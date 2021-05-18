@@ -92,6 +92,8 @@ on the buffer before saving.")
   "c" '(:prefix-command lsp-c++-consult-command :wk "consult")
   "cd" 'consult-lsp-diagnostics
   "cs" 'consult-lsp-symbols)
+(general-define-key :keymaps 'lsp-c++-mode-map
+                    [remap projectile-find-other-file] 'lsp-clangd-find-other-file)
 (add-hook 'lsp-c++-mode-hook #'evil-normalize-keymaps)
 
 (straight-use-package 'modern-cpp-font-lock)
