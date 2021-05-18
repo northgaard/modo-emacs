@@ -63,7 +63,7 @@
  ("json-mode" . "54788b3f8a50009db330a5715472c13bd5e86fe1")
  ("let-alist" . "6708ec0b2e6dff80ff5b64698aa009d9070a2ed2")
  ("ligature.el" . "f59687dfeafaa36452e2eb9f999ac279e5d70e0f")
- ("lsp-mode" . "baf75e99685fe4f2e6d7a84b4091de25e7f4ce93")
+ ("lsp-mode" . "2cd5cc795d12fbe40feb9d74f136b79b23f2c630")
  ("lsp-treemacs" . "b07868740d6f7d364e496048cee00bce10a6ab33")
  ("magit" . "8ebb05cb7c8f102581ec2d8b52f9e83841676a01")
  ("marginalia" . "0c2735eea5e0803921903dc5f7294dcdeece47d2")
