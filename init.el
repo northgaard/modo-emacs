@@ -34,4 +34,4 @@
              groovy)
 
 ;;; Finally, load the private init file, if it exists
-(load modo-private-init-file t t)
+(load (concat modo-private-dir "init.el") t t)

@@ -41,9 +41,6 @@
 (unless (file-exists-p modo-private-dir)
   (make-directory modo-private-dir))
 
-(defvar modo-private-init-file (concat modo-emacs-dir "init-private.el")
-  "Private equivalent of init.el.")
-
 (defconst modo-system-identifier (concat (user-login-name) "@" (system-name))
   "Identifier for the system running modo emacs.")
 
