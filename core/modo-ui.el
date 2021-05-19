@@ -87,6 +87,17 @@
   (advice-add 'winum-select-window-9 :around #'modo--switch-window-with-hooks)
   (advice-add 'winum-select-window-0-or-10 :around #'modo--switch-window-with-hooks)
   (setq winum-scope 'frame-local)
+  (defun winum-delete-ignored-windows ()
+    "Deletes all currently open windows that are not selectable
+by winum."
+    (interactive)
+    (dolist (win (window-list))
+      (let ((buf-name (buffer-name (window-buffer win))))
+        (when (or (member buf-name winum-ignored-buffers)
+                  (seq-some (lambda (regex)
+                              (string-match-p regex buf-name))
+                            winum-ignored-buffers-regexp))
+          (delete-window win)))))
   (winum-mode))
 
 (use-package windmove

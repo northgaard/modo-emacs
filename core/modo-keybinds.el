@@ -57,6 +57,7 @@
   "wh" 'windmove-left
   "wl" 'windmove-right
   "wz" 'hydra-window-resize/body
+  "w0" 'winum-delete-ignored-windows
   "n" '(:ignore t :wk "narrow")
   "nd" 'narrow-to-defun
   "nn" 'narrow-to-region
