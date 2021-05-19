@@ -141,6 +141,18 @@
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   :config
+  (defun modo--consult-line-evil-ex (fn &rest args)
+    (condition-case nil
+        (apply fn args)
+      (:success (when (and (bound-and-true-p evil-mode)
+                           (eq evil-search-module 'evil-search))
+                  (let ((cand (car consult--line-history)))
+                    (add-to-history 'evil-ex-search-history cand)
+                    (setq evil-ex-search-pattern (list cand t t)
+                          evil-ex-search-direction 'forward)
+                    (when evil-ex-search-persistent-highlight
+                      (evil-ex-search-activate-highlight evil-ex-search-pattern)))))))
+  (advice-add 'consult-line :around #'modo--consult-line-evil-ex)
   (setq consult-project-root-function #'projectile-project-root
         consult-config '((consult-recent-file :preview-key nil))))
 
