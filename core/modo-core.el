@@ -128,9 +128,9 @@
 (add-hook 'hack-local-variables-hook 'modo-run-local-vars-mode-hook)
 
 ;; Native comp
-(setq comp-async-report-warnings-errors nil)
-(when (boundp 'comp-eln-load-path)
-  (add-to-list 'comp-eln-load-path (concat modo-cache-dir "eln/")))
+(setq native-comp-async-report-warnings-errors nil)
+(when (boundp 'native-comp-eln-load-path)
+  (add-to-list 'native-comp-eln-load-path (concat modo-cache-dir "eln/")))
 
 ;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
