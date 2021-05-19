@@ -44,6 +44,9 @@
 (defvar modo-private-init-file (concat modo-emacs-dir "init-private.el")
   "Private equivalent of init.el.")
 
+(defconst modo-system-identifier (concat (user-login-name) "@" (system-name))
+  "Identifier for the system running modo emacs.")
+
 ;;; UTF-8
 ;; I have sort of given up on figuring out what is the "proper" way to
 ;; handle this. This is what Doom Emacs currently has, which I suppose
