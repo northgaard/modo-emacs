@@ -92,12 +92,8 @@
 by winum."
     (interactive)
     (dolist (win (window-list))
-      (let ((buf-name (buffer-name (window-buffer win))))
-        (when (or (member buf-name winum-ignored-buffers)
-                  (seq-some (lambda (regex)
-                              (string-match-p regex buf-name))
-                            winum-ignored-buffers-regexp))
-          (delete-window win)))))
+      (when (winum--ignore-window-p win)
+          (delete-window win))))
   (winum-mode))
 
 (use-package windmove
