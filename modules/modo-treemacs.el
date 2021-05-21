@@ -9,6 +9,8 @@
 (use-package treemacs
   :general
   ("C-<tab>" 'treemacs)
+  (:keymaps 'treemacs-mode-map
+            "M-<return>" 'treemacs-RET-action-and-quit)
   :init
   (setq treemacs-persist-file
         (expand-file-name
@@ -19,6 +21,11 @@
   :config
   (when (featurep 'doom-themes)
     (doom-themes-treemacs-config))
+  (defun treemacs-RET-action-and-quit (&optional arg)
+    (interactive "P")
+    (let ((treewin (selected-window)))
+      (treemacs-RET-action arg)
+      (quit-window nil treewin)))
   (defun modo-select-window-0-dispatch ()
     "Dispatches to a window in the following ordered priority:
 
