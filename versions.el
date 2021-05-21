@@ -38,7 +38,7 @@
  ("evil-exchange" . "3030e21ee16a42dfce7f7cf86147b778b3f5d8c1")
  ("evil-indent-plus" . "0c7501e6efed661242c3a20e0a6c79a6455c2c40")
  ("evil-matchit" . "8c8c94bea899718f393ad041202a355e6f24ea19")
- ("evil-numbers" . "006da406d175c05fedca4431cccd569e20bef92c")
+ ("evil-numbers" . "d7a3e6ddec9d69978318901cf75b911085969fc0")
  ("evil-org-mode" . "80ef38fb378541937f6ddfe836809e76eda1e355")
  ("evil-snipe" . "6dcac7f2516c6137a2de532fc2c052f242559ee3")
  ("evil-surround" . "346d4d85fcf1f9517e9c4991c1efe68b4130f93a")
