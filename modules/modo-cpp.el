@@ -132,5 +132,8 @@ on the buffer before saving.")
 ;; QT
 (straight-use-package 'qml-mode)
 
+;; GLSL
+(straight-use-package 'glsl-mode)
+
 (provide 'modo-cpp)
 ;;; modo-cpp.el ends here

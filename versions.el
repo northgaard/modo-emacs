@@ -53,6 +53,7 @@
  ("git-gutter-fringe" . "4f19866494fa1debfa319382913e39a153431634")
  ("git-modes" . "55468314a5f6b77d2c96be62c7005ac94545e217")
  ("git-timemachine" . "8d675750e921a047707fcdc36d84f8439b19a907")
+ ("glsl-mode" . "b07112016436d9634cd4ef747f9af6b01366d136")
  ("gnu-elpa-mirror" . "b806155cfcdee67b8d5bfca610dc19f556399d55")
  ("goto-chg" . "2af612153bc9f5bed135d25abe62f46ddaa9027f")
  ("groovy-emacs-modes" . "26da902d1158c0312628d57578109be54eca2415")
