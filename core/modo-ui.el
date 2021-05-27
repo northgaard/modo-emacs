@@ -263,6 +263,11 @@ by winum."
   :config
   (minions-mode 1))
 
+;;; Tabs
+(use-package tab-bar
+  :custom
+  (tab-bar-show 1))
+
 ;;; Pulse on window change, trying out to see if I like it
 (defun modo-pulse-line (&rest _)
   (pulse-momentary-highlight-one-line (point) 'modo-pulse-face))
