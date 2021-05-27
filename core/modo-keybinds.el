@@ -38,6 +38,22 @@
   "bc" '(clone-indirect-buffer :wk "clone")
   "bn" 'rename-buffer
   "H"  'help-command
+  "t"  '(:ignore t :wk "tabs")
+  "tt" 'tab-new
+  "tj" 'tab-next
+  "tk" 'tab-previous
+  "tc" 'tab-close
+  "tu" 'tab-undo
+  "tr" 'tab-rename
+  "t1" 'tab-bar-select-tab
+  "t2" 'tab-bar-select-tab
+  "t3" 'tab-bar-select-tab
+  "t4" 'tab-bar-select-tab
+  "t5" 'tab-bar-select-tab
+  "t6" 'tab-bar-select-tab
+  "t7" 'tab-bar-select-tab
+  "t8" 'tab-bar-select-tab
+  "t9" 'tab-bar-select-tab
   "w"  '(:ignore t :wk "windows")
   "ws" 'evil-window-split
   "wv" 'evil-window-vsplit
