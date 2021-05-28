@@ -126,12 +126,12 @@ by winum."
 (straight-use-package '(move-border :type git :host github :repo "ramnes/move-border"))
 (use-package move-border
   :init
-  (defhydra hydra-window-resize (:pre (progn
-                                        (modo-temporary-set
-                                         which-key-inhibit t
-                                         hydra-hint-display-type 'posframe)
-                                        (require 'move-border))
-                                       :post (modo-temporary-reset))
+  (defhydra hydra-window-resize (:body-pre (progn
+                                             (modo-temporary-set
+                                              which-key-inhibit t
+                                              hydra-hint-display-type 'posframe)
+                                             (require 'move-border))
+                                           :post (modo-temporary-reset))
     ;;newline is necessary here!
     "
 ^Resize Windows^ "
@@ -190,9 +190,9 @@ by winum."
 (use-package default-text-scale
   :init
   (defhydra hydra-font-size (:color red
-                                    :pre (modo-temporary-set
-                                          hydra-hint-display-type
-                                          'message)
+                                    :body-pre (modo-temporary-set
+                                               hydra-hint-display-type
+                                               'message)
                                     :post (modo-temporary-reset))
     "Change font size"
     ("+" default-text-scale-increase "increase")
