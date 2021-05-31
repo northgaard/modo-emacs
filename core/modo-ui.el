@@ -29,6 +29,8 @@
 (setq-default truncate-lines t)
 ;; History lists
 (setq history-delete-duplicates t)
+;; Frame title
+(setq-default frame-title-format '("%n %b - %F"))
 
 ;; More intuitive behavior for new windows
 ;; From here: https://github.com/nex3/perspective-el#some-musings-on-emacs-window-layouts
