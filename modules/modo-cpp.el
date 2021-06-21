@@ -99,7 +99,8 @@ on the buffer before saving.")
 (straight-use-package 'modern-cpp-font-lock)
 (use-package c++-mode
   :custom
-  (lsp-clients-clangd-args `("--clang-tidy" "--log=info" "--pretty" "--background-index"
+  (lsp-clients-clangd-args `("--clang-tidy" "--log=info" "--pretty" "--limit-results=500"
+                             "--background-index" "--header-insertion=never"
                              ,(format "-j=%d" modo-clangd-number-of-worker-threads)))
   :general
   (modo-define-major-leader-key :keymaps 'c++-mode-map
@@ -123,7 +124,9 @@ on the buffer before saving.")
     (when modo-enable-lsp
       (lsp-deferred)
       (lsp-c++-mode 1)
-      (setq-local company-idle-delay 0
+      (setq-local lsp-enable-indentation nil
+                  lsp-enable-on-type-formatting nil
+                  company-idle-delay 0
                   company-minimum-prefix-length 1))))
 
 ;; Search cppreference.com
