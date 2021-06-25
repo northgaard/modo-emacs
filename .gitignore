@@ -1,6 +1,7 @@
 *~
 *.elc
 cache/
+eln-cache/
 temp/
 private/
 straight/*
