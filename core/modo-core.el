@@ -150,6 +150,8 @@
 (use-package gcmh
   :diminish gcmh-mode
   :init
+  (setq gcmh-idle-delay 5
+        gcmh-high-cons-threshold (* 250 1024 1024)) ; 250 mb, this actually 1/4 the default!
   (add-hook 'emacs-startup-hook
             (lambda () (gcmh-mode 1))))
 
