@@ -67,7 +67,7 @@ with advice."
    (apply fn args)))
 
 (cl-defmacro modo-add-hook ((hook &key name transient) &body
-body)
+                            body)
   "Run BODY in HOOK. HOOK may be a hook or a list of hooks.
 
 If the optional argument NAME is specified, use that to name the
