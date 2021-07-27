@@ -150,6 +150,17 @@ counter-clockwise. With two prefix arguments, rotates the frame
   (modo-byte-compile-modules)
   (byte-compile-file user-init-file))
 
+(defun modo-force-byte-compile-package (package)
+  "Recompiles a package build directory.
+
+This is here because unfortunately some packages do not compile
+cleanly with straight. Ideally this should be fixed upstream, but
+until such time, we have this as a workaround."
+  (interactive (list (straight--select-package "Select package"
+                                               #'straight--installed-p)))
+  (byte-recompile-directory (straight--build-dir package)
+                            0 t t))
+
 (defmacro modo-install-search-engine (engine-name engine-url ex-prompt)
   "Given the ENGINE-NAME of a search engine, the ENGINE-URL to
 construct a search prompt, and an EX-PROMPT, construct an ex
