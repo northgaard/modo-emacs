@@ -137,7 +137,8 @@
            "gp" 'consult-yank)
   :init
   (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+        xref-show-definitions-function #'consult-xref
+        consult-narrow-key (kbd "M-n"))
   :config
   (defun modo--consult-line-evil-ex (fn &rest args)
     (condition-case nil
