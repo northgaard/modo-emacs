@@ -84,8 +84,6 @@
             "M-m" 'marginalia-cycle)
   :config
   (marginalia-mode 1)
-  (setq marginalia-annotators
-        '(marginalia-annotators-heavy marginalia-annotators-light nil))
   (advice-add #'marginalia-cycle :after
               (lambda () (selectrum-exhibit 'keep-selected))))
 
