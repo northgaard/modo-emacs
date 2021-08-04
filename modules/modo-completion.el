@@ -87,6 +87,26 @@
   (advice-add #'marginalia-cycle :after
               (lambda () (selectrum-exhibit 'keep-selected))))
 
+;;; ------------
+;;; Ideally I would like to gradually replace hydra with transient,
+;;; but currently transient does not support invoking transient from
+;;; the minibuffer (see transient issue #112). The code below shows
+;;; how to implement the quick move hydra with transient, as a reference
+;;; for the future.
+;;; ------------
+;; (transient-define-prefix tselectrum-quick-move ()
+;;   :transient-suffix 'transient--do-stay
+;;   :transient-non-suffix 'transient--do-warn
+;;   [["Move"
+;;     ("j" "next" selectrum-next-candidate)
+;;     ("k" "previous" selectrum-previous-candidate)
+;;     ("h" "back word" backward-kill-word)
+;;     ("H" "back sexp" backward-kill-sexp)]
+;;    ["Jump"
+;;     ("n" "next page" selectrum-next-page)
+;;     ("p" "previous page" selectrum-previous-page)
+;;     ("q" "quit" transient-quit-one)]])
+
 (defhydra selectrum-quick-move (:color pink)
   ("j" selectrum-next-candidate "next" :column "Move")
   ("k" selectrum-previous-candidate "previous")
