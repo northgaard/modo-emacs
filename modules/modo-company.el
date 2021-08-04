@@ -44,7 +44,9 @@
             "C-j" 'company-select-next
             "C-k" 'company-select-previous
             "C-o" 'company-completing-read
-            [tab] 'company-complete-common-or-cycle)
+            "C-w" 'evil-delete-backward-word
+            "C-l" 'company-show-location
+            "TAB" 'company-complete-common-or-cycle)
   :config
   (setq company-idle-delay nil
         company-tooltip-align-annotations t
