@@ -72,8 +72,8 @@
   (modo-define-leader-key :keymaps 'override
     "i" '(:ignore t :wk "info")
     "ii" 'selectrum-info
-    "ie" 'selectrum-info-elisp-manual
-    "im" 'selectrum-info-emacs-manual
+    "il" 'selectrum-info-elisp-manual
+    "ie" 'selectrum-info-emacs-manual
     "io" 'selectrum-info-org-manual))
 
 (straight-use-package 'marginalia)
@@ -153,6 +153,8 @@
             [remap isearch-forward] 'consult-line
             [remap switch-to-buffer] 'consult-buffer
             [remap recentf-open-files] 'consult-recent-file)
+  (modo-define-leader-key :keymaps 'override
+    "im" 'consult-man)
   (:states '(motion normal visual)
            "gp" 'consult-yank)
   :init
