@@ -133,11 +133,24 @@
            (display-buffer-reuse-window display-buffer-pop-up-window)
            (reusable-frames . t))
         display-buffer-alist)
-  (setq embark-action-indicator
-        (lambda (map _target)
-          (which-key--show-keymap "Embark" map nil nil 'no-paging)
-          #'which-key--hide-popup-ignore-command)
-        embark-become-indicator embark-action-indicator))
+  (defun embark-which-key-indicator ()
+    "An embark indicator that displays keymaps using which-key.
+The which-key help message will show the type and value of the
+current target followed by an ellipsis if there are further
+targets."
+    (lambda (&optional keymap targets prefix)
+      (if (null keymap)
+          (kill-buffer which-key--buffer)
+        (which-key--show-keymap
+         (if (eq (caar targets) 'embark-become)
+             "Become"
+           (format "Act on %s '%s'%s"
+                   (caar targets)
+                   (embark--truncate-target (cdar targets))
+                   (if (cdr targets) "…" "")))
+         (if prefix (lookup-key keymap prefix) keymap)
+         nil nil t))))
+  (setq embark-indicator #'embark-which-key-indicator))
 
 (straight-use-package 'avy-embark-collect)
 (use-package avy-embark-collect
