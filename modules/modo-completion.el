@@ -13,6 +13,36 @@
         prescient-aggressive-file-save t)
   (prescient-persist-mode 1))
 
+;;; ------------
+;;; Ideally I would like to gradually replace hydra with transient,
+;;; but currently transient does not support invoking transient from
+;;; the minibuffer (see transient issue #112). The code below shows
+;;; how to implement the quick move hydra with transient, as a reference
+;;; for the future.
+;;; ------------
+;; (transient-define-prefix tselectrum-quick-move ()
+;;   :transient-suffix 'transient--do-stay
+;;   :transient-non-suffix 'transient--do-warn
+;;   [["Move"
+;;     ("j" "next" selectrum-next-candidate)
+;;     ("k" "previous" selectrum-previous-candidate)
+;;     ("h" "back word" backward-kill-word)
+;;     ("H" "back sexp" backward-kill-sexp)]
+;;    ["Jump"
+;;     ("n" "next page" selectrum-next-page)
+;;     ("p" "previous page" selectrum-previous-page)
+;;     ("q" "quit" transient-quit-one)]])
+
+(defhydra selectrum-quick-move (:color pink)
+  ("j" selectrum-next-candidate "next" :column "Move")
+  ("k" selectrum-previous-candidate "previous")
+  ("h" backward-kill-word "back word")
+  ("H" backward-kill-sexp "back sexp")
+  ("l" selectrum-insert-current-candidate "insert" :column "Jump")
+  ("n" selectrum-next-page "next page")
+  ("p" selectrum-previous-page "previous page")
+  ("q" nil "quit"))
+
 (straight-use-package 'selectrum)
 (use-package selectrum
   :demand t
@@ -30,8 +60,11 @@
             "C-v" 'selectrum-goto-end
             "M-v" 'selectrum-goto-beginning
             "M-j" 'next-history-element
-            "M-k" 'previous-history-element)
+            "M-k" 'previous-history-element
+            "C-o" 'selectrum-quick-move/body)
   :config
+  ;; Fully exit quick move hydra on C-g
+  (add-hook 'minibuffer-exit-hook #'selectrum-quick-move/nil)
   (setq selectrum-count-style 'current/matches)
   (selectrum-mode 1))
 
@@ -87,46 +120,13 @@
   (advice-add #'marginalia-cycle :after
               (lambda () (selectrum-exhibit 'keep-selected))))
 
-;;; ------------
-;;; Ideally I would like to gradually replace hydra with transient,
-;;; but currently transient does not support invoking transient from
-;;; the minibuffer (see transient issue #112). The code below shows
-;;; how to implement the quick move hydra with transient, as a reference
-;;; for the future.
-;;; ------------
-;; (transient-define-prefix tselectrum-quick-move ()
-;;   :transient-suffix 'transient--do-stay
-;;   :transient-non-suffix 'transient--do-warn
-;;   [["Move"
-;;     ("j" "next" selectrum-next-candidate)
-;;     ("k" "previous" selectrum-previous-candidate)
-;;     ("h" "back word" backward-kill-word)
-;;     ("H" "back sexp" backward-kill-sexp)]
-;;    ["Jump"
-;;     ("n" "next page" selectrum-next-page)
-;;     ("p" "previous page" selectrum-previous-page)
-;;     ("q" "quit" transient-quit-one)]])
-
-(defhydra selectrum-quick-move (:color pink)
-  ("j" selectrum-next-candidate "next" :column "Move")
-  ("k" selectrum-previous-candidate "previous")
-  ("h" backward-kill-word "back word")
-  ("H" backward-kill-sexp "back sexp")
-  ("l" selectrum-insert-current-candidate "insert" :column "Jump")
-  ("n" selectrum-next-page "next page")
-  ("p" selectrum-previous-page "previous page")
-  ("q" nil "quit"))
-
 (straight-use-package 'embark)
 (use-package embark
   :demand t
   :general
   (:keymaps 'selectrum-minibuffer-map
-            "M-o" 'embark-act
-            "C-o" 'selectrum-quick-move/body)
+            "M-o" 'embark-act)
   :config
-  ;; Fully exit quick move hydra on C-g
-  (add-hook 'minibuffer-exit-hook #'selectrum-quick-move/nil)
   (push '((lambda (buffer-name action)
             (with-current-buffer (get-buffer buffer-name)
               (derived-mode-p 'embark-collect-mode)))
