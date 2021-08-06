@@ -43,9 +43,14 @@
   (:keymaps 'company-active-map
             "C-j" 'company-select-next
             "C-k" 'company-select-previous
+            "C-h" 'help-command
+            "M-h" 'company-show-doc-buffer
+            "C-d" 'company-next-page
+            "C-b" 'company-previous-page
             "C-o" 'company-completing-read
             "C-w" 'evil-delete-backward-word
             "C-l" 'company-show-location
+            "<tab>" 'company-complete-common-or-cycle
             "TAB" 'company-complete-common-or-cycle)
   :config
   (setq company-idle-delay nil
@@ -58,6 +63,13 @@
         company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
   (advice-add 'company-capf--candidates :around #'company-orderless-just-one-face)
+  ;; Ensure that company-emulation-alist is the first item of
+  ;; emulation-mode-map-alists, and thus higher priority than the
+  ;; keymaps of evil mode.
+  (modo-add-hook (evil-local-mode-hook
+                  :name "modo--ensure-company-emulation")
+    (when (memq 'company-emulation-alist emulation-mode-map-alists)
+      (company-ensure-emulation-alist)))
   (global-company-mode 1))
 
 (straight-use-package 'company-prescient)
