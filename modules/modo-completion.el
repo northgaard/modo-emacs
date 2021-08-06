@@ -68,25 +68,49 @@
   (setq selectrum-count-style 'current/matches)
   (selectrum-mode 1))
 
+(defvar modo-orderless-styles-alist
+  '(("Default" . (orderless-prefixes orderless-initialism orderless-regexp))
+    ("Literal" . (orderless-literal))
+    ("Fuzzy" . (orderless-regexp orderless-flex)))
+  "Alist of completion styles that can be cycled.")
+
+(defvar modo--orderless-style-dispatchers-backup nil)
+(defvar modo--orderless-style-cycle-counter 0)
+
 (straight-use-package 'orderless)
 (use-package orderless
   :demand t
   :custom
   (completion-styles '(orderless))
   (orderless-matching-styles
-   '(orderless-prefixes orderless-initialism orderless-regexp))
+   (cdar modo-orderless-styles-alist))
+  (orderless-style-dispatchers modo--orderless-style-dispatchers-backup)
   :general
   (:keymaps 'selectrum-minibuffer-map
-            "C-l" 'modo-match-components-literally)
+            "C-l" 'modo-cycle-orderless-matching-style)
   :config
+  (defun modo--reset-style-cycle-counter ()
+    (setq modo--orderless-style-cycle-counter 0))
+  (add-hook 'minibuffer-exit-hook #'modo--reset-style-cycle-counter)
   (setq orderless-skip-highlighting (lambda () selectrum-is-active)
         selectrum-highlight-candidates-function #'orderless-highlight-matches)
-  (defun modo-match-components-literally ()
-    "Components match literally for the rest of the session."
+  (defun modo-cycle-orderless-matching-style ()
+    "During active completion, cycle through the matching styles
+defined by `modo-orderless-styles-alist'."
     (interactive)
-    (setq-local orderless-matching-styles '(orderless-literal)
-                orderless-style-dispatchers nil)
-    (message "Matching literally")))
+    (setq modo--orderless-style-cycle-counter
+          (1+ modo--orderless-style-cycle-counter))
+    (let* ((index (% modo--orderless-style-cycle-counter
+                     (length modo-orderless-styles-alist)))
+           (elem (elt modo-orderless-styles-alist index))
+           (name (car elem))
+           (styles (cdr elem)))
+      (setq-local orderless-matching-styles styles)
+      (if (string= name "Default")
+          (setq-local orderless-style-dispatchers
+                      modo--orderless-style-dispatchers-backup)
+        (setq-local orderless-style-dispatchers nil))
+      (message (format "Matching style: %s" name)))))
 
 (straight-use-package 'selectrum-prescient)
 (use-package selectrum-prescient
