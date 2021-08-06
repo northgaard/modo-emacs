@@ -54,6 +54,7 @@
         company-require-match 'never
         company-dabbrev-downcase nil
         company-format-margin-function nil
+        company-show-quick-access 'left
         company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
   (advice-add 'company-capf--candidates :around #'company-orderless-just-one-face)
