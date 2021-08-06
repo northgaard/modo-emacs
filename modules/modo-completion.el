@@ -93,7 +93,8 @@
     (setq modo--orderless-style-cycle-counter 0))
   (add-hook 'minibuffer-exit-hook #'modo--reset-style-cycle-counter)
   (setq orderless-skip-highlighting (lambda () selectrum-is-active)
-        selectrum-highlight-candidates-function #'orderless-highlight-matches)
+        selectrum-highlight-candidates-function #'orderless-highlight-matches
+        selectrum-refine-candidates-function #'orderless-filter)
   (defun modo-cycle-orderless-matching-style ()
     "During active completion, cycle through the matching styles
 defined by `modo-orderless-styles-alist'."
