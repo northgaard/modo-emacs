@@ -107,7 +107,8 @@ package like this is not possible with the global
     :keymaps 'override
     "kc" 'flyspell-correct-wrapper
     "kk" 'flyspell-correct-wrapper
-    "ks" 'modo-flyspell-correct-session)
+    "ks" 'modo-flyspell-correct-session
+    "kw" 'modo-flyspell-correct-word)
   :config
   (with-eval-after-load 'embark
     (defun flyspell-correct-embark-skip (word)
@@ -144,6 +145,12 @@ package like this is not possible with the global
                           (category . flyspell-correct))
              (complete-with-action action candidates input predicate)))))))
   (setq flyspell-correct-interface #'flyspell-correct-embark))
+  (defun modo-flyspell-correct-word ()
+    "Check last word and correct if misspelled."
+    (interactive)
+    (if (flyspell-word)
+        (message "No spelling suggestion.")
+      (flyspell-correct-wrapper)))
   (defun modo-flyspell-correct-session ()
     "Start an interactive session to correct spelling mistakes."
     (interactive)
