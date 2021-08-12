@@ -40,7 +40,9 @@ should use lsp-mode.")
                                     :branch "feature/file-symbols"))
 (use-package consult-lsp
   :after lsp-mode
-  :commands (consult-lsp-diagnostics consult-lsp-symbols))
+  :custom
+  (consult-lsp-use-marginalia t)
+  :commands (consult-lsp-diagnostics consult-lsp-symbols consult-lsp-file-symbols))
 
 (provide 'modo-lsp)
 ;;; modo-lsp.el ends here
