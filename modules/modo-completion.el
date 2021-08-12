@@ -194,7 +194,7 @@ targets."
   (modo-define-leader-key :keymaps 'override
     "im" 'consult-man)
   (:states '(motion normal visual)
-           "gp" 'consult-yank)
+           "gp" 'consult-yank-from-kill-ring)
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref
