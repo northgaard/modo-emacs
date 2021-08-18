@@ -175,7 +175,9 @@ targets."
                    (if (cdr targets) "…" "")))
          (if prefix (lookup-key keymap prefix) keymap)
          nil nil t))))
-  (setq embark-indicator #'embark-which-key-indicator))
+  (setq embark-indicators '(embark-which-key-indicator
+                            embark-highlight-indicator
+                            embark-isearch-highlight-indicator)))
 
 (straight-use-package 'avy-embark-collect)
 (use-package avy-embark-collect
