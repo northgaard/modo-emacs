@@ -143,6 +143,10 @@ _C-k_: down     _a_ll                _R_efine
   (:keymaps 'projectile-command-map
             "y" 'modo-magit-status-straight-package)
   :config
+  ;; KLUDGE terminal mode
+  (unless (window-system)
+    (remove-hook 'magit-section-highlight-hook #'magit-diff-highlight)
+    (remove-hook 'magit-section-highlight-hook #'magit-section-highlight))
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
     "Avy jump to an arbitrary commit in the magit-log view."

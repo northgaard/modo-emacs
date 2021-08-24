@@ -239,14 +239,20 @@ by winum."
 
 ;; Doom themes
 (straight-use-package 'doom-themes)
-(defun modo--load-theme ()
-  (load-theme 'doom-nord t)
-  (doom-themes-set-faces 'user
-    '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
-    '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)
-    '(org-ellipsis :foreground (doom-darken (doom-color 'yellow) 0.4))
-    '(tab-bar-tab-inactive :foreground (face-attribute 'line-number :foreground))
-    '(modo-pulse-face :background (doom-lighten (face-attribute 'hl-line :background) 0.2))))
+;; KLUDGE terminal mode
+(if (window-system)
+  (defun modo--load-theme ()
+    (load-theme 'doom-nord t)
+    (doom-themes-set-faces 'user
+      '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
+      '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)
+      '(org-ellipsis :foreground (doom-darken (doom-color 'yellow) 0.4))
+      '(tab-bar-tab-inactive :foreground (face-attribute 'line-number :foreground))
+      '(modo-pulse-face :background (doom-lighten (face-attribute 'hl-line :background) 0.2))))
+  ;; NOTE modus is only built-in in Emacs 28 or higher
+  (defun modo--load-theme ()
+    (setq modus-themes-diffs 'desaturated)
+    (load-theme 'modus-operandi t)))
 
 (add-hook 'emacs-startup-hook #'modo--load-theme)
 
