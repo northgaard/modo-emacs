@@ -44,14 +44,16 @@
 (defconst modo-system-identifier (concat (user-login-name) "@" (system-name))
   "Identifier for the system running modo emacs.")
 
+;; Fallback for HOME environment variable on Windows
+(when (and IS-WINDOWS (null (getenv-internal "HOME")))
+  (setenv "HOME" (getenv "USERPROFILE"))
+  (setq abbreviated-home-dir nil))
+
 ;;; UTF-8
 ;; I have sort of given up on figuring out what is the "proper" way to
 ;; handle this. This is what Doom Emacs currently has, which I suppose
 ;; is good enough for me too.
-(when (fboundp 'set-charset-priority)
-  (set-charset-priority 'unicode))
-(prefer-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
+(set-language-environment "UTF-8")
 (unless IS-WINDOWS
   (setq selection-coding-system 'utf-8))
 
