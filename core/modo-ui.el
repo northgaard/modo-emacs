@@ -239,7 +239,6 @@ by winum."
 
 ;; Doom themes
 (straight-use-package 'doom-themes)
-;; KLUDGE terminal mode
 (if (window-system)
   (defun modo--load-theme ()
     (load-theme 'doom-nord t)
@@ -249,10 +248,8 @@ by winum."
       '(org-ellipsis :foreground (doom-darken (doom-color 'yellow) 0.4))
       '(tab-bar-tab-inactive :foreground (face-attribute 'line-number :foreground))
       '(modo-pulse-face :background (doom-lighten (face-attribute 'hl-line :background) 0.2))))
-  ;; NOTE modus is only built-in in Emacs 28 or higher
-  (defun modo--load-theme ()
-    (setq modus-themes-diffs 'desaturated)
-    (load-theme 'modus-operandi t)))
+  ;; For terminal use the emulators theme
+  (fset 'modo--load-theme #'ignore))
 
 (add-hook 'emacs-startup-hook #'modo--load-theme)
 
