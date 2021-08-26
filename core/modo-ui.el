@@ -239,7 +239,7 @@ by winum."
 
 ;; Doom themes
 (straight-use-package 'doom-themes)
-(if (window-system)
+(when (window-system)
   (defun modo--load-theme ()
     (load-theme 'doom-nord t)
     (doom-themes-set-faces 'user
@@ -248,10 +248,7 @@ by winum."
       '(org-ellipsis :foreground (doom-darken (doom-color 'yellow) 0.4))
       '(tab-bar-tab-inactive :foreground (face-attribute 'line-number :foreground))
       '(modo-pulse-face :background (doom-lighten (face-attribute 'hl-line :background) 0.2))))
-  ;; For terminal use the emulators theme
-  (fset 'modo--load-theme #'ignore))
-
-(add-hook 'emacs-startup-hook #'modo--load-theme)
+  (add-hook 'emacs-startup-hook #'modo--load-theme))
 
 ;;; Doom modeline
 (straight-use-package 'doom-modeline)
