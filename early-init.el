@@ -3,7 +3,7 @@
 (setq gc-cons-threshold most-positive-fixnum)
 
 (setq package-enable-at-startup nil)
-(advice-add #'package--ensure-init-file :override #'ignore)
+(fset #'package--ensure-init-file #'ignore) ; DEPRECATED: removed in Emacs 28
 
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
