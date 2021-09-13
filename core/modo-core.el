@@ -44,6 +44,10 @@
 (defconst modo-system-identifier (concat (user-login-name) "@" (system-name))
   "Identifier for the system running modo emacs.")
 
+;; Native comp
+(setq native-comp-async-report-warnings-errors nil
+      native-compile-target-directory (concat modo-cache-dir "eln/"))
+
 ;; Fallback for HOME environment variable on Windows
 (when (and IS-WINDOWS (null (getenv-internal "HOME")))
   (setenv "HOME" (getenv "USERPROFILE"))
@@ -135,10 +139,6 @@
   "Run a hook for the major-mode after the local variables have been processed."
   (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
 (add-hook 'hack-local-variables-hook 'modo-run-local-vars-mode-hook)
-
-;; Native comp
-(setq native-comp-async-report-warnings-errors nil
-      native-compile-target-directory (concat modo-cache-dir "eln/"))
 
 ;; Add core dir and modules dir to load path
 (add-to-list 'load-path modo-core-dir)
