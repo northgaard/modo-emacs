@@ -45,8 +45,7 @@
   "Identifier for the system running modo emacs.")
 
 ;; Native comp
-(setq native-comp-async-report-warnings-errors nil
-      native-compile-target-directory (concat modo-cache-dir "eln/"))
+(setq native-comp-async-report-warnings-errors nil)
 
 ;; Fallback for HOME environment variable on Windows
 (when (and IS-WINDOWS (null (getenv-internal "HOME")))
