@@ -58,7 +58,7 @@
  ("goto-chg" . "2af612153bc9f5bed135d25abe62f46ddaa9027f")
  ("groovy-emacs-modes" . "26da902d1158c0312628d57578109be54eca2415")
  ("helpful" . "7e4b1f0d5572a4e2b8ee7a9b084ef863d0315a73")
- ("hl-todo" . "5ac0076cfeaea57f7c7a59d9d41a34c1bdc4b22e")
+ ("hl-todo" . "42f744ffb513cf2b95517144c64dbf3fc69f711a")
  ("ht.el" . "c4c1be487d6ecb353d07881526db05d7fc90ea87")
  ("hydra" . "2d553787aca1aceb3e6927e426200e9bb9f056f1")
  ("json-mode" . "54788b3f8a50009db330a5715472c13bd5e86fe1")

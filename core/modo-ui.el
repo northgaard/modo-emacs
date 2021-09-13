@@ -218,7 +218,17 @@ by winum."
   (modo-add-hook ((text-mode-hook prog-mode-hook)
                   :name "modo--hl-todo-hook"
                   :transient t)
-    (global-hl-todo-mode 1)))
+    (global-hl-todo-mode 1))
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces '(("TODO" warning bold)
+                                ("FIXME" error bold)
+                                ("HACK" font-lock-constant-face bold)
+                                ("REVIEW" font-lock-keyword-face bold)
+                                ("NOTE" success bold)
+                                ("DEPRECATED" font-lock-doc-face bold)
+                                ("BUG" error bold)
+                                ("XXX" font-lock-constant-face bold))))
 
 ;;; Code folding
 (use-package hideshow
