@@ -201,7 +201,13 @@ targets."
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref
         consult-narrow-key (kbd "M-n"))
+  (autoload #'evil-collection-consult-mark "modes/consult/evil-collection-consult"
+    "Jump to an evil marker in the current buffer." t)
+  (evil-define-key '(normal visual motion) 'global
+    "gM" 'evil-collection-consult-mark)
   :config
+  (evil-collection-require 'consult)
+  (evil-collection-consult-set-bindings)
   (defun modo--consult-line-evil-ex (fn &rest args)
     (condition-case nil
         (apply fn args)
