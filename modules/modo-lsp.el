@@ -42,7 +42,12 @@ should use lsp-mode.")
   :after lsp-mode
   :custom
   (consult-lsp-use-marginalia t)
-  :commands (consult-lsp-diagnostics consult-lsp-symbols consult-lsp-file-symbols))
+  :commands (consult-lsp-diagnostics consult-lsp-symbols consult-lsp-file-symbols)
+  :config
+  (evil-set-command-property 'consult-lsp-diagnostics :jump t)
+  (evil-set-command-property 'consult-lsp-symbols :jump t)
+  (evil-set-command-property 'consult-lsp-file-symbols :jump t))
+
 
 (provide 'modo-lsp)
 ;;; modo-lsp.el ends here
