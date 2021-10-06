@@ -10,7 +10,7 @@
  ("clang-format" . "e48ff8ae18dc7ab6118c1f6752deb48cb1fc83ac")
  ("cmake" . "7de707cd7e04d8c203426c93bb01923536cc688b")
  ("company-mode" . "5c84da83e7b8289170d811ac164e10a4d548962c")
- ("consult" . "d96147aaff3029bf36011603f55ff651791a43f8")
+ ("consult" . "089140e998fdbd5d8f2fa54dc5c288f7e895d83a")
  ("consult-lsp" . "25aa7536cce0286df5b1cb6f0529199f66d43951")
  ("csharp-mode" . "57bd21bda4edc16671a85c7d6d51484e40a6e640")
  ("dash.el" . "da167c51e9fd167a48d06c7c0ee8e3ac7abd9718")
