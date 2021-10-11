@@ -49,29 +49,6 @@ if it does, nil otherwise."
    (t
     (error "The input count must be a natural number"))))
 
-(defun modo-no-extension (filename)
-  "Duplicate of `file-name-sans-extension', to enable binding it to
-`modo-no-extensions' without infinite recursion."
-  (save-match-data
-    (let ((file (file-name-sans-versions (file-name-nondirectory filename)))
-	  directory)
-      (if (and (string-match "\\.[^.]*\\'" file)
-	       (not (eq 0 (match-beginning 0))))
-	  (if (setq directory (file-name-directory filename))
-	      ;; Don't use expand-file-name here; if DIRECTORY is relative,
-	      ;; we don't want to expand it.
-	      (concat directory (substring file 0 (match-beginning 0)))
-	    (substring file 0 (match-beginning 0)))
-	filename))))
-
-(defun modo-no-extensions (path)
-  "Removes all extensions from PATH, unlike
-`file-name-sans-extension', which only removes the final
-extension."
-  (while (file-name-extension path)
-    (setq path (modo-no-extension path)))
-  path)
-
 (defmacro modo-quieten (&rest body)
   "Runs the body with calls to `message' suppressed."
   `(cl-letf (((symbol-function 'message) #'ignore))

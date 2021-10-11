@@ -120,13 +120,6 @@
                     (append base-file-name-handler-alist file-name-handler-alist))
               (cl-delete-duplicates file-name-handler-alist :test 'equal))))
 
-;; HACK work around for loading on terminal
-(defun modo--terminal-initialization (fn &rest args)
-  (cl-letf (((symbol-function 'file-name-sans-extension)
-             #'modo-no-extensions))
-    (apply fn args)))
-(advice-add 'tty-run-terminal-initialization :around #'modo--terminal-initialization)
-
 ;;; Settings pertaining to Emacs itself that do not fit better elsewhere
 (setq inhibit-compacting-font-caches t
       enable-recursive-minibuffers t
