@@ -37,7 +37,7 @@ should use lsp-mode.")
   (lsp-treemacs-sync-mode 1))
 
 (straight-use-package '(consult-lsp :fork "northgaard"
-                                    :branch "feature/file-symbols"))
+                                    :branch "modo"))
 (use-package consult-lsp
   :after lsp-mode
   :custom

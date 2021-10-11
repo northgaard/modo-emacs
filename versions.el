@@ -11,7 +11,7 @@
  ("cmake" . "7de707cd7e04d8c203426c93bb01923536cc688b")
  ("company-mode" . "5c84da83e7b8289170d811ac164e10a4d548962c")
  ("consult" . "089140e998fdbd5d8f2fa54dc5c288f7e895d83a")
- ("consult-lsp" . "25aa7536cce0286df5b1cb6f0529199f66d43951")
+ ("consult-lsp" . "6f76a0267fb7ef2910d1e2374a6b54c2f84f43c2")
  ("csharp-mode" . "57bd21bda4edc16671a85c7d6d51484e40a6e640")
  ("dash.el" . "da167c51e9fd167a48d06c7c0ee8e3ac7abd9718")
  ("default-text-scale" . "bfc0987c37e93742255d3b23d86c17096fda8e7e")
