@@ -18,6 +18,7 @@
 (modo-module completion
              git
              progutils
+             gdb
              company
              org
              dired
