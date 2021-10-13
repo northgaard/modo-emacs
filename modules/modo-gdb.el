@@ -8,6 +8,8 @@
 (defcustom modo-gdb-favorites nil
   "Alist mapping a name to a command line program to be run under gdb.")
 
+(defvar modo--gdb-session-number 0)
+
 (use-package gdb-mi
   :general
   (modo-define-leader-key
@@ -27,7 +29,9 @@ this is not the case."
     (if-let ((program-arg (alist-get name modo-gdb-favorites nil nil #'string=)))
         (progn
           (unless (equal current-prefix-arg '(4))
-            (tab-bar-new-tab))
+            (tab-bar-new-tab)
+            (setq modo--gdb-session-number (1+ modo--gdb-session-number))
+            (tab-bar-rename-tab (format "gdb-session-%d" modo--gdb-session-number)))
           (gdb (concat "gdb -i=mi --args " program-arg)))
       (user-error "Not a valid entry!"))))
 
