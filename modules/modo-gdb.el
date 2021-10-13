@@ -18,7 +18,8 @@
     "gF" 'modo-gdb-select-favorite)
   :config
   (setq gdb-many-windows t
-        gdb-show-main t)
+        gdb-show-main t
+        gdb-display-io-nopopup t)
   (defun modo-gdb-select-favorite (name)
     "Select NAME from `modo-gdb-favorites' and debug the
 corresponding program. By default, the gdb debugger window
