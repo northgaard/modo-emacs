@@ -10,6 +10,11 @@
 
 (defvar modo--gdb-session-number 0)
 
+(defun modo--close-tab-if-gdb ()
+  (let ((tab-name (modo-current-tab-name)))
+    (when (string-match-p "gdb-session-[0-9]+" tab-name)
+      (tab-bar-close-tab-by-name tab-name))))
+
 (use-package gdb-mi
   :general
   (modo-define-leader-key
@@ -20,6 +25,7 @@
   (setq gdb-many-windows t
         gdb-show-main t
         gdb-display-io-nopopup t)
+  (advice-add #'gdb-reset :after #'modo--close-tab-if-gdb)
   (defun modo-gdb-select-favorite (name)
     "Select NAME from `modo-gdb-favorites' and debug the
 corresponding program. By default, the gdb debugger window

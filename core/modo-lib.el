@@ -97,5 +97,9 @@ the hook function removes itself from HOOK when run."
   (browse-url
    (concat query-url (url-hexify-string prompt))))
 
+(defun modo-current-tab-name ()
+  (alist-get 'name
+             (tab-bar--current-tab nil (selected-frame))))
+
 (provide 'modo-lib)
 ;;; modo-lib.el ends here
