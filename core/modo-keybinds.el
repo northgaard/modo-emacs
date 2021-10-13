@@ -99,8 +99,12 @@
   (general-define-key :states '(motion normal visual)
                       "gP" '(modo-insert-primary :wk "insert-primary")))
 
-;; Like in the standard terminal bindings
-(global-set-key (kbd "C-w") #'backward-kill-word)
+(general-define-key :keymaps 'global
+                    "C-w" 'backward-kill-word ; standard terminal binding
+                    "M-J" 'windmove-down
+                    "M-K" 'windmove-up
+                    "M-H" 'windmove-left
+                    "M-L" 'windmove-right)
 
 ;; Evil re-bindings
 (evil-define-key '(normal visual motion) 'global
