@@ -15,12 +15,29 @@
     (when (string-match-p "gdb-session-[0-9]+" tab-name)
       (tab-bar-close-tab-by-name tab-name))))
 
-(use-package gdb-mi
+(use-package gud
   :general
   (modo-define-leader-key
     :keymaps 'override
     "g" '(:ignore t :wk "debug")
-    "gF" 'modo-gdb-select-favorite)
+    "gb" 'gud-break
+    "gd" 'gud-remove
+    "gu" 'gud-until
+    "gR" 'gud-run
+    "gc" 'gud-cont
+    "gf" 'gud-finish
+    "gt" 'gud-tbreak
+    "gn" 'gud-next
+    "gs" 'gud-step))
+
+(use-package gdb-mi
+  :general
+  (modo-define-leader-key
+    :keymaps 'override
+    "gF" 'modo-gdb-select-favorite
+    "gG" 'gdb
+    "gC" 'gdb-io-interrupt
+    "gQ" 'gdb-delchar-or-quit)
   :config
   (setq gdb-many-windows t
         gdb-show-main t
