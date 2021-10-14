@@ -104,7 +104,9 @@ directory for completion."
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p!)" "WAITING(w@/!)"
                     "|" "DONE(d!)" "CANCELED(c@/@)")))
-  ;; TODO: Need a better way to reference theme colors
+  ;; TODO: Need a better way to reference theme colors. BUG: This
+  ;; interfaces poorly with the face height modifications above, e.g.
+  ;; the NEXT keyword appears larger than the others.
   (setq org-todo-keyword-faces '(("NEXT" . 'org-level-1)
                                  ("IN-PROGRESS" . 'org-level-2)
                                  ("WAITING" . 'org-level-2)))
