@@ -28,5 +28,17 @@
 (straight-use-package 'yaml-mode)
 (use-package yaml-mode)
 
+(use-package which-func ; built-in
+  :init
+  (modo-add-hook (prog-mode-hook
+                  :name "modo--load-which-func"
+                  :transient t)
+    (require 'which-func))
+  :custom
+  (which-func-modes '(c-mode c++-mode python-mode ruby-mode))
+  :config
+  (setq which-func-unknown "")
+  (which-function-mode 1))
+
 (provide 'modo-progutils)
 ;;; modo-progutils.el ends here
