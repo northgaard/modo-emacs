@@ -5,6 +5,7 @@
 
 ;;; Code:
 
+(straight-use-package 'dired-subtree) ; We `require' it in the dired form below
 (use-package dired
   :general
   (modo-define-leader-key :keymaps 'override
@@ -74,11 +75,9 @@
   (setq dgi-commit-message-format "%h %cs %s"
         dgi-auto-hide-details-p nil))
 
-(straight-use-package '(dired-collapse :fork "northgaard"))
+(straight-use-package 'dired-collapse)
 (use-package dired-collapse
   :hook (dired-mode . dired-collapse-mode))
-
-(straight-use-package 'dired-subtree)
 
 (provide 'modo-dired)
 ;;; modo-dired.el ends here

@@ -17,7 +17,7 @@
  ("default-text-scale" . "bfc0987c37e93742255d3b23d86c17096fda8e7e")
  ("diminish.el" . "6ec6ebc391371418efc6c98d70b013f34af5a2ee")
  ("dired-git-info" . "b47f2b0c3a6cb9b7a62a4ee2605a492e512d40a9")
- ("dired-hacks" . "0aed395649b7d871a221683f8350fa0b939e5fe2")
+ ("dired-hacks" . "7c0ef09d57a80068a11edc74c3568e5ead5cc15a")
  ("diredfl" . "cd052dfef602fe79d8dfbcf9f06e6da74412218b")
  ("doom-modeline" . "56876e64d92fa1aa2d569831a126e1a26ce06849")
  ("el-get" . "b5a5a405d04f61ec9c5fcb19357a50a4b9e36a25")
