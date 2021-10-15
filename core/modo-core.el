@@ -220,12 +220,8 @@
   "Defines leader key bindings for a major mode. Commands are
 bound both under <major-leader>, as well as \"<leader> m\"."
   (declare (indent defun))
-  (let ((expansion nil)
-        (map (plist-get args :keymaps)))
+  (let ((expansion nil))
     (push `(modo--direct-major-leader-key ,@args) expansion)
-    (when map
-      (push '(quote (:ignore t :which-key "major mode")) args)
-      (push "m" args))
     (push `(modo--indirect-major-leader-key ,@args) expansion)
     `(progn
        ,@expansion)))
