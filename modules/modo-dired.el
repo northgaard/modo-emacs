@@ -29,7 +29,9 @@
   :config
   (require 'dired-subtree)
   (evil-collection-require 'dired)
-  (evil-collection-dired-setup))
+  (evil-collection-dired-setup)
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd modo-leader) nil))
 
 (straight-use-package 'diredfl)
 (use-package diredfl
