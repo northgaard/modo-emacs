@@ -179,6 +179,8 @@
 
 ;;; evil-collection
 (straight-use-package 'evil-collection)
+(use-package evil-collection
+  :custom (evil-collection-key-blacklist `(,modo-leader)))
 
 ;;; Keybinds
 (with-eval-after-load 'evil-snipe
