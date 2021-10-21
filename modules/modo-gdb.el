@@ -59,7 +59,9 @@ this is not the case."
             (setq modo--gdb-session-number (1+ modo--gdb-session-number))
             (tab-bar-rename-tab (format "gdb-session-%d" modo--gdb-session-number)))
           (gdb (concat "gdb -i=mi --args " program-arg)))
-      (user-error "Not a valid entry!"))))
+      (user-error "Not a valid entry!")))
+  (evil-collection-require 'gdb)
+  (evil-collection-gdb-setup))
 
 (provide 'modo-gdb)
 ;;; modo-gdb.el ends here

@@ -178,7 +178,8 @@
            "<kp-subtract>" 'evil-numbers/dec-at-pt))
 
 ;;; evil-collection
-(straight-use-package 'evil-collection)
+(straight-use-package '(evil-collection :fork "northgaard"
+                                        :branch "feat/gdb"))
 (use-package evil-collection
   :custom (evil-collection-key-blacklist `(,modo-leader)))
 

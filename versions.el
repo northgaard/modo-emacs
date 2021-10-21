@@ -31,7 +31,7 @@
  ("epl" . "78ab7a85c08222cd15582a298a364774e3282ce6")
  ("evil" . "44f75e93c6db89de882a0eb1d8bcc7c4ebb8e94e")
  ("evil-args" . "758ad5ae54ad34202064fec192c88151c08cb387")
- ("evil-collection" . "bc5a02ed8572e7d40d04a78f17abc08061dfc37e")
+ ("evil-collection" . "401bd39a3bf9251a649786e3b891a8a5416caffd")
  ("evil-commentary" . "2dab6ac34d1617971768ad219d73af48f7473fec")
  ("evil-easymotion" . "f96c2ed38ddc07908db7c3c11bcd6285a3e8c2e9")
  ("evil-escape" . "f4e9116bfbaac8c9d210c17ad488e0982291245f")
