@@ -67,14 +67,8 @@ _C-k_: down     _a_ll                _R_efine
   (push '("A" . ediff-copy-both-to-C) evil-collection-ediff-bindings)
   (evil-collection-ediff-setup))
 
-(straight-use-package 'gitconfig-mode)
-(use-package gitconfig-mode)
-
-(straight-use-package 'gitignore-mode)
-(use-package gitignore-mode)
-
-(straight-use-package 'gitattributes-mode)
-(use-package gitattributes-mode)
+(straight-use-package 'git-modes)
+(use-package git-modes)
 
 (defvar modo--git-abbrev-length
   (thunk-delay (let ((abbrev (shell-command-to-string

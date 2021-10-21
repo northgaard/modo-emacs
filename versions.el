@@ -51,7 +51,7 @@
  ("general.el" . "26f1d4c4e258c40e6b70ce831a04800c914f29b3")
  ("git-gutter" . "033e012372cbdeaadd2b1c46cbbf15daef0c33b6")
  ("git-gutter-fringe" . "4f19866494fa1debfa319382913e39a153431634")
- ("git-modes" . "433e1c57a63c88855fc41a942e29d7bc8c9c16c7")
+ ("git-modes" . "62fbf2e5b84ca789e7bc2f87939386023b5ba3df")
  ("git-timemachine" . "3381797bcbf906b18dff654a2361032d2d01b4a3")
  ("glsl-mode" . "b07112016436d9634cd4ef747f9af6b01366d136")
  ("gnu-elpa-mirror" . "4ccd8364a6d796f0c0781dd79adfd86231de21ad")
