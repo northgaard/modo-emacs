@@ -37,7 +37,9 @@
     "gF" 'modo-gdb-select-favorite
     "gG" 'gdb
     "gC" 'gdb-io-interrupt
-    "gQ" 'gdb-delchar-or-quit)
+    "gQ" 'gdb-delchar-or-quit
+    "gw" 'gdb-restore-windows
+    "gW" 'gdb-many-windows)
   :config
   (setq gdb-many-windows t
         gdb-show-main t
