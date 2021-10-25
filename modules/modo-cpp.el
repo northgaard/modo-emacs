@@ -43,22 +43,21 @@ on the buffer before saving.")
   (defun clang-format-hunks (&optional style assume-file-name)
     "Use clang-format to format all unstaged hunk in the current buffer."
     (interactive)
-    (require 'git-gutter-fringe)
-    (if (not git-gutter-mode)
-        (message "git gutter not enabled!")
-      (save-excursion
-        (dolist (diffinfo git-gutter:diffinfos)
-          (let (beg
-                end
-                (start-line (git-gutter-hunk-start-line diffinfo))
-                (end-line (git-gutter-hunk-end-line diffinfo)))
-            (goto-char (point-min))
-            (forward-line (1- start-line))
-            (setq beg (point))
-            (forward-line (- end-line start-line))
-            (end-of-line)
-            (setq end (point))
-            (clang-format-region beg end style assume-file-name))))))
+    (unless (bound-and-true-p git-gutter-mode)
+      (user-error "git gutter not enabled!"))
+    (save-excursion
+      (dolist (diffinfo git-gutter:diffinfos)
+        (let (beg
+              end
+              (start-line (git-gutter-hunk-start-line diffinfo))
+              (end-line (git-gutter-hunk-end-line diffinfo)))
+          (goto-char (point-min))
+          (forward-line (1- start-line))
+          (setq beg (point))
+          (forward-line (- end-line start-line))
+          (end-of-line)
+          (setq end (point))
+          (clang-format-region beg end style assume-file-name)))))
   (when (executable-find clang-format-executable)
     (add-hook 'before-save-hook #'modo--clang-format-on-save)))
 
