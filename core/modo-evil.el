@@ -49,6 +49,17 @@
           evil-intert-state-cursor 'bar
           evil-visual-state-cursor 'hollow))
   (advice-add #'load-theme :after #'modo--init-cursors)
+  ;; When browsing the jump list, always use the same window, this
+  ;; makes it easy to explore code by having a "reference" window with
+  ;; some initial file visiting buffer, and a second window initially
+  ;; visiting the same file, from which we can then jump around using
+  ;; go to definition etc.
+  (defun modo--with-display-buffer-same-window (fn &rest args)
+    (let ((display-buffer-overriding-action
+           '(display-buffer-same-window (reusable-frames . t))))
+      (apply fn args)))
+  (advice-add #'evil-jump-forward :around #'modo--with-display-buffer-same-window)
+  (advice-add #'evil-jump-backward :around #'modo--with-display-buffer-same-window)
   (evil-mode 1))
 
 ;;; evil-escape
