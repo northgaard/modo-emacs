@@ -22,7 +22,14 @@
 ;;; Compilation
 (use-package compile
   :config
-  (setq compilation-scroll-output 'first-error))
+  (setq compilation-scroll-output 'first-error)
+  (when (featurep 'dbusbind)
+    (require 'notifications)
+    (defun modo-on-compilation-finished (buffer description)
+      (notifications-notify
+       :title (buffer-name buffer)
+       :body description))
+    (add-to-list 'compilation-finish-functions #'modo-on-compilation-finished)))
 
 ;;; ansi-color
 (use-package ansi-color
