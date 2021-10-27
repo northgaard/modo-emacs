@@ -130,7 +130,8 @@ _C-k_: down     _a_ll                _R_efine
     "vl" 'magit-log-buffer-file
     "vS" 'magit-stage-file
     "vu" 'magit-unstage-file
-    "vD" 'magit-file-dispatch)
+    "vD" 'magit-file-dispatch
+    "vw" 'magit-show-commit)
   (:states '(motion normal visual)
            :keymaps 'magit-log-mode-map
            "gs" #'avy-magit-log-goto-commit)
