@@ -18,7 +18,8 @@
         projectile-use-git-grep t
         projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
         projectile-indexing-method 'hybrid
-        projectile-sort-order 'recentf)
+        projectile-sort-order 'recentf
+        projectile-per-project-compilation-buffer t)
   ;; Get rid of the default mappings
   (setq projectile-mode-map (make-sparse-keymap))
   :general
