@@ -26,9 +26,11 @@
   (when (featurep 'dbusbind)
     (require 'notifications)
     (defun modo-on-compilation-finished (buffer description)
-      (notifications-notify
-       :title (buffer-name buffer)
-       :body description))
+      (let ((title (buffer-name buffer)))
+        (unless (string-match-p "grep" title)
+          (notifications-notify
+           :title title
+           :body description))))
     (add-to-list 'compilation-finish-functions #'modo-on-compilation-finished)))
 
 ;;; ansi-color
