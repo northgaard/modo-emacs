@@ -27,7 +27,8 @@
     (require 'notifications)
     (defun modo-on-compilation-finished (buffer description)
       (let ((title (buffer-name buffer)))
-        (unless (string-match-p "grep" title)
+        (unless (or (string-match-p "grep" title)
+                    (get-buffer-window buffer 'visible))
           (notifications-notify
            :title title
            :body description))))
