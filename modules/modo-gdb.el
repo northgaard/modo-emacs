@@ -15,6 +15,22 @@
     (when (string-match-p "gdb-session-[0-9]+" tab-name)
       (tab-bar-close-tab-by-name tab-name))))
 
+(defconst modo--gdb-major-mode-pairs
+  '((gdb-locals-mode . gdb-registers-buffer)
+    (gdb-registers-mode . gdb-locals-buffer)
+    (gdb-breakpoints-mode . gdb-threads-buffer)
+    (gdb-threads-mode . gdb-breakpoints-buffer)))
+
+(defun modo-cycle-gdb-buffer ()
+  "In gdb major-mode buffers where there is a clickable
+  header-line, switch to the \"other\" one."
+  (interactive)
+  (let ((gdb-buffer (alist-get major-mode modo--gdb-major-mode-pairs)))
+    (unless gdb-buffer
+      (user-error "No paired gdb buffer!"))
+    (gdb-set-window-buffer
+     (gdb-get-buffer-create gdb-buffer) t)))
+
 (use-package gud
   :general
   (modo-define-leader-key
@@ -40,6 +56,12 @@
     "gQ" 'gdb-delchar-or-quit
     "gw" 'gdb-restore-windows
     "gW" 'gdb-many-windows)
+  (modo-define-major-leader-key
+    :keymaps '(gdb-locals-mode-map
+               gdb-registers-mode-map
+               gdb-breakpoints-mode-map
+               gdb-threads-mode-map)
+    "TAB" 'modo-cycle-gdb-buffer)
   :config
   (setq gdb-many-windows t
         gdb-show-main t
