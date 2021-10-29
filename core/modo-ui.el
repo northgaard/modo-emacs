@@ -38,7 +38,6 @@
       '((".*"
          (display-buffer-reuse-window display-buffer-same-window)
          (reusable-frames . t))))
-(setq switch-to-buffer-obey-display-actions t)
 (setq even-window-sizes nil)  ; display-buffer hint: avoid resizing
 
 (use-package frame

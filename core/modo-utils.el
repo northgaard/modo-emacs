@@ -87,9 +87,7 @@
 (defun modo-alternate-buffer ()
   "Switch between current and last buffer."
   (interactive)
-  (let ((buf (window-buffer))
-        (display-buffer-overriding-action
-         '(display-buffer-same-window (reusable-frames . t))))
+  (let ((buf (window-buffer)))
     (switch-to-buffer
      (cl-find-if (lambda (b) (not (eq b buf)))
                  (mapcar 'car (window-prev-buffers))))))

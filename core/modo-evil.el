@@ -55,7 +55,8 @@
   ;; visiting the same file, from which we can then jump around using
   ;; go to definition etc.
   (defun modo--with-display-buffer-same-window (fn &rest args)
-    (let ((display-buffer-overriding-action
+    (let ((switch-to-buffer-obey-display-actions t)
+          (display-buffer-overriding-action
            '(display-buffer-same-window (reusable-frames . t))))
       (apply fn args)))
   (advice-add #'evil-jump-forward :around #'modo--with-display-buffer-same-window)
