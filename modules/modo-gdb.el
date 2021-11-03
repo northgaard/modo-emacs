@@ -8,11 +8,9 @@
 (defcustom modo-gdb-favorites nil
   "Alist mapping a name to a command line program to be run under gdb.")
 
-(defvar modo--gdb-session-number 0)
-
 (defun modo--close-tab-if-gdb ()
   (let ((tab-name (modo-current-tab-name)))
-    (when (string-match-p "gdb-session-[0-9]+" tab-name)
+    (when (string-match-p "gdb-session\\'" tab-name)
       (tab-bar-close-tab-by-name tab-name))))
 
 (defconst modo--gdb-major-mode-pairs
@@ -78,8 +76,7 @@ this is not the case."
         (progn
           (unless (equal current-prefix-arg '(4))
             (tab-bar-new-tab)
-            (setq modo--gdb-session-number (1+ modo--gdb-session-number))
-            (tab-bar-rename-tab (format "gdb-session-%d" modo--gdb-session-number)))
+            (tab-bar-rename-tab "gdb-session"))
           (gdb (concat "gdb -i=mi --args " program-arg)))
       (user-error "Not a valid entry!")))
   (evil-collection-require 'gdb)
