@@ -230,7 +230,7 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
   (or (memq this-command '(git-gutter:stage-hunk
                            git-gutter:revert-hunk))
       inhibit-redisplay
-      (when git-gutter-mode
+      (when (bound-and-true-p git-gutter-mode)
         (git-gutter))))
 
 (straight-use-package 'git-gutter)
