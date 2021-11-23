@@ -8,23 +8,29 @@
 ;;; Global keybinds
 (modo-define-leader-key
   :keymaps 'override
+  "e" '(:ignore t :wk "emacs")
+  "ed" '(modo-find-dotfile :wk "find-dotfile")
+  "em" '(modo-find-module-file
+         :wk "find-module-file")
+  "ec" '(modo-find-core-file
+         :wk "find-core-file")
+  "eb" 'straight-rebuild-package
+  "eW" 'straight-visit-package-website
+  "ev" '(:ignore t :wk "versions")
+  "evf" 'straight-freeze-versions
+  "evt" 'straight-thaw-versions
   "f" '(:ignore t :wk "files")
   "fs" 'save-buffer
   "ff" 'find-file
   "fr" 'recentf-open-files
   "fb" 'bookmark-jump
   "fk" 'bookmark-set
-  "fd" '(modo-find-dotfile :wk "find-dotfile")
   "f <deletechar>" '(modo-delete-this-file
                      :wk "delete-this-file")
   "fn" '(modo-rename-this-file-and-buffer
          :wk "rename-this-file-and-buffer")
   "f#" '(modo-delete-auto-save-file
          :wk "delete-auto-save-file")
-  "fc" '(modo-find-core-file
-         :wk "find-core-file")
-  "fm" '(modo-find-module-file
-         :wk "find-module-file")
   "fv" 'set-visited-file-name
   "b" '(:ignore t :wk "buffers")
   "bb" 'switch-to-buffer

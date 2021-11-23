@@ -93,6 +93,15 @@ _C-k_: down     _a_ll                _R_efine
                  (plist-get (gethash package straight--recipe-cache)
                             :local-repo))))
 
+(defun modo-magit-status-modo ()
+  "Run magit status for modo itself."
+  (interactive)
+  (magit-status (file-name-directory user-init-file)))
+
+(modo-define-leader-key :keymaps 'override
+  "es" '(modo-magit-status-modo :wk "magit-status-modo")
+  "ep" '(modo-magit-status-straight-package :wk "magit-status-straight-package"))
+
 (straight-use-package 'magit)
 (use-package magit
   :defer 20
@@ -135,8 +144,6 @@ _C-k_: down     _a_ll                _R_efine
   (:states '(motion normal visual)
            :keymaps 'magit-log-mode-map
            "gs" #'avy-magit-log-goto-commit)
-  (:keymaps 'projectile-command-map
-            "y" 'modo-magit-status-straight-package)
   :config
   ;; Lazy initialization
   (defun avy-magit-log-goto-commit ()
