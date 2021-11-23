@@ -236,7 +236,10 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
     "vR" 'git-gutter:revert-hunk
     "vC" 'modo-git-gutter-hunk-quick-commit)
   :init
+  (add-hook 'find-file-hook #'modo--git-gutter-update)
   (add-hook 'find-file-hook #'modo--git-gutter-activate-maybe)
+  (add-hook 'magit-diff-visit-file-hook #'modo--git-gutter-update)
+  (add-hook 'magit-diff-visit-file-hook #'modo--git-gutter-activate-maybe)
   (add-hook 'modo-switch-window-hook #'modo--git-gutter-update)
   (defun modo-git-gutter-hunk-quick-commit ()
     (interactive)
