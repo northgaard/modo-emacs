@@ -39,7 +39,7 @@
  ("evil-indent-plus" . "0c7501e6efed661242c3a20e0a6c79a6455c2c40")
  ("evil-matchit" . "ce90eae4bd31eb2cfe450266a5340f5eb43d78ec")
  ("evil-numbers" . "08f0c1ee93b8a563770eaefaf21ab9087fca7bdb")
- ("evil-org-mode" . "80ef38fb378541937f6ddfe836809e76eda1e355")
+ ("evil-org-mode" . "26ad08b5f629370f57690315102140878891ef61")
  ("evil-snipe" . "1a28d718c835a21591a170af78a03a366cd60c0d")
  ("evil-surround" . "282a975bda83310d20a2c536ac3cf95d2bf188a5")
  ("f.el" . "50af874cd19042f17c8686813d52569b1025c76a")
