@@ -28,7 +28,8 @@
     (defun modo-on-compilation-finished (buffer description)
       (let ((title (buffer-name buffer)))
         (unless (or (string-match-p "grep" title)
-                    (get-buffer-window buffer 'visible))
+                    (and (modo-any-frames-in-focus-p)
+                         (get-buffer-window buffer 'visible)))
           (notifications-notify
            :title title
            :body description))))

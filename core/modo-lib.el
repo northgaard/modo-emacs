@@ -101,5 +101,11 @@ the hook function removes itself from HOOK when run."
   (alist-get 'name
              (tab-bar--current-tab nil (selected-frame))))
 
+(defun modo-any-frames-in-focus-p ()
+  (cl-loop for frame in (frame-list)
+           if (eq (frame-focus-state frame) t)
+           return t
+           finally return nil))
+
 (provide 'modo-lib)
 ;;; modo-lib.el ends here
