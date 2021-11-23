@@ -257,7 +257,11 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
   (git-gutter:verbosity 0)
   (git-gutter:disabled-modes '(fundamental-mode image-mode pdf-view-mode org-mode))
   :config
-  (add-hook 'focus-in-hook #'git-gutter:update-all-windows)
+  (defun modo--update-gutter-focus-in ()
+    (cl-loop for frame in (frame-list)
+             if (eq (frame-focus-state frame) t)
+             return (git-gutter:update-all-windows)))
+  (add-function :after after-focus-change-function #'modo--update-gutter-focus-in)
   (with-eval-after-load 'magit
     (advice-add #'magit-stage-file :after #'modo--git-gutter-update)
     (advice-add #'magit-unstage-file :after #'modo--git-gutter-update)))
