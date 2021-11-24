@@ -72,12 +72,5 @@
       (company-ensure-emulation-alist)))
   (global-company-mode 1))
 
-(straight-use-package 'company-prescient)
-(use-package company-prescient
-  :demand t
-  :after company
-  :config
-  (company-prescient-mode 1))
-
 (provide 'modo-company)
 ;;; modo-company.el ends here

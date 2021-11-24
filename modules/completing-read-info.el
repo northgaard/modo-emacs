@@ -1,7 +1,7 @@
-;;; selectrum-info.el --- Complete info nodes -*- lexical-binding: t -*-
+;;; completing-read-info.el --- Complete info nodes -*- lexical-binding: t -*-
 ;;; Commentary:
 
-;; Browse info nodes using selectrum based completion.
+;; Browse info nodes using completing read.
 
 ;;; Code:
 
@@ -11,21 +11,23 @@
 (declare-function info-initialize "info")
 (declare-function cl-mapcar "cl-lib")
 
-(defvar selectrum-info-history nil
-  "Completion history for `selectrum-info' and derived commands.")
+(defvar cr-info-history nil
+  "Completion history for `completing-read-info' and derived
+commands.")
 
-(defcustom selectrum-info-default-other-window t
-  "Whether `selectrum-info' (and derived commands) should display
-the Info buffer in the other window by default. Use a prefix argument to
-do the opposite."
+(defcustom cr-info-default-other-window t
+  "Whether `completing-read-info' (and derived commands) should
+display the Info buffer in the other window by default. Use a
+prefix argument to do the opposite."
   :type 'boolean
-  :group 'selectrum)
+  :group 'modo)
 
-(defun selectrum--info-get-child-node (top-node)
-  "Create and select from a list of Info nodes found in the parent node TOP-NODE."
+(defun cr--info-get-child-node (top-node)
+  "Create and select from a list of Info nodes found in the parent
+node TOP-NODE."
   (let (;; It's reasonable to assume that sections are intentionally
         ;; ordered in a certain way, so we preserve that order.
-        (selectrum-should-sort nil)
+        (vertico-sort-function nil)
         ;; Headers look like "* Some Thing::      Description",
         ;; where descriptions are optional and might continue on
         ;; the next line.
@@ -82,15 +84,15 @@ do the opposite."
       (cdr (assoc (completing-read
                    "Info Sub-Topic: "
                    candidates
-                   nil t nil 'selectrum-info-history)
+                   nil t nil 'cr-info-history)
                   candidates)))))
 
 ;;;###autoload
-(defun selectrum-info (other-window-opposite-p &optional top-node)
+(defun completing-read-info (other-window-opposite-p &optional top-node)
   "Go to a node of an Info topic.
-With a prefix argument, do the opposite
-of `selectrum-info-default-other-window'.
-For example, you can go to \"(magit)Notes\" by selecting \"magit\", then \"Notes\" ."
+With a prefix argument, do the opposite of
+`cr-info-default-other-window'. For example, you can go to
+\"(magit)Notes\" by selecting \"magit\", then \"Notes\" ."
   (interactive "P")
 
   ;; Initialize Info information so that the proper directories
@@ -99,8 +101,8 @@ For example, you can go to \"(magit)Notes\" by selecting \"magit\", then \"Notes
 
   (save-match-data
     (let* ((use-other-window (if other-window-opposite-p
-                                 (not selectrum-info-default-other-window)
-                               selectrum-info-default-other-window))
+                                 (not cr-info-default-other-window)
+                               cr-info-default-other-window))
            ;; Get all Info files.
            (node-files
             (cl-loop for directory in (append (or Info-directory-list
@@ -128,7 +130,7 @@ For example, you can go to \"(magit)Notes\" by selecting \"magit\", then \"Notes
                                         top-node))))
 
            ;; Select a child node.
-           (chosen-child-node (selectrum--info-get-child-node chosen-top-node)))
+           (chosen-child-node (cr--info-get-child-node chosen-top-node)))
 
       ;; Go to the chosen child node.
       (funcall (if use-other-window
@@ -137,22 +139,25 @@ For example, you can go to \"(magit)Notes\" by selecting \"magit\", then \"Notes
                (format "(%s)%s" chosen-top-node chosen-child-node)))))
 
 ;;;###autoload
-(defun selectrum-info-elisp-manual (other-window-opposite-p)
-  "Like `selectrum-info', but directly choose nodes from the Emacs Lisp (Elisp) manual."
+(defun completing-read-info-elisp-manual (other-window-opposite-p)
+  "Like `completing-read-info', but directly choose nodes from the
+Emacs Lisp (Elisp) manual."
   (interactive "P")
-  (selectrum-info other-window-opposite-p "elisp"))
+  (completing-read-info other-window-opposite-p "elisp"))
 
 ;;;###autoload
-(defun selectrum-info-emacs-manual (other-window-opposite-p)
-  "Like `selectrum-info', but directly choose nodes from the Emacs manual."
+(defun completing-read-info-emacs-manual (other-window-opposite-p)
+  "Like `completing-read-info', but directly choose nodes from the
+Emacs manual."
   (interactive "P")
-  (selectrum-info other-window-opposite-p "emacs"))
+  (completing-read-info other-window-opposite-p "emacs"))
 
 ;;;###autoload
-(defun selectrum-info-org-manual (other-window-opposite-p)
-  "Like `selectrum-info', but directly choose nodes from the Org manual."
+(defun completing-read-info-org-manual (other-window-opposite-p)
+  "Like `completing-read-info', but directly choose nodes from the
+Org manual."
   (interactive "P")
-  (selectrum-info other-window-opposite-p "org"))
+  (completing-read-info other-window-opposite-p "org"))
 
-(provide 'selectrum-info)
-;;; selectrum-info.el ends here
+(provide 'completing-read-info)
+;;; completing-read-info.el ends here

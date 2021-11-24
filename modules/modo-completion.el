@@ -1,17 +1,11 @@
 ;;; modo-completion.el --- Minibuffer completion -*- lexical-binding: t -*-
 ;;; Commentary:
 
-;; Minibuffer completion and associated goodies, currently with selectrum.
+;; Minibuffer completion and associated goodies, currently with
+;; vertico/orderless/marginalia/embark et al.
 
 ;;; Code:
 
-(straight-use-package 'prescient)
-(use-package prescient
-  :demand t
-  :config
-  (setq prescient-save-file (concat modo-cache-dir "prescient-save.el")
-        prescient-aggressive-file-save t)
-  (prescient-persist-mode 1))
 
 ;;; ------------
 ;;; Ideally I would like to gradually replace hydra with transient,
@@ -33,40 +27,47 @@
 ;;     ("p" "previous page" selectrum-previous-page)
 ;;     ("q" "quit" transient-quit-one)]])
 
-(defhydra selectrum-quick-move (:color pink)
-  ("j" selectrum-next-candidate "next" :column "Move")
-  ("k" selectrum-previous-candidate "previous")
+(straight-use-package '(vertico :repo "minad/vertico"
+                                :files (:defaults "extensions/*.el")))
+(defhydra vertico-quick-move (:color pink)
+  ("j" vertico-next "next" :column "Move")
+  ("k" vertico-previous "previous")
   ("h" backward-kill-word "back word")
   ("H" backward-kill-sexp "back sexp")
-  ("l" selectrum-insert-current-candidate "insert" :column "Jump")
-  ("n" selectrum-next-page "next page")
-  ("p" selectrum-previous-page "previous page")
+  ("l" vertico-insert "insert" :column "Jump")
+  ("n" vertico-scroll-up "next page")
+  ("p" vertico-scroll-down "previous page")
   ("q" nil "quit"))
 
-(straight-use-package 'selectrum)
-(use-package selectrum
+(use-package vertico
   :demand t
   :general
-  (modo-define-leader-key "r" 'selectrum-repeat)
-  (:keymaps 'selectrum-minibuffer-map
-            "C-j" 'selectrum-next-candidate
-            "C-k" 'selectrum-previous-candidate
-            "C-n" 'selectrum-submit-exact-input
+  (:keymaps 'vertico-map
+            "C-j" 'vertico-next
+            "C-k" 'vertico-previous
             "C-w" 'backward-kill-word
             "C-q" 'backward-kill-sexp
             "C-p" 'quoted-insert ; rebound from C-q
-            "C-d" 'selectrum-next-page
-            "C-b" 'selectrum-previous-page
-            "C-v" 'selectrum-goto-end
-            "M-v" 'selectrum-goto-beginning
+            "C-d" 'vertico-scroll-up
+            "C-b" 'vertico-scroll-down
+            "C-v" 'vertico-last
+            "M-v" 'vertico-first
             "M-j" 'next-history-element
             "M-k" 'previous-history-element
-            "C-o" 'selectrum-quick-move/body)
+            "C-o" 'vertico-quick-move/body)
   :config
   ;; Fully exit quick move hydra on C-g
-  (add-hook 'minibuffer-exit-hook #'selectrum-quick-move/nil)
-  (setq selectrum-count-style 'current/matches)
-  (selectrum-mode 1))
+  (add-hook 'minibuffer-exit-hook #'vertico-quick-move/nil)
+  (setq vertico-cycle t)
+  (vertico-mode 1))
+
+(use-package vertico-repeat
+  :init
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+  :general
+  (modo-define-leader-key
+    :keymaps 'override
+    "r" 'vertico-repeat))
 
 (defvar modo-orderless-styles-alist
   '(("Default" . (orderless-prefixes orderless-initialism orderless-regexp))
@@ -92,9 +93,6 @@
   (defun modo--reset-style-cycle-counter ()
     (setq modo--orderless-style-cycle-counter 0))
   (add-hook 'minibuffer-exit-hook #'modo--reset-style-cycle-counter)
-  (setq orderless-skip-highlighting (lambda () selectrum-is-active)
-        selectrum-highlight-candidates-function #'orderless-highlight-matches
-        selectrum-refine-candidates-function #'orderless-filter)
   (defun modo-cycle-orderless-matching-style ()
     "During active completion, cycle through the matching styles
 defined by `modo-orderless-styles-alist'."
@@ -113,43 +111,34 @@ defined by `modo-orderless-styles-alist'."
         (setq-local orderless-style-dispatchers nil))
       (message (format "Matching style: %s" name)))))
 
-(straight-use-package 'selectrum-prescient)
-(use-package selectrum-prescient
-  :demand t
-  :config
-  (setq selectrum-prescient-enable-filtering nil)
-  (selectrum-prescient-mode 1))
-
-;; selectrum-info from the selectrum wiki
-(let* ((selectrum-info-el (concat modo-modules-dir "selectrum-info.el"))
-       (selectrum-info-elc (byte-compile-dest-file selectrum-info-el)))
-  (unless (file-exists-p selectrum-info-elc)
-    (byte-compile-file selectrum-info-el)))
-(use-package selectrum-info
+;; completing-read-info adapted from the selectrum wiki
+(let* ((cr-info-el (concat modo-modules-dir "completing-read-info.el"))
+       (cr-info-elc (byte-compile-dest-file cr-info-el)))
+  (unless (file-exists-p cr-info-elc)
+    (byte-compile-file cr-info-el)))
+(use-package completing-read-info
   :general
   (modo-define-leader-key :keymaps 'override
     "i" '(:ignore t :wk "info")
-    "ii" 'selectrum-info
-    "il" 'selectrum-info-elisp-manual
-    "ie" 'selectrum-info-emacs-manual
-    "io" 'selectrum-info-org-manual))
+    "ii" 'completing-read-info
+    "il" 'completing-read-info-elisp-manual
+    "ie" 'completing-read-info-emacs-manual
+    "io" 'completing-read-info-org-manual))
 
 (straight-use-package 'marginalia)
 (use-package marginalia
   :demand t
   :general
-  (:keymaps 'selectrum-minibuffer-map
+  (:keymaps 'vertico-map
             "M-m" 'marginalia-cycle)
   :config
-  (marginalia-mode 1)
-  (advice-add #'marginalia-cycle :after
-              (lambda () (selectrum-exhibit 'keep-selected))))
+  (marginalia-mode 1))
 
 (straight-use-package 'embark)
 (use-package embark
   :demand t
   :general
-  (:keymaps 'selectrum-minibuffer-map
+  (:keymaps 'vertico-map
             "M-o" 'embark-act)
   :config
   (push '((lambda (buffer-name action)
