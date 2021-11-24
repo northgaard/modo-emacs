@@ -267,14 +267,20 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
   (git-gutter:verbosity 0)
   (git-gutter:disabled-modes '(fundamental-mode image-mode pdf-view-mode org-mode))
   :config
+  (defun modo--update-git-gutter-windows (&rest _)
+    (dolist (window (window-list))
+      (with-current-buffer (window-buffer window)
+        (modo--git-gutter-update))))
   (defun modo--update-gutter-focus-in ()
     (cl-loop for frame in (frame-list)
              if (eq (frame-focus-state frame) t)
-             return (git-gutter:update-all-windows)))
+             return (modo--update-git-gutter-windows)))
   (add-function :after after-focus-change-function #'modo--update-gutter-focus-in)
   (with-eval-after-load 'magit
     (advice-add #'magit-stage-file :after #'modo--git-gutter-update)
-    (advice-add #'magit-unstage-file :after #'modo--git-gutter-update)))
+    (advice-add #'magit-unstage-file :after #'modo--git-gutter-update)
+    (advice-add #'magit-stage :after #'modo--update-git-gutter-windows)
+    (advice-add #'magit-unstage :after #'modo--update-git-gutter-windows)))
 
 (straight-use-package 'git-gutter-fringe)
 (use-package git-gutter-fringe
