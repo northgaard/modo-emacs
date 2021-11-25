@@ -190,7 +190,8 @@ targets."
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref
-        consult-narrow-key (kbd "M-n"))
+        consult-narrow-key (kbd "M-n")
+        completion-in-region-function #'consult-completion-in-region)
   (autoload #'evil-collection-consult-mark "modes/consult/evil-collection-consult"
     "Jump to an evil marker in the current buffer." t)
   (evil-define-key '(normal visual motion) 'global
