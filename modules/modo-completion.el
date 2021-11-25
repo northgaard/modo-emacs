@@ -195,6 +195,10 @@ targets."
     "Jump to an evil marker in the current buffer." t)
   (evil-define-key '(normal visual motion) 'global
     "gM" 'evil-collection-consult-mark)
+  (autoload #'evil-collection-consult-jump-list "modes/consult/evil-collection-consult"
+    "Jump to a position in the evil jump list." t)
+  (modo-define-leader-key :keymaps 'override
+    "fi" 'evil-collection-consult-jump-list)
   :config
   (evil-collection-require 'consult)
   (evil-collection-consult-set-bindings)

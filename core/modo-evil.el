@@ -191,7 +191,7 @@
 
 ;;; evil-collection
 (straight-use-package '(evil-collection :fork "northgaard"
-                                        :branch "feat/gdb"))
+                                        :branch "modo-work"))
 (use-package evil-collection
   :custom (evil-collection-key-blacklist `(,modo-leader)))
 
