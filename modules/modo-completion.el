@@ -192,7 +192,8 @@ targets."
   (:keymaps 'override
             [remap isearch-forward] 'consult-line
             [remap switch-to-buffer] 'consult-buffer
-            [remap recentf-open-files] 'consult-recent-file)
+            [remap recentf-open-files] 'consult-recent-file
+            [remap bookmark-jump] 'consult-bookmark)
   (modo-define-leader-key :keymaps 'override
     "im" 'consult-man)
   (:states '(motion normal visual)
