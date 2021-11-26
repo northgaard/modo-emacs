@@ -83,11 +83,12 @@
   :demand t
   :custom
   (completion-styles '(orderless))
+  (completion-category-defaults nil)
   (orderless-matching-styles
    (cdar modo-orderless-styles-alist))
   (orderless-style-dispatchers modo--orderless-style-dispatchers-backup)
   :general
-  (:keymaps 'selectrum-minibuffer-map
+  (:keymaps 'vertico-map
             "C-l" 'modo-cycle-orderless-matching-style)
   :config
   (defun modo--reset-style-cycle-counter ()
