@@ -57,5 +57,32 @@
   (projectile-grep prompt))
 (evil-ex-define-cmd "pgrep" #'projectile-grep-ex-command)
 
+(defvar-local modo-file-jump-directory #'file-name-directory
+  "Function determining the root directory for file jumps. Should
+take a file name and return a directory.")
+
+(defun modo-file-jump ()
+  "Jump to a file from the current one, selecting from a list of
+all files in the directory returned by `modo-file-jump-directory'
+for the current file."
+  (interactive)
+  (if-let ((file (buffer-file-name (current-buffer))))
+      (let* ((dir (funcall modo-file-jump-directory file))
+             (candidates (if (projectile-project-p dir)
+                             (projectile-dir-files dir)
+                           (projectile-files-via-ext-command dir projectile-generic-command))))
+        (let ((file (completing-read
+                     (format "Find file in %s: " dir)
+                     (lambda (input predicate action)
+                       (if (eq action 'metadata)
+                           '(metadata (display-sort-function . identity)
+                                      (cycle-sort-function . identity)
+                                      (category . file))
+                         (complete-with-action action candidates input predicate))))))
+          (find-file (concat dir file))
+          (run-hooks 'find-file-hook)))
+    (user-error "Not a file visiting buffer!")))
+
+
 (provide 'modo-projects)
 ;;; modo-projects.el ends here

@@ -32,6 +32,7 @@
   "f#" '(modo-delete-auto-save-file
          :wk "delete-auto-save-file")
   "fv" 'set-visited-file-name
+  "fj" '(modo-file-jump :wk "file-jump")
   "b" '(:ignore t :wk "buffers")
   "bb" 'switch-to-buffer
   "bd" 'kill-this-buffer
