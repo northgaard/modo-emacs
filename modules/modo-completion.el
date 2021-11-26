@@ -87,6 +87,7 @@
   (orderless-matching-styles
    (cdar modo-orderless-styles-alist))
   (orderless-style-dispatchers modo--orderless-style-dispatchers-backup)
+  (orderless-component-separator #'orderless-escapable-split-on-space)
   :general
   (:keymaps 'vertico-map
             "C-l" 'modo-cycle-orderless-matching-style)
