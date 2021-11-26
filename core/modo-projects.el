@@ -61,6 +61,9 @@
   "Function determining the root directory for file jumps. Should
 take a file name and return a directory.")
 
+;; BUG embark file actions do not expand the file name correctly, so
+;; you cannot e.g. rename a file in a different directory than the one
+;; returned by `modo-jump-file-directory'.
 (defun modo-file-jump ()
   "Jump to a file from the current one, selecting from a list of
 all files in the directory returned by `modo-file-jump-directory'
@@ -82,7 +85,6 @@ for the current file."
           (find-file (concat dir file))
           (run-hooks 'find-file-hook)))
     (user-error "Not a file visiting buffer!")))
-
 
 (provide 'modo-projects)
 ;;; modo-projects.el ends here
