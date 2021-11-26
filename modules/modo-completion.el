@@ -134,6 +134,12 @@ defined by `modo-orderless-styles-alist'."
   (:keymaps 'vertico-map
             "M-m" 'marginalia-cycle)
   :config
+  (defun marginalia-annotate-file-jump (cand)
+    "Annotate file CAND with its size, modification time and other attributes."
+    (when modo--current-jump-directory
+      (marginalia-annotate-file (expand-file-name cand modo--current-jump-directory))))
+  (push '(file-jump marginalia-annotate-file-jump none)
+        marginalia-annotator-registry)
   (marginalia-mode 1))
 
 (straight-use-package 'embark)
@@ -149,6 +155,14 @@ defined by `modo-orderless-styles-alist'."
            (display-buffer-reuse-window display-buffer-pop-up-window)
            (reusable-frames . t))
         display-buffer-alist)
+  (defun embark--file-jump-full-path (_type target)
+    "Get full path of file jump target TARGET."
+    (cons 'file
+          (if modo--current-jump-directory
+              (expand-file-name target modo--current-jump-directory)
+            target)))
+  (push '(file-jump . embark--file-jump-full-path)
+        embark-transformer-alist)
   (defun embark-which-key-indicator ()
     "An embark indicator that displays keymaps using which-key.
 The which-key help message will show the type and value of the

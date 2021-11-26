@@ -61,16 +61,16 @@
   "Function determining the root directory for file jumps. Should
 take a file name and return a directory.")
 
-;; BUG embark file actions do not expand the file name correctly, so
-;; you cannot e.g. rename a file in a different directory than the one
-;; returned by `modo-jump-file-directory'.
+(defvar-local modo--current-jump-directory nil)
+
 (defun modo-file-jump ()
   "Jump to a file from the current one, selecting from a list of
 all files in the directory returned by `modo-file-jump-directory'
 for the current file."
   (interactive)
   (if-let ((file (buffer-file-name (current-buffer))))
-      (let* ((dir (funcall modo-file-jump-directory file))
+      (let* ((modo--current-jump-directory (funcall modo-file-jump-directory file))
+             (dir modo--current-jump-directory)
              (candidates (if (projectile-project-p dir)
                              (projectile-dir-files dir)
                            (projectile-files-via-ext-command dir projectile-generic-command))))
@@ -80,7 +80,7 @@ for the current file."
                        (if (eq action 'metadata)
                            '(metadata (display-sort-function . identity)
                                       (cycle-sort-function . identity)
-                                      (category . file))
+                                      (category . file-jump))
                          (complete-with-action action candidates input predicate))))))
           (find-file (expand-file-name file dir))
           (run-hooks 'find-file-hook)))
