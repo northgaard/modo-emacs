@@ -82,7 +82,7 @@ for the current file."
                                       (cycle-sort-function . identity)
                                       (category . file))
                          (complete-with-action action candidates input predicate))))))
-          (find-file (concat dir file))
+          (find-file (expand-file-name file dir))
           (run-hooks 'find-file-hook)))
     (user-error "Not a file visiting buffer!")))
 
