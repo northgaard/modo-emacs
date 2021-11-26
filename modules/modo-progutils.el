@@ -40,5 +40,16 @@
   (setq which-func-unknown "")
   (which-function-mode 1))
 
+(defun modo-locate-src-dir (filename)
+  "Starting from FILENAME, locate top level dir containing a
+  directory named \"src\", as is a common convention for larger
+  projects. To be set as `modo-file-jump-directory'."
+  (locate-dominating-file filename
+                          (lambda (dir)
+                            (when (file-accessible-directory-p dir)
+                              (seq-contains-p (directory-files dir)
+                                              "src"
+                                              #'string=)))))
+
 (provide 'modo-progutils)
 ;;; modo-progutils.el ends here
