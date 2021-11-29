@@ -43,13 +43,17 @@
 (defun modo-locate-src-dir (filename)
   "Starting from FILENAME, locate top level dir containing a
   directory named \"src\", as is a common convention for larger
-  projects. To be set as `modo-file-jump-directory'."
-  (locate-dominating-file filename
-                          (lambda (dir)
-                            (when (file-accessible-directory-p dir)
-                              (seq-contains-p (directory-files dir)
-                                              "src"
-                                              #'string=)))))
+  projects. If this fails, fall back to directory containing
+  FILENAME. To be set as `modo-file-jump-directory'."
+  (if-let ((src-dir
+            (locate-dominating-file filename
+                                    (lambda (dir)
+                                      (when (file-accessible-directory-p dir)
+                                        (seq-contains-p (directory-files dir)
+                                                        "src"
+                                                        #'string=))))))
+      src-dir
+    (file-name-directory filename)))
 
 (provide 'modo-progutils)
 ;;; modo-progutils.el ends here
