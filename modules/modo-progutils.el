@@ -47,11 +47,7 @@
   FILENAME. To be set as `modo-file-jump-directory'."
   (if-let ((src-dir
             (locate-dominating-file filename
-                                    (lambda (dir)
-                                      (when (file-accessible-directory-p dir)
-                                        (seq-contains-p (directory-files dir)
-                                                        "src"
-                                                        #'string=))))))
+                                    "src")))
       src-dir
     (file-name-directory filename)))
 
