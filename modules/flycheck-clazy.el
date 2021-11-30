@@ -49,5 +49,4 @@
                              (flycheck-buffer-saved-p))))
 
 (provide 'flycheck-clazy)
-
 ;;; flycheck-clazy.el ends here
