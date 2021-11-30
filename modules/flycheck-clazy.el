@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(declare-function projectile-project-root "projectile")
+
 (require 'flycheck)
 (require 'seq)
 
