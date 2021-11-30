@@ -13,6 +13,16 @@
 on the buffer before saving.")
 (put 'modo-c++-enable-clang-format-on-save 'safe-local-variable #'booleanp)
 
+(defvar-local modo-c++-enable-clazy nil
+  "Buffer local variable to determine whether to lint with clazy.
+For now requires lsp to be enabled as well.")
+(put 'modo-c++-enable-clazy 'safe-local-variable #'booleanp)
+
+(let* ((flycheck-clazy-el (concat modo-modules-dir "flycheck-clazy.el"))
+       (flycheck-clazy-elc (byte-compile-dest-file flycheck-clazy-el)))
+  (unless (file-exists-p flycheck-clazy-elc)
+    (byte-compile-file flycheck-clazy-el)))
+
 (straight-use-package 'clang-format)
 (use-package clang-format
   :commands (clang-format-region clang-format-buffer)
@@ -124,6 +134,13 @@ on the buffer before saving.")
     (hs-minor-mode 1)
     (evil-normalize-keymaps)
     (push '(?< . ("<" . ">")) evil-surround-pairs-alist))
+  (defun modo--add-clazy-checks ()
+    (require 'flycheck-clazy)
+    (add-to-list 'flycheck-checkers 'c++-clazy)
+    ;; lsp mode sets this to lsp, which seems to override even the
+    ;; next-checker functionality, so override this.
+    (setq-local flycheck-checker nil)
+    (flycheck-add-next-checker 'c++-clazy '(t . lsp)))
   (modo-add-hook (c++-mode-local-vars-hook :name "modo--c++-mode-local-vars-setup")
     (when modo-enable-lsp
       (lsp-deferred)
@@ -131,7 +148,16 @@ on the buffer before saving.")
       (setq-local lsp-enable-indentation nil
                   lsp-enable-on-type-formatting nil
                   company-idle-delay 0
-                  company-minimum-prefix-length 1))))
+                  company-minimum-prefix-length 1))
+    (if modo-c++-enable-clazy
+        ;; We need some hacks to make clazy and lsp checking work
+        ;; together. The lsp flycheck checker is not defined until
+        ;; `lsp-diagnostics-mode' is enabled, so add the hook early to
+        ;; let it run (or not) when lsp gets around to initializing
+        ;; the mode.
+        (add-hook 'lsp-diagnostics-mode-hook #'modo--add-clazy-checks)
+      (remove-hook 'lsp-diagnostics-mode-hook #'modo--add-clazy-checks))))
+
 
 ;; Search cppreference.com
 (modo-install-search-engine "cppreference" "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=" "cpp[ref]")
