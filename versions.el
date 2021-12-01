@@ -11,6 +11,7 @@
  ("cmake" . "7de707cd7e04d8c203426c93bb01923536cc688b")
  ("company-mode" . "6abb232acde15e1a7bf402a57f7bb982edf2de7d")
  ("consult" . "03cbf0eaf18c2678755b97a06a0b3191eab7da0e")
+ ("consult-flycheck" . "0ad7e8ff15683a4d64b79c29b3fcf847edfe244b")
  ("consult-lsp" . "861eb0d91a3b9cfe6ecf3d1e3c559acd5f91669c")
  ("csharp-mode" . "57bd21bda4edc16671a85c7d6d51484e40a6e640")
  ("dash.el" . "da167c51e9fd167a48d06c7c0ee8e3ac7abd9718")
