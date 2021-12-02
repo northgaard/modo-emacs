@@ -17,6 +17,7 @@
   "eb" 'straight-rebuild-package
   "eW" 'straight-visit-package-website
   "ev" '(:ignore t :wk "versions")
+  "ex" 'evil-ex-nohighlight
   "evf" 'straight-freeze-versions
   "evt" 'straight-thaw-versions
   "f" '(:ignore t :wk "files")
