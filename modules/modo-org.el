@@ -39,7 +39,7 @@ directory for completion."
    (find-file filename)
    (run-hooks 'find-file-hook))
 
-(straight-use-package '(org :depth 1))
+(straight-use-package '(org :type built-in))
 (use-package org
   :defer 10
   :hook (org-mode . modo-org-mode-setup)
@@ -61,9 +61,6 @@ directory for completion."
     "." 'org-time-stamp
     "!" 'org-time-stamp-inactive)
   :init
-  ;; Make double extra sure that the built-in org-version is not loaded
-  (when (featurep 'org-version)
-    (unload-feature 'org-version t))
   (setq org-modules '(org-habit org-id org-protocol org-timer))
   :config
   (modo-define-leader-key

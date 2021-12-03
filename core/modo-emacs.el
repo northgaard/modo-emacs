@@ -46,9 +46,6 @@
   :config
   (add-hook 'comint-preoutput-filter-functions 'ansi-color-filter-apply))
 
-;;; ag from emacs
-(straight-use-package 'ag)
-
 ;;; Powershell
 (straight-use-package 'powershell)
 

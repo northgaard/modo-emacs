@@ -5,18 +5,6 @@
 
 ;;; Code:
 
-;;; undo for evil
-(let ((builtin-undo (version< "28" emacs-version)))
-  (straight-use-package 'undo-fu nil builtin-undo)
-  (if builtin-undo
-      (progn
-        (advice-add 'undo-only :around #'modo-with-quiet-message)
-        (advice-add 'undo-redo :around #'modo-with-quiet-message))
-    (require 'undo-fu))
-  (setq evil-undo-system (if builtin-undo
-                             'undo-redo
-                           'undo-fu)))
-
 ;;; Pure evil
 (straight-use-package 'evil)
 (use-package evil
@@ -36,7 +24,10 @@
         evil-ex-search-vim-style-regexp t
         evil-insert-skip-empty-line t
         evil-symbol-word-search t
-        shift-select-mode nil)
+        shift-select-mode nil
+        evil-undo-system 'undo-redo)
+  (advice-add 'undo-only :around #'modo-with-quiet-message)
+  (advice-add 'undo-redo :around #'modo-with-quiet-message)
   :config
   (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)

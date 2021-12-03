@@ -78,8 +78,7 @@ _C-k_: down     _a_ll                _R_efine
                    abbrev)))
   "The amount of characters git minimally uses for abbreviated hashes.")
 
-(straight-use-package 'transient)
-(use-package transient
+(use-package transient ; built-in
   :config
   (setq transient-history-file (concat modo-cache-dir "transient/history.el")
         transient-levels-file (concat modo-cache-dir "transient/levels.el")

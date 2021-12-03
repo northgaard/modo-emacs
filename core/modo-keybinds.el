@@ -143,11 +143,5 @@
   (evil-collection-define-key 'normal 'grep-mode-map
     "o" 'ace-link-compilation))
 
-;;; ag
-(use-package ag
-  :config
-  (evil-collection-require 'ag)
-  (evil-collection-ag-setup))
-
 (provide 'modo-keybinds)
 ;;; modo-keybinds.el ends here

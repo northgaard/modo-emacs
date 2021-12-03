@@ -178,6 +178,7 @@
 (straight-use-package 'hydra)
 (use-package hydra
   :demand t)
+(straight-use-package '(transient :type built-in))
 
 ;; general.el --- get your keybinds here!
 (straight-use-package 'general)
