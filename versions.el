@@ -7,7 +7,7 @@
  ("avy" . "e92cb37457b43336b765630dbfbea8ba4be601fa")
  ("cfrs" . "7c42f2c82c7ae689f3ef291b066688c58ab96298")
  ("clang-format" . "e48ff8ae18dc7ab6118c1f6752deb48cb1fc83ac")
- ("cmake" . "7de707cd7e04d8c203426c93bb01923536cc688b")
+ ("cmake-mode" . "d539f3e47cbb69f692ce00ac723934c3d0db53f5")
  ("company-mode" . "6abb232acde15e1a7bf402a57f7bb982edf2de7d")
  ("consult" . "03cbf0eaf18c2678755b97a06a0b3191eab7da0e")
  ("consult-flycheck" . "0ad7e8ff15683a4d64b79c29b3fcf847edfe244b")

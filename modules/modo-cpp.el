@@ -5,7 +5,12 @@
 
 ;;; Code:
 
-(straight-use-package '(cmake-mode :depth 1))
+;; Use a mirror of cmake-mode, cloning all of cmake just for a single
+;; elisp file is a bit ridiculous.
+(straight-use-package '(cmake-mode :type git
+                                   :host github
+                                   :repo "northgaard/cmake-mode"
+                                   :files (:defaults)))
 (use-package cmake-mode)
 
 (defvar-local modo-c++-enable-clang-format-on-save t
