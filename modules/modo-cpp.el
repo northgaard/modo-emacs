@@ -17,11 +17,7 @@ on the buffer before saving.")
   "Buffer local variable to determine whether to lint with clazy.
 For now requires lsp to be enabled as well.")
 (put 'modo-c++-enable-clazy 'safe-local-variable #'booleanp)
-
-(let* ((flycheck-clazy-el (concat modo-modules-dir "flycheck-clazy.el"))
-       (flycheck-clazy-elc (byte-compile-dest-file flycheck-clazy-el)))
-  (unless (file-exists-p flycheck-clazy-elc)
-    (byte-compile-file flycheck-clazy-el)))
+(modo-byte-compile-module-file "flycheck-clazy")
 
 (straight-use-package 'clang-format)
 (use-package clang-format

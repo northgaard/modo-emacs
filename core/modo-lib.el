@@ -107,5 +107,13 @@ the hook function removes itself from HOOK when run."
            return t
            finally return nil))
 
+(defun modo-byte-compile-module-file (name)
+  "Byte compile file NAME in `modo-modules-dir'."
+  (let* ((file-el (expand-file-name (file-name-with-extension name "el")
+                                    modo-modules-dir))
+         (file-elc (byte-compile-dest-file file-el)))
+    (when (file-newer-than-file-p file-el file-elc)
+      (byte-compile-file file-el))))
+
 (provide 'modo-lib)
 ;;; modo-lib.el ends here

@@ -114,10 +114,7 @@ defined by `modo-orderless-styles-alist'."
       (message (format "Matching style: %s" name)))))
 
 ;; completing-read-info adapted from the selectrum wiki
-(let* ((cr-info-el (concat modo-modules-dir "completing-read-info.el"))
-       (cr-info-elc (byte-compile-dest-file cr-info-el)))
-  (unless (file-exists-p cr-info-elc)
-    (byte-compile-file cr-info-el)))
+(modo-byte-compile-module-file "completing-read-info")
 (use-package completing-read-info
   :general
   (modo-define-leader-key :keymaps 'override
