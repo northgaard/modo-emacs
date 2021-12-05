@@ -6,7 +6,7 @@
 ;;; Code:
 
 ;;; AUCTeX + RefTeX
-(straight-use-package '(auctex :depth 1))
+(straight-use-package 'auctex)
 (use-package tex-site
   :demand t)
 

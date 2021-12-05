@@ -2,7 +2,7 @@
  ("ace-window" . "c7cb315c14e36fded5ac4096e158497ae974bec9")
  ("all-the-icons.el" . "e01eeb40858f971e45c014726a14c75556d8cc8f")
  ("annalist.el" . "134fa3f0fb91a636a1c005c483516d4b64905a6d")
- ("auctex" . "fafa28d54276a73604e696b51c6a1a36d727d3fb")
+ ("auctex" . "3b0a080ae596c26c17b15ba9c71fc5542eae238b")
  ("auctex-latexmk" . "4d353522650d7685acbf1d38f7dbc504f734bd84")
  ("avy" . "e92cb37457b43336b765630dbfbea8ba4be601fa")
  ("cfrs" . "7c42f2c82c7ae689f3ef291b066688c58ab96298")
