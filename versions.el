@@ -65,7 +65,7 @@
  ("ligature.el" . "3923baf1fb9bf509cc95b4b14d7d0e2f7c88e53c")
  ("lsp-mode" . "130db766cb7f6f09ce35a5f78f06473905a49f7b")
  ("lsp-treemacs" . "7bf3d52bccb4a5fdce4fdde9ff61bc75161b97af")
- ("magit" . "877c389ca0161959081fa2c77045ce1ae9463be4")
+ ("magit" . "74b84b57cc6aca261392e9189e8e6c5e9cc19ca7")
  ("marginalia" . "ce1e90a85475445bca96b2d8ae228bf0ef6773b8")
  ("markdown-mode" . "58f2d22526ac1e4abd4ee1afff8624d2dd3123d3")
  ("melpa" . "2fb82d0719f9aee8c82722e81b107ef269afd6d4")
