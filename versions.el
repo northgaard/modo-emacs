@@ -87,6 +87,7 @@
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("spinner" . "e19f3cfc0646c0e23c10c22df219fcf427054621")
  ("straight.el" . "92d4153362a87a585d16f31a2591324dac48e9f0")
+ ("sudo-edit" . "23b78a39053088839f281bc0c3134203d7e04e50")
  ("transpose-frame" . "12e523d70ff78cc8868097b56120848befab5dbc")
  ("treemacs" . "8a726dc2047163ba6fcb1cb9fde3fe9238021362")
  ("use-package" . "a7422fb8ab1baee19adb2717b5b47b9c3812a84c")

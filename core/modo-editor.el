@@ -100,5 +100,14 @@
   (setq ws-butler-keep-whitespace-before-point nil)
   (ws-butler-global-mode 1))
 
+(straight-use-package 'sudo-edit)
+(use-package sudo-edit
+  :general
+  (modo-define-leader-key :keymaps 'override
+    "fu" 'sudo-edit
+    "fU" 'sudo-edit-find-file)
+  :config
+  (sudo-edit-indicator-mode 1))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here
