@@ -109,5 +109,9 @@
   :config
   (sudo-edit-indicator-mode 1))
 
+(use-package tramp
+  :config
+  (setq tramp-persistency-file-name (expand-file-name "tramp" modo-cache-dir)))
+
 (provide 'modo-editor)
 ;;; modo-editor.el ends here
