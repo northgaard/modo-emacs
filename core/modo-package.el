@@ -15,6 +15,8 @@
       straight-check-for-modifications nil)
 (setq straight-profiles '((modo . "../../versions.el")))
 (setq straight-current-profile 'modo)
+;; Use a build directory specific to the major version
+(setq straight-build-dir (format "build-emacs-%s" emacs-major-version))
 
 ;; Bootstrap snippet
 (defvar bootstrap-version)
