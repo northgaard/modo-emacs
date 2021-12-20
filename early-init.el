@@ -8,6 +8,7 @@
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 
-(setq frame-inhibit-implied-resize t)
+(unless (boundp 'gtk-version-string)
+  (setq frame-inhibit-implied-resize t))
 
 (defvar modo--early-init-loaded t)
