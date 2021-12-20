@@ -11,4 +11,13 @@
 (unless (boundp 'gtk-version-string)
   (setq frame-inhibit-implied-resize t))
 
+(unless (or (daemonp) noninteractive)
+  (setq-default inhibit-redisplay t
+                inhibit-message t)
+  (add-hook 'window-setup-hook
+            (lambda ()
+              (setq-default inhibit-redisplay nil
+                            inhibit-message nil)
+              (redisplay))))
+
 (defvar modo--early-init-loaded t)
