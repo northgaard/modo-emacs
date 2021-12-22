@@ -208,6 +208,7 @@
   ("p" evil-scroll-page-up "page up")
   ("g" beginning-of-buffer "top")
   ("G" end-of-buffer "bottom")
+  ("R" (lambda () (interactive) (setq evil-scroll-count 0)) "reset scroll count")
   ("q" nil "quit")
   ("SPC" nil "quit"))
 
