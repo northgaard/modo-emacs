@@ -6,6 +6,25 @@
 ;;; Code:
 
 (straight-use-package 'dired-subtree) ; We `require' it in the dired form below
+(defun modo--subtree-expand-single-directory ()
+  "When expanding a dired subtree, if the folder expanded
+contains just a single non-empty folder, expand that folder as
+well."
+  (let* ((files (save-excursion
+                  (dired-prev-dirline 1)
+                  (seq-remove
+                   (lambda (file)
+                     (let ((non-full (file-name-nondirectory file)))
+                       (or (string-equal "." non-full)
+                           (string-equal ".." non-full))))
+                   (directory-files (dired-get-filename) 'full))))
+         (subdir (when (= (length files) 1)
+                   (car files))))
+    (when (and subdir
+               (file-accessible-directory-p subdir)
+               (not (directory-empty-p subdir)))
+      (dired-subtree-insert))))
+
 (use-package dired
   :general
   (modo-define-leader-key :keymaps 'override
@@ -28,6 +47,7 @@
         image-dired-thumb-size 150)
   :config
   (require 'dired-subtree)
+  (add-hook 'dired-subtree-after-insert-hook #'modo--subtree-expand-single-directory)
   (evil-collection-require 'dired)
   (evil-collection-dired-setup)
   (evil-collection-define-key 'normal 'dired-mode-map
