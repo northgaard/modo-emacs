@@ -19,6 +19,11 @@
   :init
   (setq eshell-directory-name (concat modo-cache-dir "eshell/")))
 
+;;; url
+(use-package url
+  :init
+  (setq url-configuration-directory (expand-file-name "url/" modo-cache-dir)))
+
 ;;; Compilation
 (use-package compile
   :config
