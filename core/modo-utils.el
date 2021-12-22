@@ -125,11 +125,11 @@ counter-clockwise. With two prefix arguments, rotates the frame
   (interactive "P")
   (cond
    ((equal arg '(4))
-    (rotate-frame-anticlockwise))
+    (call-interactively #'rotate-frame-anticlockwise))
    ((equal arg '(16))
-    (rotate-frame))
+    (call-interactively #'rotate-frame))
    (t
-    (rotate-frame-clockwise))))
+    (call-interactively #'rotate-frame-clockwise))))
 
 (defun modo-byte-compile-core ()
   "Byte compiles the modo core, i.e. elisp files found in
