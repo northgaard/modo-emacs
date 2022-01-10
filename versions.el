@@ -29,7 +29,7 @@
  ("epl" . "78ab7a85c08222cd15582a298a364774e3282ce6")
  ("evil" . "07aba40dd32c667f36eb1ad244f859983a077d12")
  ("evil-args" . "758ad5ae54ad34202064fec192c88151c08cb387")
- ("evil-collection" . "8fe4474bdcf7ae026304209f0569c5d1d513d2c3")
+ ("evil-collection" . "1a9cd537d643034ca6f83a947fd1283993aca5a9")
  ("evil-commentary" . "2dab6ac34d1617971768ad219d73af48f7473fec")
  ("evil-easymotion" . "f96c2ed38ddc07908db7c3c11bcd6285a3e8c2e9")
  ("evil-escape" . "f4e9116bfbaac8c9d210c17ad488e0982291245f")
