@@ -137,6 +137,8 @@ defined by `modo-orderless-styles-alist'."
       (marginalia-annotate-file (expand-file-name cand modo--current-jump-directory))))
   (push '(file-jump marginalia-annotate-file-jump none)
         marginalia-annotator-registry)
+  (setq marginalia-align 'left
+        marginalia-field-width 120)
   (marginalia-mode 1))
 
 (straight-use-package 'embark)
