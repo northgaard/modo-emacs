@@ -40,8 +40,6 @@ should use lsp-mode.")
                                     :branch "modo"))
 (use-package consult-lsp
   :after lsp-mode
-  :custom
-  (consult-lsp-use-marginalia t)
   :commands (consult-lsp-diagnostics consult-lsp-symbols consult-lsp-file-symbols)
   :config
   (evil-set-command-property 'consult-lsp-diagnostics :jump t)
