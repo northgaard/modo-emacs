@@ -36,7 +36,7 @@
   "fj" '(modo-file-jump :wk "file-jump")
   "b" '(:ignore t :wk "buffers")
   "bb" 'switch-to-buffer
-  "bd" 'kill-this-buffer
+  "bd" 'kill-current-buffer
   "bD" '(modo-kill-non-default-buffers
          :wk "kill-non-default-buffers")
   "bl" 'list-buffers
