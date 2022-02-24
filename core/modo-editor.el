@@ -14,7 +14,8 @@
       mouse-yank-at-point t
       save-interprogram-paste-before-kill t
       disabled-command-function nil
-      confirm-kill-processes nil)
+      confirm-kill-processes nil
+      kill-do-not-save-duplicates t)
 ;; These settings should speed up redisplay, but will break rendering
 ;; of right-to-left languages. This is not an issue for me personally,
 ;; but caveat emptor.
