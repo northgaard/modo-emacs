@@ -49,7 +49,11 @@
     (projectile-project-buffers (project-root project)))
   (general-define-key :keymaps 'override
                       [remap projectile-find-file] 'project-find-file
-                      [remap projectile-switch-to-buffer] 'project-switch-to-buffer))
+                      [remap projectile-switch-to-buffer] 'project-switch-to-buffer)
+  (general-define-key :keymaps 'projectile-command-map
+                      ;; Overrides `projectile-regenerate-tags', which
+                      ;; I have never used
+                      "R" 'modo-revert-all-project-file-buffers))
 
 (evil-define-command projectile-grep-ex-command (prompt)
   "Grep in the current project with an ex query."
@@ -62,6 +66,15 @@
 take a file name and return a directory.")
 
 (defvar-local modo--current-jump-directory nil)
+
+(defun modo-revert-all-project-file-buffers ()
+  "Reverts all file visiting project buffers."
+  (interactive)
+  (when (yes-or-no-p "Revert all file visiting project buffers?")
+    (dolist (buffer (projectile-project-buffers))
+      (when (buffer-file-name buffer)
+        (with-current-buffer buffer
+          (revert-buffer nil 'noconfirm))))))
 
 (defun modo-file-jump ()
   "Jump to a file from the current one, selecting from a list of

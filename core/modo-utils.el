@@ -92,6 +92,15 @@
      (cl-find-if (lambda (b) (not (eq b buf)))
                  (mapcar 'car (window-prev-buffers))))))
 
+(defun modo-revert-all-file-buffers ()
+  "Reverts all file visiting buffers."
+  (interactive)
+  (when (yes-or-no-p "Revert all file visiting buffers?")
+    (dolist (buffer (buffer-list))
+      (when (buffer-file-name buffer)
+        (with-current-buffer buffer
+          (revert-buffer nil 'noconfirm))))))
+
 (defun modo-get-faces (pos)
   "Get a list of active faces at position POS."
   (flatten-tree (list
