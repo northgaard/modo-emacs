@@ -214,87 +214,34 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
             ("?" nil "close" :color blue)
             ("q" git-timemachine-quit "quit timemachine" :color blue)))
 
-(defun modo--git-gutter-activate-maybe ()
+(defvar modo--diff-hl-disabled-modes
+  '(fundamental-mode image-mode pdf-view-mode org-mode))
+
+(defun modo--diff-hl-activate-maybe ()
   (let ((file-name (buffer-file-name (buffer-base-buffer))))
     (if (not (and file-name
-                  (equal (vc-backend file-name) 'Git)))
-        (add-hook 'after-save-hook #'modo--git-gutter-activate-maybe
+                  (memq (vc-backend file-name) vc-handled-backends)))
+        (add-hook 'after-save-hook #'modo--diff-hl-activate-maybe
                   nil 'local)
-      (require 'git-gutter-fringe)
-      (unless (memq major-mode git-gutter:disabled-modes)
-        (git-gutter-mode 1)
-        (remove-hook 'after-save-hook #'modo--git-gutter-activate-maybe 'local)))))
+      (require 'diff-hl)
+      (unless (memq major-mode modo--diff-hl-disabled-modes)
+        (diff-hl-mode 1)
+        (remove-hook 'after-save-hook #'modo--diff-hl-activate-maybe 'local)))))
 
-(defun modo--git-gutter-update (&rest _)
-  (or (memq this-command '(git-gutter:stage-hunk
-                           git-gutter:revert-hunk))
-      inhibit-redisplay
-      (when (bound-and-true-p git-gutter-mode)
-        (git-gutter))))
-
-(straight-use-package 'git-gutter)
-(use-package git-gutter
+(straight-use-package 'diff-hl)
+(use-package diff-hl
   :general
   (modo-define-leader-key :keymaps 'override
-    "vj" 'git-gutter:next-hunk
-    "vk" 'git-gutter:previous-hunk
-    "vs" 'git-gutter:stage-hunk
-    "vR" 'git-gutter:revert-hunk
-    "vC" 'modo-git-gutter-hunk-quick-commit)
+    "vj" 'diff-hl-next-hunk
+    "vk" 'diff-hl-previous-hunk
+    "vs" 'diff-hl-stage-current-hunk
+    "vR" 'diff-hl-revert-hunk)
   :init
-  (add-hook 'find-file-hook #'modo--git-gutter-update)
-  (add-hook 'find-file-hook #'modo--git-gutter-activate-maybe)
-  (add-hook 'magit-diff-visit-file-hook #'modo--git-gutter-update)
-  (add-hook 'magit-diff-visit-file-hook #'modo--git-gutter-activate-maybe)
-  (add-hook 'modo-switch-window-hook #'modo--git-gutter-update)
-  (defun modo-git-gutter-hunk-quick-commit ()
-    (interactive)
-    (require 'magit-git)
-    (let ((staged-files (magit-staged-files))
-          (hunkinfo (ignore-errors
-                      (git-gutter:search-here-diffinfo git-gutter:diffinfos))))
-      (unless hunkinfo
-        (error "Not a changed hunk"))
-      (when staged-files
-        (error "Quick commit requires that no other changes are staged"))
-      (let ((git-gutter:ask-p nil)
-            (git-gutter:diffinfos (list hunkinfo))
-            (commit-message (read-from-minibuffer "Commit message: ")))
-        (git-gutter:stage-hunk)
-        (message (magit-git-string "commit" "-m" commit-message)))))
-  :custom
-  (git-gutter:verbosity 0)
-  (git-gutter:disabled-modes '(fundamental-mode image-mode pdf-view-mode org-mode))
-  :config
-  (defun modo--update-git-gutter-windows (&rest _)
-    (dolist (window (window-list))
-      (with-current-buffer (window-buffer window)
-        (modo--git-gutter-update))))
-  (defun modo--update-gutter-focus-in ()
-    (cl-loop for frame in (frame-list)
-             if (eq (frame-focus-state frame) t)
-             return (modo--update-git-gutter-windows)))
-  (add-function :after after-focus-change-function #'modo--update-gutter-focus-in)
+  (add-hook 'find-file-hook #'modo--diff-hl-activate-maybe)
   (with-eval-after-load 'magit
-    (advice-add #'magit-stage-file :after #'modo--git-gutter-update)
-    (advice-add #'magit-unstage-file :after #'modo--git-gutter-update)
-    (advice-add #'magit-stage :after #'modo--update-git-gutter-windows)
-    (advice-add #'magit-unstage :after #'modo--update-git-gutter-windows)))
-
-(straight-use-package 'git-gutter-fringe)
-(use-package git-gutter-fringe
-  :config
-  ;; standardize default fringe width
-  (if (fboundp 'fringe-mode) (fringe-mode '4))
-  ;; places the git gutter outside the margins.
-  (setq-default fringes-outside-margins t)
-  ;; thin fringe bitmaps
-  (define-fringe-bitmap 'git-gutter-fr:added [224]
-    nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:modified [224]
-    nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240]
-    nil nil 'bottom))
+    (require 'diff-hl)
+    (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+    (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
 (provide 'modo-git)
 ;;; modo-git.el ends here
