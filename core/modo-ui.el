@@ -48,6 +48,10 @@
         window-divider-default-right-width 1)
   (window-divider-mode 1))
 
+(use-package fringe
+  :config
+  (set-fringe-mode (cdr (assoc "half-width" fringe-styles))))
+
 ;;; which-key
 (straight-use-package 'which-key)
 (use-package which-key
