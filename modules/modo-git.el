@@ -226,6 +226,7 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
       (require 'diff-hl)
       (unless (memq major-mode modo--diff-hl-disabled-modes)
         (diff-hl-mode 1)
+        (diff-hl-update)
         (remove-hook 'after-save-hook #'modo--diff-hl-activate-maybe 'local)))))
 
 (straight-use-package 'diff-hl)
