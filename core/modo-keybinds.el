@@ -41,7 +41,7 @@
          :wk "kill-non-default-buffers")
   "bl" 'list-buffers
   "by" 'bury-buffer
-  "br" 'revert-buffer
+  "br" 'revert-buffer-quick
   "bR" '(modo-revert-all-file-buffers :wk "revert-all-file-buffers")
   "bw" 'follow-mode
   "bc" '(clone-indirect-buffer :wk "clone")
