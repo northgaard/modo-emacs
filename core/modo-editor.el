@@ -25,7 +25,7 @@
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose nil)
 ;; Enable y/n answers
-(fset 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers t)
 ;; Mitigate performance issues with files with long lines
 (global-so-long-mode 1)
 
