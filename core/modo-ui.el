@@ -234,15 +234,7 @@ by winum."
                                 ("BUG" error bold)
                                 ("XXX" font-lock-constant-face bold))))
 
-;;; Code folding
-(use-package hideshow
-  :general
-  (:keymaps 'hs-minor-mode-map
-            "½" 'hs-toggle-hiding
-            "§" 'hs-show-all))
-
 ;;; Theme
-
 (defface error-bold '((t (:inherit error :weight bold)))
   "Same as standard error face, but always bold."
   :group 'faces)
