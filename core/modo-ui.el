@@ -39,6 +39,8 @@
          (display-buffer-reuse-window display-buffer-same-window)
          (reusable-frames . t))))
 (setq even-window-sizes nil)  ; display-buffer hint: avoid resizing
+(setq frame-resize-pixelwise t
+      window-resize-pixelwise t)
 
 (use-package frame
   :demand t
