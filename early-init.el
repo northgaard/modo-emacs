@@ -8,8 +8,7 @@
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 
-(unless (boundp 'gtk-version-string)
-  (setq frame-inhibit-implied-resize t))
+(setq frame-inhibit-implied-resize t)
 
 (unless (or (daemonp) noninteractive)
   (setq-default inhibit-redisplay t
