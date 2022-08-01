@@ -71,7 +71,7 @@
  ("orderless" . "8b9af2796fa0eb87eea4140bc08d16880a493803")
  ("org-edna" . "de6454949045453e0fa025e605b445c3ca05c62a")
  ("org-html-themes" . "20f84182239a537f4c6b533eb65daa2d342428dd")
- ("org-superstar-mode" . "03be6c0a3081c46a59b108deb8479ee24a6d86c0")
+ ("org-modern" . "c82b50a61d04571e11c242fb91944753d8bf945c")
  ("pkg-info" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
  ("posframe" . "739d8fd1081bdd0d20dee9e437d64df58747b871")
  ("powershell.el" . "d1b3f95669343399f199f291ef76c09a0ede5e60")

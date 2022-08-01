@@ -25,7 +25,7 @@ i.e. with Dropbox."
                         (f-entries modo-org-root-dir))))
 
 (defun modo-org-mode-setup ()
-  (org-superstar-mode 1)
+  (org-modern-mode 1)
   (evil-org-mode 1)
   (evil-normalize-keymaps))
 
@@ -203,13 +203,13 @@ directory for completion."
   :config
   (org-babel-lob-ingest (concat modo-modules-dir "org-babel-library.org")))
 
-(straight-use-package 'org-superstar)
-(use-package org-superstar
+(straight-use-package 'org-modern)
+(use-package org-modern
   :custom
-  (org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●" "○" "●"))
-  (org-superstar-item-bullet-alist '((?* . ?•)
-                                     (?+ . ?➤)
-                                     (?- . ?→))))
+  (org-modern-star '("◉" "○" "●" "○" "●" "○" "●" "○" "●"))
+  (org-modern-list '((?* . "•")
+                     (?+ . "➤")
+                     (?- . "→"))))
 
 (provide 'modo-org)
 ;;; modo-org.el ends here
