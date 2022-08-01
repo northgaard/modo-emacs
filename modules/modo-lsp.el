@@ -26,16 +26,6 @@ should use lsp-mode.")
   (require 'company)
   (setq lsp-headerline-breadcrumb-enable nil))
 
-(straight-use-package 'lsp-treemacs)
-(use-package lsp-treemacs
-  :after treemacs
-  :commands (lsp-treemacs-symbols)
-  :config
-  ;; Immunize from `delete-other-windows' like the treemacs file buffer
-  (push `(window-parameters . ((no-delete-other-windows . ,treemacs-no-delete-other-windows)))
-        lsp-treemacs-symbols-position-params)
-  (lsp-treemacs-sync-mode 1))
-
 (straight-use-package '(consult-lsp :fork "northgaard"
                                     :branch "modo"))
 (use-package consult-lsp

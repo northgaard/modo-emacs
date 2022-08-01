@@ -22,7 +22,6 @@
              company
              org
              dired
-             treemacs
              latex
              snippets
              spellcheck

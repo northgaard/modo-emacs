@@ -92,7 +92,6 @@ For now requires lsp to be enabled as well.")
   "rr" 'lsp-rename
   "ro" 'lsp-organize-imports
   "a" 'lsp-execute-code-action
-  "<tab>" 'lsp-treemacs-symbols
   "c" '(:prefix-command lsp-c++-consult-command :wk "consult")
   "ce" 'consult-flycheck
   "cd" 'consult-lsp-diagnostics
