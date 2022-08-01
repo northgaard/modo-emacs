@@ -248,6 +248,7 @@ by winum."
   (add-hook 'emacs-startup-hook #'modo--load-theme))
 
 ;;; Doom modeline
+(straight-use-package 'all-the-icons)
 (straight-use-package 'doom-modeline)
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
