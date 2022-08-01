@@ -12,7 +12,7 @@
  ("compat" . "1753ad6043a826ad7639dc99f3dd47ba59b6be79")
  ("consult" . "3dbb14797583cb14e40966529021ee723287d200")
  ("consult-flycheck" . "0ad7e8ff15683a4d64b79c29b3fcf847edfe244b")
- ("consult-lsp" . "143831e91ba916330fada29856d92ac28461a9e3")
+ ("consult-lsp" . "6074a98209c43bab31b2354fb8ced4d7e36cec33")
  ("csharp-mode" . "57bd21bda4edc16671a85c7d6d51484e40a6e640")
  ("dash.el" . "da167c51e9fd167a48d06c7c0ee8e3ac7abd9718")
  ("default-text-scale" . "bfc0987c37e93742255d3b23d86c17096fda8e7e")
