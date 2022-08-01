@@ -83,7 +83,6 @@
  ("spinner" . "34905eae12a236753fa88abc831eff1e41e8576e")
  ("straight.el" . "653b04a64f341bfa2606c8f2acba10c3fe284ca2")
  ("sudo-edit" . "23b78a39053088839f281bc0c3134203d7e04e50")
- ("themes" . "436d001ab1f0a406cde4ea237647a99f8c0b5dde")
  ("transpose-frame" . "12e523d70ff78cc8868097b56120848befab5dbc")
  ("use-package" . "a7422fb8ab1baee19adb2717b5b47b9c3812a84c")
  ("vertico" . "e5935b5bbfc0d820c54ed1ad52e36e8c48248fd7")

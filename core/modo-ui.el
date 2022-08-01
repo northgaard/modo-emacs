@@ -237,25 +237,14 @@ by winum."
                                 ("XXX" font-lock-constant-face bold))))
 
 ;;; Theme
-(defface error-bold '((t (:inherit error :weight bold)))
-  "Same as standard error face, but always bold."
-  :group 'faces)
-
 (defface modo-pulse-face '((t (:inherit hl-line)))
   "Face used for pulsing the current line."
   :group 'faces)
 
 ;; Doom themes
-(straight-use-package 'doom-themes)
 (when (window-system)
   (defun modo--load-theme ()
-    (load-theme 'doom-nord t)
-    (doom-themes-set-faces 'user
-      '(org-agenda-structure :foreground (doom-color 'fg) :weight 'ultra-bold :underline t)
-      '(org-super-agenda-header :foreground (doom-color 'blue) :weight 'bold)
-      '(org-ellipsis :foreground (doom-darken (doom-color 'yellow) 0.4))
-      '(tab-bar-tab-inactive :foreground (face-attribute 'line-number :foreground))
-      '(modo-pulse-face :background (doom-lighten (face-attribute 'hl-line :background) 0.2))))
+    (load-theme 'modus-vivendi t))
   (add-hook 'emacs-startup-hook #'modo--load-theme))
 
 ;;; Doom modeline

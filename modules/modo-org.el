@@ -133,8 +133,7 @@ directory for completion."
     (modo-quieten
      (org-save-all-org-buffers)))
   (run-with-idle-timer 60 t #'modo--org-save-all-org-buffers)
-  (advice-add 'org-refile :after #'modo--org-save-all-org-buffers)
-  (doom-themes-org-config))
+  (advice-add 'org-refile :after #'modo--org-save-all-org-buffers))
 
 (straight-use-package 'org-edna)
 (use-package org-edna
