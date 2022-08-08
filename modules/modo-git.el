@@ -162,6 +162,10 @@ _C-k_: down     _a_ll                _R_efine
                                   (projectile-relevant-known-projects))))
   (setq magit-completing-read-function #'completing-read-default
         magit-commit-diff-inhibit-same-window t)
+  (defun modo--magit-maybe-toggle-line-numbers ()
+    (when (derived-mode-p 'prog-mode 'text-mode)
+      (display-line-numbers-mode 1)))
+  (add-hook 'magit-find-file-hook #'modo--magit-maybe-toggle-line-numbers)
   (evil-collection-require 'magit)
   (evil-collection-magit-setup))
 
