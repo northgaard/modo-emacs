@@ -182,6 +182,7 @@
 ;; transient
 (straight-use-package 'transient)
 (use-package transient
+  :demand t
   :config
   (setq transient-history-file (concat modo-cache-dir "transient/history.el")
         transient-levels-file (concat modo-cache-dir "transient/levels.el")

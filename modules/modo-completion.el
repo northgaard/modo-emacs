@@ -6,38 +6,21 @@
 
 ;;; Code:
 
-
-;;; ------------
-;;; Ideally I would like to gradually replace hydra with transient,
-;;; but currently transient does not support invoking transient from
-;;; the minibuffer (see transient issue #112). The code below shows
-;;; how to implement the quick move hydra with transient, as a reference
-;;; for the future.
-;;; ------------
-;; (transient-define-prefix tselectrum-quick-move ()
-;;   :transient-suffix 'transient--do-stay
-;;   :transient-non-suffix 'transient--do-warn
-;;   [["Move"
-;;     ("j" "next" selectrum-next-candidate)
-;;     ("k" "previous" selectrum-previous-candidate)
-;;     ("h" "back word" backward-kill-word)
-;;     ("H" "back sexp" backward-kill-sexp)]
-;;    ["Jump"
-;;     ("n" "next page" selectrum-next-page)
-;;     ("p" "previous page" selectrum-previous-page)
-;;     ("q" "quit" transient-quit-one)]])
-
 (straight-use-package '(vertico :repo "minad/vertico"
                                 :files (:defaults "extensions/*.el")))
-(defhydra vertico-quick-move (:color pink)
-  ("j" vertico-next "next" :column "Move")
-  ("k" vertico-previous "previous")
-  ("h" backward-kill-word "back word")
-  ("H" backward-kill-sexp "back sexp")
-  ("l" vertico-insert "insert" :column "Jump")
-  ("n" vertico-scroll-up "next page")
-  ("p" vertico-scroll-down "previous page")
-  ("q" nil "quit"))
+
+(transient-define-prefix vertico-quick-move ()
+  :transient-suffix 'transient--do-stay
+  :transient-non-suffix 'transient--do-warn
+  [["Move"
+    ("j" "next" vertico-next)
+    ("k" "previous" vertico-previous)
+    ("h" "back word" backward-kill-word)
+    ("H" "back sexp" backward-kill-sexp)]
+   ["Jump"
+    ("n" "scroll down" vertico-scroll-up)
+    ("p" "scroll up" vertico-scroll-down)
+    ("q" "quit" transient-quit-one)]])
 
 (use-package vertico
   :demand t
@@ -54,10 +37,8 @@
             "M-v" 'vertico-first
             "M-j" 'next-history-element
             "M-k" 'previous-history-element
-            "C-o" 'vertico-quick-move/body)
+            "C-o" 'vertico-quick-move)
   :config
-  ;; Fully exit quick move hydra on C-g
-  (add-hook 'minibuffer-exit-hook #'vertico-quick-move/nil)
   (setq vertico-cycle t)
   (vertico-mode 1))
 
