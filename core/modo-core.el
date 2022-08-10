@@ -178,7 +178,14 @@
 (straight-use-package 'hydra)
 (use-package hydra
   :demand t)
-(straight-use-package '(transient :type built-in))
+
+;; transient
+(straight-use-package 'transient)
+(use-package transient
+  :config
+  (setq transient-history-file (concat modo-cache-dir "transient/history.el")
+        transient-levels-file (concat modo-cache-dir "transient/levels.el")
+        transient-values-file (concat modo-cache-dir "transient/values.el")))
 
 ;; general.el --- get your keybinds here!
 (straight-use-package 'general)

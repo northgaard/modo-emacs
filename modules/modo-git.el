@@ -78,12 +78,6 @@ _C-k_: down     _a_ll                _R_efine
                    abbrev)))
   "The amount of characters git minimally uses for abbreviated hashes.")
 
-(use-package transient ; built-in
-  :config
-  (setq transient-history-file (concat modo-cache-dir "transient/history.el")
-        transient-levels-file (concat modo-cache-dir "transient/levels.el")
-        transient-values-file (concat modo-cache-dir "transient/values.el")))
-
 (defun modo-magit-status-straight-package (package)
   "Run magit status on PACKAGE installed by straight.el"
   (interactive (list (straight--select-package "Select package"

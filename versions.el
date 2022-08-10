@@ -84,6 +84,7 @@
  ("spinner" . "34905eae12a236753fa88abc831eff1e41e8576e")
  ("straight.el" . "fed215348076ba9182f634e0770a175220474b5a")
  ("sudo-edit" . "23b78a39053088839f281bc0c3134203d7e04e50")
+ ("transient" . "3b267425c0fe93a518a703d814cff3cf6a304a97")
  ("transpose-frame" . "12e523d70ff78cc8868097b56120848befab5dbc")
  ("use-package" . "0ad5d9d5d8a61517a207ab04bf69e71c081149eb")
  ("vertico" . "e4e0babaf8a6d8d8fe7c84036180f9700ae7befd")
