@@ -5,29 +5,12 @@
 
 ;;; Code:
 
-(defun company-completing-read ()
-  "Completion for `company-candidates'. Adapted from counsel-company."
-  (interactive)
-  (company-mode 1)
-  (unless company-candidates
-    (company-complete))
-  (let ((len (cond ((let (l)
-                      (and company-common
-                           (string= company-common
-                                    (buffer-substring
-                                     (- (point) (setq l (length company-common)))
-                                     (point)))
-                           l)))
-                   (company-prefix
-                    (length company-prefix)))))
-    (when len
-      (completion-in-region (- (point) len) (point) company-candidates))))
-
 (defun company-orderless-just-one-face (fn &rest args)
   (let ((orderless-match-faces [completions-common-part]))
     (apply fn args)))
 
 (straight-use-package 'company)
+(straight-use-package 'consult-company)
 (use-package company
   :defer 5
   :commands (company-mode
@@ -47,7 +30,7 @@
             "M-h" 'company-show-doc-buffer
             "C-d" 'company-next-page
             "C-b" 'company-previous-page
-            "C-o" 'company-completing-read
+            "C-o" 'consult-company
             "C-w" 'evil-delete-backward-word
             "C-l" 'company-show-location
             "<tab>" 'company-complete-common-or-cycle

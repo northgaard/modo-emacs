@@ -10,6 +10,7 @@
  ("company-mode" . "f1877a370ca76d5cd6614c527635b2d6983188af")
  ("compat" . "2a9cf8b7bdb5bf2cf4ee73b2c586ec9d736cb4f6")
  ("consult" . "e0df1020bd196063d691cda24401b0f25f751634")
+ ("consult-company" . "ef1c553b4a72b23297b55708bf6f6dd1b27cc68e")
  ("consult-flycheck" . "9b40f136c017fadf6239d7602d16bf73b4ad5198")
  ("consult-lsp" . "6074a98209c43bab31b2354fb8ced4d7e36cec33")
  ("csharp-mode" . "396b5e9b32bb58c9f984a03f5075455af87f7307")
