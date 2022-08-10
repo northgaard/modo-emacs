@@ -61,7 +61,7 @@
  ("let-alist" . "592553db5929b54db40af0df90c5add0aaca045b")
  ("ligature.el" . "9357156a917a021a87b33ee391567a5d8e44794a")
  ("lsp-mode" . "9ef89a2dd8949f183ad1a25f1bba8086f577b05e")
- ("magit" . "765069add98d64f4ef4961a0aa4b2aa82efb2156")
+ ("magit" . "8a0cc83eff98489d3685b8585afdcebbb47c1393")
  ("marginalia" . "69442c2d9472b665f698f67426cd255f6c0620a3")
  ("markdown-mode" . "0b8dc23724caa66b18bded28c08f7516cba9d292")
  ("melpa" . "1ed03e2c07f97fe5f631cd8c2212570ebc807ba8")
