@@ -34,6 +34,7 @@
             "C-d" 'vertico-scroll-up
             "C-b" 'vertico-scroll-down
             "C-v" 'vertico-last
+            "C-n" 'kill-line
             "M-v" 'vertico-first
             "M-j" 'next-history-element
             "M-k" 'previous-history-element
