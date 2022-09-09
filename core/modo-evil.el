@@ -32,6 +32,16 @@
   (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-ex-define-cmd "x" 'save-buffers-kill-terminal)
   (evil-ex-define-cmd "kill" 'save-buffers-kill-emacs)
+  (defun evil-ex-insert-at-point ()
+    "Insert the symbol at point into the ex command buffer."
+    (interactive)
+    (let ((at-point
+           (with-current-buffer (window-buffer (minibuffer-selected-window))
+             (thing-at-point 'symbol 'no-properties))))
+      (when at-point
+        (insert at-point))))
+  (general-define-key :keymap 'evil-ex-completion-map
+                      "C-t" 'evil-ex-insert-at-point)
   ;; Set cursor colors after theme is loaded
   (defun modo--init-cursors (&rest _)
     (setq evil-default-cursor (face-background 'cursor nil t)
