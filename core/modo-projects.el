@@ -55,11 +55,12 @@
                       ;; I have never used
                       "R" 'modo-revert-all-project-file-buffers))
 
-(evil-define-command projectile-grep-ex-command (prompt)
-  "Grep in the current project with an ex query."
+(evil-define-command vc-git-grep-ex-command (prompt)
+  "Git grep in the current repository with an ex query."
   (interactive "<a>")
-  (projectile-grep prompt))
-(evil-ex-define-cmd "pgrep" #'projectile-grep-ex-command)
+  (require 'vc-git)
+  (vc-git-grep prompt "*" (vc-root-dir)))
+(evil-ex-define-cmd "gg[rep]" #'vc-git-grep-ex-command)
 
 (defvar-local modo-file-jump-directory #'file-name-directory
   "Function determining the root directory for file jumps. Should
