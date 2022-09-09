@@ -212,7 +212,6 @@ targets."
                     (when evil-ex-search-persistent-highlight
                       (evil-ex-search-activate-highlight evil-ex-search-pattern)))))))
   (advice-add 'consult-line :around #'modo--consult-line-evil-ex)
-  (setq consult-project-root-function #'projectile-project-root)
   (add-hook 'consult-after-jump-hook #'which-func-update)
   (modo-add-hook (consult-after-jump-hook
                   :name "modo--load-which-func"
