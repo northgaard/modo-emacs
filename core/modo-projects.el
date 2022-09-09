@@ -1,59 +1,24 @@
 ;;; modo-projects.el --- project handling -*- lexical-binding: t -*-
 ;;; Commentary:
 
-;; Handling of projects powered by projectile.
+;; Handling of projects powered by project.el.
 
 ;;; Code:
 
-(straight-use-package 'projectile)
-(use-package projectile
-  :demand t
-  :diminish projectile-mode
-  :hook (after-init . projectile-mode)
+(use-package project
   :init
-  (setq projectile-cache-file (concat modo-cache-dir "projectile.cache")
-        projectile-enable-caching t
-        projectile-require-project-root nil
-        projectile-known-projects-file (concat modo-cache-dir "projectile.projects")
-        projectile-use-git-grep t
-        projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
-        projectile-indexing-method 'hybrid
-        projectile-sort-order 'recentf
-        projectile-per-project-compilation-buffer t)
-  ;; Get rid of the default mappings
-  (setq projectile-mode-map (make-sparse-keymap))
+  (setq project-list-file (concat modo-cache-dir "projects")
+        project-compilation-buffer-name-function #'project-prefixed-buffer-name)
   :general
   (modo-define-leader-key :keymaps 'override
-    "p" '(projectile-command-map :wk "projectile"))
+    "p" '(:keymap project-prefix-map :wk "project"))
+  (general-define-key :keymaps 'project-prefix-map
+                      "a" 'ff-find-other-file
+                      "R" 'modo-revert-all-project-file-buffers)
   :config
-  ;; The `project' equivalent for find-file and switch-buffer are
-  ;; nicer than the projectile equivalents, because they have better
-  ;; support for annotations and completion categories. Luckily, we
-  ;; can use projectile to provide the completions, and get the best
-  ;; of both worlds.
-  (require 'project)
-  (setq project-list-file (concat modo-cache-dir "projects"))
-  (push (defun modo-project-projectile (dir)
-          (when-let ((root (projectile-project-root dir)))
-            (cons 'projectile root)))
-        project-find-functions)
-  (cl-defmethod project-root ((project (head projectile)))
-    (cdr project))
-  (cl-defmethod project-files ((project (head projectile)) &optional _dirs)
-    (let ((root (project-root project)))
-      ;; Make paths absolute and ignore the optional dirs argument, see
-      ;; https://github.com/bbatsov/projectile/issues/1591#issuecomment-896423965
-      (mapcar (apply-partially #'concat root)
-              (projectile-project-files root))))
-  (cl-defmethod project-buffers ((project (head projectile)))
-    (projectile-project-buffers (project-root project)))
-  (general-define-key :keymaps 'override
-                      [remap projectile-find-file] 'project-find-file
-                      [remap projectile-switch-to-buffer] 'project-switch-to-buffer)
-  (general-define-key :keymaps 'projectile-command-map
-                      ;; Overrides `projectile-regenerate-tags', which
-                      ;; I have never used
-                      "R" 'modo-revert-all-project-file-buffers))
+  (setq project-switch-commands (seq-remove (lambda (item)
+                                             (string-equal (cadr item) "VC-Dir"))
+                                           project-switch-commands)))
 
 (evil-define-command vc-git-grep-ex-command (prompt)
   "Git grep in the current repository with an ex query."
@@ -71,11 +36,40 @@ take a file name and return a directory.")
 (defun modo-revert-all-project-file-buffers ()
   "Reverts all file visiting project buffers."
   (interactive)
+  (require 'project)
   (when (yes-or-no-p "Revert all file visiting project buffers?")
-    (dolist (buffer (projectile-project-buffers))
+    (dolist (buffer (project-buffers (project-current)))
       (when (buffer-file-name buffer)
         (with-current-buffer buffer
           (revert-buffer nil 'noconfirm))))))
+
+;; -- Some extras nixed from projectile --
+(defvar project-generic-command
+  (cond
+   ;; we prefer fd over find
+   ((executable-find "fd")
+    "fd . -0 --type f --color=never --strip-cwd-prefix")
+   ;; fd's executable is named fdfind is some Linux distros (e.g. Ubuntu)
+   ((executable-find "fdfind")
+    "fdfind . -0 --type f --color=never --strip-cwd-prefix")
+   ;; with find we have to be careful to strip the ./ from the paths
+   ;; see https://stackoverflow.com/questions/2596462/how-to-strip-leading-in-unix-find
+   (t (format "%s . -type f | cut -c3- | tr '\\n' '\\0'" find-program))))
+
+(defun project-files-via-ext-command (root command)
+  "Get a list of relative file names in the project ROOT by executing COMMAND.
+
+If `command' is nil or an empty string, return nil.
+This allows commands to be disabled.
+
+Only text sent to standard output is taken into account."
+  (when (stringp command)
+    (let ((default-directory root))
+      (with-temp-buffer
+        (shell-command command t "*project-files-errors*")
+        (let ((shell-output (buffer-substring (point-min) (point-max))))
+          (split-string (string-trim shell-output) "\0" t))))))
+;; -- End of projectile extras --
 
 (defun modo-file-jump ()
   "Jump to a file from the current one, selecting from a list of
@@ -85,9 +79,12 @@ for the current file."
   (if-let ((file (buffer-file-name (current-buffer))))
       (let* ((modo--current-jump-directory (funcall modo-file-jump-directory file))
              (dir modo--current-jump-directory)
-             (candidates (if (projectile-project-p dir)
-                             (projectile-dir-files dir)
-                           (projectile-files-via-ext-command dir projectile-generic-command))))
+             (cp (project-current))
+             (candidates (if cp
+                             (mapcar (lambda (file)
+                                       (file-relative-name file dir))
+                                     (project-files cp (list dir)))
+                           (project-files-via-ext-command dir project-generic-command))))
         (let ((file (completing-read
                      (format "Find file in %s: " dir)
                      (lambda (input predicate action)

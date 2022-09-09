@@ -97,7 +97,7 @@ For now requires lsp to be enabled as well.")
   "cd" 'consult-lsp-diagnostics
   "cs" 'consult-lsp-symbols)
 (general-define-key :keymaps 'lsp-c++-mode-map
-                    [remap projectile-find-other-file] 'lsp-clangd-find-other-file
+                    [remap ff-find-other-file] 'lsp-clangd-find-other-file
                     [remap evil-goto-definition] 'lsp-find-definition
                     "M-s" 'consult-lsp-file-symbols)
 (general-define-key :keymaps 'lsp-c++-mode-map

@@ -28,7 +28,6 @@
              flycheck
              lsp
              elisp
-             csharp
              cpp
              rust
              groovy)

@@ -18,9 +18,6 @@
 
 ;; XML
 (use-package nxml-mode
-  :mode (("\\.xml\\'" . nxml-mode)
-         ("\\.xaml\\'" . nxml-mode)
-         ("\\.csproj\\'" . nxml-mode))
   :config
   (setq nxml-slash-auto-complete-flag t))
 

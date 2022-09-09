@@ -6,8 +6,6 @@
 
 ;;; Code:
 
-(declare-function projectile-project-root "projectile")
-
 (require 'flycheck)
 (require 'seq)
 
@@ -17,8 +15,8 @@
 
 (defun flycheck-clazy--find-project-root (_checker)
   (let ((project-root nil))
-    (when (bound-and-true-p projectile-mode)
-      (setq project-root (projectile-project-root)))
+    (when (fboundp 'project-root)
+      (setq project-root (project-root (project-current))))
     (unless project-root
       (locate-dominating-file (buffer-file-name) "compile_commands.json"))
     (unless project-root

@@ -106,7 +106,13 @@ _C-k_: down     _a_ll                _R_efine
       (magit-status (locate-dominating-file file ".git")))
     (general-define-key :keymaps 'embark-file-map
                         "v" 'embark-magit-status))
-  (setq projectile-switch-project-action (lambda () (magit-status (projectile-project-root))))
+  (with-eval-after-load 'project
+    (defun project-magit-status ()
+      "Run `magit-status' in project."
+      (interactive)
+      (magit-status (project-root (project-current))))
+    (add-to-list 'project-switch-commands
+                 '(project-magit-status "Magit Status" "s") 'append))
   (modo-add-hook (git-commit-setup-hook)
     (modo-disable-auto-save-backup-locally)
     (evil-normalize-keymaps)
@@ -147,13 +153,6 @@ _C-k_: down     _a_ll                _R_efine
   (when (string= "SPC" modo-leader)
     (general-define-key :keymaps 'magit-mode-map
                         modo-leader nil))
-  ;; Use projectile to get known repositories
-  (setq magit-repository-directories
-        (mapcar (lambda (dir)
-                  (cons (directory-file-name dir) 0))
-                (cl-remove-if-not (lambda (project)
-                                    (file-directory-p (concat project "/.git/")))
-                                  (projectile-relevant-known-projects))))
   (setq magit-completing-read-function #'completing-read-default
         magit-commit-diff-inhibit-same-window t)
   (defun modo--magit-maybe-toggle-line-numbers ()

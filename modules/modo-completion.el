@@ -179,7 +179,8 @@ targets."
             [remap isearch-forward] 'consult-line
             [remap switch-to-buffer] 'consult-buffer
             [remap recentf-open-files] 'consult-recent-file
-            [remap bookmark-jump] 'consult-bookmark)
+            [remap bookmark-jump] 'consult-bookmark
+            [remap project-switch-to-buffer] 'consult-project-buffer)
   (modo-define-leader-key :keymaps 'override
     "im" 'consult-man)
   (:states '(motion normal visual)
