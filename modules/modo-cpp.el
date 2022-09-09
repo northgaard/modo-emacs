@@ -127,6 +127,10 @@ For now requires lsp to be enabled as well.")
   (modo-add-hook (c++-mode-hook :name "modo--c++-mode-setup")
     (modern-c++-font-lock-mode 1)
     (evil-normalize-keymaps)
+    ;; This is a bit experimental, but allow ":" as a separator for
+    ;; symbols, since its used for enums and namespaces, e.g
+    ;; my_namespace::my_class.
+    (modify-syntax-entry ?: "_")
     (push '(?< . ("<" . ">")) evil-surround-pairs-alist))
   (defun modo--add-clazy-checks ()
     (require 'flycheck-clazy)
