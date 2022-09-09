@@ -214,8 +214,13 @@ targets."
   (advice-add 'consult-line :around #'modo--consult-line-evil-ex)
   (setq consult-project-root-function #'projectile-project-root)
   (add-hook 'consult-after-jump-hook #'which-func-update)
+  (modo-add-hook (consult-after-jump-hook
+                  :name "modo--load-which-func"
+                  :transient t)
+    (require 'which-func))
   (consult-customize
-   consult-recent-file :preview-key nil))
+   consult-recent-file consult-bookmark
+   :preview-key (kbd "M-.")))
 
 (straight-use-package 'embark-consult)
 (use-package embark-consult
