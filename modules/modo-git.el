@@ -112,7 +112,7 @@ _C-k_: down     _a_ll                _R_efine
       (interactive)
       (magit-status (project-root (project-current))))
     (add-to-list 'project-switch-commands
-                 '(project-magit-status "Magit Status" "s") 'append))
+                 '(project-magit-status "Magit Status" ?s) 'append))
   (modo-add-hook (git-commit-setup-hook)
     (modo-disable-auto-save-backup-locally)
     (evil-normalize-keymaps)
