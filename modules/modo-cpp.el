@@ -148,12 +148,12 @@ For now requires lsp to be enabled as well.")
                   company-idle-delay 0
                   company-minimum-prefix-length 1))
     (when modo-c++-enable-clazy
-        ;; We need some hacks to make clazy and lsp checking work
-        ;; together. The lsp flycheck checker is not defined until
-        ;; `lsp-diagnostics-mode' is enabled, so add the hook early to
-        ;; let it run (or not) when lsp gets around to initializing
-        ;; the mode.
-        (add-hook 'lsp-diagnostics-mode-hook #'modo--add-clazy-checks nil 'local))))
+      ;; We need some hacks to make clazy and lsp checking work
+      ;; together. The lsp flycheck checker is not defined until
+      ;; `lsp-diagnostics-mode' is enabled, so add the hook early to
+      ;; let it run (or not) when lsp gets around to initializing
+      ;; the mode.
+      (add-hook 'lsp-diagnostics-mode-hook #'modo--add-clazy-checks nil 'local))))
 
 
 ;; Search cppreference.com
