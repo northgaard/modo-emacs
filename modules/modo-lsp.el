@@ -22,7 +22,7 @@ should use lsp-mode.")
         lsp-auto-guess-root t
         lsp-idle-delay 0.1)
   :config
-  (require 'flycheck)
+  (require 'flymake)
   (require 'company)
   (setq lsp-headerline-breadcrumb-enable nil))
 

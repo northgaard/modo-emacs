@@ -18,12 +18,6 @@
 on the buffer before saving.")
 (put 'modo-c++-enable-clang-format-on-save 'safe-local-variable #'booleanp)
 
-(defvar-local modo-c++-enable-clazy nil
-  "Buffer local variable to determine whether to lint with clazy.
-For now requires lsp to be enabled as well.")
-(put 'modo-c++-enable-clazy 'safe-local-variable #'booleanp)
-(modo-byte-compile-module-file "flycheck-clazy")
-
 (straight-use-package 'clang-format)
 (use-package clang-format
   :commands (clang-format-region clang-format-buffer)
@@ -93,7 +87,7 @@ For now requires lsp to be enabled as well.")
   "ro" 'lsp-organize-imports
   "a" 'lsp-execute-code-action
   "c" '(:prefix-command lsp-c++-consult-command :wk "consult")
-  "ce" 'consult-flycheck
+  "ce" 'consult-flymake
   "cd" 'consult-lsp-diagnostics
   "cs" 'consult-lsp-symbols)
 (general-define-key :keymaps 'lsp-c++-mode-map
@@ -118,8 +112,8 @@ For now requires lsp to be enabled as well.")
     "fr" 'clang-format-region
     "fd" 'clang-format-defun
     "fv" 'clang-format-hunks
-    "j" 'flycheck-next-error
-    "k" 'flycheck-previous-error)
+    "j" 'flymake-goto-next-error
+    "k" 'flymake-goto-prev-error)
   :init
   (modo-add-hook (c++-mode-hook :name "modo--load-clang-format"
                                 :transient t)
@@ -132,13 +126,6 @@ For now requires lsp to be enabled as well.")
     ;; my_namespace::my_class.
     (modify-syntax-entry ?: "_")
     (push '(?< . ("<" . ">")) evil-surround-pairs-alist))
-  (defun modo--add-clazy-checks ()
-    (require 'flycheck-clazy)
-    (add-to-list 'flycheck-checkers 'c++-clazy)
-    ;; lsp mode sets this to lsp, which seems to override even the
-    ;; next-checker functionality, so override this.
-    (setq-local flycheck-checker nil)
-    (flycheck-add-next-checker 'c++-clazy '(t . lsp)))
   (modo-add-hook (c++-mode-local-vars-hook :name "modo--c++-mode-local-vars-setup")
     (when modo-enable-lsp
       (lsp-deferred)
@@ -146,15 +133,7 @@ For now requires lsp to be enabled as well.")
       (setq-local lsp-enable-indentation nil
                   lsp-enable-on-type-formatting nil
                   company-idle-delay 0
-                  company-minimum-prefix-length 1))
-    (when modo-c++-enable-clazy
-      ;; We need some hacks to make clazy and lsp checking work
-      ;; together. The lsp flycheck checker is not defined until
-      ;; `lsp-diagnostics-mode' is enabled, so add the hook early to
-      ;; let it run (or not) when lsp gets around to initializing
-      ;; the mode.
-      (add-hook 'lsp-diagnostics-mode-hook #'modo--add-clazy-checks nil 'local))))
-
+                  company-minimum-prefix-length 1))))
 
 ;; Search cppreference.com
 (modo-install-search-engine "cppreference" "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=" "cpp[ref]")

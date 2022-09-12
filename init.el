@@ -25,7 +25,7 @@
              latex
              snippets
              spellcheck
-             flycheck
+             flymake
              lsp
              elisp
              cpp
