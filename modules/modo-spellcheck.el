@@ -110,41 +110,6 @@ package like this is not possible with the global
     "ks" 'modo-flyspell-correct-session
     "kw" 'modo-flyspell-correct-word)
   :config
-  (with-eval-after-load 'embark
-    (defun flyspell-correct-embark-skip (word)
-      (throw 'flyspell-correct-return (cons 'skip word)))
-    (defun flyspell-correct-embark-save (word)
-      (throw 'flyspell-correct-return (cons 'save word)))
-    (defun flyspell-correct-embark-session (word)
-      (throw 'flyspell-correct-return (cons 'session word)))
-    (defun flyspell-correct-embark-buffer (word)
-      (throw 'flyspell-correct-return (cons 'buffer word)))
-    (defun flyspell-correct-embark-stop (word)
-      (throw 'flyspell-correct-return (cons 'stop word)))
-    (defvar embark-flyspell-correct-map (make-sparse-keymap)
-      "Keymap for actions with flyspell-correct.")
-    (general-define-key :keymaps 'embark-flyspell-correct-map
-                        "s" '(flyspell-correct-embark-save :wk "save")
-                        "S" '(flyspell-correct-embark-session :wk "save (session)")
-                        "b" '(flyspell-correct-embark-buffer :wk "save (buffer)")
-                        "k" '(flyspell-correct-embark-skip :wk "skip")
-                        "q" '(flyspell-correct-embark-stop :wk "stop"))
-    (add-to-list 'embark-keymap-alist '(flyspell-correct . embark-flyspell-correct-map))
-  (defun flyspell-correct-embark (candidates word)
-    (catch 'flyspell-correct-return
-      ;; Using cl-letf here doesn't feel right, probably should open
-      ;; an issue on the embark repo.
-      (cl-letf (((symbol-function 'embark--quit-and-run)
-                 #'funcall))
-        (completing-read
-         (format "Correcting '%s': " word)
-         (lambda (input predicate action)
-           (if (eq action 'metadata)
-               '(metadata (display-sort-function . identity)
-                          (cycle-sort-function . identity)
-                          (category . flyspell-correct))
-             (complete-with-action action candidates input predicate)))))))
-  (setq flyspell-correct-interface #'flyspell-correct-embark))
   (defun modo-flyspell-correct-word ()
     "Check last word and correct if misspelled."
     (interactive)
