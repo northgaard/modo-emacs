@@ -44,6 +44,7 @@
  ("flyspell-lazy" . "0fc5996bcee20b46cbd227ae948d343c3bef7339")
  ("gcmh" . "0089f9c3a6d4e9a310d0791cf6fa8f35642ecfd9")
  ("general.el" . "9651024e7f40a8ac5c3f31f8675d3ebe2b667344")
+ ("git-link" . "fe2e8aa92dd8f1a9fb3f471658701487ff21f22b")
  ("git-modes" . "eca3bb42ea8abed9ef8549b2ac91bbea445c5bb5")
  ("git-timemachine" . "ca09684e94767cc0b2339b77b778b4de4f9d104f")
  ("glsl-mode" . "9b2e5f28e489a1f73c4aed734105618ac0dc0c43")

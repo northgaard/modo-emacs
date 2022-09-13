@@ -241,5 +241,12 @@ _k_: previous revision     _n_: nth revision           _c_: show commit
     (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
     (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
+(straight-use-package 'git-link)
+(use-package git-link
+  :general
+  (modo-define-leader-key :keymaps 'override
+    "vi" 'git-link
+    "vI" 'git-link-commit))
+
 (provide 'modo-git)
 ;;; modo-git.el ends here
