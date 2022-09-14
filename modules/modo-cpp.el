@@ -49,7 +49,7 @@ on the buffer before saving.")
     "Use clang-format to format all unstaged hunk in the current buffer."
     (interactive)
     (unless (bound-and-true-p diff-hl-mode)
-      (user-error "git gutter not enabled!"))
+      (user-error "diff-hl not enabled!"))
     (let ((overlay nil)
           (p (point-min)))
       (while (setq overlay (diff-hl-search-next-hunk nil p))
