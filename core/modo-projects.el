@@ -20,6 +20,11 @@
                                              (string-equal (cadr item) "VC-Dir"))
                                            project-switch-commands)))
 
+(use-package vc-git
+  :config
+  ;; Same as default, with added "-I" to ignore binary files
+  (setq vc-git-grep-template "git --no-pager grep -n -I <C> -e <R> -- <F>"))
+
 (evil-define-command vc-git-grep-ex-command (prompt)
   "Git grep in the current repository with an ex query."
   (interactive "<a>")
