@@ -144,5 +144,10 @@
   (evil-collection-define-key 'normal 'grep-mode-map
     "o" 'ace-link-compilation))
 
+(use-package xref
+  :config
+  (evil-collection-require 'xref)
+  (evil-collection-xref-setup))
+
 (provide 'modo-keybinds)
 ;;; modo-keybinds.el ends here
