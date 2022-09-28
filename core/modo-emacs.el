@@ -54,6 +54,11 @@
 ;;; Powershell
 (straight-use-package 'powershell)
 
+(use-package help-at-pt
+  :custom
+  (help-at-pt-display-when-idle '(help-echo))
+  (help-at-pt-timer-delay 0.5))
+
 ;;; Helpful -- better help buffers
 (straight-use-package 'helpful)
 (use-package helpful
@@ -70,7 +75,8 @@
     "hh" 'helpful-at-point
     "hc" 'helpful-callable
     "hx" 'helpful-command
-    "hm" 'helpful-macro)
+    "hm" 'helpful-macro
+    "h." 'display-local-help)
   :config
   (evil-collection-require 'helpful)
   (evil-collection-helpful-setup)
