@@ -214,9 +214,8 @@ targets."
                       (evil-ex-search-activate-highlight evil-ex-search-pattern)))))))
   (advice-add 'consult-line :around #'modo--consult-line-evil-ex)
   (defun modo--which-func-update ()
-    (when (memq major-mode which-func-modes)
-      (which-func-mode 1)
-      (which-func-update)))
+    (which-func-try-to-enable)
+    (which-func-update))
   (add-hook 'consult-after-jump-hook #'modo--which-func-update)
   (modo-add-hook (consult-after-jump-hook
                   :name "modo--load-which-func"
