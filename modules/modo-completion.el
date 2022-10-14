@@ -213,7 +213,11 @@ targets."
                     (when evil-ex-search-persistent-highlight
                       (evil-ex-search-activate-highlight evil-ex-search-pattern)))))))
   (advice-add 'consult-line :around #'modo--consult-line-evil-ex)
-  (add-hook 'consult-after-jump-hook #'which-func-update)
+  (defun modo--which-func-update ()
+    (when (memq major-mode which-func-modes)
+      (which-func-mode 1)
+      (which-func-update)))
+  (add-hook 'consult-after-jump-hook #'modo--which-func-update)
   (modo-add-hook (consult-after-jump-hook
                   :name "modo--load-which-func"
                   :transient t)
