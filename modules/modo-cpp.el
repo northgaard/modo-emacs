@@ -13,6 +13,9 @@
                                    :files (:defaults)))
 (use-package cmake-mode)
 
+;; Build it like a hipster.
+(straight-use-package 'meson-mode)
+
 (defvar-local modo-c++-enable-clang-format-on-save t
   "Buffer local variable to determine whether to run clang-format
 on the buffer before saving.")
