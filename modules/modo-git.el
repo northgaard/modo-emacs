@@ -140,6 +140,9 @@ _C-k_: down     _a_ll                _R_efine
     "vu" 'magit-unstage-file
     "vD" 'magit-file-dispatch
     "vw" 'magit-show-commit)
+  (modo-define-leader-key
+    :keymaps 'magit-blob-mode-map
+    "vv" 'magit-blob-visit-file)
   (:states '(motion normal visual)
            :keymaps 'magit-log-mode-map
            "gs" #'avy-magit-log-goto-commit)
