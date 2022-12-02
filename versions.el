@@ -26,7 +26,7 @@
  ("emacs-winum" . "c5455e866e8a5f7eab6a7263e2057aff5f1118b9")
  ("emacsmirror-mirror" . "9a56c1d1a7e05f742dde80ed5bff6a83d30c04e4")
  ("embark" . "2422d4e86f24b2b4204f2441f953e8407d011a2e")
- ("evil" . "840084f1ce208388b0e36b560763420cc16886dd")
+ ("evil" . "2e8576188b1d0768fbf92c6bea2fb3fbed9f019f")
  ("evil-args" . "2671071a4a57eaee7cc8c27b9e4b6fc60fd2ccd3")
  ("evil-collection" . "94bbfe51cc613164d9cc575076af38ff6911e4cd")
  ("evil-commentary" . "2dab6ac34d1617971768ad219d73af48f7473fec")
