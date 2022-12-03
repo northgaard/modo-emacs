@@ -78,7 +78,7 @@
  ("s.el" . "e957dcb0677da18b2bb60ad867db5df5c35b5616")
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("spinner" . "634529bb3173e09b37499f636de70abf29d9fa8a")
- ("straight.el" . "ad1c198d7f90017d61869413167bcb1d58e19492")
+ ("straight.el" . "b89a0f700f6d1fe9fe0b0721d7d5f8f50a0520f5")
  ("sudo-edit" . "74eb1e6986461baed9a9269566ff838530b4379b")
  ("transient" . "097f5be6e0c228790a6e78ffee5f0c599cb58b20")
  ("transpose-frame" . "7b7f8a1582436749a57ebbba6ead716b5a0edddc")
