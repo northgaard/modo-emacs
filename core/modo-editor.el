@@ -48,9 +48,10 @@
   :demand t
   :config
   (setq recentf-save-file (expand-file-name "recentf" modo-cache-dir)
-        recentf-max-saved-items 50
+        recentf-max-saved-items 100
         recentf-max-menu-items 15
-        recentf-auto-cleanup 'never)
+        recentf-auto-cleanup 'never
+        recentf-filename-handlers nil)
   (add-to-list 'recentf-exclude 'modo-recentf-exclude-p)
   (recentf-mode 1))
 
