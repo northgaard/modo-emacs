@@ -36,8 +36,7 @@ directory for completion."
    (list (read-file-name "Select file: "
                          modo-org-root-dir
                          (car (thunk-force modo--org-files-at-root)))))
-   (find-file filename)
-   (run-hooks 'find-file-hook))
+   (find-file filename))
 
 (straight-use-package '(org :type built-in))
 (use-package org

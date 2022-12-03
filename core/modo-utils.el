@@ -12,9 +12,7 @@
          (buffer-name (get-file-buffer dotfile)))
     (if buffer-name
         (switch-to-buffer buffer-name) ;; If buffer already exists, simply switch to it
-      (find-file dotfile)
-      ;; Needed to make saveplace work with this function
-      (run-hooks 'find-file-hook))))
+      (find-file dotfile))))
 
 (defun modo-find-core-file (name)
   "Opens the core file modo-NAME.el in modo-core-dir."
@@ -27,9 +25,7 @@
     (if buffer-name
         (switch-to-buffer buffer-name)
       (if (file-exists-p core-file)
-          (progn
-            (find-file core-file)
-            (run-hooks 'find-file-hook))
+          (find-file core-file)
         (error "'%s' is not a core file!" core-file)))))
 
 (defun modo-find-module-file (name)
@@ -43,9 +39,7 @@
     (if buffer-name
         (switch-to-buffer buffer-name)
       (if (file-exists-p module-file)
-          (progn
-            (find-file module-file)
-            (run-hooks 'find-file-hook))
+          (find-file module-file)
         (error "'%s' is not a module file!" module-file)))))
 
 (defun modo-delete-auto-save-file ()
