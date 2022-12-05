@@ -82,7 +82,8 @@ directory for completion."
         org-refile-use-cache t
         org-hide-emphasis-markers t
         org-hidden-keywords '(title)
-        org-ellipsis " ▾")
+        org-ellipsis " ▾"
+        org-persist-directory (expand-file-name "org-persist/" modo-cache-dir))
     ;; Set face height for heading levels
   (dolist (face '((org-level-1 . 1.2)
                   (org-level-2 . 1.1)
