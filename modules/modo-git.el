@@ -157,7 +157,8 @@ _C-k_: down     _a_ll                _R_efine
     (general-define-key :keymaps 'magit-mode-map
                         modo-leader nil))
   (setq magit-completing-read-function #'completing-read-default
-        magit-commit-diff-inhibit-same-window t)
+        magit-commit-diff-inhibit-same-window t
+        magit-save-repository-buffers 'dontask)
   (defun modo--magit-maybe-toggle-line-numbers ()
     (when (derived-mode-p 'prog-mode 'text-mode)
       (display-line-numbers-mode 1)))
