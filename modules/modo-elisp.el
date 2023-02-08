@@ -16,5 +16,14 @@
                                                company-keywords
                                                company-files))))
 
+(straight-use-package 'debbugs)
+(use-package debbugs
+  :config
+  (evil-collection-require 'debbugs)
+  (evil-collection-debbugs-setup)
+  (evil-collection-define-key 'normal 'debbugs-gnu-mode-map
+    (kbd modo-leader) nil)
+  (setq debbugs-gnu-persistency-file (expand-file-name "debbugs" modo-cache-dir)))
+
 (provide 'modo-elisp)
 ;;; modo-elisp.el ends here
