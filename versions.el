@@ -11,7 +11,7 @@
  ("compat" . "226bd90cddc2dc20404a1d817032b83026afe4a6")
  ("consult" . "b22a7de62ee4adf766be2f867dee8b6980902bba")
  ("consult-company" . "5d8275bff131ce2aaa678dd46aac345eb4fc8b27")
- ("consult-lsp" . "6074a98209c43bab31b2354fb8ced4d7e36cec33")
+ ("consult-lsp" . "3279791415d4f4e53ad8f2d4e4ecfb2668d850bc")
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
  ("debbugs" . "df159214e70394dbed8da1f7a408f1b8d6286eab")
  ("default-text-scale" . "bfc0987c37e93742255d3b23d86c17096fda8e7e")
