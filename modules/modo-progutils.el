@@ -10,11 +10,7 @@
 (use-package markdown-mode)
 
 ;; JSON
-(straight-use-package
- '(json-mode :type git
-             :host github
-             :repo "UwUnyaa/json-mode"))
-(use-package json-mode)
+(add-to-list 'auto-mode-alist '("\\.json" . js-mode))
 
 ;; XML
 (use-package nxml-mode
