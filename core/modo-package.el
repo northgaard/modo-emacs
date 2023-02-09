@@ -51,7 +51,7 @@ For example, the module name git translates to a call to (require 'modo-git)."
 
 ;;; use-package
 (straight-use-package 'diminish)
-(straight-use-package 'use-package)
+(straight-use-package '(use-package :type built-in))
 
 (setq use-package-verbose t)
 (setq use-package-always-defer t)

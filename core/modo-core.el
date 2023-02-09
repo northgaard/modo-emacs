@@ -180,7 +180,7 @@
   :demand t)
 
 ;; transient
-(straight-use-package 'transient)
+(straight-use-package '(transient :type built-in))
 (use-package transient
   :demand t
   :config
