@@ -162,7 +162,7 @@
 (straight-use-package 'f)
 
 (require 'dash)
-(dash-enable-font-lock)
+(global-dash-fontify-mode 1)
 (require 's)
 (require 'f)
 
