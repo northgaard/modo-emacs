@@ -223,7 +223,7 @@ targets."
     (require 'which-func))
   (consult-customize
    consult-recent-file consult-bookmark
-   :preview-key (kbd "M-.")))
+   :preview-key "M-."))
 
 (straight-use-package 'embark-consult)
 (use-package embark-consult
