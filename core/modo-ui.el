@@ -237,11 +237,6 @@ by winum."
                                 ("XXX" font-lock-constant-face bold))))
 
 ;;; Theme
-(defface modo-pulse-face '((t (:inherit hl-line)))
-  "Face used for pulsing the current line."
-  :group 'faces)
-
-;; Doom themes
 (when (window-system)
   (defun modo--load-theme ()
     (load-theme 'modus-vivendi t))
@@ -267,39 +262,6 @@ by winum."
 (use-package tab-bar
   :custom
   (tab-bar-show 1))
-
-;;; Pulse on window change, trying out to see if I like it
-(defun modo-pulse-line (&rest _)
-  (pulse-momentary-highlight-one-line (point) 'modo-pulse-face))
-
-(define-minor-mode modo-pulse-line-mode
-  "Turn on modo-pulse-line-mode.
-
-This pulses the line at point when switching windows with winum
-or ace-window. I've experienced flickering on some installations
-with this, so it is not turned on by default."
-  :group 'modo
-  :global t
-  (progn
-    (require 'pulse)
-    (let ((pulse-commands '(aw-switch-to-window
-                            winum-select-window-1
-                            winum-select-window-2
-                            winum-select-window-3
-                            winum-select-window-4
-                            winum-select-window-5
-                            winum-select-window-6
-                            winum-select-window-7
-                            winum-select-window-8
-                            winum-select-window-9
-                            winum-select-window-0-or-10)))
-      (cond
-       (modo-pulse-line-mode
-        (dolist (command pulse-commands)
-          (advice-add command :after #'modo-pulse-line)))
-       (t
-        (dolist (command pulse-commands)
-          (advice-remove command #'modo-pulse-line)))))))
 
 (provide 'modo-ui)
 ;;; modo-ui.el ends here
