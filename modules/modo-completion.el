@@ -229,7 +229,7 @@ targets."
 (use-package embark-consult
   :demand t
   :after (embark consult)
-  :hook (embark-collect-mode . embark-consult-preview-minor-mode))
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (provide 'modo-completion)
 ;;; modo-completion.el ends here
