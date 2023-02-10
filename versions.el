@@ -6,7 +6,7 @@
  ("auctex-latexmk" . "b00a95e6b34c94987fda5a57c20cfe2f064b1c7a")
  ("avy" . "955c8dedd68c74f3cf692c1249513f048518c4c9")
  ("clang-format" . "e48ff8ae18dc7ab6118c1f6752deb48cb1fc83ac")
- ("cmake-mode" . "7e56c0ed8fb5d36bd4d3f93134c5adc299671855")
+ ("cmake-mode" . "58e758c8da37476518da2c8ef994c88d657671bf")
  ("company-mode" . "d5d06f0539068e741b12a480be3f312e9b6df812")
  ("compat" . "226bd90cddc2dc20404a1d817032b83026afe4a6")
  ("consult" . "b22a7de62ee4adf766be2f867dee8b6980902bba")
