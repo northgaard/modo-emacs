@@ -30,7 +30,7 @@
  ("embark" . "4882b395cef98a517d530ffe483aa0dc7201158c")
  ("evil" . "880613823a572d9294001b63468d8c39face5acf")
  ("evil-args" . "2671071a4a57eaee7cc8c27b9e4b6fc60fd2ccd3")
- ("evil-collection" . "7327174a359d2237e8abb394f8ffc915112ca52d")
+ ("evil-collection" . "d0da50c949fd2a7b92997aac8c965a0038f97941")
  ("evil-commentary" . "2dab6ac34d1617971768ad219d73af48f7473fec")
  ("evil-easymotion" . "f96c2ed38ddc07908db7c3c11bcd6285a3e8c2e9")
  ("evil-escape" . "3c335a5709b1abb08687960038746b36add465f9")
