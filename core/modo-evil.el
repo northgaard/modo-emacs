@@ -111,25 +111,26 @@
   :after avy
   :config
   (evilem-default-keybindings "C-e") ;; Not sure about this binding
-  (evilem-make-motion modo-easymotion-snipe-repeat #'evil-snipe-repeat
+  (let ((byte-compile-warnings nil))
+    (evilem-make-motion modo-easymotion-snipe-repeat #'evil-snipe-repeat
                         :bind ((evil-snipe-scope 'buffer)
                                (evil-snipe-enable-highlight)
                                (evil-snipe-enable-incremental-highlight)))
-  (evilem-make-motion modo-easymotion-snipe-repeat-reverse
+    (evilem-make-motion modo-easymotion-snipe-repeat-reverse
                         #'evil-snipe-repeat-reverse
                         :bind ((evil-snipe-scope 'buffer)
                                (evil-snipe-enable-highlight)
                                (evil-snipe-enable-incremental-highlight)))
-  (evilem-define (kbd "C-e s") 'evil-snipe-repeat
-                 :pre-hook (save-excursion (call-interactively #'evil-snipe-s))
-                 :bind ((evil-snipe-scope 'buffer)
-                        (evil-snipe-enable-highlight)
-                        (evil-snipe-enable-incremental-highlight)))
-  (evilem-define (kbd "C-e S") 'evil-snipe-repeat-reverse
-                 :pre-hook (save-excursion (call-interactively #'evil-snipe-s))
-                 :bind ((evil-snipe-scope 'buffer)
-                        (evil-snipe-enable-highlight)
-                        (evil-snipe-enable-incremental-highlight))))
+    (evilem-define (kbd "C-e s") 'evil-snipe-repeat
+                   :pre-hook (save-excursion (call-interactively #'evil-snipe-s))
+                   :bind ((evil-snipe-scope 'buffer)
+                          (evil-snipe-enable-highlight)
+                          (evil-snipe-enable-incremental-highlight)))
+    (evilem-define (kbd "C-e S") 'evil-snipe-repeat-reverse
+                   :pre-hook (save-excursion (call-interactively #'evil-snipe-s))
+                   :bind ((evil-snipe-scope 'buffer)
+                          (evil-snipe-enable-highlight)
+                          (evil-snipe-enable-incremental-highlight)))))
 
 ;;; evil-surround
 (straight-use-package 'evil-surround)
