@@ -11,10 +11,6 @@
    nil `(("\\(^\\|\\s-\\|,\\)(\\(\\(modo\\|\\+\\)[^) ]+\\)[) \n]" (2 font-lock-keyword-face)))))
 
 (add-hook 'emacs-lisp-mode-hook #'modo--elisp-extra-fontification)
-(modo-add-hook (emacs-lisp-mode-hook :name "modo--set-company-backends-elisp")
-  (setq-local company-backends '((company-capf company-dabbrev-code
-                                               company-keywords
-                                               company-files))))
 
 (straight-use-package 'debbugs)
 (use-package debbugs

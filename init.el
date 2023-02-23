@@ -19,14 +19,12 @@
              git
              progutils
              gdb
-             company
              org
              dired
              latex
              snippets
              spellcheck
              flymake
-             lsp
              elisp
              cpp
              rust

@@ -66,48 +66,8 @@ on the buffer before saving.")
 (defcustom modo-clangd-number-of-worker-threads 2
   "Number of worker threads allowed for clangd.")
 
-;; TODO Generalize this into a macro for defining a specialized mode
-;; for any language
-(define-minor-mode lsp-c++-mode
-  "Specialized minor mode for c++-mode with lsp."
-  :keymap (make-sparse-keymap))
-
-(modo-define-major-leader-key :keymaps 'lsp-c++-mode-map
-  "g" '(:prefix-command lsp-c++-goto-command :wk "goto")
-  "gg" 'lsp-find-definition
-  "gd" 'lsp-find-declaration
-  "gr" 'lsp-find-references
-  "h" '(:prefix-command lsp-c++-help-command :wk "help")
-  "hh" 'lsp-describe-thing-at-point
-  "hs" 'lsp-signature-activate
-  "s" '(:prefix-command lsp-c++-session-command :wk "session")
-  "sd" 'lsp-describe-session
-  "sr" 'lsp-workspace-restart
-  "sq" 'lsp-workspace-shutdown
-  "ss" 'lsp
-  "r" '(:prefix-command lsp-c++-refactor-command :wk "refactor")
-  "rr" 'lsp-rename
-  "ro" 'lsp-organize-imports
-  "a" 'lsp-execute-code-action
-  "c" '(:prefix-command lsp-c++-consult-command :wk "consult")
-  "ce" 'consult-flymake
-  "cd" 'consult-lsp-diagnostics
-  "cs" 'consult-lsp-symbols)
-(general-define-key :keymaps 'lsp-c++-mode-map
-                    [remap ff-find-other-file] 'lsp-clangd-find-other-file
-                    [remap evil-goto-definition] 'lsp-find-definition
-                    "M-s" 'consult-lsp-file-symbols)
-(general-define-key :keymaps 'lsp-c++-mode-map
-                    :states '(motion normal visual)
-                    "gr" #'lsp-find-references)
-(add-hook 'lsp-c++-mode-hook #'evil-normalize-keymaps)
-
 (straight-use-package 'modern-cpp-font-lock)
 (use-package c++-mode
-  :custom
-  (lsp-clients-clangd-args `("--clang-tidy" "--log=info" "--pretty" "--limit-results=500"
-                             "--background-index" "--header-insertion=never"
-                             ,(format "-j=%d" modo-clangd-number-of-worker-threads)))
   :general
   (modo-define-major-leader-key :keymaps 'c++-mode-map
     "f" '(:ignore t :wk "format")
@@ -124,15 +84,7 @@ on the buffer before saving.")
   (modo-add-hook (c++-mode-hook :name "modo--c++-mode-setup")
     (modern-c++-font-lock-mode 1)
     (evil-normalize-keymaps)
-    (push '(?< . ("<" . ">")) evil-surround-pairs-alist))
-  (modo-add-hook (c++-mode-local-vars-hook :name "modo--c++-mode-local-vars-setup")
-    (when modo-enable-lsp
-      (lsp-deferred)
-      (lsp-c++-mode 1)
-      (setq-local lsp-enable-indentation nil
-                  lsp-enable-on-type-formatting nil
-                  company-idle-delay 0
-                  company-minimum-prefix-length 1))))
+    (push '(?< . ("<" . ">")) evil-surround-pairs-alist)))
 
 ;; Search cppreference.com
 (modo-install-search-engine "cppreference" "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=" "cpp[ref]")
