@@ -125,55 +125,6 @@
   (evil-collection-require 'magit)
   (evil-collection-magit-setup))
 
-(straight-use-package 'git-timemachine)
-(use-package git-timemachine
-  :custom-face
-  (git-timemachine-minibuffer-author-face ((t (:inherit success))))
-  (git-timemachine-minibuffer-detail-face ((t (:inherit warning))))
-  :general
-  (modo-define-leader-key
-    :keymaps 'override
-    "vt" 'git-timemachine)
-  :hook (git-timemachine-mode . evil-normalize-keymaps)
-  :init
-  (setq git-timemachine-mode-map (make-sparse-keymap))
-  (general-define-key :keymaps 'git-timemachine-mode-map
-                      :states '(normal visual motion)
-                      "j" #'git-timemachine-show-next-revision
-                      "k" #'git-timemachine-show-previous-revision
-                      "f" #'git-timemachine-show-revision-fuzzy
-                      "n" #'git-timemachine-show-nth-revision
-                      "b" #'git-timemachine-blame
-                      "c" #'git-timemachine-show-commit
-                      "w" #'git-timemachine-kill-abbreviated-revision
-                      "W" #'git-timemachine-kill-revision
-                      "?" #'hydra-git-timemachine/body
-                      "q" #'git-timemachine-quit)
-  :config
-  (defhydra hydra-git-timemachine
-    (:color pink
-            :hint nil
-            :pre (unless git-timemachine-mode
-                   (git-timemachine)))
-            "
-^Step^                     ^Find^                      ^Revision^
-^^-------------------------^^--------------------------^^----------
-_j_: next revision         _f_: fuzzy revision         _b_: blame
-_k_: previous revision     _n_: nth revision           _c_: show commit
-                                                   _w_: kill short hash
-                                                   _W_: kill hash
-"
-            ("j" git-timemachine-show-next-revision)
-            ("k" git-timemachine-show-previous-revision)
-            ("f" git-timemachine-show-revision-fuzzy)
-            ("n" git-timemachine-show-nth-revision)
-            ("b" git-timemachine-blame :color blue)
-            ("c" git-timemachine-show-commit :color blue)
-            ("w" git-timemachine-kill-abbreviated-revision :color blue)
-            ("W" git-timemachine-kill-revision :color blue)
-            ("?" nil "close" :color blue)
-            ("q" git-timemachine-quit "quit timemachine" :color blue)))
-
 (defvar modo--diff-hl-disabled-modes
   '(fundamental-mode image-mode pdf-view-mode org-mode))
 

@@ -44,7 +44,6 @@
  ("general.el" . "9651024e7f40a8ac5c3f31f8675d3ebe2b667344")
  ("git-link" . "2fdc6fde9db78df3719743f073a37be6e779a5f2")
  ("git-modes" . "eca3bb42ea8abed9ef8549b2ac91bbea445c5bb5")
- ("git-timemachine" . "d8ffd0d7cc4ab3dd7de494c9ea36dfd99e2744fa")
  ("glsl-mode" . "9b2e5f28e489a1f73c4aed734105618ac0dc0c43")
  ("gnu-elpa-mirror" . "3350028f721bec8076b332a7d50ae8fa488834a6")
  ("goto-chg" . "278cd3e6d5107693aa2bb33189ca503f22f227d0")
