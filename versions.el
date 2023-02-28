@@ -80,7 +80,7 @@
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("soap-client" . "1535a04b9dd202fcbc49a655cc5dafd1b3bff59e")
  ("spinner" . "634529bb3173e09b37499f636de70abf29d9fa8a")
- ("straight.el" . "56a8b6c8a46fb78655d512402ad7840d85167225")
+ ("straight.el" . "6e7ba15d5c11338a1e055bc0c7827e80f65d0d2c")
  ("sudo-edit" . "74eb1e6986461baed9a9269566ff838530b4379b")
  ("transient" . "c6cf2f2705ab56cd89d807e723ce45b9fcdfb9e1")
  ("transpose-frame" . "94c87794d53883a2358d13da264ad8dab9a52daa")
