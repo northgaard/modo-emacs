@@ -28,8 +28,9 @@
 (use-package compile
   :config
   (setq compilation-scroll-output 'first-error)
-  (when (featurep 'dbusbind)
-    (require 'notifications)
+  (when (and (featurep 'dbusbind)
+             (require 'notifications)
+             (dbus-ping :session notifications-service))
     (defun modo-on-compilation-finished (buffer description)
       (let ((title (buffer-name buffer)))
         (unless (or (string-match-p "grep" title)
